@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+
+
+<fx:root type="javafx.scene.layout.Pane" xmlns:fx="http://javafx.com/fxml" prefHeight="426.0" prefWidth="783.0" style="-fx-background-color: #FFFFFF;">
+    <children>
+        <TableView layoutX="-1.0" layoutY="55.0" prefHeight="372.0" prefWidth="785.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="Employee ID" />
+                <TableColumn prefWidth="75.0" text="Last Name" />
+                <TableColumn prefWidth="75.0" text="First Name" />
+                <TableColumn prefWidth="131.99996948242188" text="Employment Status" />
+                <TableColumn prefWidth="106.6666259765625" text="Department" />
+                <TableColumn prefWidth="106.6666259765625" text="Action" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAILY ATTENDANCE">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Text>
+        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="284.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+
+            </image>
+        </ImageView>
+        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="457.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+
+            </image>
+        </ImageView>
+        <TextField layoutX="565.0" layoutY="15.0" />
+        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="728.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+
+            </image>
+        </ImageView>
+        <DatePicker layoutX="325.0" layoutY="15.0" prefHeight="25.0" prefWidth="120.0" />
+    </children>
+</fx:root>

@@ -24,11 +24,11 @@ public class SQLExecution {
 
         // EMPLOYEE TABLE
         String emp_tbl = "CREATE TABLE IF NOT EXISTS tbl_employees (" +
-                "emp_id int, " + //Di sya nakaset pag create, need ni admin ilagay to// also primary key sa ibang tables
+                "emp_id int PRIMARY KEY UNIQUE, " +
 
                 "emp_nationality varchar(30), " +
                 "emp_maritalstatus varchar(30), " +
-                "emp_department int, " + //Eto foreign key galing sa tbl_department value neto
+                "emp_department int CONSTRAINT fk_emp_dept_id_employes REFERENCES tbl_department(department_id) ON DELETE SET NULL ON UPDATE CASCADE, " +
                 "emp_position int, " +
                 "emp_employmentstatus varchar(3), " +
 
@@ -40,16 +40,14 @@ public class SQLExecution {
                 "emp_gender boolean, " +
                 "emp_contactno varchar(20), " +
                 "emp_bday date, " +
-                "emp_email varchar(128), " +
+                "emp_status boolean, " +
 
                 "emp_contact_fname varchar(128), " +
                 "emp_contact_relationship varchar(30), " +
                 "emp_contact_address varchar(250), " +
                 "emp_contact_contactno varchar(20), " +
 
-                //"emp_biometrics_info varchar(200), " + //Wag muna to
-
-                "PRIMARY KEY(emp_id))";
+                "emp_biometrics_info varchar(200))";
 
         // NOTICEBOARD TABLE
         String noticeboard_tbl = "CREATE TABLE IF NOT EXISTS tbl_noticeboard (" +
