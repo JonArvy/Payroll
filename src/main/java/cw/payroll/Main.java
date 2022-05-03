@@ -22,45 +22,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-        //addItemsonDb();
-    }
-
-    public void addItemsonDb() {
-        SQLExecution con = new SQLExecution();
-
-        con.createTables();
-
-        String letters = "abcdefghijklmnopqrstuvwxyz";
-        for (int i = 0; i < 100; i++) {
-            Employee rand = new Employee(
-                    i,
-                    "Filipino",
-                    "Single",
-                    i % 5,
-                    i % 3,
-                    "Permanent",
-
-                    letters.charAt(i % 26) + "",
-                    letters.charAt((i + 20) % 26) + "",
-                    letters.charAt((i + 10) % 26) + "",
-                    letters.charAt((i + 5) % 26) + "",
-                    letters.charAt(i % 26) + " " + letters.charAt((i + 20) % 26),
-
-                    true,
-
-                    "asd",
-
-                    Date.valueOf(LocalDate.now()),
-                    "private String Email",
-
-                    "private String Contact_Name;",
-                    "private String Contact_Relationship;",
-                    "private String Contact_Address;",
-
-                    "private String Contact_Number;"
-            );
-            con.addEmployee(rand);
-        }
     }
 
 

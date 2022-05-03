@@ -8,7 +8,7 @@ public class Employee {
     private String Nationality;
     private String Marital_Status;
     private int Department;
-    private int Position;
+    private String Position;
     private String Employment_Status;
 
     private String First_Name;
@@ -22,30 +22,10 @@ public class Employee {
     private String Number;
 
     private Date Birthdate;
-    private String Email;
+    private Boolean Active;
 
-    private float Employee_Biometrics;
+    private String Employee_Biometrics;
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // Benefits ===========================================================
-    // Note* Should I create new class if there are
-    // static benefits list???????
-    //    private boolean SSS_CheckBox;
-    //    private int SSS_Account_Number; //?????
-    //    private int SSS_Amount;
-    //
-    //    private boolean Pag_IBIG_CheckBox;
-    //    private int Pag_IBIG_Account_Number; //?????
-    //    private int Pag_IBIG_Amount;
-    //
-    //    private boolean PhilHealth_CheckBox;
-    //    private int PhilHealth_Account_Number; //?????
-    //    private int PhilHealth_Amount;
-
-
-    // ???
-
-    // ====================================================================
 
     // Emergency Contact Information Starts here --------------------------
     private String Contact_Name;
@@ -54,12 +34,13 @@ public class Employee {
 
     private String Contact_Number;
 
+
     // --------------------------------------------------------------------
     public Employee() {
 
     }
 
-    public Employee(int Employee_ID, String Nationality, String Marital_Status, int Department, int Position, String Employment_Status, String First_Name, String Last_Name, String Middle_Name, String Extension, String Address, boolean Gender, String Number, Date Birthdate, String Email, String Contact_Name, String Contact_Relationship, String Contact_Address, String Contact_Number) {
+    public Employee(int Employee_ID, String Nationality, String Marital_Status, int Department, String Position, String Employment_Status, String First_Name, String Last_Name, String Middle_Name, String Extension, String Address, boolean Gender, String Number, Date Birthdate, Boolean Active, String Contact_Name, String Contact_Relationship, String Contact_Address, String Contact_Number, String Employee_Biometrics) {
         this.Employee_ID = Employee_ID;
         this.Nationality = Nationality;
         this.Marital_Status = Marital_Status;
@@ -78,13 +59,15 @@ public class Employee {
         this.Number = Number;
 
         this.Birthdate = Birthdate;
-        this.Email = Email;
+        this.Active = Active;
 
         this.Contact_Name = Contact_Name;
         this.Contact_Relationship = Contact_Relationship;
         this.Contact_Address = Contact_Address;
 
         this.Contact_Number = Contact_Number;
+
+        this.Employee_Biometrics = Employee_Biometrics;
     }
     //For Manage Employee
     public Employee(int Employee_ID, int Department, String Employment_Status, String First_Name, String Last_Name) {
@@ -104,13 +87,22 @@ public class Employee {
         this.Last_Name = Last_Name;
     }
 
+    public Employee(int Employee_ID, String Last_Name, String First_Name, String Employment_Status, int Department, boolean Active) {
+        this.Employee_ID = Employee_ID;
+        this.Last_Name = Last_Name;
+        this.First_Name = First_Name;
+        this.Employment_Status = Employment_Status;
+        this.Department = Department;
+        this.Active = Active;
+    }
+
     // Getters Here ///////////////////////////////////////////////////////
 
     public int getEmployee_ID() {
         return Employee_ID;
     }
 
-    public int getPosition() {
+    public String getPosition() {
         return Position;
     }
 
@@ -162,11 +154,11 @@ public class Employee {
         return Birthdate;
     }
 
-    public String getEmail() {
-        return Email;
+    public boolean isActive() {
+        return Active;
     }
 
-    public float getEmployee_Biometrics() {
+    public String getEmployee_Biometrics() {
         return Employee_Biometrics;
     }
 

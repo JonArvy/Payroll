@@ -156,7 +156,7 @@ public class MainController implements Initializable {
         @FXML
         private void loadManageEmployeeTable() {
                 employeeList.clear();
-                sql.getAllEmployees(employeeList);
+                employeeList = sql.getAllEmployeesInformation();
 
                 manageemployee_column_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
                 manageemployee_column_lastname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));
