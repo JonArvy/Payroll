@@ -1,6 +1,6 @@
 package Classes;
 
-import Models.Employee;
+import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -119,7 +119,7 @@ public class SQLExecution {
 
     private void ExecuteWithoutReturn(String sql) {
         try (Connection connection = connect();
-             Statement statement = connection.createStatement();) {
+             Statement statement = connection.createStatement()) {
 
             //ResultSet result = statement.executeQuery(sql);
             statement.executeUpdate(sql);
@@ -243,26 +243,41 @@ public class SQLExecution {
 
     }
 
-    private void ExecuteWithReturn (String sql) { //Will change to return later
-        try (Connection connection = connect();) {
+    public void addBonus(Bonus bonus) {
+        String command = "INSERT INTO tbl_bonus" +
+                "VALUES (?, ?, ?, ?);";
+        try (Connection conn = connect();
+             PreparedStatement prep = conn.prepareStatement(command)) {
+            prep.setString(1, bonus.getBonus_Name());
+            prep.setDouble(2, bonus.getBonus_Amount());
+            prep.setInt(3, bonus.getBonus_Recipient());
+            prep.setDate(4, bonus.getBonus_Date());
 
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-
-            while (result.next()) {
-                String name = result.getString("name");
-                int emp_id = result.getInt("emp_id");
-                // Arraylist?????????
-                // IDK prob
-
-                // return items
-                // IDK
-                System.out.println(name + " " + emp_id);
-            }
-
+            prep.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
+        }
+    }
+
+    public void addShift(Shift shift) {
+        String command = "INSERT INTO tbl_shift" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = connect();
+             PreparedStatement prep = conn.prepareStatement(command)) {
+            prep.setInt(1, shift.getShift_Type().getValue());
+            prep.setInt(2, shift.getShift_Recipient());
+            prep.setBoolean(3, shift.isShift_Sunday());
+            prep.setBoolean(4, shift.isShift_Monday());
+            prep.setBoolean(5, shift.isShift_Tuesday());
+            prep.setBoolean(6, shift.isShift_Wednesday());
+            prep.setBoolean(7, shift.isShift_Thursday());
+            prep.setBoolean(8, shift.isShift_Friday());
+            prep.setBoolean(9, shift.isShift_Saturday());
+
+            prep.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite Database");
         }
     }
 
