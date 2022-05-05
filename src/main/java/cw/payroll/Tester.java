@@ -9,11 +9,11 @@ import java.time.LocalDate;
 public class Tester {
 
     public static void main(String[] args) {
-        String raw = Main.class.getClassLoader().getResource("").getPath();
-        String filepath = raw.replace("target/classes/", "src/main/java/Tools/");
-        filepath = filepath.substring(1).replace("%20", " ");
-        filepath = filepath.replace("/", "\\");
-        System.out.println(filepath);
+//        String raw = Main.class.getClassLoader().getResource("").getPath();
+//        String filepath = raw.replace("target/classes/", "src/main/java/Tools/");
+//        filepath = filepath.substring(1).replace("%20", " ");
+//        filepath = filepath.replace("/", "\\");
+//        System.out.println(filepath);
 
 
 //        new Tester().createTables(new SQLExecution());

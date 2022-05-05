@@ -40,6 +40,7 @@ public class Employee {
 
     }
 
+
     public Employee(int Employee_ID, String Nationality, String Marital_Status, int Department, String Position, String Employment_Status, String First_Name, String Last_Name, String Middle_Name, String Extension, String Address, boolean Gender, String Number, Date Birthdate, Boolean Active, String Contact_Name, String Contact_Relationship, String Contact_Address, String Contact_Number, String Employee_Biometrics) {
         this.Employee_ID = Employee_ID;
         this.Nationality = Nationality;

@@ -408,9 +408,7 @@ public class HelloController implements Initializable {
 
     public void showManageEmployeeTable() {
         employeeList.clear();
-        employeeList = sql.getAllEmployeesInformation();
-
-        System.out.println(employeeList.size());
+        employeeList = sql.getAllEmployees();
 
         main_manageemployee_col_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
         main_manageemployee_col_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));

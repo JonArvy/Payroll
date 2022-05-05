@@ -55,7 +55,10 @@ public class SQLExecution {
         String department_tbl = "CREATE TABLE IF NOT EXISTS tbl_department (" +
                 "department_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, " + //Primary key
 
-                "department_name VARCHAR(50))";
+                "department_name VARCHAR(50)," +
+                "department_monthlyrate REAL," +
+                "department_dayspermonth INTEGER," +
+                "department_hoursperday INTEGER)";
 
 
         // ATTENDANCE TABLE
@@ -71,6 +74,24 @@ public class SQLExecution {
                 "emp_id INTEGER CONSTRAINT fk_emp_id_attendance REFERENCES tbl_employees(emp_id) ON DELETE SET NULL ON UPDATE CASCADE, " +
                 "admin_password VARCHAR(200))";
 
+        String bonus_tbl = "CREATE TABLE IF NOT EXISTS tbl_bonus (" +
+                "bonus_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                "bonus_name VARCHAR(50)," +
+                "bonus_amount REAL," +
+                "bonus_recipient INTEGER CONSTRAINT fk_department_id_bonus REFERENCES tbl_department(department_id) ON DELETE SET NULL ON UPDATE CASCADE," +
+                "bonus_date DATE)";
+
+        String shift_tbl = "CREATE TABLE IF NOT EXISTS tbl_shift (" +
+                "shift_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                "shift_type INTEGER," +
+                "shift_recipient INTEGER," +
+                "shift_sunday BOOLEAN," +
+                "shift_monday BOOLEAN," +
+                "shift_tuesday BOOLEAN," +
+                "shift_wednesday BOOLEAN," +
+                "shift_thursday BOOLEAN," +
+                "shift_friday BOOLEAN," +
+                "shift_saturday BOOLEAN)";
 
         ExecuteWithoutReturn(department_tbl);
         ExecuteWithoutReturn(noticeboard_tbl);
@@ -154,8 +175,8 @@ public class SQLExecution {
 
     }
 
-    public void getAllEmployees(ObservableList<Employee> employeeList) {
-        //ObservableList<Employee> employeeList = FXCollections.observableArrayList();
+    public ObservableList<Employee> getAllEmployees() {
+        ObservableList<Employee> employeeList = FXCollections.observableArrayList();
         String command = "SELECT emp_id," +
                 "emp_lname," +
                 "emp_fname," +
@@ -182,7 +203,7 @@ public class SQLExecution {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //return employeeList;
+        return employeeList;
 
     }
 
