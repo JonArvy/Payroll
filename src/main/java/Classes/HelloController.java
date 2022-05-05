@@ -1,7 +1,7 @@
 package Classes;
 
-import Models.BooleanValue;
-import Models.Employee;
+import Enums.ShiftType;
+import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.sql.Date;
@@ -452,6 +451,72 @@ public class HelloController implements Initializable {
         main_addemployee_status.getItems().addAll("Active", "Inactive");
         main_addemployee_gender.getSelectionModel().select(0);
         main_addemployee_status.getSelectionModel().select(0);
+
+    }
+
+
+    public void addDepartment() {
+        int id = 0;
+        String name = "a";
+        double monthlyrate = 20000;
+        int dayspermonth = 20;
+        int hoursperday = 8;
+
+        sql.addDepartment(new Department(id, name, monthlyrate, dayspermonth, hoursperday));
+    }
+
+
+    public void addBonus() {
+        int id = 0;
+        String bonusName = "";
+
+        int bonusRecipient = 0;
+        Date bonusDate = new Date(2022, 3, 29);
+        double bonusAmount = 1500;
+
+        sql.addBonus(new Bonus(id, bonusName, bonusAmount, bonusRecipient, bonusDate));
+    }
+
+    public void addShift() {
+        int id = 0;
+        ShiftType shiftType = ShiftType.DEPARTMENT;
+        int recipient = 1;
+        boolean shiftSunday = true;
+        boolean shiftMonday = true;
+        boolean shiftTuesday = false;
+        boolean shiftWednesday = true;
+        boolean shiftThursday = true;
+        boolean shiftFriday = true;
+        boolean shiftSaturday = true;
+
+        sql.addShift(new Shift(
+                id,
+                shiftType,
+                recipient,
+                shiftSunday,
+                shiftMonday,
+                shiftTuesday,
+                shiftWednesday,
+                shiftThursday,
+                shiftFriday,
+                shiftSaturday
+        ));
+    }
+
+    public void addAdmin() {
+        int adminId = 0;
+        int empId = 0;
+        int adminGrantor = 0;
+        int adminDisabler = 0;
+        String adminPassword = "Hawo";
+
+        sql.addAdmin(new Admin(
+                adminId,
+                empId,
+                adminPassword,
+                adminGrantor,
+                adminDisabler
+        ));
 
     }
 }
