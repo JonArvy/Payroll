@@ -22,7 +22,7 @@ public class SQLExecution {
 
                 "emp_nationality VARCHAR(30), " +
                 "emp_maritalstatus VARCHAR(30), " +
-                "emp_department INTEGER CONSTRAINT fk_emp_dept_id_employes REFERENCES tbl_department(department_id) ON DELETE SET NULL ON UPDATE CASCADE, " +
+                "emp_department INTEGER CONSTRAINT fk_emp_dept_id_employees REFERENCES tbl_department(department_id) ON DELETE SET NULL ON UPDATE CASCADE, " +
                 "emp_position VARCHAR(10), " +
                 "emp_employmentstatus VARCHAR(30), " +
 
