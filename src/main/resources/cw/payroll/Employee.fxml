@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.EmployeeController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
+      <Pane fx:id="employee_attendance_main_panel" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
             <Pane layoutX="8.0" layoutY="10.0" prefHeight="88.0" prefWidth="279.0" style="-fx-background-color: darkblue;" />
             <Text layoutX="28.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Attendance" />
@@ -19,9 +19,9 @@
             <DatePicker fx:id="employee_attendance_date_from" layoutX="93.0" layoutY="147.0" />
             <Text layoutX="17.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date To:" />
             <DatePicker fx:id="employee_attendance_date_to" layoutX="93.0" layoutY="186.0" />
-            <Button fx:id="employee_attendance_set" layoutX="60.0" layoutY="225.0" mnemonicParsing="false" onAction="#actionButton" text="SET" />
-            <Button fx:id="employee_attendance_reset" layoutX="128.0" layoutY="225.0" mnemonicParsing="false" onAction="#actionButton" text="RESET?" />
-            <Button fx:id="employee_attendance_total_button" layoutX="35.0" layoutY="294.0" mnemonicParsing="false" onAction="#actionButton" text="Total" />
+            <Button layoutX="60.0" layoutY="225.0" mnemonicParsing="false" onAction="#setButton" text="SET" />
+            <Button layoutX="128.0" layoutY="225.0" mnemonicParsing="false" onAction="#resetButton" text="RESET?" />
+            <Button layoutX="35.0" layoutY="294.0" mnemonicParsing="false" onAction="#totalButton" text="Total" />
             <TextField fx:id="employee_attendance_total_field" layoutX="93.0" layoutY="294.0" />
             <TableView fx:id="employee_attendance_table" layoutX="300.0" layoutY="38.0" prefHeight="343.0" prefWidth="285.0">
               <columns>
@@ -33,12 +33,12 @@
             </TableView>
          </children>
       </Pane>
-      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: gray;">
+      <Pane fx:id="employee_attendance_login_panel" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: gray;">
          <children>
             <Text layoutX="187.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please put your fingerprint in the scanner" />
             <TextField fx:id="employee_attendance_emp_id_field" layoutX="147.0" layoutY="224.0" prefHeight="25.0" prefWidth="178.0" />
             <Text layoutX="147.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emp Id(Temporary for biometrics)" />
-            <Button fx:id="employee_attendance_emp_id_button" layoutX="406.0" layoutY="224.0" mnemonicParsing="false" onAction="#actionButton" text="Search" />
+            <Button layoutX="406.0" layoutY="224.0" mnemonicParsing="false" onAction="#searchEmployee" text="Search" />
          </children>
       </Pane>
    </children>

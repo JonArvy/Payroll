@@ -283,6 +283,33 @@ public class SQLExecution {
 
     }
 
+    //Getting Employee Attendance
+    public ObservableList<Attendance> getAttendance(int id) {
+        ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
+        String command = "SELECT * FROM tbl_attendance WHERE emp_id = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                attendanceList.add(new Attendance(
+                        resultSet.getInt("emp_id"),
+
+                        resultSet.getDate("emp_attendance_date"),
+                        resultSet.getTime("emp_timein"),
+                        resultSet.getTime("emp_timeout")
+
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return attendanceList;
+    }
+
     //Getting single employee full details
     public Employee getEmployee(Employee emp) {
         String command = "SELECT * FROM tbl_employees WHERE emp_id = ?";

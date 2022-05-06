@@ -175,7 +175,7 @@ public class HelloController implements Initializable {
     private TextField main_addemployee_empid;
 
     @FXML
-    private ComboBox<?> main_addemployee_empstatus;
+    private ComboBox<String> main_addemployee_empstatus;
 
     @FXML
     private TextField main_addemployee_ext;
@@ -190,7 +190,7 @@ public class HelloController implements Initializable {
     private TextField main_addemployee_lname;
 
     @FXML
-    private ComboBox<?> main_addemployee_maritalstatus;
+    private ComboBox<String> main_addemployee_maritalstatus;
 
     @FXML
     private TextField main_addemployee_mname;
@@ -529,10 +529,10 @@ public class HelloController implements Initializable {
         sql.addEmployee(new Employee(
                 Integer.parseInt(main_addemployee_empid.getText()),
                 main_addemployee_nationality.getText(),
-                main_addemployee_maritalstatus.getValue().toString(),
-                Integer.parseInt(main_addemployee_dept.getValue().toString()), // Integer
+                main_addemployee_maritalstatus.getValue(),
+                main_addemployee_dept.getValue(), // Will fix later
                 main_addemployee_position.getText(),
-                main_addemployee_empstatus.getValue().toString(),
+                main_addemployee_empstatus.getValue(),
                 main_addemployee_fname.getText(),
                 main_addemployee_lname.getText(),
                 main_addemployee_mname.getText(),
@@ -640,6 +640,13 @@ public class HelloController implements Initializable {
         main_addshift_shifttype.getSelectionModel().select(0);
 
         main_addemployee_dept.getItems().addAll(1, 2, 3, 4, 5);
+        main_addemployee_dept.getSelectionModel().select(0);
+
+        main_addemployee_maritalstatus.getItems().addAll("Single", "Married", "Widowed", "Annuled");
+        main_addemployee_maritalstatus.getSelectionModel().select(0);
+
+        main_addemployee_empstatus.getItems().addAll("Regular", "Contractual", "Part-Time");
+        main_addemployee_empstatus.getSelectionModel().select(0);
 
 
     }
