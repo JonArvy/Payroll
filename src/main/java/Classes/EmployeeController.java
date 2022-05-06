@@ -77,8 +77,8 @@ public class EmployeeController implements Initializable {
     @FXML
     void searchEmployee(ActionEvent event) {
         employee_attendance_main_panel.toFront();
-        attendanceList = sql.getAttendance(Integer.parseInt(employee_attendance_emp_id_field.getText()));
         attendanceList.clear();
+        attendanceList = sql.getAttendance(Integer.parseInt(employee_attendance_emp_id_field.getText()));
 
         employee_attendance_column_date.setCellValueFactory(new PropertyValueFactory<Attendance, Date>("Employee_Attendance_Date"));
         employee_attendance_column_timein.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeIn"));
