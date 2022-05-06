@@ -1,5 +1,8 @@
 package Models;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
+
 public class Department {
     private int Department_ID;
     private String Department_Name;
@@ -7,7 +10,10 @@ public class Department {
     int Department_DaysPerMonth;
     int Department_HoursPerDay;
 
-    public Department(int Department_ID, String Department_Name, double Department_MonthlyRate, int Department_DaysPerMonth, int Department_HoursPerDay) {
+    public Department(int Department_ID, String Department_Name, double Department_MonthlyRate, int Department_DaysPerMonth, int Department_HoursPerDay) throws ParseException {
+        DecimalFormat df = new DecimalFormat("#.00");
+        String dailyRateString = df.format(Department_MonthlyRate / Department_DaysPerMonth);
+        String hourlyRateString = df.format(Department_MonthlyRate / Department_DaysPerMonth / Department_HoursPerDay);
         this.Department_ID = Department_ID;
         this.Department_Name = Department_Name;
         this.Department_MonthlyRate = Department_MonthlyRate;

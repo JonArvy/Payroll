@@ -1,10 +1,8 @@
 package Models;
 
-import Enums.ShiftType;
-
 public class Shift {
     private int Shift_ID;
-    private ShiftType Shift_Type;
+    private int Shift_Type;
     private int Shift_Recipient;
     private boolean Shift_Sunday;
     private boolean Shift_Monday;
@@ -15,7 +13,7 @@ public class Shift {
     private boolean Shift_Saturday;
 
 
-    public Shift(int Shift_ID, ShiftType Shift_Type, int Shift_Recipient, boolean Shift_Sunday, boolean Shift_Monday, boolean Shift_Tuesday, boolean Shift_Wednesday, boolean Shift_Thursday, boolean Shift_Friday, boolean Shift_Saturday) {
+    public Shift(int Shift_ID, int Shift_Type, int Shift_Recipient, boolean Shift_Sunday, boolean Shift_Monday, boolean Shift_Tuesday, boolean Shift_Wednesday, boolean Shift_Thursday, boolean Shift_Friday, boolean Shift_Saturday) {
         this.Shift_ID = Shift_ID;
         this.Shift_Type = Shift_Type;
         this.Shift_Recipient = Shift_Recipient;
@@ -32,7 +30,7 @@ public class Shift {
         return Shift_ID;
     }
 
-    public ShiftType getShift_Type() {
+    public int getShift_Type() {
         return Shift_Type;
     }
 

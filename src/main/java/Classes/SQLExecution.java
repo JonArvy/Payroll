@@ -193,11 +193,13 @@ public class SQLExecution {
     public ObservableList<Employee> getAllEmployees() {
         ObservableList<Employee> employeeList = FXCollections.observableArrayList();
         String command = "SELECT emp_id," +
-                "emp_lname," +
-                "emp_fname," +
-                "emp_employmentstatus," +
-                "emp_department," +
-                "emp_status FROM tbl_employees";
+                "tbl_employees.emp_lname," +
+                "tbl_employees.emp_fname," +
+                "tbl_employees.emp_employmentstatus," +
+                "tbl_department.department_name," +
+                "tbl_employees.emp_status " +
+                "FROM tbl_employees JOIN tbl_department " +
+                "ON tbl_employees.emp_department = tbl_department.department_id";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
 
@@ -435,7 +437,7 @@ public class SQLExecution {
 
         try (Connection conn = connect();
              PreparedStatement prep = conn.prepareStatement(command)) {
-            prep.setInt(1, shift.getShift_Type().getValue());
+            prep.setInt(1, shift.getShift_Type());
             prep.setInt(2, shift.getShift_Recipient());
             prep.setBoolean(3, shift.isShift_Sunday());
             prep.setBoolean(4, shift.isShift_Monday());

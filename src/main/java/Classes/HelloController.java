@@ -1,6 +1,5 @@
 package Classes;
 
-import Enums.ShiftType;
 import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +12,7 @@ import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -479,15 +479,15 @@ public class HelloController implements Initializable {
 
     public void addShift() {
         int id = 0;
-        ShiftType shiftType = ShiftType.DEPARTMENT;
-        int recipient = 1;
-        boolean shiftSunday = true;
-        boolean shiftMonday = true;
-        boolean shiftTuesday = false;
-        boolean shiftWednesday = true;
-        boolean shiftThursday = true;
-        boolean shiftFriday = true;
-        boolean shiftSaturday = true;
+        int shiftType = (int) main_addshift_shifttype.getValue();
+        int recipient = Integer.parseInt(main_addshift_name.getText());
+        boolean shiftSunday = main_addshift_sunday.isSelected();
+        boolean shiftMonday = main_addshift_monday.isSelected();
+        boolean shiftTuesday = main_addshift_tuesday.isSelected();
+        boolean shiftWednesday = main_addshift_wednesday.isSelected();
+        boolean shiftThursday = main_addshift_thursday.isSelected();
+        boolean shiftFriday = main_addshift_friday.isSelected();
+        boolean shiftSaturday = main_addshift_saturday.isSelected();
 
         sql.addShift(new Shift(
                 id,
@@ -517,6 +517,5 @@ public class HelloController implements Initializable {
                 adminGrantor,
                 adminDisabler
         ));
-
     }
 }
