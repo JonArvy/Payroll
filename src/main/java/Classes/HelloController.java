@@ -169,7 +169,7 @@ public class HelloController implements Initializable {
     private TextField main_addemployee_contactrelationship;
 
     @FXML
-    private ComboBox<?> main_addemployee_dept;
+    private ComboBox<Integer> main_addemployee_dept;
 
     @FXML
     private TextField main_addemployee_empid;
@@ -240,11 +240,152 @@ public class HelloController implements Initializable {
     @FXML
     private TableColumn<Employee, Boolean> main_manageemployee_col_status;
 
+    // Add Department Here
+
+    @FXML
+    private Button main_adddepartment_addbutton;
+
+    @FXML
+    private TextField main_adddepartment_dayspermonth;
+
+    @FXML
+    private TextField main_adddepartment_hoursperday;
+
+    @FXML
+    private TextField main_adddepartment_monthlyrate;
+
+    @FXML
+    private TextField main_adddepartment_name;
+
+    // Add Holiday Here
+
+    @FXML
+    private Button main_addholiday_addbutton;
+
+    @FXML
+    private DatePicker main_addholiday_date;
+
+    @FXML
+    private TextField main_addholiday_name;
+
+    @FXML
+    private ComboBox<?> main_addholiday_type;
+
+    // Add Shift Here
+
+    @FXML
+    private Button main_addshift_addbutton;
+
+    @FXML
+    private CheckBox main_addshift_friday;
+
+    @FXML
+    private CheckBox main_addshift_monday;
+
+    @FXML
+    private TextField main_addshift_name;
+
+    @FXML
+    private CheckBox main_addshift_saturday;
+
+    @FXML
+    private ComboBox<Integer> main_addshift_shifttype;
+
+    @FXML
+    private CheckBox main_addshift_sunday;
+
+    @FXML
+    private CheckBox main_addshift_thursday;
+
+    @FXML
+    private CheckBox main_addshift_tuesday;
+
+    @FXML
+    private CheckBox main_addshift_wednesday;
+
+    // Department Table
+    @FXML
+    private TableView main_department_tableview;
+
+    @FXML
+    private TableColumn<Department, Double> main_department_column_dailyrate;
+
+    @FXML
+    private TableColumn<Department, Integer> main_department_column_dayspermonth;
+
+    @FXML
+    private TableColumn<Department, Double> main_department_column_hourlyrate;
+
+    @FXML
+    private TableColumn<Department, Integer> main_department_column_hoursperday;
+
+    @FXML
+    private TableColumn<Department, Double> main_department_column_monthlyrate;
+
+    @FXML
+    private TableColumn<Department, String> main_department_column_name;
+
+    @FXML
+    private TableColumn<?, ?> main_department_column_shift;
+
+    // Shift Table Here
+    @FXML
+    private TableView main_shift_tableview;
+
+    @FXML
+    private TableColumn<?, ?> main_shift_column_action;
+
+    @FXML
+    private TableColumn<?, ?> main_shift_column_name;
+
+    @FXML
+    private TableColumn<?, ?> main_shift_column_shifttype;
+
+    // Bonus
+    @FXML
+    private TableView main_bonus_tableview;
+
+    @FXML
+    private TableColumn<Bonus, String> main_bonus_name;
+
+    @FXML
+    private TableColumn<Bonus, Double> main_bonus_amount;
+
+    @FXML
+    private TableColumn<Bonus, String> main_bonus_recipient;
+
+    @FXML
+    private TableColumn<Bonus, Date> main_bonus_dateapplicable;
+
+    @FXML
+    private TableColumn<?, ?> main_bonus_action;
+
+    // Add Bonus
+    @FXML
+    private TextField main_addbonus_name;
+
+    @FXML
+    private TextField main_addbonus_amount;
+
+    @FXML
+    private ComboBox<Integer> main_addbonus_recipient;
+
+    @FXML
+    private DatePicker main_addbonus_dateapplicable;
+
+    @FXML
+    private Button main_addbonus_addbutton;
+
+    // END DITOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+    @FXML
+    private Pane main_credentials_panel_11;
 
 
     private SQLExecution sql;
-    private ObservableList<Employee> departmentList = FXCollections.observableArrayList();
+    private ObservableList<Department> departmentList = FXCollections.observableArrayList();
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
+    private ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
 
 
 
@@ -260,7 +401,7 @@ public class HelloController implements Initializable {
             //Manage Employee Button
         } else if (event.getSource() == main_manageemployee_button) {
             main_manageemployee_panel_1.toFront();
-            showManageEmployeeTable();
+            showEmployeeTable();
 
         //Add Employee Next Button (to second page)
         } else if (event.getSource() == addemployee_button_next) {
@@ -293,6 +434,7 @@ public class HelloController implements Initializable {
         //Department Button page 1
         } else if (event.getSource() == main_department_button) {
             main_department_panel_1.toFront();
+            showDepartmentTable();
 
         //Department Button page 1 - Add Department Button
         } else if (event.getSource() == main_department_add_department_button) {
@@ -341,6 +483,7 @@ public class HelloController implements Initializable {
         //Bonus Button
         } else if (event.getSource() == main_bonus_button) {
             main_bonus_panel_1.toFront();
+            showBonus();
 
         //Bonus Button - Add Bonus
         } else if (event.getSource() == main_bonus_add_bonus_button) {
@@ -357,6 +500,15 @@ public class HelloController implements Initializable {
         //Logout Button
         } else if (event.getSource() == main_logout_button) {
             System.exit(0);
+
+
+            //Add Bonus
+        } else if (event.getSource() == main_addbonus_addbutton) {
+            addBonus();
+
+            //Add Shift
+        } else if (event.getSource() == main_addshift_addbutton) {
+            addShift();
         }
     }
 
@@ -374,7 +526,7 @@ public class HelloController implements Initializable {
         } else {
             status = false;
         }
-        new Employee(
+        sql.addEmployee(new Employee(
                 Integer.parseInt(main_addemployee_empid.getText()),
                 main_addemployee_nationality.getText(),
                 main_addemployee_maritalstatus.getValue().toString(),
@@ -395,7 +547,7 @@ public class HelloController implements Initializable {
                 main_addemployee_contactaddress.getText(),
                 main_addemployee_contactnumber.getText(),
                 "Biometrics"
-        );
+        ));
 
         main_addemployee_dept.getValue();
         main_addemployee_gender.getValue();
@@ -405,7 +557,36 @@ public class HelloController implements Initializable {
         System.out.println(main_addemployee_bdate.getValue());
     }
 
-    public void showManageEmployeeTable() {
+    public void showBonus() {
+        bonusList.clear();
+        bonusList = sql.getBonus();
+
+        main_bonus_name.setCellValueFactory(new PropertyValueFactory<Bonus, String>("Bonus_Name"));
+        main_bonus_amount.setCellValueFactory(new PropertyValueFactory<Bonus, Double>("Bonus_Amount"));
+        main_bonus_recipient.setCellValueFactory(new PropertyValueFactory<Bonus, String>("Recipient_Name"));
+        main_bonus_dateapplicable.setCellValueFactory(new PropertyValueFactory<Bonus, Date>("Bonus_Date"));
+//        main_bonus_action.setCellValueFactory(new PropertyValueFactory<Bonus, Integer>("Department_HoursPerDay"));
+
+
+        main_bonus_tableview.setItems(bonusList);
+    }
+
+    public void showDepartmentTable() {
+        departmentList.clear();
+        departmentList = sql.getDepartment();
+        main_department_column_name.setCellValueFactory(new PropertyValueFactory<Department, String>("Department_Name"));
+
+        main_department_column_monthlyrate.setCellValueFactory(new PropertyValueFactory<Department, Double>("Department_MonthlyRate"));
+        main_department_column_dayspermonth.setCellValueFactory(new PropertyValueFactory<Department, Integer>("Department_DaysPerMonth"));
+        main_department_column_dailyrate.setCellValueFactory(new PropertyValueFactory<Department, Double>("Daily_Rate"));
+        main_department_column_hoursperday.setCellValueFactory(new PropertyValueFactory<Department, Integer>("Department_HoursPerDay"));
+        main_department_column_hourlyrate.setCellValueFactory(new PropertyValueFactory<Department, Double>("Hourly_Rate"));
+
+
+        main_department_tableview.setItems(departmentList);
+    }
+
+    public void showEmployeeTable() {
         employeeList.clear();
         employeeList = sql.getAllEmployees();
 
@@ -413,7 +594,7 @@ public class HelloController implements Initializable {
         main_manageemployee_col_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));
         main_manageemployee_col_fname.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_Name"));
         main_manageemployee_col_empstatus.setCellValueFactory(new PropertyValueFactory<Employee, String>("Employment_Status"));
-        main_manageemployee_col_dept.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department"));
+        main_manageemployee_col_dept.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department_Name"));
         main_manageemployee_col_status.setCellValueFactory(new PropertyValueFactory<Employee, Boolean>("Active"));
 
         main_manageemployee_col_action.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
@@ -452,27 +633,38 @@ public class HelloController implements Initializable {
         main_addemployee_gender.getSelectionModel().select(0);
         main_addemployee_status.getSelectionModel().select(0);
 
+        main_addbonus_recipient.getItems().addAll(1, 2, 3, 4, 5);
+        main_addbonus_recipient.getSelectionModel().select(0);
+
+        main_addshift_shifttype.getItems().addAll(1, 2);
+        main_addshift_shifttype.getSelectionModel().select(0);
+
+        main_addemployee_dept.getItems().addAll(1, 2, 3, 4, 5);
+
+
     }
 
 
-    public void addDepartment() {
+    public void addDepartment() throws ParseException {
+        int dayspermonth = Integer.parseInt(main_adddepartment_dayspermonth.getText());
+        int hoursperday = Integer.parseInt(main_adddepartment_hoursperday.getText());
+        double monthlyrate = Double.parseDouble(main_adddepartment_monthlyrate.getText());
+        String name = main_adddepartment_name.getText();
+
         int id = 0;
-        String name = "a";
-        double monthlyrate = 20000;
-        int dayspermonth = 20;
-        int hoursperday = 8;
 
         sql.addDepartment(new Department(id, name, monthlyrate, dayspermonth, hoursperday));
     }
 
 
     public void addBonus() {
-        int id = 0;
-        String bonusName = "";
+        String bonusName = main_addbonus_name.getText();
+        double bonusAmount = Double.parseDouble(main_addbonus_amount.getText());
+        int bonusRecipient = (int) main_addbonus_recipient.getValue();
+        Date bonusDate = Date.valueOf(main_addbonus_dateapplicable.getValue());
 
-        int bonusRecipient = 0;
-        Date bonusDate = new Date(2022, 3, 29);
-        double bonusAmount = 1500;
+        int id = 0;
+
 
         sql.addBonus(new Bonus(id, bonusName, bonusAmount, bonusRecipient, bonusDate));
     }

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.text.ParseException;
 
 import static Database.SQLConnection.connect;
 
@@ -189,6 +190,64 @@ public class SQLExecution {
 
     }
 
+    //Getting Bonus
+    public ObservableList<Bonus> getBonus() {
+        ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
+        String command = "SELECT bonus_name," +
+                "bonus_amount," +
+                "department_name," +
+                "bonus_date " +
+                "FROM tbl_bonus JOIN tbl_department " +
+                "ON bonus_recipient = department_id";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                bonusList.add(new Bonus(
+                                resultSet.getString("bonus_name"),
+                                resultSet.getDouble("bonus_amount"),
+                                resultSet.getString("department_name"),
+                                resultSet.getDate("bonus_date")
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bonusList;
+
+    }
+
+    //Getting Department
+    public ObservableList<Department> getDepartment() {
+        ObservableList<Department> departmentList = FXCollections.observableArrayList();
+        String command = "SELECT * FROM tbl_department";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                departmentList.add(new Department(
+                                resultSet.getInt("department_id"),
+
+                                resultSet.getString("department_name"),
+                                resultSet.getDouble("department_monthlyrate"),
+                                resultSet.getInt("department_dayspermonth"),
+                                resultSet.getInt("department_hoursperday")
+                        )
+                );
+            }
+
+        } catch (SQLException | ParseException e) {
+            e.printStackTrace();
+        }
+        return departmentList;
+
+    }
+
     //Only getting needed data
     public ObservableList<Employee> getAllEmployees() {
         ObservableList<Employee> employeeList = FXCollections.observableArrayList();
@@ -212,7 +271,7 @@ public class SQLExecution {
                         resultSet.getString("emp_lname"),
                         resultSet.getString("emp_fname"),
                         resultSet.getString("emp_employmentstatus"),
-                        resultSet.getInt("emp_department"),
+                        resultSet.getString("department_name"),
                         resultSet.getBoolean("emp_status")
                 ));
             }
@@ -268,7 +327,7 @@ public class SQLExecution {
 
     //Add
     public void addDepartment(Department department) {
-        String command = "INSERT INTO tbl_department " +
+        String command = "INSERT INTO tbl_department (department_name, department_monthlyrate, department_dayspermonth, department_hoursperday)" +
                 "VALUES (?, ?, ?, ?)";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -283,10 +342,11 @@ public class SQLExecution {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
         }
+        System.out.println("Here");
     }
 
     public void addBonus(Bonus bonus) {
-        String command = "INSERT INTO tbl_bonus" +
+        String command = "INSERT INTO tbl_bonus (bonus_name, bonus_amount, bonus_recipient, bonus_date)" +
                 "VALUES (?, ?, ?, ?);";
         try (Connection conn = connect();
              PreparedStatement prep = conn.prepareStatement(command)) {
@@ -302,11 +362,12 @@ public class SQLExecution {
     }
 
     public void addShift(Shift shift) {
-        String command = "INSERT INTO tbl_shift" +
+
+        String command = "INSERT INTO tbl_shift (shift_type, shift_recipient, shift_sunday, shift_monday, shift_tuesday, shift_wednesday, shift_thursday, shift_friday, shift_saturday)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = connect();
              PreparedStatement prep = conn.prepareStatement(command)) {
-            prep.setInt(1, shift.getShift_Type().getValue());
+            prep.setInt(1, shift.getShift_Type());
             prep.setInt(2, shift.getShift_Recipient());
             prep.setBoolean(3, shift.isShift_Sunday());
             prep.setBoolean(4, shift.isShift_Monday());

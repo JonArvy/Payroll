@@ -9,11 +9,29 @@ public class Bonus {
     private int Bonus_Recipient;
     private Date Bonus_Date;
 
+    private String Recipient_Name;
+
     public Bonus(int Bonus_ID, String Bonus_Name, double Bonus_Amount, int Bonus_Recipient, Date Bonus_Date) {
         this.Bonus_ID = Bonus_ID;
         this.Bonus_Name = Bonus_Name;
         this.Bonus_Amount = Bonus_Amount;
         this.Bonus_Recipient = Bonus_Recipient;
+        this.Bonus_Date = Bonus_Date;
+    }
+
+    public Bonus(int Bonus_ID, String Bonus_Name, double Bonus_Amount, String Recipient_Name, Date Bonus_Date) {
+        this.Bonus_ID = Bonus_ID;
+        this.Bonus_Name = Bonus_Name;
+        this.Bonus_Amount = Bonus_Amount;
+        this.Recipient_Name = Recipient_Name;
+        this.Bonus_Date = Bonus_Date;
+    }
+
+    public Bonus(String Bonus_Name, double Bonus_Amount, String Recipient_Name, Date Bonus_Date) {
+        this.Bonus_ID = Bonus_ID;
+        this.Bonus_Name = Bonus_Name;
+        this.Bonus_Amount = Bonus_Amount;
+        this.Recipient_Name = Recipient_Name;
         this.Bonus_Date = Bonus_Date;
     }
 
@@ -35,5 +53,9 @@ public class Bonus {
 
     public Date getBonus_Date() {
         return Bonus_Date;
+    }
+
+    public String getRecipient_Name() {
+        return Recipient_Name;
     }
 }

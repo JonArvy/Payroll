@@ -8,6 +8,9 @@ public class Employee {
     private String Nationality;
     private String Marital_Status;
     private int Department;
+
+    private String Department_Name; //Value
+
     private String Position;
     private String Employment_Status;
 
@@ -88,12 +91,12 @@ public class Employee {
         this.Last_Name = Last_Name;
     }
 
-    public Employee(int Employee_ID, String Last_Name, String First_Name, String Employment_Status, int Department, boolean Active) {
+    public Employee(int Employee_ID, String Last_Name, String First_Name, String Employment_Status, String Department_Name, boolean Active) {
         this.Employee_ID = Employee_ID;
         this.Last_Name = Last_Name;
         this.First_Name = First_Name;
         this.Employment_Status = Employment_Status;
-        this.Department = Department;
+        this.Department_Name = Department_Name;
         this.Active = Active;
     }
 
@@ -117,6 +120,10 @@ public class Employee {
 
     public int getDepartment() {
         return Department;
+    }
+
+    public String getDepartment_Name() {
+        return Department_Name;
     }
 
     public String getEmployment_Status() {
