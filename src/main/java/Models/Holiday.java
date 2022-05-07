@@ -3,7 +3,6 @@ package Models;
 import java.sql.Date;
 
 public class Holiday {
-    // hawo pre
     private int Holiday_ID;
     private String Holiday_Name;
     private Date Holiday_Date;
