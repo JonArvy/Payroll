@@ -5,7 +5,7 @@ public enum ShiftType {
     EMPLOYEE(2);
 
     private final int shiftType;
-
+    // hawo
     ShiftType(int type) {
         this.shiftType = type;
     }
@@ -14,3 +14,4 @@ public enum ShiftType {
         return shiftType;
     }
 }
+
