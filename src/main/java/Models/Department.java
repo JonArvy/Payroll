@@ -25,7 +25,6 @@ public class Department {
         this.Department_HoursPerDay = Department_HoursPerDay;
         this.Daily_Rate = Double.parseDouble(dailyRateString);
         this.Hourly_Rate = Double.parseDouble(hourlyRateString);
-        System.out.println(Double.parseDouble(dailyRateString));
     }
 
     public int getDepartment_ID() {

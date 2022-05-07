@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -18,6 +19,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class HelloController implements Initializable {
 
@@ -224,7 +226,7 @@ public class HelloController implements Initializable {
     private TableView main_manageemployee_table_view;
 
     @FXML
-    private TableColumn<Employee, Integer> main_manageemployee_col_action;
+    private TableColumn<Employee, Void> main_manageemployee_col_action;
 
     @FXML
     private TableColumn<Employee, String> main_manageemployee_col_dept;
@@ -539,10 +541,6 @@ public class HelloController implements Initializable {
 
     @FXML
     public void addEmployee(ActionEvent event) {
-        System.out.println(main_addemployee_dept.getValue().getDepartment_ID());
-        if (main_addemployee_dept.getValue().getDepartment_ID() == 0) {
-            return;
-        }
         boolean gender = true;
         boolean status = true;
         if (main_addemployee_gender.getValue() == "Male") {
@@ -591,23 +589,7 @@ public class HelloController implements Initializable {
         departmentList = sql.getDepartment();
 
         main_addemployee_dept.setItems(departmentList);
-        main_addemployee_dept.setCellFactory(new Callback<ListView<Department>, ListCell<Department>>() {
-            @Override
-            public ListCell<Department> call(ListView<Department> departmentListView) {
-                return new ListCell<Department>() {
-                    @Override
-                    protected void updateItem(Department dept, boolean empty) {
-                        super.updateItem(dept, empty);
-                        if (dept != null || !empty) {
-                            setText(dept.getDepartment_Name());
-                        } else {
-                            setText(null);
-                            System.out.println("Empty");
-                        }
-                    }
-                };
-            }
-        });
+
         StringConverter<Department> converter = new StringConverter<Department>() {
             @Override
             public String toString(Department department) {
@@ -616,7 +598,9 @@ public class HelloController implements Initializable {
 
             @Override
             public Department fromString(String s) {
-                return null;
+                return departmentList.stream()
+                        .filter(item -> item.getDepartment_Name().equals(s))
+                        .collect(Collectors.toList()).get(0);
             }
         };
         main_addemployee_dept.setConverter(converter);
@@ -677,9 +661,47 @@ public class HelloController implements Initializable {
         main_manageemployee_col_dept.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department_Name"));
         main_manageemployee_col_status.setCellValueFactory(new PropertyValueFactory<Employee, Boolean>("Active"));
 
-        main_manageemployee_col_action.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
+//        main_manageemployee_col_action.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
 
         main_manageemployee_table_view.setItems(employeeList);
+
+        Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>> cellFactory = new Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>>() {
+            @Override
+            public TableCell<Employee, Void> call(final TableColumn<Employee, Void> param) {
+                final TableCell<Employee, Void> cell = new TableCell<Employee, Void>() {
+                    private final Button btn = new Button("Edit");
+                    private final Button btn2 = new Button("Delete");
+
+
+                    {
+                        btn.setStyle("-fx-background-radius: 15px");
+                        btn.setOnAction((ActionEvent event) -> {
+                            Employee emp = getTableView().getItems().get(getIndex());
+                            System.out.println("Edit" + emp.getFirst_Name() + " " + emp.getLast_Name());
+                        });
+
+                        btn2.setStyle("-fx-background-radius: 15px");
+                        btn2.setOnAction((ActionEvent event) -> {
+                            Employee emp = getTableView().getItems().get(getIndex());
+                            System.out.println("Delete" + emp.getFirst_Name() + " " + emp.getLast_Name());
+                        });
+                    }
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox allbtn = new HBox(btn, btn2);
+                            setGraphic(allbtn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        main_manageemployee_col_action.setCellFactory(cellFactory);
     }
 
     @Override

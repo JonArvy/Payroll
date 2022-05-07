@@ -1,7 +1,12 @@
-/*
+.btn {
+    -fx-background-color: blue;
+    -fx-background-radius: 15px;
+}
+
 .table-view {
     -fx-background-color: transparent;
 }
+
 
 .table-view .column-header-background {
     -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
