@@ -405,7 +405,7 @@
                   <TableColumn fx:id="main_bonus_name" prefWidth="161.0" resizable="false" text="Bonus Name"/>
                   <TableColumn fx:id="main_bonus_amount" prefWidth="111.0" resizable="false" text="Amount"/>
                   <TableColumn fx:id="main_bonus_recipient" minWidth="0.0" prefWidth="127.0" resizable="false"
-                               text="Recipient"/>
+                               text="Department"/>
                   <TableColumn fx:id="main_bonus_dateapplicable" minWidth="0.0" prefWidth="109.0" resizable="false"
                                text="Date Applicable"/>
                   <TableColumn fx:id="main_bonus_action" minWidth="0.0" prefWidth="101.0" resizable="false"
