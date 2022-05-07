@@ -13,10 +13,12 @@
     -fx-border-color: #ffffff;
     -fx-padding: 2 0 2 10px;
 }
+/*
 .table-row-cell: hover {
     -fx-background-color: #93f9b911;
     -fx-text-background-color: #2A2A2A;
 }
+*/
 .table-row-cell: odd{
     -fx-background-color: #93f9b911;
     -fx-background-insets: 0, 0 0 1 0;
@@ -27,7 +29,16 @@
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
-.table-row-cell: highlighted {
-    -fx-background-color: #C6DDE3;
+.table-row-cell: selected {
+    -fx-background-color: #424242;
+    -fx-background-insets: 0, 0 0 1 0;
     -fx-background-radius: 15px;
+    -fx-text-background-color: #FFFFFF;
+}
+
+.table-row-cell: hover {
+    -fx-background-color: #424242;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 15px;
+    -fx-text-background-color: #FFFFFF;
 }

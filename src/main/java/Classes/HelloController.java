@@ -1,6 +1,8 @@
 package Classes;
 
 import Models.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.sql.Date;
@@ -169,7 +173,7 @@ public class HelloController implements Initializable {
     private TextField main_addemployee_contactrelationship;
 
     @FXML
-    private ComboBox<Integer> main_addemployee_dept;
+    private ComboBox<Department> main_addemployee_dept;
 
     @FXML
     private TextField main_addemployee_empid;
@@ -416,6 +420,7 @@ public class HelloController implements Initializable {
         //Add Employee Button
         if (event.getSource() == main_addemployee_button) {
             main_addemployee_panel_1.toFront();
+            populateDepartmentBox();
 
             //Manage Employee Button
         } else if (event.getSource() == main_manageemployee_button) {
@@ -534,6 +539,10 @@ public class HelloController implements Initializable {
 
     @FXML
     public void addEmployee(ActionEvent event) {
+        System.out.println(main_addemployee_dept.getValue().getDepartment_ID());
+        if (main_addemployee_dept.getValue().getDepartment_ID() == 0) {
+            return;
+        }
         boolean gender = true;
         boolean status = true;
         if (main_addemployee_gender.getValue() == "Male") {
@@ -550,7 +559,7 @@ public class HelloController implements Initializable {
                 Integer.parseInt(main_addemployee_empid.getText()),
                 main_addemployee_nationality.getText(),
                 main_addemployee_maritalstatus.getValue(),
-                main_addemployee_dept.getValue(), // Will fix later
+                main_addemployee_dept.getValue().getDepartment_ID(), // Will fix later
                 main_addemployee_position.getText(),
                 main_addemployee_empstatus.getValue(),
                 main_addemployee_fname.getText(),
@@ -575,6 +584,43 @@ public class HelloController implements Initializable {
 
         main_addemployee_bdate.getValue();
         System.out.println(main_addemployee_bdate.getValue());
+    }
+
+    public void populateDepartmentBox() {
+        departmentList.clear();
+        departmentList = sql.getDepartment();
+
+        main_addemployee_dept.setItems(departmentList);
+        main_addemployee_dept.setCellFactory(new Callback<ListView<Department>, ListCell<Department>>() {
+            @Override
+            public ListCell<Department> call(ListView<Department> departmentListView) {
+                return new ListCell<Department>() {
+                    @Override
+                    protected void updateItem(Department dept, boolean empty) {
+                        super.updateItem(dept, empty);
+                        if (dept != null || !empty) {
+                            setText(dept.getDepartment_Name());
+                        } else {
+                            setText(null);
+                            System.out.println("Empty");
+                        }
+                    }
+                };
+            }
+        });
+        StringConverter<Department> converter = new StringConverter<Department>() {
+            @Override
+            public String toString(Department department) {
+                return department.getDepartment_Name();
+            }
+
+            @Override
+            public Department fromString(String s) {
+                return null;
+            }
+        };
+        main_addemployee_dept.setConverter(converter);
+        main_addemployee_dept.getSelectionModel().select(0);
     }
 
     public void showHolidayList() {
@@ -672,9 +718,6 @@ public class HelloController implements Initializable {
 
         main_addshift_shifttype.getItems().addAll(1, 2);
         main_addshift_shifttype.getSelectionModel().select(0);
-
-        main_addemployee_dept.getItems().addAll(1, 2, 3, 4, 5);
-        main_addemployee_dept.getSelectionModel().select(0);
 
         main_addemployee_maritalstatus.getItems().addAll("Single", "Married", "Widowed", "Annuled");
         main_addemployee_maritalstatus.getSelectionModel().select(0);
