@@ -376,6 +376,24 @@ public class HelloController implements Initializable {
     @FXML
     private Button main_addbonus_addbutton;
 
+    //Holiday Table
+    @FXML
+    private TableView main_holiday_tableview;
+
+    @FXML
+    private TableColumn<Holiday, Date> main_holiday_column_date;
+
+    @FXML
+    private TableColumn<Holiday, String> main_holiday_column_holidayname;
+
+    @FXML
+    private TableColumn<Holiday, String> main_holiday_column_type;
+
+    @FXML
+    private TableColumn<Holiday, String> main_holiday_column_repeat;
+
+    @FXML
+    private TableColumn<?, ?> main_holiday_column_action;
     // END DITOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
     @FXML
@@ -386,6 +404,7 @@ public class HelloController implements Initializable {
     private ObservableList<Department> departmentList = FXCollections.observableArrayList();
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
     private ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
+    private ObservableList<Holiday> holidayList = FXCollections.observableArrayList();
 
 
 
@@ -471,6 +490,7 @@ public class HelloController implements Initializable {
         //Holiday Button
         } else if (event.getSource() == main_holiday_button) {
             main_holiday_panel_1.toFront();
+            showHolidayList();
 
         //Holiday Button - Add Holiday
         } else if (event.getSource() == main_holiday_add_holiday_button) {
@@ -555,6 +575,20 @@ public class HelloController implements Initializable {
 
         main_addemployee_bdate.getValue();
         System.out.println(main_addemployee_bdate.getValue());
+    }
+
+    public void showHolidayList() {
+        holidayList.clear();
+        holidayList = sql.getHolidays();
+
+        main_holiday_column_holidayname.setCellValueFactory(new PropertyValueFactory<Holiday, String>("Holiday_Name"));
+        main_holiday_column_date.setCellValueFactory(new PropertyValueFactory<Holiday, Date>("Holiday_Date"));
+        main_holiday_column_type.setCellValueFactory(new PropertyValueFactory<Holiday, String>("Holiday_Type"));
+        main_holiday_column_repeat.setCellValueFactory(new PropertyValueFactory<Holiday, String>("Holiday_Repeat"));
+//        main_bonus_action.setCellValueFactory(new PropertyValueFactory<Bonus, Integer>("Department_HoursPerDay"));
+
+
+        main_holiday_tableview.setItems(holidayList);
     }
 
     public void showBonus() {

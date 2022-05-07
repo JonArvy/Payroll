@@ -96,8 +96,16 @@ public class SQLExecution {
                 "shift_friday BOOLEAN," +
                 "shift_saturday BOOLEAN)";
 
+        String holiday_tbl = "CREATE TABLE IF NOT EXISTS tbl_holiday (" +
+                "holiday_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                "holiday_name VARCHAR(30)," +
+                "holiday_date DATE," +
+                "holiday_type VARCHAR(30)," +
+                "holiday_repeat VARCHAR(30))";
+
         ExecuteWithoutReturn(department_tbl);
         ExecuteWithoutReturn(noticeboard_tbl);
+        ExecuteWithoutReturn(holiday_tbl);
 
         ExecuteWithoutReturn(emp_tbl);
         ExecuteWithoutReturn(admin_tbl);
@@ -115,12 +123,15 @@ public class SQLExecution {
         String attendance_tbl = "DROP TABLE IF EXISTS tbl_attendance";
         String admin_tbl = "DROP TABLE IF EXISTS tbl_admin";
 
+        String holiday_tbl = "DROP TABLE IF EXISTS tbl_holiday";
+
         String bonus_tbl = "DROP TABLE IF EXISTS tbl_bonus";
         String shift_tbl = "DROP TABLE IF EXISTS tbl_shift";
 
 
         ExecuteWithoutReturn(department_tbl);
         ExecuteWithoutReturn(noticeboard_tbl);
+        ExecuteWithoutReturn(holiday_tbl);
 
         ExecuteWithoutReturn(emp_tbl);
         ExecuteWithoutReturn(admin_tbl);
@@ -308,6 +319,31 @@ public class SQLExecution {
             e.printStackTrace();
         }
         return attendanceList;
+    }
+
+    public ObservableList<Holiday> getHolidays() {
+        ObservableList<Holiday> holidayList = FXCollections.observableArrayList();
+        String command = "SELECT * FROM tbl_holiday";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                holidayList.add(new Holiday(
+                                resultSet.getInt("holiday_id"),
+                                resultSet.getString("holiday_name"),
+                                resultSet.getDate("holiday_date"),
+                                resultSet.getString("holiday_type"),
+                                resultSet.getString("holiday_repeat")
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return holidayList;
     }
 
     //Getting single employee full details

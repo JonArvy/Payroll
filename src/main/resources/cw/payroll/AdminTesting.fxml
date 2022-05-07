@@ -380,13 +380,13 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TableView layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@css/tablecolumn_style.css">
+            <TableView fx:id="main_holiday_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@css/tablecolumn_style.css">
                <columns>
-                  <TableColumn prefWidth="131.0" resizable="false" text="Date" />
-                  <TableColumn prefWidth="198.0" resizable="false" text="Holiday" />
-                  <TableColumn minWidth="0.0" prefWidth="157.0" resizable="false" text="Type" />
-                  <TableColumn minWidth="0.0" prefWidth="134.0" resizable="false" text="Repeat" />
-                  <TableColumn minWidth="0.0" prefWidth="94.0" resizable="false" text="Action" />
+                  <TableColumn fx:id="main_holiday_column_holidayname" prefWidth="198.0" resizable="false" text="Holiday" />
+                  <TableColumn fx:id="main_holiday_column_date" prefWidth="131.0" resizable="false" text="Date" />
+                  <TableColumn fx:id="main_holiday_column_type" minWidth="0.0" prefWidth="157.0" resizable="false" text="Type" />
+                  <TableColumn fx:id="main_holiday_column_repeat" minWidth="0.0" prefWidth="134.0" resizable="false" text="Repeat" />
+                  <TableColumn fx:id="main_holiday_column_action" minWidth="0.0" prefWidth="94.0" resizable="false" text="Action" />
                </columns>
             </TableView>
             <Button fx:id="main_holiday_add_holiday_button" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
