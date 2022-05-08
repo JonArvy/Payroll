@@ -190,7 +190,7 @@ public class HelloController implements Initializable {
     private TextField main_addemployee_fname;
 
     @FXML
-    private ComboBox<String> main_addemployee_gender;
+    private ComboBox<BooleanValue> main_addemployee_gender;
 
     @FXML
     private TextField main_addemployee_lname;
@@ -211,7 +211,7 @@ public class HelloController implements Initializable {
     private TextField main_addemployee_position;
 
     @FXML
-    private ComboBox<String> main_addemployee_status;
+    private ComboBox<BooleanValue> main_addemployee_status;
 
     @FXML
     private Pane main_admin_panel1;
@@ -342,10 +342,10 @@ public class HelloController implements Initializable {
     private TableColumn<?, ?> main_shift_column_action;
 
     @FXML
-    private TableColumn<?, ?> main_shift_column_name;
+    private TableColumn<Shift, String> main_shift_column_name;
 
     @FXML
-    private TableColumn<?, ?> main_shift_column_shifttype;
+    private TableColumn<Shift, Integer> main_shift_column_shifttype;
 
     // Bonus
     @FXML
@@ -374,7 +374,7 @@ public class HelloController implements Initializable {
     private TextField main_addbonus_amount;
 
     @FXML
-    private ComboBox<Integer> main_addbonus_recipient;
+    private ComboBox<Department> main_addbonus_recipient;
 
     @FXML
     private DatePicker main_addbonus_dateapplicable;
@@ -411,6 +411,7 @@ public class HelloController implements Initializable {
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
     private ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
     private ObservableList<Holiday> holidayList = FXCollections.observableArrayList();
+    private ObservableList<Shift> shiftList = FXCollections.observableArrayList();
 
 
 
@@ -481,6 +482,7 @@ public class HelloController implements Initializable {
         //Department Button page 2 - Shift page
         } else if (event.getSource() == main_department_shift_button) {
             main_department_shift_panel_1.toFront();
+            showShift();
 
         //Department Button back to Page 1 from Page 2
         } else if (event.getSource() == main_department_shift_back_button) {
@@ -515,6 +517,7 @@ public class HelloController implements Initializable {
         //Bonus Button - Add Bonus
         } else if (event.getSource() == main_bonus_add_bonus_button) {
             main_bonus_add_bonus_panel_1.toFront();
+            populateAddBonusBox();
 
         //Bonus Button - Add Bonus - Cancel button
         } else if (event.getSource() == main_bonus_add_bonus_cancel_button) {
@@ -541,18 +544,18 @@ public class HelloController implements Initializable {
 
     @FXML
     public void addEmployee(ActionEvent event) {
-        boolean gender = true;
-        boolean status = true;
-        if (main_addemployee_gender.getValue() == "Male") {
-            gender = true;
-        } else {
-            gender = false;
-        }
-        if (main_addemployee_status.getValue() == "Active") {
-            status = true;
-        } else {
-            status = false;
-        }
+//        boolean gender = true;
+//        boolean status = true;
+//        if (main_addemployee_gender.getValue() == "Male") {
+//            gender = true;
+//        } else {
+//            gender = false;
+//        }
+//        if (main_addemployee_status.getValue() == "Active") {
+//            status = true;
+//        } else {
+//            status = false;
+//        }
         sql.addEmployee(new Employee(
                 Integer.parseInt(main_addemployee_empid.getText()),
                 main_addemployee_nationality.getText(),
@@ -565,10 +568,10 @@ public class HelloController implements Initializable {
                 main_addemployee_mname.getText(),
                 main_addemployee_ext.getText(),
                 main_addemployee_address.getText(),
-                gender, // Boolean
+                main_addemployee_gender.getValue().isBool(), // Boolean
                 main_addemployee_number.getText(),
                 Date.valueOf(main_addemployee_bdate.getValue()),
-                status, // Boolean
+                main_addemployee_status.getValue().isBool(), // Boolean
                 main_addemployee_contactname.getText(),
                 main_addemployee_contactrelationship.getText(),
                 main_addemployee_contactaddress.getText(),
@@ -612,6 +615,34 @@ public class HelloController implements Initializable {
         main_addemployee_dept.getSelectionModel().select(0);
     }
 
+    public void populateAddBonusBox() {
+        departmentList.clear();
+        departmentList = sql.getDepartment();
+
+        main_addbonus_recipient.setItems(departmentList);
+        StringConverter<Department> converter = new StringConverter<Department>() {
+            @Override
+            public String toString(Department department) {
+                String s = "";
+                try {
+                    s = department.getDepartment_Name();
+                } catch (NullPointerException e) {
+                    s = "";
+                }
+                return s;
+            }
+
+            @Override
+            public Department fromString(String s) {
+                return departmentList.stream()
+                        .filter(item -> item.getDepartment_Name().equals(s))
+                        .collect(Collectors.toList()).get(0);
+            }
+        };
+        main_addbonus_recipient.setConverter(converter);
+        main_addbonus_recipient.getSelectionModel().select(0);
+    }
+
     public void showHolidayList() {
         holidayList.clear();
         holidayList = sql.getHolidays();
@@ -638,6 +669,20 @@ public class HelloController implements Initializable {
 
 
         main_bonus_tableview.setItems(bonusList);
+    }
+
+    public void showShift() {
+        shiftList.clear();
+        shiftList = sql.getShift();
+
+        main_shift_column_shifttype.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("Shift_Type"));
+        main_shift_column_name.setCellValueFactory(new PropertyValueFactory<Shift, String>("Recipient_Name"));
+//        main_shift_column_action.setCellValueFactory(new PropertyValueFactory<Bonus, String>("Recipient_Name"));
+//        main_bonus_dateapplicable.setCellValueFactory(new PropertyValueFactory<Bonus, Date>("Bonus_Date"));
+//        main_bonus_action.setCellValueFactory(new PropertyValueFactory<Bonus, Integer>("Department_HoursPerDay"));
+
+
+        main_shift_tableview.setItems(shiftList);
     }
 
     public void showDepartmentTable() {
@@ -685,6 +730,7 @@ public class HelloController implements Initializable {
                                 "-fx-background-insets: 0,1,1; " +
                                 "-fx-text-fill: black; " +
                                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);");
+                        btn.setDisable(true);
                         btn.setOnAction((ActionEvent event) -> {
                             Employee emp = getTableView().getItems().get(getIndex());
                             System.out.println("Edit" + emp.getFirst_Name() + " " + emp.getLast_Name());
@@ -696,6 +742,7 @@ public class HelloController implements Initializable {
                                 "-fx-background-insets: 0,1,1; " +
                                 "-fx-text-fill: black; " +
                                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);");
+                        btn2.setDisable(true);
                         btn2.setOnAction((ActionEvent event) -> {
                             Employee emp = getTableView().getItems().get(getIndex());
                             System.out.println("Delete" + emp.getFirst_Name() + " " + emp.getLast_Name());
@@ -724,34 +771,65 @@ public class HelloController implements Initializable {
         //Initialize Variables
         sql = new SQLExecution();
 
+        ObservableList<BooleanValue> genderList = FXCollections.observableArrayList(
+                new BooleanValue("Male", true),
+                new BooleanValue("Female", false));
+        ObservableList<BooleanValue> statusList = FXCollections.observableArrayList(
+                new BooleanValue("Active", true),
+                new BooleanValue("Inactive", false));
+
+        StringConverter<BooleanValue> converter = new StringConverter<BooleanValue>() {
+            @Override
+            public String toString(BooleanValue booleanValue) {
+                String s = "";
+                try {
+                    s = booleanValue.getName();
+                } catch (NullPointerException e) {
+                    s = "";
+                }
+                return s;
+            }
+
+            @Override
+            public BooleanValue fromString(String s) {
+                return genderList.stream()
+                        .filter(item -> item.getName().equals(s))
+                        .collect(Collectors.toList()).get(0);
+            }
+        };
+
+        StringConverter<BooleanValue> converter2 = new StringConverter<BooleanValue>() {
+            @Override
+            public String toString(BooleanValue booleanValue) {
+                String s = "";
+                try {
+                    s = booleanValue.getName();
+                } catch (NullPointerException e) {
+                    s = "";
+                }
+                return s;
+            }
+
+            @Override
+            public BooleanValue fromString(String s) {
+                return statusList.stream()
+                        .filter(item -> item.getName().equals(s))
+                        .collect(Collectors.toList()).get(0);
+            }
+        };
+
         //Add Employee Initialize constants
-//        main_addemployee_gender.setItems(FXCollections.observableArrayList(
-//                new BooleanValue("Male", true),
-//                new BooleanValue("Female", false)));
-//        main_addemployee_status.setItems(FXCollections.observableArrayList(
-//                new BooleanValue("Active", true),
-//                new BooleanValue("Inactive", false)));
-//
-//        main_addemployee_gender.setConverter(new StringConverter<BooleanValue>() {
-//            @Override
-//            public String toString(BooleanValue booleanValue) {
-//                return booleanValue.getName();
-//            }
-//
-//            @Override
-//            public BooleanValue fromString(String s) {
-//                return null;
-//            }
-//        });
+        main_addemployee_gender.setItems(genderList);
+        main_addemployee_status.setItems(statusList);
+
+        main_addemployee_gender.setConverter(converter);
+        main_addemployee_status.setConverter(converter2);
 
 
-        main_addemployee_gender.getItems().addAll("Male", "Female");
-        main_addemployee_status.getItems().addAll("Active", "Inactive");
+//        main_addemployee_gender.getItems().addAll("Male", "Female");
+//        main_addemployee_status.getItems().addAll("Active", "Inactive");
         main_addemployee_gender.getSelectionModel().select(0);
         main_addemployee_status.getSelectionModel().select(0);
-
-        main_addbonus_recipient.getItems().addAll(1, 2, 3, 4, 5);
-        main_addbonus_recipient.getSelectionModel().select(0);
 
         main_addshift_shifttype.getItems().addAll(1, 2);
         main_addshift_shifttype.getSelectionModel().select(0);
@@ -781,7 +859,7 @@ public class HelloController implements Initializable {
     public void addBonus() {
         String bonusName = main_addbonus_name.getText();
         double bonusAmount = Double.parseDouble(main_addbonus_amount.getText());
-        int bonusRecipient = (int) main_addbonus_recipient.getValue();
+        int bonusRecipient = main_addbonus_recipient.getValue().getDepartment_ID();
         Date bonusDate = Date.valueOf(main_addbonus_dateapplicable.getValue());
 
         int id = 0;

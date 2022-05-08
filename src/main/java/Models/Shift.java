@@ -3,7 +3,10 @@ package Models;
 public class Shift {
     private int Shift_ID;
     private int Shift_Type;
+
     private int Shift_Recipient;
+    private String Recipient_Name;
+
     private boolean Shift_Sunday;
     private boolean Shift_Monday;
     private boolean Shift_Tuesday;
@@ -26,6 +29,20 @@ public class Shift {
         this.Shift_Saturday = Shift_Saturday;
     }
 
+    public Shift(int Shift_ID, int Shift_Type, int Shift_Recipient, String Recipient_Name, boolean Shift_Sunday, boolean Shift_Monday, boolean Shift_Tuesday, boolean Shift_Wednesday, boolean Shift_Thursday, boolean Shift_Friday, boolean Shift_Saturday) {
+        this.Shift_ID = Shift_ID;
+        this.Shift_Type = Shift_Type;
+        this.Shift_Recipient = Shift_Recipient;
+        this.Recipient_Name = Recipient_Name;
+        this.Shift_Sunday = Shift_Sunday;
+        this.Shift_Monday = Shift_Monday;
+        this.Shift_Tuesday = Shift_Tuesday;
+        this.Shift_Wednesday = Shift_Wednesday;
+        this.Shift_Thursday = Shift_Thursday;
+        this.Shift_Friday = Shift_Friday;
+        this.Shift_Saturday = Shift_Saturday;
+    }
+
     public int getShift_ID() {
         return Shift_ID;
     }
@@ -36,6 +53,10 @@ public class Shift {
 
     public int getShift_Recipient() {
         return Shift_Recipient;
+    }
+
+    public String getRecipient_Name() {
+        return Recipient_Name;
     }
 
     public boolean isShift_Sunday() {

@@ -115,7 +115,6 @@ public class SQLExecution {
         ExecuteWithoutReturn(shift_tbl);
     }
 
-
     public void dropTables() {
         String emp_tbl = "DROP TABLE IF EXISTS tbl_employees";
         String noticeboard_tbl = "DROP TABLE IF EXISTS tbl_noticeboard";
@@ -228,6 +227,98 @@ public class SQLExecution {
             e.printStackTrace();
         }
         return bonusList;
+
+    }
+
+    //Getting Shift
+    public ObservableList<Shift> getShift() {
+        ObservableList<Shift> shiftList = FXCollections.observableArrayList();
+
+        String command = "SELECT shift_id," +
+                "shift_type," +
+
+                "shift_recipient," +
+                "department_name," +
+
+                "shift_sunday," +
+                "shift_monday," +
+                "shift_tuesday," +
+                "shift_wednesday," +
+                "shift_thursday," +
+                "shift_friday," +
+                "shift_saturday " +
+
+                "FROM tbl_shift JOIN tbl_department " +
+                "ON shift_recipient = department_id " +
+                "WHERE shift_type = 1";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                shiftList.add(new Shift(
+                                resultSet.getInt("shift_id"),
+                                resultSet.getInt("shift_type"),
+                                resultSet.getInt("shift_recipient"),
+                                resultSet.getString("department_name"),
+                                resultSet.getBoolean("shift_sunday"),
+                                resultSet.getBoolean("shift_monday"),
+                                resultSet.getBoolean("shift_tuesday"),
+                                resultSet.getBoolean("shift_wednesday"),
+                                resultSet.getBoolean("shift_thursday"),
+                                resultSet.getBoolean("shift_friday"),
+                                resultSet.getBoolean("shift_saturday")
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        command = "SELECT shift_id," +
+                "shift_type," +
+
+                "shift_recipient," +
+                "emp_lname," +
+
+                "shift_sunday," +
+                "shift_monday," +
+                "shift_tuesday," +
+                "shift_wednesday," +
+                "shift_thursday," +
+                "shift_friday," +
+                "shift_saturday " +
+
+                "FROM tbl_shift JOIN tbl_employees " +
+                "ON shift_recipient = emp_id " +
+                "WHERE shift_type = 2";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                shiftList.add(new Shift(
+                                resultSet.getInt("shift_id"),
+                                resultSet.getInt("shift_type"),
+                                resultSet.getInt("shift_recipient"),
+                                resultSet.getString("emp_lname"),
+                                resultSet.getBoolean("shift_sunday"),
+                                resultSet.getBoolean("shift_monday"),
+                                resultSet.getBoolean("shift_tuesday"),
+                                resultSet.getBoolean("shift_wednesday"),
+                                resultSet.getBoolean("shift_thursday"),
+                                resultSet.getBoolean("shift_friday"),
+                                resultSet.getBoolean("shift_saturday")
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return shiftList;
 
     }
 
