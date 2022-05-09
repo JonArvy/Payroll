@@ -25,10 +25,9 @@
             <TextField fx:id="employee_attendance_total_field" layoutX="93.0" layoutY="294.0" />
             <TableView fx:id="employee_attendance_table" layoutX="300.0" layoutY="38.0" prefHeight="343.0" prefWidth="285.0">
               <columns>
-                <TableColumn fx:id="employee_attendance_column_date" editable="false" prefWidth="75.0" text="Date" />
-                <TableColumn fx:id="employee_attendance_column_department" editable="false" prefWidth="111.33331298828125" text="Department" />
-                  <TableColumn fx:id="employee_attendance_column_timein" editable="false" minWidth="6.0" prefWidth="57.33331298828125" text="Time In" />
-                  <TableColumn fx:id="employee_attendance_column_timeout" editable="false" prefWidth="57.3333740234375" text="TimeOut" />
+                <TableColumn fx:id="employee_attendance_column_date" editable="false" prefWidth="90.0" text="Date" />
+                  <TableColumn fx:id="employee_attendance_column_timein" editable="false" minWidth="6.0" prefWidth="98.0" text="Time In" />
+                  <TableColumn fx:id="employee_attendance_column_timeout" editable="false" prefWidth="96.0" text="TimeOut" />
               </columns>
             </TableView>
          </children>

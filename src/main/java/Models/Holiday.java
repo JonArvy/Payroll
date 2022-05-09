@@ -17,6 +17,13 @@ public class Holiday {
         Holiday_Repeat = holiday_Repeat;
     }
 
+    public Holiday(String holiday_Name, Date holiday_Date, String holiday_Type, String holiday_Repeat) {
+        Holiday_Name = holiday_Name;
+        Holiday_Date = holiday_Date;
+        Holiday_Type = holiday_Type;
+        Holiday_Repeat = holiday_Repeat;
+    }
+
     public int getHoliday_ID() {
         return Holiday_ID;
     }

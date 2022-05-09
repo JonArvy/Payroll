@@ -15,9 +15,12 @@ import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.Time;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -275,7 +278,7 @@ public class HelloController implements Initializable {
     private TextField main_addholiday_name;
 
     @FXML
-    private ComboBox<?> main_addholiday_type;
+    private ComboBox<String> main_addholiday_type;
 
     // Add Shift Here
 
@@ -401,7 +404,46 @@ public class HelloController implements Initializable {
     @FXML
     private TableColumn<?, ?> main_holiday_column_action;
     // END DITOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    // Daily Attendance ***************************************************//
 
+    @FXML
+    private DatePicker main_dailyattendance_datepicker;
+
+    @FXML
+    private TableView main_dailyattendance_tableview;
+
+    @FXML
+    private TableColumn<Attendance, Date> main_dailyattendance_column_date;
+
+    @FXML
+    private TableColumn<Attendance, Integer> main_dailyattendance_column_empid;
+
+    @FXML
+    private TableColumn<Attendance, String> main_dailyattendance_column_fullname;
+
+    @FXML
+    private TableColumn<Attendance, String> main_dailyattendance_column_department;
+
+    @FXML
+    private TableColumn<Attendance, String> main_dailyattendance_column_position;
+
+    @FXML
+    private TableColumn<Attendance, Time> main_dailyattendance_column_timein;
+
+    @FXML
+    private TableColumn<Attendance, Time> main_dailyattendance_column_timeout;
+
+    @FXML
+    private TableColumn<Attendance, Date> main_dailyattendance_column_action;
+
+    @FXML
+    private Button main_dailyattendance_nextdate;
+
+    @FXML
+    private Button main_dailyattendance_previousdate;
+
+
+    // Daily Attendance End ***********************************************//
     @FXML
     private Pane main_credentials_panel_11;
 
@@ -412,6 +454,7 @@ public class HelloController implements Initializable {
     private ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
     private ObservableList<Holiday> holidayList = FXCollections.observableArrayList();
     private ObservableList<Shift> shiftList = FXCollections.observableArrayList();
+    private ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
 
 
 
@@ -445,6 +488,7 @@ public class HelloController implements Initializable {
         //Daily Attendance Button
         } else if (event.getSource() == main_dailyattendance_button) {
             main_dailyattendance_panel_1.toFront();
+            main_dailyattendance_datepicker.setValue(LocalDate.now());
 
         //Attendance Report Button
         } else if (event.getSource() == main_attendancereport_button) {
@@ -542,6 +586,7 @@ public class HelloController implements Initializable {
         }
     }
 
+
     @FXML
     public void addEmployee(ActionEvent event) {
 //        boolean gender = true;
@@ -578,13 +623,16 @@ public class HelloController implements Initializable {
                 main_addemployee_contactnumber.getText(),
                 "Biometrics"
         ));
+    }
 
-        main_addemployee_dept.getValue();
-        main_addemployee_gender.getValue();
-        main_addemployee_status.getValue();
+    @FXML
+    public void addHoliday(ActionEvent event) {
+        sql.addHoliday(new Holiday(main_addholiday_name.getText(),
+                Date.valueOf(main_addholiday_date.getValue()),
+                main_addholiday_type.getValue(),
+                "Yearly"));
 
-        main_addemployee_bdate.getValue();
-        System.out.println(main_addemployee_bdate.getValue());
+
     }
 
     public void populateDepartmentBox() {
@@ -719,8 +767,8 @@ public class HelloController implements Initializable {
             @Override
             public TableCell<Employee, Void> call(final TableColumn<Employee, Void> param) {
                 final TableCell<Employee, Void> cell = new TableCell<Employee, Void>() {
-                    private final Button btn = new Button("Edit");
-                    private final Button btn2 = new Button("Delete");
+                    private final Button btn = new Button("View");
+                    private final Button btn2 = new Button("Edit");
 
 
                     {
@@ -839,6 +887,47 @@ public class HelloController implements Initializable {
 
         main_addemployee_empstatus.getItems().addAll("Regular", "Contractual", "Part-Time");
         main_addemployee_empstatus.getSelectionModel().select(0);
+
+        main_addholiday_type.getItems().addAll( "Regular Holiday", "Special Working Public Holiday", "Special Non-working Holiday", "Common local holiday", "Season", "Observance");
+        main_addholiday_type.getSelectionModel().select(0);
+
+        actionListeners();
+    }
+
+    public void actionListeners() {
+        main_dailyattendance_datepicker.valueProperty().addListener((o, ol, nw) -> {
+            showDailyAttendanceTable();
+        });
+    }
+
+    @FXML
+    public void moveAttendanceDate(ActionEvent event) {
+        if (event.getSource() == main_dailyattendance_nextdate) {
+            main_dailyattendance_datepicker.setValue(main_dailyattendance_datepicker.getValue().plusDays(1));
+        } else if (event.getSource() == main_dailyattendance_previousdate) {
+            main_dailyattendance_datepicker.setValue(main_dailyattendance_datepicker.getValue().minusDays(1));
+        }
+    }
+
+
+    public void showDailyAttendanceTable() {
+        System.out.println(main_dailyattendance_datepicker.getValue());
+        attendanceList.clear();
+        attendanceList = sql.getDailyAttendance(Date.valueOf(main_dailyattendance_datepicker.getValue()),
+                Date.valueOf(main_dailyattendance_datepicker.getValue().plusDays(1)));
+        System.out.println(attendanceList.size() + " Size");
+
+        main_dailyattendance_column_date.setCellValueFactory(new PropertyValueFactory<Attendance, Date>("Employee_Attendance_Date"));
+        main_dailyattendance_column_empid.setCellValueFactory(new PropertyValueFactory<Attendance, Integer>("Employee_ID"));
+        main_dailyattendance_column_fullname.setCellValueFactory(new PropertyValueFactory<Attendance, String>("Employee_FullName"));
+        main_dailyattendance_column_department.setCellValueFactory(new PropertyValueFactory<Attendance, String>("Department_Name"));
+        main_dailyattendance_column_position.setCellValueFactory(new PropertyValueFactory<Attendance, String>("Employee_Position"));
+        main_dailyattendance_column_timein.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeIn"));
+        main_dailyattendance_column_timeout.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeOut"));
+//        main_dailyattendance_column_action.setCellValueFactory(new PropertyValueFactory<Department, Double>("Hourly_Rate"));
+
+
+        main_dailyattendance_tableview.setItems(attendanceList);
 
 
     }

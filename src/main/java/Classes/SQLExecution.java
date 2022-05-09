@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.text.ParseException;
+import java.time.LocalDate;
 
 import static Database.SQLConnection.connect;
 
@@ -412,6 +413,68 @@ public class SQLExecution {
         return attendanceList;
     }
 
+    public ObservableList<Attendance> getDailyAttendance(Date dt1, Date dt2) {
+        ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
+//        String command = "SELECT * FROM tbl_attendance " +
+//                "WHERE emp_attendance_date >= ? " +
+//                "AND emp_attendance_date < ?";
+        String command = "SELECT attendance_id, " +
+                "tbl_attendance.emp_id, " +
+
+                "tbl_employees.emp_lname, " +
+                "tbl_employees.emp_fname, " +
+
+                "tbl_department.department_name, " +
+
+                "tbl_employees.emp_position, " +
+
+                "tbl_attendance.emp_attendance_date, " +
+                "tbl_attendance.emp_timein, " +
+                "tbl_attendance.emp_timeout " +
+
+                "FROM tbl_attendance " +
+                "JOIN tbl_employees " +
+                "ON tbl_attendance.emp_id = tbl_employees.emp_id " +
+                "JOIN tbl_department " +
+                "ON tbl_employees.emp_department = tbl_department.department_id " +
+                "WHERE emp_attendance_date >= ? " +
+                "AND emp_attendance_date < ?";
+        System.out.println(dt1);
+        System.out.println(dt2);
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setDate(1, dt1);
+            preparedStatement.setDate(2, dt2);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            while (resultSet.next()) {
+                attendanceList.add(new Attendance(resultSet.getInt("attendance_id"),
+                                resultSet.getInt("emp_id"),
+                                resultSet.getString("emp_lname") + " " + resultSet.getString("emp_fname"),
+                                resultSet.getString("department_name"),
+                                resultSet.getString("emp_position"),
+                                resultSet.getDate("emp_attendance_date"),
+                                resultSet.getTime("emp_timein"),
+                                resultSet.getTime("emp_timeout")
+                        ));
+//                attendanceList.add(new Attendance(
+//                        resultSet.getInt("emp_id"),
+//
+//                        resultSet.getDate("emp_attendance_date"),
+//                        resultSet.getTime("emp_timein"),
+//                        resultSet.getTime("emp_timeout")
+//
+//                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return attendanceList;
+    }
+
     public ObservableList<Holiday> getHolidays() {
         ObservableList<Holiday> holidayList = FXCollections.observableArrayList();
         String command = "SELECT * FROM tbl_holiday";
@@ -496,7 +559,25 @@ public class SQLExecution {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
         }
-        System.out.println("Here");
+    }
+
+    //Add Holiday
+    public void addHoliday(Holiday holiday) {
+        String command = "INSERT INTO tbl_holiday (holiday_name, holiday_date, holiday_type, holiday_repeat) " +
+                "VALUES (?, ?, ?, ?)";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setString(1, holiday.getHoliday_Name());
+            preparedStatement.setDate(2, holiday.getHoliday_Date()); //
+            preparedStatement.setString(3, holiday.getHoliday_Type());
+            preparedStatement.setString(4, holiday.getHoliday_Repeat());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
     }
 
     public void addBonus(Bonus bonus) {

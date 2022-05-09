@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -20,6 +21,8 @@ public class Main extends Application {
         scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
 
         stage.setScene(scene);
+//        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
         stage.show();
 
     }
