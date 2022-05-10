@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import javax.swing.*;
 import java.net.URL;
@@ -444,11 +445,102 @@ public class HelloController implements Initializable {
 
 
     // Daily Attendance End ***********************************************//
+    // Edit Employee ******************************************************//
+    @FXML
+    private Pane main_editemployee_panel_1;
+
+    @FXML
+    private TextField main_editemployee_fname;
+
+    @FXML
+    private TextField main_editemployee_lname;
+
+    @FXML
+    private TextArea main_editemployee_address;
+
+    @FXML
+    private ComboBox<BooleanValue> main_editemployee_gender;
+
+    @FXML
+    private TextField main_editemployee_number;
+
+    @FXML
+    private TextField main_editemployee_mname;
+
+    @FXML
+    private TextField main_editemployee_ext;
+
+    @FXML
+    private DatePicker main_editemployee_bdate;
+
+    @FXML
+    private ComboBox<BooleanValue> main_editemployee_status;
+
+    @FXML
+    private TextField main_editemployee_empid;
+
+    @FXML
+    private TextField main_editemployee_nationality;
+
+    @FXML
+    private ComboBox<String> main_editemployee_maritalstatus;
+
+    @FXML
+    private ComboBox<Department> main_editemployee_department;
+
+    @FXML
+    private TextField main_editemployee_position;
+
+    @FXML
+    private ComboBox<String> main_editemployee_empstatus;
+
+    @FXML
+    private TextField main_editemployee_contactname;
+
+    @FXML
+    private TextField main_editemployee_contactrelationship;
+
+    @FXML
+    private TextArea main_editemployee_contactaddress;
+
+    @FXML
+    private TextField main_editemployee_contactnumber;
+
+    //************End Edit Employee Here **************//
+    //************Employee Payslip Here****************//
+
+    @FXML
+    private Pane main_payslip_viewpayslip_panel;
+
+    @FXML
+    private TableView main_payslip_tableview;
+
+    @FXML
+    private TableColumn<Employee, Integer> main_payslip_column_empid;
+
+    @FXML
+    private TableColumn<Employee, String> main_payslip_column_fullname;
+
+    @FXML
+    private TableColumn<Employee, String> main_payslip_column_department;
+
+    @FXML
+    private TableColumn<Employee, String> main_payslip_column_position;
+
+    @FXML
+    private TableColumn<?, ?> main_payslip_column_action;
+
+    //************Employee Payslip Here****************//
+
     @FXML
     private Pane main_credentials_panel_11;
 
 
     private SQLExecution sql;
+
+    private ObservableList<BooleanValue> genderList;
+    private ObservableList<BooleanValue> statusList;
+
     private ObservableList<Department> departmentList = FXCollections.observableArrayList();
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
     private ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
@@ -497,6 +589,7 @@ public class HelloController implements Initializable {
         //Payslip Button
         } else if (event.getSource() == main_payslip_button) {
             main_payslip_panel_1.toFront();
+            showPayslipList();
 
         //Payroll Summary Button
         } else if (event.getSource() == main_payrollsummary_button) {
@@ -631,8 +724,6 @@ public class HelloController implements Initializable {
                 Date.valueOf(main_addholiday_date.getValue()),
                 main_addholiday_type.getValue(),
                 "Yearly"));
-
-
     }
 
     public void populateDepartmentBox() {
@@ -640,26 +731,8 @@ public class HelloController implements Initializable {
         departmentList = sql.getDepartment();
 
         main_addemployee_dept.setItems(departmentList);
-        StringConverter<Department> converter = new StringConverter<Department>() {
-            @Override
-            public String toString(Department department) {
-                String s = "";
-                try {
-                    s = department.getDepartment_Name();
-                } catch (NullPointerException e) {
-                    s = "";
-                }
-                return s;
-            }
 
-            @Override
-            public Department fromString(String s) {
-                return departmentList.stream()
-                        .filter(item -> item.getDepartment_Name().equals(s))
-                        .collect(Collectors.toList()).get(0);
-            }
-        };
-        main_addemployee_dept.setConverter(converter);
+        main_addemployee_dept.setConverter(departmentConverter());
         main_addemployee_dept.getSelectionModel().select(0);
     }
 
@@ -668,26 +741,8 @@ public class HelloController implements Initializable {
         departmentList = sql.getDepartment();
 
         main_addbonus_recipient.setItems(departmentList);
-        StringConverter<Department> converter = new StringConverter<Department>() {
-            @Override
-            public String toString(Department department) {
-                String s = "";
-                try {
-                    s = department.getDepartment_Name();
-                } catch (NullPointerException e) {
-                    s = "";
-                }
-                return s;
-            }
 
-            @Override
-            public Department fromString(String s) {
-                return departmentList.stream()
-                        .filter(item -> item.getDepartment_Name().equals(s))
-                        .collect(Collectors.toList()).get(0);
-            }
-        };
-        main_addbonus_recipient.setConverter(converter);
+        main_addbonus_recipient.setConverter(departmentConverter());
         main_addbonus_recipient.getSelectionModel().select(0);
     }
 
@@ -703,6 +758,20 @@ public class HelloController implements Initializable {
 
 
         main_holiday_tableview.setItems(holidayList);
+    }
+
+    public void showPayslipList() {
+        employeeList.clear();
+        employeeList = sql.getAllEmployeesInformation();
+
+        main_payslip_column_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
+        main_payslip_column_fullname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));
+        main_payslip_column_department.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department_Name"));
+        main_payslip_column_position.setCellValueFactory(new PropertyValueFactory<Employee, String>("Position"));
+//        main_payslip_column_action.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department_Name"));
+
+        main_payslip_tableview.setItems(employeeList);
+
     }
 
     public void showBonus() {
@@ -790,10 +859,12 @@ public class HelloController implements Initializable {
                                 "-fx-background-insets: 0,1,1; " +
                                 "-fx-text-fill: black; " +
                                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);");
-                        btn2.setDisable(true);
+
                         btn2.setOnAction((ActionEvent event) -> {
                             Employee emp = getTableView().getItems().get(getIndex());
-                            System.out.println("Delete" + emp.getFirst_Name() + " " + emp.getLast_Name());
+//                            System.out.println("Delete" + emp.getFirst_Name() + " " + emp.getLast_Name());
+                            main_editemployee_panel_1.toFront();
+                            loadEmployeePanel(emp);
                         });
                     }
                     @Override
@@ -814,68 +885,102 @@ public class HelloController implements Initializable {
         main_manageemployee_col_action.setCellFactory(cellFactory);
     }
 
+    public void loadEmployeePanel(Employee emp) {
+        initializeComboboxOnEditEmployee();
+        Employee employee = sql.getEmployee(new Employee(emp.getEmployee_ID()));
+        main_editemployee_empid.setText(employee.getEmployee_ID() + "");
+        main_editemployee_nationality.setText(employee.getNationality());
+        main_editemployee_maritalstatus.setValue(employee.getMarital_Status());
+        main_editemployee_department.getSelectionModel().select(employee.getDepartment() - 1); //Will Fix Later
+        main_editemployee_position.setText(employee.getPosition());
+        main_editemployee_number.setText(employee.getNumber());
+        main_editemployee_empstatus.setValue(employee.getEmployment_Status());
+        main_editemployee_fname.setText(employee.getFirst_Name());
+        main_editemployee_lname.setText(employee.getLast_Name());
+        main_editemployee_mname.setText(employee.getMiddle_Name());
+        main_editemployee_ext.setText(employee.getExtension());
+        main_editemployee_address.setText(employee.getAddress());
+        main_editemployee_gender.getSelectionModel().select(employee.isGender() ? 0 : 1);  //Will Fix Later
+        main_editemployee_number.setText(employee.getNumber());
+        main_editemployee_bdate.setValue(employee.getBirthdate().toLocalDate());
+        main_editemployee_status.getSelectionModel().select(employee.isActive() ? 0 : 1);  //Will Fix Later
+        main_editemployee_contactname.setText(employee.getContact_Name());
+        main_editemployee_contactrelationship.setText(employee.getContact_Relationship());
+        main_editemployee_contactaddress.setText(employee.getContact_Address());
+        main_editemployee_contactnumber.setText(employee.getContact_Number());
+    }
+
+    public void initializeComboboxOnEditEmployee() {
+        //Edit Employee Initialize constants
+
+        departmentList.clear();
+        departmentList = sql.getDepartment();
+
+        main_editemployee_department.setItems(departmentList);
+
+        main_editemployee_department.setConverter(departmentConverter());
+
+        main_editemployee_gender.setItems(genderList);
+        main_editemployee_status.setItems(statusList);
+
+        main_editemployee_gender.setConverter(booleanValueConverter(genderList));
+        main_editemployee_status.setConverter(booleanValueConverter(statusList));
+    }
+
+    @FXML
+    public void saveEmployee(ActionEvent event) {
+        sql.updateEmployee(
+        new Employee(
+                Integer.parseInt(main_editemployee_empid.getText()),
+                main_editemployee_nationality.getText(),
+                main_editemployee_maritalstatus.getValue(),
+                main_editemployee_department.getValue().getDepartment_ID(),
+                main_editemployee_position.getText(),
+                main_editemployee_empstatus.getValue(),
+                main_editemployee_fname.getText(),
+                main_editemployee_lname.getText(),
+                main_editemployee_mname.getText(),
+                main_editemployee_ext.getText(),
+                main_editemployee_address.getText(),
+                main_editemployee_gender.getValue().isBool(),
+                main_editemployee_number.getText(),
+                Date.valueOf(main_editemployee_bdate.getValue()),
+                main_editemployee_status.getValue().isBool(),
+                main_editemployee_contactname.getText(),
+                main_editemployee_contactrelationship.getText(),
+                main_editemployee_contactaddress.getText(),
+                main_editemployee_contactnumber.getText()
+        ));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        main_editemployee_empid.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                if (!newValue.matches("\\d*")) {
+//                    main_editemployee_empid.setText(newValue.replaceAll("[^\\d]", ""));
+//                }
+//            }
+//        });
         //Initialize Variables
         sql = new SQLExecution();
 
-        ObservableList<BooleanValue> genderList = FXCollections.observableArrayList(
+        genderList = FXCollections.observableArrayList(
                 new BooleanValue("Male", true),
                 new BooleanValue("Female", false));
-        ObservableList<BooleanValue> statusList = FXCollections.observableArrayList(
+        statusList = FXCollections.observableArrayList(
                 new BooleanValue("Active", true),
                 new BooleanValue("Inactive", false));
 
-        StringConverter<BooleanValue> converter = new StringConverter<BooleanValue>() {
-            @Override
-            public String toString(BooleanValue booleanValue) {
-                String s = "";
-                try {
-                    s = booleanValue.getName();
-                } catch (NullPointerException e) {
-                    s = "";
-                }
-                return s;
-            }
-
-            @Override
-            public BooleanValue fromString(String s) {
-                return genderList.stream()
-                        .filter(item -> item.getName().equals(s))
-                        .collect(Collectors.toList()).get(0);
-            }
-        };
-
-        StringConverter<BooleanValue> converter2 = new StringConverter<BooleanValue>() {
-            @Override
-            public String toString(BooleanValue booleanValue) {
-                String s = "";
-                try {
-                    s = booleanValue.getName();
-                } catch (NullPointerException e) {
-                    s = "";
-                }
-                return s;
-            }
-
-            @Override
-            public BooleanValue fromString(String s) {
-                return statusList.stream()
-                        .filter(item -> item.getName().equals(s))
-                        .collect(Collectors.toList()).get(0);
-            }
-        };
 
         //Add Employee Initialize constants
         main_addemployee_gender.setItems(genderList);
         main_addemployee_status.setItems(statusList);
 
-        main_addemployee_gender.setConverter(converter);
-        main_addemployee_status.setConverter(converter2);
+        main_addemployee_gender.setConverter(booleanValueConverter(genderList));
+        main_addemployee_status.setConverter(booleanValueConverter(statusList));
 
-
-//        main_addemployee_gender.getItems().addAll("Male", "Female");
-//        main_addemployee_status.getItems().addAll("Active", "Inactive");
         main_addemployee_gender.getSelectionModel().select(0);
         main_addemployee_status.getSelectionModel().select(0);
 
@@ -892,6 +997,52 @@ public class HelloController implements Initializable {
         main_addholiday_type.getSelectionModel().select(0);
 
         actionListeners();
+    }
+
+    public StringConverter<BooleanValue> booleanValueConverter(ObservableList<BooleanValue> list) {
+        StringConverter<BooleanValue> converter = new StringConverter<BooleanValue>() {
+            @Override
+            public String toString(BooleanValue booleanValue) {
+                String s = "";
+                try {
+                    s = booleanValue.getName();
+                } catch (NullPointerException e) {
+                    s = "";
+                }
+                return s;
+            }
+
+            @Override
+            public BooleanValue fromString(String s) {
+                return list.stream()
+                        .filter(item -> item.getName().equals(s))
+                        .collect(Collectors.toList()).get(0);
+            }
+        };
+        return converter;
+    }
+
+    public StringConverter<Department> departmentConverter() {
+        StringConverter<Department> converter = new StringConverter<Department>() {
+            @Override
+            public String toString(Department department) {
+                String s = "";
+                try {
+                    s = department.getDepartment_Name();
+                } catch (NullPointerException e) {
+                    s = "";
+                }
+                return s;
+            }
+
+            @Override
+            public Department fromString(String s) {
+                return departmentList.stream()
+                        .filter(item -> item.getDepartment_Name().equals(s))
+                        .collect(Collectors.toList()).get(0);
+            }
+        };
+        return converter;
     }
 
     public void actionListeners() {

@@ -76,6 +76,35 @@ public class Employee {
 
         this.Employee_Biometrics = Employee_Biometrics;
     }
+
+    public Employee(int Employee_ID, String Nationality, String Marital_Status, int Department, String Position, String Employment_Status, String First_Name, String Last_Name, String Middle_Name, String Extension, String Address, boolean Gender, String Number, Date Birthdate, Boolean Active, String Contact_Name, String Contact_Relationship, String Contact_Address, String Contact_Number) {
+        this.Employee_ID = Employee_ID;
+        this.Nationality = Nationality;
+        this.Marital_Status = Marital_Status;
+        this.Department = Department;
+        this.Position = Position;
+        this.Employment_Status = Employment_Status;
+
+        this.First_Name = First_Name;
+        this.Last_Name = Last_Name;
+        this.Middle_Name = Middle_Name;
+        this.Extension = Extension;
+        this.Address = Address;
+
+        this.Gender = Gender;
+
+        this.Number = Number;
+
+        this.Birthdate = Birthdate;
+        this.Active = Active;
+
+        this.Contact_Name = Contact_Name;
+        this.Contact_Relationship = Contact_Relationship;
+        this.Contact_Address = Contact_Address;
+
+        this.Contact_Number = Contact_Number;
+    }
+
     //For Manage Employee
     public Employee(int Employee_ID, int Department, String Employment_Status, String First_Name, String Last_Name) {
         this.Employee_ID = Employee_ID;
@@ -102,6 +131,8 @@ public class Employee {
         this.Department_Name = Department_Name;
         this.Active = Active;
     }
+
+
 
     // Getters Here ///////////////////////////////////////////////////////
 
@@ -187,5 +218,89 @@ public class Employee {
 
     public String getContact_Number() {
         return Contact_Number;
+    }
+
+    public void setEmployee_ID(int employee_ID) {
+        Employee_ID = employee_ID;
+    }
+
+    public void setNationality(String nationality) {
+        Nationality = nationality;
+    }
+
+    public void setMarital_Status(String marital_Status) {
+        Marital_Status = marital_Status;
+    }
+
+    public void setDepartment(int department) {
+        Department = department;
+    }
+
+    public void setDepartment_Name(String department_Name) {
+        Department_Name = department_Name;
+    }
+
+    public void setPosition(String position) {
+        Position = position;
+    }
+
+    public void setEmployment_Status(String employment_Status) {
+        Employment_Status = employment_Status;
+    }
+
+    public void setFirst_Name(String first_Name) {
+        First_Name = first_Name;
+    }
+
+    public void setLast_Name(String last_Name) {
+        Last_Name = last_Name;
+    }
+
+    public void setMiddle_Name(String middle_Name) {
+        Middle_Name = middle_Name;
+    }
+
+    public void setExtension(String extension) {
+        Extension = extension;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public void setGender(boolean gender) {
+        Gender = gender;
+    }
+
+    public void setNumber(String number) {
+        Number = number;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        Birthdate = birthdate;
+    }
+
+    public void setActive(Boolean active) {
+        Active = active;
+    }
+
+    public void setEmployee_Biometrics(String employee_Biometrics) {
+        Employee_Biometrics = employee_Biometrics;
+    }
+
+    public void setContact_Name(String contact_Name) {
+        Contact_Name = contact_Name;
+    }
+
+    public void setContact_Relationship(String contact_Relationship) {
+        Contact_Relationship = contact_Relationship;
+    }
+
+    public void setContact_Address(String contact_Address) {
+        Contact_Address = contact_Address;
+    }
+
+    public void setContact_Number(String contact_Number) {
+        Contact_Number = contact_Number;
     }
 }

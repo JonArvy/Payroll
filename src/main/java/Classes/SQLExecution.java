@@ -509,31 +509,26 @@ public class SQLExecution {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                emp = new Employee(
-                        resultSet.getInt("emp_id"),
-                        resultSet.getString("emp_nationality"),
-                        resultSet.getString("emp_maritalstatus"),
-                        resultSet.getInt("emp_department"),
-                        resultSet.getString("emp_position"),
-                        resultSet.getString("emp_employmentstatus"),
+                emp.setEmployee_ID(resultSet.getInt("emp_id"));
+                emp.setNationality(resultSet.getString("emp_nationality"));
+                emp.setMarital_Status(resultSet.getString("emp_maritalstatus"));
+                emp.setDepartment(resultSet.getInt("emp_department"));
+                emp.setPosition(resultSet.getString("emp_position"));
+                emp.setEmployment_Status(resultSet.getString("emp_employmentstatus"));
+                emp.setFirst_Name(resultSet.getString("emp_fname"));
+                emp.setLast_Name(resultSet.getString("emp_lname"));
+                emp.setMiddle_Name(resultSet.getString("emp_mname"));
+                emp.setExtension(resultSet.getString("emp_ext"));
+                emp.setAddress(resultSet.getString("emp_address"));
+                emp.setGender(resultSet.getBoolean("emp_gender"));
+                emp.setNumber(resultSet.getString("emp_contactno"));
+                emp.setBirthdate(resultSet.getDate("emp_bday"));
+                emp.setActive(resultSet.getBoolean("emp_status"));
 
-                        resultSet.getString("emp_fname"),
-                        resultSet.getString("emp_lname"),
-                        resultSet.getString("emp_mname"),
-                        resultSet.getString("emp_ext"),
-                        resultSet.getString("emp_address"),
-                        resultSet.getBoolean("emp_gender"),
-                        resultSet.getString("emp_contactno"),
-                        resultSet.getDate("emp_bday"),
-                        resultSet.getBoolean("emp_status"),
-
-                        resultSet.getString("emp_contact_fname"),
-                        resultSet.getString("emp_contact_relationship"),
-                        resultSet.getString("emp_contact_address"),
-                        resultSet.getString("emp_contact_contactno"),
-                        resultSet.getString("emp_biometrics_info")
-
-                );
+                emp.setContact_Name(resultSet.getString("emp_contact_fname"));
+                emp.setContact_Relationship(resultSet.getString("emp_contact_relationship"));
+                emp.setContact_Address(resultSet.getString("emp_contact_address"));
+                emp.setContact_Number(resultSet.getString("emp_contact_contactno"));
             }
 
         } catch (SQLException e) {
@@ -750,27 +745,26 @@ public class SQLExecution {
         }
     }
 
-    public void editEmployee(Employee employee) {
-        String command = "UPDATE tbl_employees" +
-                "SET emp_nationality = ?" +
-                "    emp_maritalstatus = ?" +
-                "    emp_department = ?" +
-                "    emp_position = ?" +
-                "    emp_employmentstatus = ?" +
-                "    emp_fname = ?" +
-                "    emp_lname = ?" +
-                "    emp_mname = ?" +
-                "    emp_ext = ?" +
-                "    emp_address = ?" +
-                "    emp_gender = ?" +
-                "    emp_contactno = ?" +
-                "    emp_bday = ?" +
-                "    emp_status = ?" +
-                "    emp_contact_fname = ?" +
-                "    emp_contact_relationship = ?" +
-                "    emp_contact_address = ?" +
-                "    emp_contact_contactno = ?" +
-                "    emp_biometrics_info = ?" +
+    public void updateEmployee(Employee employee) {
+        String command = "UPDATE tbl_employees " +
+                "SET emp_nationality = ?," +
+                "emp_maritalstatus = ?," +
+                "emp_department = ?," +
+                "emp_position = ?," +
+                "emp_employmentstatus = ?," +
+                "emp_fname = ?," +
+                "emp_lname = ?," +
+                "emp_mname = ?," +
+                "emp_ext = ?," +
+                "emp_address = ?," +
+                "emp_gender = ?," +
+                "emp_contactno = ?," +
+                "emp_bday = ?," +
+                "emp_status = ?," +
+                "emp_contact_fname = ?," +
+                "emp_contact_relationship = ?," +
+                "emp_contact_address = ?," +
+                "emp_contact_contactno = ? " +
                 "WHERE emp_id = ?";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -794,8 +788,7 @@ public class SQLExecution {
             preparedStatement.setString(16, employee.getContact_Relationship());
             preparedStatement.setString(17, employee.getContact_Address());
             preparedStatement.setString(18, employee.getContact_Number());
-            preparedStatement.setString(19, employee.getEmployee_Biometrics());
-            preparedStatement.setInt(20, employee.getEmployee_ID());
+            preparedStatement.setInt(19, employee.getEmployee_ID());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
