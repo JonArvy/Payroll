@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
@@ -154,7 +155,18 @@ public class HelloController implements Initializable {
     private Button main_credentials_button;
 
     @FXML
-    private Pane main_credentials_panel_1;
+    private Pane main_credentials_panel;
+    @FXML
+    private Button main_credentials_add_button;
+
+    @FXML
+    private Pane main_credentials_add_panel;
+
+    @FXML
+    private Button main_credentials_create_button;
+
+    @FXML
+    private Pane main_credentials_confirmation_panel;
 
     @FXML
     private Button main_logout_button;
@@ -216,9 +228,6 @@ public class HelloController implements Initializable {
 
     @FXML
     private ComboBox<BooleanValue> main_addemployee_status;
-
-    @FXML
-    private Pane main_admin_panel1;
 
     @FXML
     private Button addemployee_upload_button;
@@ -292,14 +301,14 @@ public class HelloController implements Initializable {
     @FXML
     private CheckBox main_addshift_monday;
 
-    @FXML
-    private TextField main_addshift_name;
+    //@FXML
+    //private TextField main_addshift_name;
 
     @FXML
     private CheckBox main_addshift_saturday;
 
-    @FXML
-    private ComboBox<Integer> main_addshift_shifttype;
+    //@FXML
+    //private ComboBox<Integer> main_addshift_shifttype;
 
     @FXML
     private CheckBox main_addshift_sunday;
@@ -405,6 +414,9 @@ public class HelloController implements Initializable {
     @FXML
     private TableColumn<?, ?> main_holiday_column_action;
     // END DITOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    /* VBOX */
+    @FXML
+    private VBox main_menu_vbox;
     // Daily Attendance ***************************************************//
 
     @FXML
@@ -529,6 +541,55 @@ public class HelloController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> main_payslip_column_action;
+
+    //************ Admin ****************//
+        @FXML
+        private CheckBox main_addshift_friday1;
+
+        @FXML
+        private CheckBox main_addshift_friday11;
+
+        @FXML
+        private CheckBox main_addshift_monday1;
+
+        @FXML
+        private CheckBox main_addshift_monday11;
+
+
+        @FXML
+        private CheckBox main_addshift_saturday1;
+
+        @FXML
+        private CheckBox main_addshift_saturday11;
+
+
+        @FXML
+        private CheckBox main_addshift_sunday1;
+
+        @FXML
+        private CheckBox main_addshift_sunday11;
+
+        @FXML
+        private CheckBox main_addshift_thursday1;
+
+        @FXML
+        private CheckBox main_addshift_thursday11;
+
+        @FXML
+        private CheckBox main_addshift_tuesday1;
+
+        @FXML
+        private CheckBox main_addshift_tuesday11;
+
+        @FXML
+        private CheckBox main_addshift_wednesday1;
+
+        @FXML
+        private CheckBox main_addshift_wednesday11;
+
+
+    //************ Admin ****************//
+
 
     //************Employee Payslip Here****************//
 
@@ -662,7 +723,15 @@ public class HelloController implements Initializable {
 
         //Credentials Button
         } else if (event.getSource() == main_credentials_button) {
-            main_credentials_panel_1.toFront();
+            main_credentials_panel.toFront();
+
+        // Add or Create Admin Credentials
+        } else if (event.getSource() == main_credentials_add_button) {
+            main_credentials_add_panel.toFront();
+
+        // Asking for credentials for Creating New Credentials / Register
+        } else if (event.getSource() == main_credentials_create_button) {
+            main_credentials_confirmation_panel.toFront();
 
         //Logout Button
         } else if (event.getSource() == main_logout_button) {
@@ -984,8 +1053,8 @@ public class HelloController implements Initializable {
         main_addemployee_gender.getSelectionModel().select(0);
         main_addemployee_status.getSelectionModel().select(0);
 
-        main_addshift_shifttype.getItems().addAll(1, 2);
-        main_addshift_shifttype.getSelectionModel().select(0);
+        //main_addshift_shifttype.getItems().addAll(1, 2);
+        //main_addshift_shifttype.getSelectionModel().select(0);
 
         main_addemployee_maritalstatus.getItems().addAll("Single", "Married", "Widowed", "Annuled");
         main_addemployee_maritalstatus.getSelectionModel().select(0);
@@ -1110,8 +1179,8 @@ public class HelloController implements Initializable {
 
     public void addShift() {
         int id = 0;
-        int shiftType = (int) main_addshift_shifttype.getValue();
-        int recipient = Integer.parseInt(main_addshift_name.getText());
+        //int shiftType = (int) main_addshift_shifttype.getValue();
+        //int recipient = Integer.parseInt(main_addshift_name.getText());
         boolean shiftSunday = main_addshift_sunday.isSelected();
         boolean shiftMonday = main_addshift_monday.isSelected();
         boolean shiftTuesday = main_addshift_tuesday.isSelected();
@@ -1120,7 +1189,7 @@ public class HelloController implements Initializable {
         boolean shiftFriday = main_addshift_friday.isSelected();
         boolean shiftSaturday = main_addshift_saturday.isSelected();
 
-        sql.addShift(new Shift(
+        /*sql.addShift(new Shift(
                 id,
                 shiftType,
                 recipient,
@@ -1132,6 +1201,8 @@ public class HelloController implements Initializable {
                 shiftFriday,
                 shiftSaturday
         ));
+
+         */
     }
 
     public void addAdmin() {
