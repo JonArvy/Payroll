@@ -590,6 +590,8 @@ public class HelloController implements Initializable {
 
     //************ Admin ****************//
 
+    @FXML
+    private Button main_addshift_addbutton_employee;
 
     //************Employee Payslip Here****************//
 
@@ -744,7 +746,9 @@ public class HelloController implements Initializable {
 
             //Add Shift
         } else if (event.getSource() == main_addshift_addbutton) {
-            addShift();
+            addShift(true);
+        } else if (event.getSource() == main_addshift_addbutton_employee) {
+            addShift(false);
         }
     }
 
@@ -1177,7 +1181,12 @@ public class HelloController implements Initializable {
         sql.addBonus(new Bonus(id, bonusName, bonusAmount, bonusRecipient, bonusDate));
     }
 
-    public void addShift() {
+    public void addShift(boolean isDepartment) {
+        if (isDepartment) {
+
+        } else {
+
+        }
         int id = 0;
         //int shiftType = (int) main_addshift_shifttype.getValue();
         //int recipient = Integer.parseInt(main_addshift_name.getText());

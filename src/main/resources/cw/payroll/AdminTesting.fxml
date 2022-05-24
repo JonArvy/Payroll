@@ -1161,7 +1161,7 @@
                                           <CheckBox fx:id="main_addshift_saturday1" layoutX="387.0" layoutY="59.0" mnemonicParsing="false" text="Sat" textFill="WHITE" />
                                        </children>
                                     </Pane>
-                                    <Button fx:id="main_addshift_addbutton" layoutX="441.0" layoutY="320.0" mnemonicParsing="false" onAction="#addShift" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
+                                    <Button fx:id="main_addshift_addbutton" layoutX="441.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
                                     <Button fx:id="main_department_add_shift_cancel_button" layoutX="505.0" layoutY="320.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
                                  </children></AnchorPane>
                         </content>
@@ -1217,7 +1217,7 @@
                                           <CheckBox layoutX="387.0" layoutY="59.0" mnemonicParsing="false" text="Sat" textFill="WHITE" />
                                        </children>
                                     </Pane>
-                                    <Button layoutX="441.0" layoutY="320.0" mnemonicParsing="false" onAction="#addShift" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
+                                    <Button fx:id="main_addshift_addbutton_employee" layoutX="441.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
                                     <Button layoutX="505.0" layoutY="320.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
                                  </children></AnchorPane>
                         </content>
