@@ -27,6 +27,11 @@ public class Department {
         this.Hourly_Rate = Double.parseDouble(hourlyRateString);
     }
 
+    public Department(int department_ID, String department_Name) {
+        Department_ID = department_ID;
+        Department_Name = department_Name;
+    }
+
     public int getDepartment_ID() {
         return Department_ID;
     }

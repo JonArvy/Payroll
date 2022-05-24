@@ -610,6 +610,7 @@ public class HelloController implements Initializable {
     private ObservableList<Holiday> holidayList = FXCollections.observableArrayList();
     private ObservableList<Shift> shiftList = FXCollections.observableArrayList();
     private ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
+    private ObservableList<AttendanceReport> attendanceReportList = FXCollections.observableArrayList();
 
 
 
@@ -648,6 +649,7 @@ public class HelloController implements Initializable {
         //Attendance Report Button
         } else if (event.getSource() == main_attendancereport_button) {
             main_attendancereport_panel_1.toFront();
+            showAttendanceReport();
 
         //Payslip Button
         } else if (event.getSource() == main_payslip_button) {
@@ -797,6 +799,13 @@ public class HelloController implements Initializable {
                 Date.valueOf(main_addholiday_date.getValue()),
                 main_addholiday_type.getValue(),
                 "Yearly"));
+    }
+
+    public void showAttendanceReport() {
+        attendanceReportList.clear();
+        attendanceReportList = sql.getAttendanceReport();
+
+
     }
 
     public void populateDepartmentBox() {
