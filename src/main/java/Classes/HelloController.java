@@ -590,6 +590,41 @@ public class HelloController implements Initializable {
 
     //************ Admin ****************//
 
+    //************ Attendance Report ****************//
+
+    @FXML
+    private TableView main_attendancereport_tableview;
+
+    @FXML
+    private TableColumn<AttendanceReport, Integer> main_attendancereport_column_number;
+
+    @FXML
+    private TableColumn<AttendanceReport, String> main_attendancereport_column_fullname;
+
+    @FXML
+    private TableColumn<AttendanceReport, Integer> main_attendancereport_column_empid;
+
+    @FXML
+    private TableColumn<AttendanceReport, String> main_attendancereport_column_department;
+
+    @FXML
+    private TableColumn<AttendanceReport, String> main_attendancereport_column_position;
+
+    @FXML
+    private TableColumn<AttendanceReport, Integer> main_attendancereport_column_present;
+
+    @FXML
+    private TableColumn<AttendanceReport, Integer> main_attendancereport_column_absent;
+
+    @FXML
+    private TableColumn<AttendanceReport, Integer> main_attendancereport_column_late;
+
+    @FXML
+    private TableColumn<AttendanceReport, Integer> main_attendancereport_column_holiday;
+
+    //************ Attendance Report End ****************//
+
+
     @FXML
     private Button main_addshift_addbutton_employee;
 
@@ -805,7 +840,17 @@ public class HelloController implements Initializable {
         attendanceReportList.clear();
         attendanceReportList = sql.getAttendanceReport();
 
+        main_attendancereport_column_number.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Number"));
+        main_attendancereport_column_fullname.setCellValueFactory(new PropertyValueFactory<AttendanceReport, String>("Full_Name"));
+        main_attendancereport_column_empid.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Employee_ID"));
+        main_attendancereport_column_department.setCellValueFactory(new PropertyValueFactory<AttendanceReport, String>("Department"));
+        main_attendancereport_column_position.setCellValueFactory(new PropertyValueFactory<AttendanceReport, String>("Position"));
+        main_attendancereport_column_present.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Present"));
+        main_attendancereport_column_absent.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Absent"));
+        main_attendancereport_column_late.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Late"));
+        main_attendancereport_column_holiday.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Holiday"));
 
+        main_attendancereport_tableview.setItems(attendanceReportList);
     }
 
     public void populateDepartmentBox() {

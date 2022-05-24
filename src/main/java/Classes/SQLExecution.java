@@ -830,29 +830,45 @@ public class SQLExecution {
 
     public ObservableList<AttendanceReport> getAttendanceReport() {
         ObservableList<AttendanceReport> attendanceReportList = FXCollections.observableArrayList();
-//        int id = 0;
-//        String command = "SELECT attendance_id, " +
-//                "tbl_attendance.emp_id, " +
-//
-//                "tbl_employees.emp_lname, " +
-//                "tbl_employees.emp_fname, " +
-//
-//                "tbl_department.department_name, " +
-//
-//                "tbl_employees.emp_position, " +
-//
-//                "tbl_attendance.emp_attendance_date, " +
-//                "tbl_attendance.emp_timein, " +
-//                "tbl_attendance.emp_timeout " +
-//
-//                "FROM tbl_attendance " +
-//                "JOIN tbl_employees " +
-//                "ON tbl_attendance.emp_id = tbl_employees.emp_id " +
-//                "JOIN tbl_department " +
-//                "ON tbl_employees.emp_department = tbl_department.department_id " +
-//                "WHERE emp_attendance_date >= ? " +
-//                "AND emp_attendance_date < ?";
-//
+        int id = 1;
+        String command = "SELECT " +
+                "te.emp_fname || ' ' || te.emp_mname || ' ' || te.emp_lname as full_name," +
+                "te.emp_id as employee_id," +
+                "td.department_name as department," +
+                "te.emp_position as employee_position," +
+                "(" +
+                "   SELECT " +
+                "   COUNT(*) " +
+                "   FROM tbl_attendance ta " +
+                "   WHERE ta.emp_id = te.emp_id " +
+                ") as present_days," +
+                "(" +
+                "   SELECT " +
+                "   tq.department_dayspermonth - " +
+                "   (" +
+                "       SELECT " +
+                "       COUNT(*) " +
+                "       FROM tbl_attendance ta " +
+                "       WHERE ta.emp_id = te.emp_id " +
+                "   )" +
+                "   FROM tbl_department tq " +
+                "   WHERE tq.department_id = td.department_id " +
+                ") as absent_days, " +
+                "( " +
+                "   SELECT " +
+                "   tq.department_dayspermonth - " +
+                "   ( " +
+                "       SELECT " +
+                "       COUNT(*) " +
+                "       FROM tbl_attendance ta " +
+                "       WHERE ta.emp_id = te.emp_id " +
+                "   ) " +
+                "   FROM tbl_department tq " +
+                "   WHERE tq.department_id = td.department_id " +
+                ") as late_hours " +
+                "FROM tbl_employees te " +
+                "JOIN tbl_department td " +
+                "ON te.emp_department = td.department_id";
 //        String command2 = "SELECT COUNT(*) " +
 //                "FROM tbl_attendance " +
 //                "JOIN tbl_employees " +
@@ -861,36 +877,28 @@ public class SQLExecution {
 //                "AND emp_attendance_date >= ? " +
 //                "AND emp_attendance_date < ?";
 //
-//        try (Connection connection = connect();
-//             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            while (resultSet.next()) {
-//
-//                PreparedStatement ps = connection.prepareStatement(command);
-//                resultSet = ps.executeQuery();
-//                int present = 0;
-//                int absent = 0;
-//                while (resultSet.next()) {
-//
-//                }
-//                attendanceReportList.add(new AttendanceReport(
-//                        id,
-//                        resultSet.getString("emp_lname") + " " + resultSet.getString("emp_fname"),
-//                        resultSet.getInt("employee_id"),
-//                        new Department(resultSet.getInt("department_id"), resultSet.getString("department_name")),
-//                        resultSet.getString("emp_position"),
-//                        present,
-//                        absent,
-//                        resultSet.getBoolean("shift_wednesday"),
-//                        resultSet.getBoolean("shift_thursday")
-//                        )
-//                );
-//                id++;
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                attendanceReportList.add(new AttendanceReport(
+                        id,
+                        resultSet.getString("full_name"),
+                        resultSet.getInt("employee_id"),
+                        resultSet.getString("department"),
+                        resultSet.getString("employee_position"),
+                        resultSet.getInt("present_days"),
+                        resultSet.getInt("absent_days"),
+                        resultSet.getInt("late_hours"),
+                        resultSet.getInt("present_days")
+                        )
+                );
+                id++;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return attendanceReportList;
 
     }

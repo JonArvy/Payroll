@@ -6,18 +6,18 @@ public class AttendanceReport {
     private int Number;
     private String Full_Name;
     private int Employee_ID;
-    private Department department;
+    private String Department;
     private String Position;
     private int Present;
     private int Absent;
-    private Time Late;
+    private int Late;
     private int Holiday;
 
-    public AttendanceReport(int number, String full_Name, int employee_ID, Department department, String position, int present, int absent, Time late, int holiday) {
+    public AttendanceReport(int number, String full_Name, int employee_ID, String department, String position, int present, int absent, int late, int holiday) {
         Number = number;
         Full_Name = full_Name;
         Employee_ID = employee_ID;
-        this.department = department;
+        Department = department;
         Position = position;
         Present = present;
         Absent = absent;
@@ -37,8 +37,8 @@ public class AttendanceReport {
         return Employee_ID;
     }
 
-    public Department getDepartment() {
-        return department;
+    public String getDepartment() {
+        return Department;
     }
 
     public String getPosition() {
@@ -53,7 +53,7 @@ public class AttendanceReport {
         return Absent;
     }
 
-    public Time getLate() {
+    public int getLate() {
         return Late;
     }
 
