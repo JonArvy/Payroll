@@ -69,6 +69,26 @@ public class HelloController implements Initializable {
     private Pane main_attendancereport_panel_1;
 
     @FXML
+    private Pane main_addemployee_panel_3;
+
+    @FXML
+    private Pane main_editholiday_panel_1;
+
+    @FXML
+    private Pane main_viewemployee_panel_1;
+
+    @FXML
+    private Pane main_editbonus_panel_1;
+
+    @FXML
+    private Pane main_editattendance_panel_1;
+
+    @FXML
+    private Pane main_admin_panel_edit;
+
+
+
+    @FXML
     private Button main_payslip_button;
 
     @FXML
@@ -691,6 +711,30 @@ public class HelloController implements Initializable {
 
         //Add Employee Next Button (to second page)
         } else if (event.getSource() == addemployee_button_next) {
+            //empid,marital status, dept, employement status, fname, lname, gender, contact no, status, contanct full name, contact relationship, contact no, emp biometrics info
+            if (main_addemployee_empid.getText().isBlank())
+                System.out.println("Emp ID is Empty");
+//                    main_addemployee_nationality.getText(),
+//                    main_addemployee_maritalstatus.getValue(),
+//                    main_addemployee_dept.getValue().getDepartment_ID(), // Will fix later
+//                    main_addemployee_position.getText(),
+//                    main_addemployee_empstatus.getValue(),
+//                    main_addemployee_fname.getText(),
+//                    main_addemployee_lname.getText(),
+//                    main_addemployee_mname.getText(),
+//                    main_addemployee_ext.getText(),
+//                    main_addemployee_address.getText(),
+//                    main_addemployee_gender.getValue().isBool(), // Boolean
+//                    main_addemployee_number.getText(),
+//                    Date.valueOf(main_addemployee_bdate.getValue()),
+//                    main_addemployee_status.getValue().isBool(), // Boolean
+//                    main_addemployee_contactname.getText(),
+//                    main_addemployee_contactrelationship.getText(),
+//                    main_addemployee_contactaddress.getText(),
+//                    main_addemployee_contactnumber.getText(),
+//                    "Biometrics"
+
+
             main_addemployee_panel_2.toFront();
 
         //Add Employee Back Button (back to first page)
@@ -817,19 +861,8 @@ public class HelloController implements Initializable {
 
     @FXML
     public void addEmployee(ActionEvent event) {
-//        boolean gender = true;
-//        boolean status = true;
-//        if (main_addemployee_gender.getValue() == "Male") {
-//            gender = true;
-//        } else {
-//            gender = false;
-//        }
-//        if (main_addemployee_status.getValue() == "Active") {
-//            status = true;
-//        } else {
-//            status = false;
-//        }
-        sqlEmployee.addEmployee(new Employee(
+        if (sqlEmployee.checkIfEmployeeIDExists(Integer.parseInt(main_addemployee_empid.getText()))) {
+            sqlEmployee.addEmployee(new Employee(
                 Integer.parseInt(main_addemployee_empid.getText()),
                 main_addemployee_nationality.getText(),
                 main_addemployee_maritalstatus.getValue(),
@@ -850,7 +883,10 @@ public class HelloController implements Initializable {
                 main_addemployee_contactaddress.getText(),
                 main_addemployee_contactnumber.getText(),
                 "Biometrics"
-        ));
+            ));
+        } else {
+            System.out.println("Employee ID Already Exists!");
+        }
     }
 
     @FXML

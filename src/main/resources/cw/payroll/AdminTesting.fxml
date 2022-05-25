@@ -290,93 +290,6 @@
             <Button fx:id="main_bonus_add_bonus_button" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
          </children>
       </Pane>
-      <Pane fx:id="main_admin_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
-         <children>
-            <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/NoticeBoard.png" />
-               </image>
-            </ImageView>
-            <TextArea layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextArea>
-            <Button layoutX="498.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Update" textFill="WHITE" />
-            <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #545454;" text="Cancel" textFill="WHITE" />
-         </children>
-       </Pane>
-      <Pane layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
-         <children>
-            <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/NoticeBoard.png" />
-               </image>
-            </ImageView>
-            <TextArea editable="false" layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextArea>
-            <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Edit" textFill="WHITE" />
-           </children>
-       </Pane>
-      <Pane fx:id="main_addemployee_panel_1" layoutX="244.0" layoutY="-4.0" prefHeight="545.0" prefWidth="717.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Text layoutX="648.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1" />
-            <Text layoutX="25.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Text>
-            <Text layoutX="25.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
-            <Text layoutX="24.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-            <Text layoutX="25.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
-            <Text layoutX="26.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
-            <Text layoutX="26.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No." />
-            <Text layoutX="235.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name" />
-            <Text layoutX="235.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension" />
-            <Text layoutX="235.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" />
-            <Text layoutX="235.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
-            <Text layoutX="455.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number" />
-            <Text layoutX="455.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
-            <Text layoutX="455.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status" />
-            <Text layoutX="455.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
-            <Text layoutX="455.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position" />
-            <Text layoutX="455.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status" />
-            <TextField fx:id="main_addemployee_fname" layoutX="103.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField fx:id="main_addemployee_lname" layoutX="103.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextArea fx:id="main_addemployee_address" layoutX="103.0" layoutY="127.0" prefHeight="52.0" prefWidth="332.0" />
-            <ComboBox fx:id="main_addemployee_gender" editable="true" layoutX="103.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" promptText="Gender" />
-            <TextField fx:id="main_addemployee_number" layoutX="103.0" layoutY="208.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField fx:id="main_addemployee_mname" layoutX="325.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField fx:id="main_addemployee_ext" layoutX="325.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
-            <DatePicker fx:id="main_addemployee_bdate" layoutX="325.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField fx:id="main_addemployee_empid" layoutX="575.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
-            <ComboBox fx:id="main_addemployee_status" editable="true" layoutX="325.0" layoutY="209.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
-            <TextField fx:id="main_addemployee_nationality" layoutX="575.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
-            <ComboBox fx:id="main_addemployee_maritalstatus" editable="true" layoutX="575.0" layoutY="127.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
-            <ComboBox fx:id="main_addemployee_dept" editable="true" layoutX="575.0" layoutY="154.0" prefHeight="25.0" prefWidth="109.0" promptText="Department" />
-            <TextField fx:id="main_addemployee_position" layoutX="575.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" />
-            <ComboBox fx:id="main_addemployee_empstatus" editable="true" layoutX="575.0" layoutY="208.0" prefHeight="25.0" prefWidth="109.0" promptText="Employment Status" />
-            <Pane layoutY="266.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #000000;" />
-            <Text layoutX="25.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Text>
-            <Text layoutX="25.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
-            <Text layoutX="25.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship" />
-            <Text layoutX="24.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-            <TextField fx:id="main_addemployee_contactname" layoutX="103.0" layoutY="333.0" prefHeight="25.0" prefWidth="175.0" />
-            <TextField fx:id="main_addemployee_contactrelationship" layoutX="103.0" layoutY="360.0" prefHeight="25.0" prefWidth="175.0" />
-            <TextArea fx:id="main_addemployee_contactaddress" layoutX="103.0" layoutY="387.0" prefHeight="52.0" prefWidth="332.0" />
-            <Text layoutX="455.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number" />
-            <TextField fx:id="main_addemployee_contactnumber" layoutX="575.0" layoutY="333.0" prefHeight="25.0" prefWidth="109.0" />
-            <Button fx:id="addemployee_button_next" layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF;" text="Next" />
-            <Button layoutX="619.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
-         </children>
-       </Pane>
       <Pane fx:id="main_manageemployee_panel_1" layoutX="244.0" prefHeight="540.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
          <children>
             <Text layoutX="23.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Details">
@@ -466,25 +379,6 @@
             <Button fx:id="main_department_shift_button" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" />
          </children>
       </Pane>
-      <Pane fx:id="main_holiday_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <Label layoutX="42.0" layoutY="43.0" text="Holiday">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <TableView fx:id="main_holiday_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@css/tablecolumn_style.css">
-               <columns>
-                  <TableColumn fx:id="main_holiday_column_holidayname" prefWidth="198.0" resizable="false" text="Holiday" />
-                  <TableColumn fx:id="main_holiday_column_date" prefWidth="131.0" resizable="false" text="Date" />
-                  <TableColumn fx:id="main_holiday_column_type" minWidth="0.0" prefWidth="157.0" resizable="false" text="Type" />
-                  <TableColumn fx:id="main_holiday_column_repeat" minWidth="0.0" prefWidth="134.0" resizable="false" text="Repeat" />
-                  <TableColumn fx:id="main_holiday_column_action" minWidth="0.0" prefWidth="94.0" resizable="false" text="Action" />
-               </columns>
-            </TableView>
-            <Button fx:id="main_holiday_add_holiday_button" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
-         </children>
-      </Pane>
       <Pane fx:id="main_holiday_add_holiday_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
          <children>
             <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
@@ -563,257 +457,6 @@
                   <Image url="@Assets/Search-blue.png" />
                </image>
             </ImageView>
-         </children>
-      </Pane>
-      <Pane layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
-         <children>
-            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
-               <children>
-                  <Label layoutX="35.0" layoutY="36.0" text="EDIT ATTENDANCE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="414.0" layoutY="49.0" text="Date" />
-                  <TextField editable="false" layoutX="451.0" layoutY="45.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Label layoutX="209.0" layoutY="107.0" text="EMP ID" />
-                  <TextField editable="false" layoutX="261.0" layoutY="103.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Label layoutX="193.0" layoutY="140.0" text="Full Name" />
-                  <TextField editable="false" layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Label layoutX="183.0" layoutY="174.0" text="Department" />
-                  <TextField editable="false" layoutX="261.0" layoutY="170.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Label layoutX="204.0" layoutY="208.0" text="Position" />
-                  <TextField editable="false" layoutX="261.0" layoutY="204.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Label layoutX="207.0" layoutY="242.0" text="Time In" />
-                  <TextField layoutX="261.0" layoutY="238.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Button layoutX="388.0" layoutY="238.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="20.0">
-                     <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/clock.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label layoutX="197.0" layoutY="277.0" text="Time Out" />
-                  <Button layoutX="388.0" layoutY="273.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="20.0">
-                     <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/clock.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <TextField layoutX="261.0" layoutY="273.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Button layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
-                  <Button layoutX="505.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
-         <children>
-            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
-               <children>
-                  <Label layoutX="35.0" layoutY="36.0" text="EDIT SHIFT">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="148.0" layoutY="107.0" text="Shift Arrangement" />
-                  <ComboBox layoutX="261.0" layoutY="103.0" prefHeight="25.0" prefWidth="156.0" promptText="per-dept" />
-                  <Label layoutX="213.0" layoutY="140.0" text="Name" />
-                  <TextField layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="179.0" layoutY="174.0" text="Weekly shift" />
-                  <ComboBox layoutX="261.0" layoutY="170.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Button layoutX="441.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
-                  <Button layoutX="505.0" layoutY="341.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
-                  <Pane layoutX="70.0" layoutY="213.0" prefHeight="96.0" prefWidth="461.0" style="-fx-background-color: #545454;">
-                     <children>
-                        <Label layoutX="216.0" layoutY="14.0" text="Shift" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                        <CheckBox layoutX="36.0" layoutY="59.0" mnemonicParsing="false" text="Sun" textFill="WHITE" />
-                        <CheckBox layoutX="91.0" layoutY="59.0" mnemonicParsing="false" text="Mon" textFill="WHITE" />
-                        <CheckBox layoutX="152.0" layoutY="59.0" mnemonicParsing="false" text="Tue" textFill="WHITE" />
-                        <CheckBox layoutX="208.0" layoutY="59.0" mnemonicParsing="false" text="Wed" textFill="WHITE" />
-                        <CheckBox layoutX="270.0" layoutY="59.0" mnemonicParsing="false" text="Thu" textFill="WHITE" />
-                        <CheckBox layoutX="331.0" layoutY="59.0" mnemonicParsing="false" text="Fri" textFill="WHITE" />
-                        <CheckBox layoutX="387.0" layoutY="59.0" mnemonicParsing="false" text="Sat" textFill="WHITE" />
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
-         <children>
-            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
-               <children>
-                  <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="EDIT BONUS">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="175.0" layoutY="126.0" text="Bonus Name" />
-                  <TextField layoutX="261.0" layoutY="122.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="199.0" layoutY="161.0" text="Amount" />
-                  <TextField layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="194.0" layoutY="196.0" text="Recipient" />
-                  <ComboBox layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="160.0" layoutY="232.0" text="Date Applicable" />
-                  <DatePicker layoutX="261.0" layoutY="228.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="206.0" layoutY="268.0" text="Repeat" />
-                  <ComboBox layoutX="261.0" layoutY="264.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Button layoutX="441.0" layoutY="362.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
-                  <Button layoutX="505.0" layoutY="362.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
-         <children>
-            <Text layoutX="26.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIEW EMPLOYEE DETAILS">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text fill="#01374d" layoutX="26.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text layoutX="25.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
-            <Text layoutX="24.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-            <Text layoutX="25.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
-            <Text layoutX="26.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
-            <Text layoutX="26.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No." />
-            <Text layoutX="235.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name" />
-            <Text layoutX="235.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension" />
-            <Text layoutX="235.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" />
-            <Text layoutX="235.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
-            <Text layoutX="455.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number" />
-            <Text layoutX="455.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
-            <Text layoutX="455.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status" />
-            <Text layoutX="455.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
-            <Text layoutX="455.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position" />
-            <Text layoutX="455.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status" />
-            <TextField editable="false" layoutX="103.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="103.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextArea editable="false" layoutX="103.0" layoutY="159.0" prefHeight="52.0" prefWidth="332.0" />
-            <TextField editable="false" layoutX="103.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="103.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="325.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="325.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="325.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="325.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="575.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="575.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="575.0" layoutY="159.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="575.0" layoutY="186.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="575.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField editable="false" layoutX="575.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
-            <Pane layoutY="290.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #545454;" />
-            <Text fill="#01374d" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text layoutX="25.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
-            <Text layoutX="25.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship" />
-            <Text layoutX="24.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-            <TextField editable="false" layoutX="103.0" layoutY="349.0" prefHeight="25.0" prefWidth="175.0" />
-            <TextField editable="false" layoutX="103.0" layoutY="376.0" prefHeight="25.0" prefWidth="175.0" />
-            <TextArea editable="false" layoutX="103.0" layoutY="403.0" prefHeight="52.0" prefWidth="332.0" />
-            <Text layoutX="455.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number" />
-            <TextField editable="false" layoutX="575.0" layoutY="349.0" prefHeight="25.0" prefWidth="109.0" />
-            <Button layoutX="619.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #016E8D; -fx-text-fill: white;" text="Okay" />
-         </children>
-      </Pane>
-      <Pane fx:id="main_editemployee_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="540.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
-         <children>
-            <Text layoutX="26.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT EMPLOYEE DETAILS">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Text>
-            <Text fill="#01374d" layoutX="26.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text layoutX="25.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
-            <Text layoutX="24.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-            <Text layoutX="25.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
-            <Text layoutX="26.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
-            <Text layoutX="26.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No." />
-            <Text layoutX="235.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name" />
-            <Text layoutX="235.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension" />
-            <Text layoutX="235.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" />
-            <Text layoutX="235.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
-            <Text layoutX="455.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number" />
-            <Text layoutX="455.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
-            <Text layoutX="455.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status" />
-            <Text layoutX="455.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
-            <Text layoutX="455.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position" />
-            <Text layoutX="455.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status" />
-            <TextField fx:id="main_editemployee_fname" layoutX="103.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField fx:id="main_editemployee_lname" layoutX="103.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextArea fx:id="main_editemployee_address" layoutX="103.0" layoutY="159.0" prefHeight="52.0" prefWidth="332.0" />
-            <ComboBox fx:id="main_editemployee_gender" editable="true" layoutX="103.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" promptText="Gender" />
-            <TextField fx:id="main_editemployee_number" layoutX="103.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField fx:id="main_editemployee_mname" layoutX="325.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField fx:id="main_editemployee_ext" layoutX="325.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
-            <DatePicker fx:id="main_editemployee_bdate" layoutX="325.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
-            <ComboBox fx:id="main_editemployee_status" editable="true" layoutX="325.0" layoutY="241.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
-            <TextField fx:id="main_editemployee_empid" editable="false" layoutX="575.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
-            <TextField fx:id="main_editemployee_nationality" layoutX="575.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
-            <ComboBox fx:id="main_editemployee_maritalstatus" editable="true" layoutX="575.0" layoutY="159.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
-            <ComboBox fx:id="main_editemployee_department" editable="true" layoutX="575.0" layoutY="186.0" prefHeight="25.0" prefWidth="109.0" promptText="Department" />
-            <TextField fx:id="main_editemployee_position" layoutX="575.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
-            <ComboBox fx:id="main_editemployee_empstatus" editable="true" layoutX="575.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" promptText="Employment Status" />
-            <Pane layoutY="290.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #545454;" />
-            <Text fill="#01374d" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Text>
-            <Text layoutX="25.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
-            <Text layoutX="25.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship" />
-            <Text layoutX="24.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-            <TextField fx:id="main_editemployee_contactname" layoutX="103.0" layoutY="349.0" prefHeight="25.0" prefWidth="175.0" />
-            <TextField fx:id="main_editemployee_contactrelationship" layoutX="103.0" layoutY="376.0" prefHeight="25.0" prefWidth="175.0" />
-            <TextArea fx:id="main_editemployee_contactaddress" layoutX="103.0" layoutY="403.0" prefHeight="52.0" prefWidth="332.0" />
-            <Text layoutX="455.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number" />
-            <TextField fx:id="main_editemployee_contactnumber" layoutX="575.0" layoutY="349.0" prefHeight="25.0" prefWidth="109.0" />
-            <Button layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#saveEmployee" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
-            <Button layoutX="619.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
-         </children>
-      </Pane>
-      <Pane layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
-         <children>
-            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
-               <children>
-                  <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="EDIT HOLIDAY">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="168.0" layoutY="126.0" text="Holiday Name" />
-                  <TextField layoutX="261.0" layoutY="122.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="161.0" layoutY="161.0" text="Type of Holiday" />
-                  <ComboBox layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="218.0" layoutY="197.0" text="Date" />
-                  <DatePicker layoutX="261.0" layoutY="193.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Button layoutX="441.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
-                  <Button layoutX="505.0" layoutY="341.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
-                  <Label layoutX="206.0" layoutY="233.0" text="Repeat" />
-                  <ComboBox layoutX="261.0" layoutY="229.0" prefHeight="25.0" prefWidth="156.0" />
-               </children>
-            </Pane>
          </children>
       </Pane>
       <Pane fx:id="main_payslip_viewpayslip_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
@@ -912,21 +555,6 @@
             </TableView>
          </children>
       </Pane>
-      <Pane layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <Label layoutX="278.0" layoutY="197.0" text="Thanks for registering!">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="243.0" layoutY="233.0" text="The account credentials is already saved">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               </Label>
-            <Button layoutX="320.0" layoutY="281.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #01374D;" text="OK" textFill="WHITE" />
-           </children>
-       </Pane>
       <Pane fx:id="main_credentials_confirmation_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
          <children>
             <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
@@ -1215,6 +843,378 @@
                   </TabPane>
                    </children>
                </Pane>
+           </children>
+       </Pane>
+      <Pane fx:id="main_addemployee_panel_1" layoutX="244.0" layoutY="-4.0" prefHeight="545.0" prefWidth="717.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Text layoutX="648.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1" />
+            <Text layoutX="25.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+            <Text layoutX="24.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <Text layoutX="25.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+            <Text layoutX="26.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+            <Text layoutX="26.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No." />
+            <Text layoutX="235.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name" />
+            <Text layoutX="235.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension" />
+            <Text layoutX="235.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" />
+            <Text layoutX="235.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+            <Text layoutX="455.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number" />
+            <Text layoutX="455.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
+            <Text layoutX="455.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status" />
+            <Text layoutX="455.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
+            <Text layoutX="455.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position" />
+            <Text layoutX="455.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status" />
+            <TextField fx:id="main_addemployee_fname" layoutX="103.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField fx:id="main_addemployee_lname" layoutX="103.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextArea fx:id="main_addemployee_address" layoutX="103.0" layoutY="127.0" prefHeight="52.0" prefWidth="332.0" />
+            <ComboBox fx:id="main_addemployee_gender" layoutX="103.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" promptText="Gender" />
+            <TextField fx:id="main_addemployee_number" layoutX="103.0" layoutY="208.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField fx:id="main_addemployee_mname" layoutX="325.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField fx:id="main_addemployee_ext" layoutX="325.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
+            <DatePicker fx:id="main_addemployee_bdate" layoutX="325.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField fx:id="main_addemployee_empid" layoutX="575.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
+            <ComboBox fx:id="main_addemployee_status" layoutX="325.0" layoutY="209.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
+            <TextField fx:id="main_addemployee_nationality" layoutX="575.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
+            <ComboBox fx:id="main_addemployee_maritalstatus" layoutX="575.0" layoutY="127.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
+            <ComboBox fx:id="main_addemployee_dept" layoutX="575.0" layoutY="154.0" prefHeight="25.0" prefWidth="109.0" promptText="Department" />
+            <TextField fx:id="main_addemployee_position" layoutX="575.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" />
+            <ComboBox fx:id="main_addemployee_empstatus" layoutX="575.0" layoutY="208.0" prefHeight="25.0" prefWidth="109.0" promptText="Employment Status" />
+            <Pane layoutY="266.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #000000;" />
+            <Text layoutX="25.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
+            <Text layoutX="25.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship" />
+            <Text layoutX="24.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <TextField fx:id="main_addemployee_contactname" layoutX="103.0" layoutY="333.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextField fx:id="main_addemployee_contactrelationship" layoutX="103.0" layoutY="360.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextArea fx:id="main_addemployee_contactaddress" layoutX="103.0" layoutY="387.0" prefHeight="52.0" prefWidth="332.0" />
+            <Text layoutX="455.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number" />
+            <TextField fx:id="main_addemployee_contactnumber" layoutX="575.0" layoutY="333.0" prefHeight="25.0" prefWidth="109.0" />
+            <Button fx:id="addemployee_button_next" layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF;" text="Next" />
+            <Button layoutX="619.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
+         </children>
+       </Pane>
+      <Pane fx:id="main_editemployee_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="540.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <Text layoutX="26.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT EMPLOYEE DETAILS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="#01374d" layoutX="26.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+            <Text layoutX="24.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <Text layoutX="25.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+            <Text layoutX="26.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+            <Text layoutX="26.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No." />
+            <Text layoutX="235.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name" />
+            <Text layoutX="235.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension" />
+            <Text layoutX="235.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" />
+            <Text layoutX="235.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+            <Text layoutX="455.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number" />
+            <Text layoutX="455.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
+            <Text layoutX="455.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status" />
+            <Text layoutX="455.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
+            <Text layoutX="455.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position" />
+            <Text layoutX="455.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status" />
+            <TextField fx:id="main_editemployee_fname" layoutX="103.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField fx:id="main_editemployee_lname" layoutX="103.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextArea fx:id="main_editemployee_address" layoutX="103.0" layoutY="159.0" prefHeight="52.0" prefWidth="332.0" />
+            <ComboBox fx:id="main_editemployee_gender" layoutX="103.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" promptText="Gender" />
+            <TextField fx:id="main_editemployee_number" layoutX="103.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField fx:id="main_editemployee_mname" layoutX="325.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField fx:id="main_editemployee_ext" layoutX="325.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+            <DatePicker fx:id="main_editemployee_bdate" layoutX="325.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
+            <ComboBox fx:id="main_editemployee_status" layoutX="325.0" layoutY="241.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
+            <TextField fx:id="main_editemployee_empid" editable="false" layoutX="575.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField fx:id="main_editemployee_nationality" layoutX="575.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+            <ComboBox fx:id="main_editemployee_maritalstatus" layoutX="575.0" layoutY="159.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
+            <ComboBox fx:id="main_editemployee_department" layoutX="575.0" layoutY="186.0" prefHeight="25.0" prefWidth="109.0" promptText="Department" />
+            <TextField fx:id="main_editemployee_position" layoutX="575.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
+            <ComboBox fx:id="main_editemployee_empstatus" layoutX="575.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" promptText="Employment Status" />
+            <Pane layoutY="290.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #545454;" />
+            <Text fill="#01374d" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
+            <Text layoutX="25.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship" />
+            <Text layoutX="24.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <TextField fx:id="main_editemployee_contactname" layoutX="103.0" layoutY="349.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextField fx:id="main_editemployee_contactrelationship" layoutX="103.0" layoutY="376.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextArea fx:id="main_editemployee_contactaddress" layoutX="103.0" layoutY="403.0" prefHeight="52.0" prefWidth="332.0" />
+            <Text layoutX="455.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number" />
+            <TextField fx:id="main_editemployee_contactnumber" layoutX="575.0" layoutY="349.0" prefHeight="25.0" prefWidth="109.0" />
+            <Button layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#saveEmployee" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
+            <Button layoutX="619.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
+         </children>
+      </Pane>
+      <Pane fx:id="main_addemployee_panel_3" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="278.0" layoutY="197.0" text="Thanks for registering!">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="243.0" layoutY="233.0" text="The account credentials is already saved">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               </Label>
+            <Button layoutX="320.0" layoutY="281.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #01374D;" text="OK" textFill="WHITE" />
+           </children>
+       </Pane>
+      <Pane fx:id="main_holiday_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="42.0" layoutY="43.0" text="Holiday">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TableView fx:id="main_holiday_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@css/tablecolumn_style.css">
+               <columns>
+                  <TableColumn fx:id="main_holiday_column_holidayname" prefWidth="198.0" resizable="false" text="Holiday" />
+                  <TableColumn fx:id="main_holiday_column_date" prefWidth="131.0" resizable="false" text="Date" />
+                  <TableColumn fx:id="main_holiday_column_type" minWidth="0.0" prefWidth="157.0" resizable="false" text="Type" />
+                  <TableColumn fx:id="main_holiday_column_repeat" minWidth="0.0" prefWidth="134.0" resizable="false" text="Repeat" />
+                  <TableColumn fx:id="main_holiday_column_action" minWidth="0.0" prefWidth="94.0" resizable="false" text="Action" />
+               </columns>
+            </TableView>
+            <Button fx:id="main_holiday_add_holiday_button" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
+         </children>
+      </Pane>
+      <Pane fx:id="main_editholiday_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
+         <children>
+            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
+               <children>
+                  <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="EDIT HOLIDAY">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="168.0" layoutY="126.0" text="Holiday Name" />
+                  <TextField layoutX="261.0" layoutY="122.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="161.0" layoutY="161.0" text="Type of Holiday" />
+                  <ComboBox layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="218.0" layoutY="197.0" text="Date" />
+                  <DatePicker layoutX="261.0" layoutY="193.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Button layoutX="441.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
+                  <Button layoutX="505.0" layoutY="341.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
+                  <Label layoutX="206.0" layoutY="233.0" text="Repeat" />
+                  <ComboBox layoutX="261.0" layoutY="229.0" prefHeight="25.0" prefWidth="156.0" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="main_viewemployee_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <Text layoutX="26.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIEW EMPLOYEE DETAILS">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="#01374d" layoutX="26.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+            <Text layoutX="24.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <Text layoutX="25.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+            <Text layoutX="26.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+            <Text layoutX="26.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No." />
+            <Text layoutX="235.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name" />
+            <Text layoutX="235.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension" />
+            <Text layoutX="235.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" />
+            <Text layoutX="235.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+            <Text layoutX="455.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number" />
+            <Text layoutX="455.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
+            <Text layoutX="455.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status" />
+            <Text layoutX="455.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
+            <Text layoutX="455.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position" />
+            <Text layoutX="455.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status" />
+            <TextField editable="false" layoutX="103.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="103.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextArea editable="false" layoutX="103.0" layoutY="159.0" prefHeight="52.0" prefWidth="332.0" />
+            <TextField editable="false" layoutX="103.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="103.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="325.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="325.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="325.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="325.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="575.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="575.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="575.0" layoutY="159.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="575.0" layoutY="186.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="575.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
+            <TextField editable="false" layoutX="575.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
+            <Pane layoutY="290.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #545454;" />
+            <Text fill="#01374d" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="25.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
+            <Text layoutX="25.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship" />
+            <Text layoutX="24.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <TextField editable="false" layoutX="103.0" layoutY="349.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextField editable="false" layoutX="103.0" layoutY="376.0" prefHeight="25.0" prefWidth="175.0" />
+            <TextArea editable="false" layoutX="103.0" layoutY="403.0" prefHeight="52.0" prefWidth="332.0" />
+            <Text layoutX="455.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number" />
+            <TextField editable="false" layoutX="575.0" layoutY="349.0" prefHeight="25.0" prefWidth="109.0" />
+            <Button layoutX="619.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #016E8D; -fx-text-fill: white;" text="Okay" />
+         </children>
+      </Pane>
+      <Pane fx:id="main_editbonus_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
+         <children>
+            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
+               <children>
+                  <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="EDIT BONUS">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="175.0" layoutY="126.0" text="Bonus Name" />
+                  <TextField layoutX="261.0" layoutY="122.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="199.0" layoutY="161.0" text="Amount" />
+                  <TextField layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="194.0" layoutY="196.0" text="Recipient" />
+                  <ComboBox layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="160.0" layoutY="232.0" text="Date Applicable" />
+                  <DatePicker layoutX="261.0" layoutY="228.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="206.0" layoutY="268.0" text="Repeat" />
+                  <ComboBox layoutX="261.0" layoutY="264.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Button layoutX="441.0" layoutY="362.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
+                  <Button layoutX="505.0" layoutY="362.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
+         <children>
+            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
+               <children>
+                  <Label layoutX="35.0" layoutY="36.0" text="EDIT SHIFT">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="148.0" layoutY="107.0" text="Shift Arrangement" />
+                  <ComboBox layoutX="261.0" layoutY="103.0" prefHeight="25.0" prefWidth="156.0" promptText="per-dept" />
+                  <Label layoutX="213.0" layoutY="140.0" text="Name" />
+                  <TextField layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="179.0" layoutY="174.0" text="Weekly shift" />
+                  <ComboBox layoutX="261.0" layoutY="170.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Button layoutX="441.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
+                  <Button layoutX="505.0" layoutY="341.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
+                  <Pane layoutX="70.0" layoutY="213.0" prefHeight="96.0" prefWidth="461.0" style="-fx-background-color: #545454;">
+                     <children>
+                        <Label layoutX="216.0" layoutY="14.0" text="Shift" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <CheckBox layoutX="36.0" layoutY="59.0" mnemonicParsing="false" text="Sun" textFill="WHITE" />
+                        <CheckBox layoutX="91.0" layoutY="59.0" mnemonicParsing="false" text="Mon" textFill="WHITE" />
+                        <CheckBox layoutX="152.0" layoutY="59.0" mnemonicParsing="false" text="Tue" textFill="WHITE" />
+                        <CheckBox layoutX="208.0" layoutY="59.0" mnemonicParsing="false" text="Wed" textFill="WHITE" />
+                        <CheckBox layoutX="270.0" layoutY="59.0" mnemonicParsing="false" text="Thu" textFill="WHITE" />
+                        <CheckBox layoutX="331.0" layoutY="59.0" mnemonicParsing="false" text="Fri" textFill="WHITE" />
+                        <CheckBox layoutX="387.0" layoutY="59.0" mnemonicParsing="false" text="Sat" textFill="WHITE" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="main_editattendance_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
+         <children>
+            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
+               <children>
+                  <Label layoutX="35.0" layoutY="36.0" text="EDIT ATTENDANCE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="414.0" layoutY="49.0" text="Date" />
+                  <Label layoutX="209.0" layoutY="107.0" text="EMP ID" />
+                  <TextField disable="true" editable="false" layoutX="261.0" layoutY="103.0" prefHeight="25.0" prefWidth="120.0" />
+                  <Label layoutX="193.0" layoutY="140.0" text="Full Name" />
+                  <TextField disable="true" editable="false" layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="120.0" />
+                  <Label layoutX="183.0" layoutY="174.0" text="Department" />
+                  <TextField disable="true" editable="false" layoutX="261.0" layoutY="170.0" prefHeight="25.0" prefWidth="120.0" />
+                  <Label layoutX="204.0" layoutY="208.0" text="Position" />
+                  <TextField disable="true" editable="false" layoutX="261.0" layoutY="204.0" prefHeight="25.0" prefWidth="120.0" />
+                  <Label layoutX="207.0" layoutY="242.0" text="Time In" />
+                  <TextField layoutX="261.0" layoutY="238.0" prefHeight="25.0" prefWidth="120.0" />
+                  <Button layoutX="388.0" layoutY="238.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="20.0">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/clock.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="197.0" layoutY="277.0" text="Time Out" />
+                  <Button layoutX="388.0" layoutY="273.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="20.0">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/clock.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <TextField layoutX="261.0" layoutY="273.0" prefHeight="25.0" prefWidth="120.0" />
+                  <Button layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
+                  <Button layoutX="505.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
+                  <DatePicker layoutX="451.0" layoutY="45.0" prefHeight="25.0" prefWidth="119.0" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="main_admin_panel_edit" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/NoticeBoard.png" />
+               </image>
+            </ImageView>
+            <TextArea layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextArea>
+            <Button layoutX="498.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Update" textFill="WHITE" />
+            <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #545454;" text="Cancel" textFill="WHITE" />
+         </children>
+       </Pane>
+      <Pane fx:id="main_admin_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/NoticeBoard.png" />
+               </image>
+            </ImageView>
+            <TextArea editable="false" layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextArea>
+            <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Edit" textFill="WHITE" />
            </children>
        </Pane>
    </children>

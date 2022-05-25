@@ -210,4 +210,26 @@ public class SQLEmployee {
             e.printStackTrace();
         }
     }
+
+    public boolean checkIfEmployeeIDExists(int empid) {
+        boolean exist = true;
+        String command = "SELECT * " +
+                "FROM tbl_employees te " +
+                "WHERE emp_id = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setInt(1, empid);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                exist = false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return exist;
+    }
 }
