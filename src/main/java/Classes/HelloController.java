@@ -587,6 +587,22 @@ public class HelloController implements Initializable {
         @FXML
         private CheckBox main_addshift_wednesday11;
 
+    @FXML
+    private Spinner<String> main_addshift_timein_hour;
+
+    @FXML
+    private Spinner<String> main_addshift_timein_minute;
+
+    @FXML
+    private Spinner<String> main_addshift_breakstart_hour;
+    @FXML
+    private Spinner<String> main_addshift_breakstart_minute;
+    @FXML
+    private Spinner<String> main_addshift_breakend_hour;
+    @FXML
+    private Spinner<String> main_addshift_breakend_minute;
+
+
 
     //************ Admin ****************//
 
@@ -1122,6 +1138,32 @@ public class HelloController implements Initializable {
 
         main_addholiday_type.getItems().addAll( "Regular Holiday", "Special Working Public Holiday", "Special Non-working Holiday", "Common local holiday", "Season", "Observance");
         main_addholiday_type.getSelectionModel().select(0);
+
+        ObservableList<String> hour = FXCollections.observableArrayList("00", "01", "02", "03" , "04", "05", "06", "07", "08" , "09",
+                        "10", "11", "12", "13" , "14", "15", "16", "17", "18", "19",
+                        "20", "21", "22", "23" , "24"
+                );
+        ObservableList<String> minute = FXCollections.observableArrayList("00", "01", "02", "03" , "04", "05", "06", "07", "08" , "09",
+                        "10", "11", "12", "13" , "14", "15", "16", "17", "18", "19",
+                        "20", "21", "22", "23" , "24", "25", "26", "27", "28", "29",
+                        "30", "31", "32", "33" , "34", "35", "36", "37", "38", "39",
+                        "40", "41", "42", "43" , "44", "45", "46", "47", "48", "49",
+                        "50", "51", "52", "53" , "54", "55", "56", "57", "58", "59"
+                );
+
+        main_addshift_timein_hour.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(hour));
+        main_addshift_timein_minute.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(minute));
+        main_addshift_breakstart_hour.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(hour));
+        main_addshift_breakstart_minute.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(minute));
+        main_addshift_breakend_hour.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(hour));
+        main_addshift_breakend_minute.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(minute));
+
+        main_addshift_timein_hour.getValueFactory().setValue("08");
+        main_addshift_timein_minute.getValueFactory().setValue("00");
+        main_addshift_breakstart_hour.getValueFactory().setValue("12");
+        main_addshift_breakstart_minute.getValueFactory().setValue("00");
+        main_addshift_breakend_hour.getValueFactory().setValue("13");
+        main_addshift_breakend_minute.getValueFactory().setValue("00");
 
         actionListeners();
     }

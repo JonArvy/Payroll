@@ -1,15 +1,17 @@
 package cw.payroll;
 
 import Classes.SQLExecution;
+import Models.Attendance;
 import Models.Employee;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 
 public class Tester {
 
     public static void main(String[] args) {
-        new Tester().createTables(new SQLExecution());
+        new Tester().insertDateAndTime(new SQLExecution());
 
 
 
@@ -23,6 +25,13 @@ public class Tester {
         sql.dropTables();
     }
 
+    public void insertDateAndTime(SQLExecution sql) {
+        int empid = 1;
+        Date attendance_date = Date.valueOf("2022-05-11");
+        Time attendance_timein = Time.valueOf("08:30:00");
+        Time attendance_timeout = Time.valueOf("16:20:00");
+        sql.registerAttendance(new Attendance(empid, attendance_date, attendance_timein, attendance_timeout));
+    }
     public void populateEmployeeTable(SQLExecution sql) {
         sql.createTables();
 

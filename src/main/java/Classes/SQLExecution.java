@@ -648,6 +648,24 @@ public class SQLExecution {
         }
     }
 
+    public void registerAttendance(Attendance attendance) {
+        String command = "INSERT INTO tbl_attendance (emp_id, emp_attendance_date, emp_timein, emp_timeout) " +
+                "VALUES (?, ?, ?, ?)";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, attendance.getEmployee_ID());
+            preparedStatement.setDate(2, attendance.getEmployee_Attendance_Date()); //
+            preparedStatement.setTime(3, attendance.getEmployee_TimeIn());
+            preparedStatement.setTime(4, attendance.getEmployee_TimeOut()); // Need to connect to dept table
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
+
     public void addAdmin(Admin admin) {
         String command = "INSERT INTO tbl_admin" +
                 "VALUES (?, ?, ?, ?)";
@@ -865,7 +883,19 @@ public class SQLExecution {
                 "   ) " +
                 "   FROM tbl_department tq " +
                 "   WHERE tq.department_id = td.department_id " +
-                ") as late_hours " +
+                ") as late_hours," +
+                "( " +
+                "   SELECT " +
+                "   tm.department_dayspermonth - " +
+                "   ( " +
+                "       SELECT " +
+                "       COUNT(*) " +
+                "       FROM tbl_attendance ta " +
+                "       WHERE ta.emp_id = te.emp_id " +
+                "   ) " +
+                "   FROM tbl_department tm " +
+                "   WHERE tm.department_id = td.department_id " +
+                ") as holiday " +
                 "FROM tbl_employees te " +
                 "JOIN tbl_department td " +
                 "ON te.emp_department = td.department_id";
@@ -890,7 +920,7 @@ public class SQLExecution {
                         resultSet.getInt("present_days"),
                         resultSet.getInt("absent_days"),
                         resultSet.getInt("late_hours"),
-                        resultSet.getInt("present_days")
+                        resultSet.getInt("holiday")
                         )
                 );
                 id++;
