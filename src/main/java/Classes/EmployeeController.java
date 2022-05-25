@@ -1,5 +1,6 @@
 package Classes;
 
+import Database.*;
 import Models.Attendance;
 import Models.Bonus;
 import Models.Employee;
@@ -57,6 +58,15 @@ public class EmployeeController implements Initializable {
     private Pane employee_attendance_main_panel;
 
     SQLExecution sql;
+
+    private SQLAdmin sqlAdmin = new SQLAdmin();
+    private SQLAttendance sqlAttendance = new SQLAttendance();
+    private SQLBonus sqlBonus = new SQLBonus();
+    private SQLDepartment sqlDepartment = new SQLDepartment();
+    private SQLEmployee sqlEmployee = new SQLEmployee();
+    private SQLHoliday sqlHoliday = new SQLHoliday();
+    private SQLNoticeboard sqlNoticeboard = new SQLNoticeboard();
+    private SQLShift sqlShift = new SQLShift();
     private ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
 
     @FXML
@@ -78,7 +88,7 @@ public class EmployeeController implements Initializable {
     void searchEmployee(ActionEvent event) {
         employee_attendance_main_panel.toFront();
         attendanceList.clear();
-        attendanceList = sql.getAttendance(Integer.parseInt(employee_attendance_emp_id_field.getText()));
+        attendanceList = sqlAttendance.getAttendance(Integer.parseInt(employee_attendance_emp_id_field.getText()));
 
         employee_attendance_column_date.setCellValueFactory(new PropertyValueFactory<Attendance, Date>("Employee_Attendance_Date"));
         employee_attendance_column_timein.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeIn"));

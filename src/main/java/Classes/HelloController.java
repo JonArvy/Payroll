@@ -1,5 +1,6 @@
 package Classes;
 
+import Database.*;
 import Models.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -651,6 +652,14 @@ public class HelloController implements Initializable {
 
 
     private SQLExecution sql;
+    private SQLAdmin sqlAdmin = new SQLAdmin();
+    private SQLAttendance sqlAttendance = new SQLAttendance();
+    private SQLBonus sqlBonus = new SQLBonus();
+    private SQLDepartment sqlDepartment = new SQLDepartment();
+    private SQLEmployee sqlEmployee = new SQLEmployee();
+    private SQLHoliday sqlHoliday = new SQLHoliday();
+    private SQLNoticeboard sqlNoticeboard = new SQLNoticeboard();
+    private SQLShift sqlShift = new SQLShift();
 
     private ObservableList<BooleanValue> genderList;
     private ObservableList<BooleanValue> statusList;
@@ -820,7 +829,7 @@ public class HelloController implements Initializable {
 //        } else {
 //            status = false;
 //        }
-        sql.addEmployee(new Employee(
+        sqlEmployee.addEmployee(new Employee(
                 Integer.parseInt(main_addemployee_empid.getText()),
                 main_addemployee_nationality.getText(),
                 main_addemployee_maritalstatus.getValue(),
@@ -846,7 +855,7 @@ public class HelloController implements Initializable {
 
     @FXML
     public void addHoliday(ActionEvent event) {
-        sql.addHoliday(new Holiday(main_addholiday_name.getText(),
+        sqlHoliday.addHoliday(new Holiday(main_addholiday_name.getText(),
                 Date.valueOf(main_addholiday_date.getValue()),
                 main_addholiday_type.getValue(),
                 "Yearly"));
@@ -854,7 +863,7 @@ public class HelloController implements Initializable {
 
     public void showAttendanceReport() {
         attendanceReportList.clear();
-        attendanceReportList = sql.getAttendanceReport();
+        attendanceReportList = sqlAttendance.getAttendanceReport();
 
         main_attendancereport_column_number.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Number"));
         main_attendancereport_column_fullname.setCellValueFactory(new PropertyValueFactory<AttendanceReport, String>("Full_Name"));
@@ -871,7 +880,7 @@ public class HelloController implements Initializable {
 
     public void populateDepartmentBox() {
         departmentList.clear();
-        departmentList = sql.getDepartment();
+        departmentList = sqlDepartment.getDepartment();
 
         main_addemployee_dept.setItems(departmentList);
 
@@ -881,7 +890,7 @@ public class HelloController implements Initializable {
 
     public void populateAddBonusBox() {
         departmentList.clear();
-        departmentList = sql.getDepartment();
+        departmentList = sqlDepartment.getDepartment();
 
         main_addbonus_recipient.setItems(departmentList);
 
@@ -891,7 +900,7 @@ public class HelloController implements Initializable {
 
     public void showHolidayList() {
         holidayList.clear();
-        holidayList = sql.getHolidays();
+        holidayList = sqlHoliday.getHolidays();
 
         main_holiday_column_holidayname.setCellValueFactory(new PropertyValueFactory<Holiday, String>("Holiday_Name"));
         main_holiday_column_date.setCellValueFactory(new PropertyValueFactory<Holiday, Date>("Holiday_Date"));
@@ -905,7 +914,7 @@ public class HelloController implements Initializable {
 
     public void showPayslipList() {
         employeeList.clear();
-        employeeList = sql.getAllEmployeesInformation();
+        employeeList = sqlEmployee.getAllEmployeesInformation();
 
         main_payslip_column_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
         main_payslip_column_fullname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));
@@ -919,7 +928,7 @@ public class HelloController implements Initializable {
 
     public void showBonus() {
         bonusList.clear();
-        bonusList = sql.getBonus();
+        bonusList = sqlBonus.getBonus();
 
         main_bonus_name.setCellValueFactory(new PropertyValueFactory<Bonus, String>("Bonus_Name"));
         main_bonus_amount.setCellValueFactory(new PropertyValueFactory<Bonus, Double>("Bonus_Amount"));
@@ -933,7 +942,7 @@ public class HelloController implements Initializable {
 
     public void showShift() {
         shiftList.clear();
-        shiftList = sql.getShift();
+        shiftList = sqlShift.getShift();
 
         main_shift_column_shifttype.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("Shift_Type"));
         main_shift_column_name.setCellValueFactory(new PropertyValueFactory<Shift, String>("Recipient_Name"));
@@ -947,7 +956,7 @@ public class HelloController implements Initializable {
 
     public void showDepartmentTable() {
         departmentList.clear();
-        departmentList = sql.getDepartment();
+        departmentList = sqlDepartment.getDepartment();
         main_department_column_name.setCellValueFactory(new PropertyValueFactory<Department, String>("Department_Name"));
 
         main_department_column_monthlyrate.setCellValueFactory(new PropertyValueFactory<Department, Double>("Department_MonthlyRate"));
@@ -962,7 +971,7 @@ public class HelloController implements Initializable {
 
     public void showEmployeeTable() {
         employeeList.clear();
-        employeeList = sql.getAllEmployees();
+        employeeList = sqlEmployee.getAllEmployees();
 
         main_manageemployee_col_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
         main_manageemployee_col_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));
@@ -1030,7 +1039,7 @@ public class HelloController implements Initializable {
 
     public void loadEmployeePanel(Employee emp) {
         initializeComboboxOnEditEmployee();
-        Employee employee = sql.getEmployee(new Employee(emp.getEmployee_ID()));
+        Employee employee = sqlEmployee.getEmployee(new Employee(emp.getEmployee_ID()));
         main_editemployee_empid.setText(employee.getEmployee_ID() + "");
         main_editemployee_nationality.setText(employee.getNationality());
         main_editemployee_maritalstatus.setValue(employee.getMarital_Status());
@@ -1057,7 +1066,7 @@ public class HelloController implements Initializable {
         //Edit Employee Initialize constants
 
         departmentList.clear();
-        departmentList = sql.getDepartment();
+        departmentList = sqlDepartment.getDepartment();
 
         main_editemployee_department.setItems(departmentList);
 
@@ -1072,7 +1081,7 @@ public class HelloController implements Initializable {
 
     @FXML
     public void saveEmployee(ActionEvent event) {
-        sql.updateEmployee(
+        sqlEmployee.updateEmployee(
         new Employee(
                 Integer.parseInt(main_editemployee_empid.getText()),
                 main_editemployee_nationality.getText(),
@@ -1233,7 +1242,7 @@ public class HelloController implements Initializable {
     public void showDailyAttendanceTable() {
         System.out.println(main_dailyattendance_datepicker.getValue());
         attendanceList.clear();
-        attendanceList = sql.getDailyAttendance(Date.valueOf(main_dailyattendance_datepicker.getValue()),
+        attendanceList = sqlAttendance.getDailyAttendance(Date.valueOf(main_dailyattendance_datepicker.getValue()),
                 Date.valueOf(main_dailyattendance_datepicker.getValue().plusDays(1)));
         System.out.println(attendanceList.size() + " Size");
 
@@ -1261,7 +1270,7 @@ public class HelloController implements Initializable {
 
         int id = 0;
 
-        sql.addDepartment(new Department(id, name, monthlyrate, dayspermonth, hoursperday));
+        sqlDepartment.addDepartment(new Department(id, name, monthlyrate, dayspermonth, hoursperday));
     }
 
 
@@ -1274,7 +1283,7 @@ public class HelloController implements Initializable {
         int id = 0;
 
 
-        sql.addBonus(new Bonus(id, bonusName, bonusAmount, bonusRecipient, bonusDate));
+        sqlBonus.addBonus(new Bonus(id, bonusName, bonusAmount, bonusRecipient, bonusDate));
     }
 
     public void addShift(boolean isDepartment) {
@@ -1317,7 +1326,7 @@ public class HelloController implements Initializable {
         int adminDisabler = 0;
         String adminPassword = "Hawo";
 
-        sql.addAdmin(new Admin(
+        sqlAdmin.addAdmin(new Admin(
                 adminId,
                 empId,
                 adminPassword,

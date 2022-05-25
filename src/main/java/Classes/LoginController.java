@@ -1,5 +1,6 @@
 package Classes;
 
+import Database.*;
 import Models.Attendance;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,6 +103,14 @@ public class LoginController {
     private Button login_pane_login_admin_back;
 
     private SQLExecution sql = new SQLExecution();
+    private SQLAdmin sqlAdmin = new SQLAdmin();
+    private SQLAttendance sqlAttendance = new SQLAttendance();
+    private SQLBonus sqlBonus = new SQLBonus();
+    private SQLDepartment sqlDepartment = new SQLDepartment();
+    private SQLEmployee sqlEmployee = new SQLEmployee();
+    private SQLHoliday sqlHoliday = new SQLHoliday();
+    private SQLNoticeboard sqlNoticeboard = new SQLNoticeboard();
+    private SQLShift sqlShift = new SQLShift();
 
     private ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
 
@@ -135,7 +144,7 @@ public class LoginController {
     @FXML
     void view(ActionEvent event) {
         attendanceList.clear();
-        attendanceList = sql.getAttendance(Integer.parseInt(employee_panel_text_empid.getText()));
+        attendanceList = sqlAttendance.getAttendance(Integer.parseInt(employee_panel_text_empid.getText()));
 
         employee_panel_column_date.setCellValueFactory(new PropertyValueFactory<Attendance, Date>("Employee_Attendance_Date"));
         employee_panel_column_timein.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeIn"));

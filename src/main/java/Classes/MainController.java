@@ -1,5 +1,6 @@
 package Classes;
 
+import Database.*;
 import Models.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -109,7 +110,15 @@ public class MainController implements Initializable {
 
 
         private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
-        private SQLExecution sql;
+        private SQLExecution sqlExecution = new SQLExecution();
+        private SQLAdmin sqlAdmin = new SQLAdmin();
+        private SQLAttendance sqlAttendance = new SQLAttendance();
+        private SQLBonus sqlBonus = new SQLBonus();
+        private SQLDepartment sqlDepartment = new SQLDepartment();
+        private SQLEmployee sqlEmployee = new SQLEmployee();
+        private SQLHoliday sqlHoliday = new SQLHoliday();
+        private SQLNoticeboard sqlNoticeboard = new SQLNoticeboard();
+        private SQLShift sqlShift = new SQLShift();
 
         @FXML
         protected void clickNavigation_Choices(ActionEvent event) {
@@ -156,7 +165,7 @@ public class MainController implements Initializable {
         @FXML
         private void loadManageEmployeeTable() {
                 employeeList.clear();
-                employeeList = sql.getAllEmployeesInformation();
+                employeeList = sqlEmployee.getAllEmployeesInformation();
 
                 manageemployee_column_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
                 manageemployee_column_lastname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));
@@ -216,7 +225,6 @@ public class MainController implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-                sql = new SQLExecution(); //This is null
                 loadOnStartUp();
 
         }

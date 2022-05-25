@@ -1,6 +1,7 @@
 package cw.payroll;
 
 import Classes.SQLExecution;
+import Database.*;
 import Models.Attendance;
 import Models.Employee;
 
@@ -9,31 +10,39 @@ import java.sql.Time;
 import java.time.LocalDate;
 
 public class Tester {
-
+    private SQLExecution sqlExecution = new SQLExecution();
+    private SQLAdmin sqlAdmin = new SQLAdmin();
+    private SQLAttendance sqlAttendance = new SQLAttendance();
+    private SQLBonus sqlBonus = new SQLBonus();
+    private SQLDepartment sqlDepartment = new SQLDepartment();
+    private SQLEmployee sqlEmployee = new SQLEmployee();
+    private SQLHoliday sqlHoliday = new SQLHoliday();
+    private SQLNoticeboard sqlNoticeboard = new SQLNoticeboard();
+    private SQLShift sqlShift = new SQLShift();
     public static void main(String[] args) {
-        new Tester().insertDateAndTime(new SQLExecution());
+        new Tester().insertDateAndTime();
 
 
 
     }
 
-    public void createTables(SQLExecution sql) {
-        sql.createTables();
+    public void createTables() {
+        sqlExecution.createTables();
     }
 
-    public void dropTables(SQLExecution sql) {
-        sql.dropTables();
+    public void dropTables() {
+        sqlExecution.dropTables();
     }
 
-    public void insertDateAndTime(SQLExecution sql) {
+    public void insertDateAndTime() {
         int empid = 1;
         Date attendance_date = Date.valueOf("2022-05-11");
         Time attendance_timein = Time.valueOf("08:30:00");
         Time attendance_timeout = Time.valueOf("16:20:00");
-        sql.registerAttendance(new Attendance(empid, attendance_date, attendance_timein, attendance_timeout));
+        sqlAttendance.registerAttendance(new Attendance(empid, attendance_date, attendance_timein, attendance_timeout));
     }
-    public void populateEmployeeTable(SQLExecution sql) {
-        sql.createTables();
+    public void populateEmployeeTable() {
+        sqlExecution.createTables();
 
         String letters = "abcdefghijklmnopqrstuvwxyz";
         for (int i = 0; i < 100; i++) {
@@ -65,7 +74,7 @@ public class Tester {
                     "private String Contact_Number;",
                     "Mema"
             );
-            sql.addEmployee(rand);
+            sqlEmployee.addEmployee(rand);
         }
     }
 }
