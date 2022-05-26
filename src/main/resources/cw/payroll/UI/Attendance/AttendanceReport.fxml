@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Attendance.AttendanceReportController">
+    <children>
+        <Text layoutX="24.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" />
+        <Button layoutX="528.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: #D9D9D9; -fx-text-fill: #000000;" text="GENERATE REPORT .csv" />
+        <Button layoutX="312.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="SHOW" />
+        <Text layoutX="167.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
+        <DatePicker layoutX="24.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" />
+        <DatePicker layoutX="167.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" />
+        <Text layoutX="155.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+        <ScrollPane layoutX="1.0" layoutY="70.0" prefHeight="470.0" prefWidth="717.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="713.0">
+                    <children>
+                        <TableView fx:id="main_attendancereport_tableview" layoutX="-5.0" layoutY="-1.0" prefHeight="470.0" prefWidth="795.0" stylesheets="@../../css/tablecolumn_style.css">
+                            <columns>
+                                <TableColumn prefWidth="411.0" text="Attendance Report">
+                                    <columns>
+                                        <TableColumn fx:id="main_attendancereport_column_number" prefWidth="34.0" resizable="false" text="No." />
+                                        <TableColumn fx:id="main_attendancereport_column_fullname" prefWidth="104.0" resizable="false" text="Full Name" />
+                                        <TableColumn fx:id="main_attendancereport_column_empid" prefWidth="61.0" resizable="false" text="Emp ID" />
+                                        <TableColumn fx:id="main_attendancereport_column_department" prefWidth="104.0" resizable="false" text="Department" />
+                                        <TableColumn fx:id="main_attendancereport_column_position" prefWidth="70.0" resizable="false" text="Position" />
+                                    </columns>
+                                </TableColumn>
+                                <TableColumn minWidth="0.0" prefWidth="332.0" resizable="false" text="SUMMARY">
+                                    <columns>
+                                        <TableColumn fx:id="main_attendancereport_column_present" resizable="false" text="Present" />
+                                        <TableColumn fx:id="main_attendancereport_column_absent" prefWidth="77.0" resizable="false" text="Absent" />
+                                        <TableColumn fx:id="main_attendancereport_column_late" prefWidth="70.0" resizable="false" text="U.T/Late" />
+                                        <TableColumn fx:id="main_attendancereport_column_holiday" prefWidth="52.0" resizable="false" text="Holiday" />
+                                    </columns>
+                                </TableColumn>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        </children>
+</AnchorPane>

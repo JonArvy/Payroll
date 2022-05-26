@@ -8,6 +8,11 @@ public class Admin {
     private int Admin_Disabler;
 
 
+    public Admin(int admin_ID, int employee_ID) {
+        Admin_ID = admin_ID;
+        Employee_ID = employee_ID;
+    }
+
     public Admin(int Admin_ID, int Employee_ID, String Admin_Password, int Admin_Grantor, int Admin_Disabler) {
         this.Admin_ID = Admin_ID;
         this.Employee_ID = Employee_ID;
@@ -15,6 +20,8 @@ public class Admin {
         this.Admin_Grantor = Admin_Grantor;
         this.Admin_Disabler = Admin_Disabler;
     }
+
+
 
     public int getAdmin_ID() {
         return Admin_ID;

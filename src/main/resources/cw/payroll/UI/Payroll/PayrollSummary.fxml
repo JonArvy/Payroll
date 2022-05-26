@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.PayrollSummaryController">
+    <children>
+        <ScrollPane layoutY="100.0" prefHeight="444.0" prefWidth="710.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="709.0">
+                    <children>
+                        <TableView layoutY="-1.0" prefHeight="436.0" prefWidth="701.0" stylesheets="@../../css/tablecolumn_style.css">
+                            <columns>
+                                <TableColumn prefWidth="138.0">
+                                    <columns>
+                                        <TableColumn editable="false" prefWidth="38.0" resizable="false" sortable="false" text="Edit" />
+                                        <TableColumn prefWidth="40.0" resizable="false" text="No." />
+                                        <TableColumn prefWidth="98.0" resizable="false" text="Name" />
+                                        <TableColumn prefWidth="59.0" resizable="false" sortable="false" text="Position" />
+                                    </columns>
+                                </TableColumn>
+                                <TableColumn prefWidth="345.0" text="COMPENSATION">
+                                    <columns>
+                                        <TableColumn prefWidth="42.0" resizable="false" sortable="false" text="Wage" />
+                                        <TableColumn prefWidth="54.0" resizable="false" sortable="false" text="Other Benefits" />
+                                        <TableColumn prefWidth="71.0" resizable="false" sortable="false" text="No. of Days" />
+                                        <TableColumn prefWidth="59.0" resizable="false" sortable="false" text="No. of Days Absent" />
+                                        <TableColumn minWidth="0.0" prefWidth="0.0" text="Total" />
+                                        <TableColumn prefWidth="51.0" sortable="false" text="BIR w/ Holding Tax" />
+                                    </columns>
+                                </TableColumn>
+                                <TableColumn prefWidth="230.0" text="DEDUCTIONS">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" sortable="false" text="Less" />
+                                        <TableColumn prefWidth="75.0" sortable="false" text="Pag-IBIG" />
+                                        <TableColumn prefWidth="75.0" sortable="false" text="Total" />
+                                        <TableColumn prefWidth="75.0" sortable="false" text="Net Amount" />
+                                        <TableColumn prefWidth="75.0" sortable="false" text="Signature of Recipient" />
+                                    </columns>
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

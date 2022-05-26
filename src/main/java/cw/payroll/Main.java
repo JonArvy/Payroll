@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AdminTesting.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Admin.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Additional.HolidayListController">
+    <children>
+        <Label layoutX="42.0" layoutY="43.0" text="Holiday">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <TableView fx:id="holiday_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css">
+            <columns>
+                <TableColumn fx:id="holiday_column_holidayname" prefWidth="198.0" resizable="false" text="Holiday" />
+                <TableColumn fx:id="holiday_column_date" prefWidth="131.0" resizable="false" text="Date" />
+                <TableColumn fx:id="holiday_column_type" minWidth="0.0" prefWidth="157.0" resizable="false" text="Type" />
+                <TableColumn fx:id="holiday_column_repeat" minWidth="0.0" prefWidth="134.0" resizable="false" text="Repeat" />
+                <TableColumn fx:id="holiday_column_action" minWidth="0.0" prefWidth="94.0" resizable="false" text="Action" />
+            </columns>
+        </TableView>
+        <Button fx:id="holiday_button_add" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#addHoliday" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
+    </children>
+</AnchorPane>
