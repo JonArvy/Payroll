@@ -6,38 +6,44 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class BonusController {
+public class AddBonusController {
 
     @FXML
-    private Button bonus_button_add;
+    private TextField addbonus_amount;
 
     @FXML
-    private TableColumn<?, ?> bonus_column_action;
+    private Button addbonus_button_add;
 
     @FXML
-    private TableColumn<?, ?> bonus_column_amount;
+    private Button addbonus_button_cancel;
 
     @FXML
-    private TableColumn<?, ?> bonus_column_dateapplicable;
+    private DatePicker addbonus_dateapplicable;
 
     @FXML
-    private TableColumn<?, ?> bonus_column_department;
+    private TextField addbonus_name;
 
     @FXML
-    private TableColumn<?, ?> bonus_column_name;
+    private ComboBox<?> addbonus_recipient;
 
     @FXML
-    private TableView<?> bonus_tableview;
+    private ComboBox<?> addbonus_recipienttype;
 
     @FXML
     private void addBonus(ActionEvent event) {
-        loadAddBonus();
+        loadBonus();
+    }
+
+    @FXML
+    private void cancel(ActionEvent event) {
+        loadBonus();
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -49,17 +55,17 @@ public class BonusController {
         this.container = anchorPane;
     }
 
-    private void loadAddBonus() {
-        AddBonusController controller;
+    private void loadBonus() {
+        BonusController controller;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/AddBonus.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/Bonus.fxml"));
             fxmlLoader.load();
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, container);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
-//            container.getChildren().clear();
+            container.getChildren().clear();
             container.getChildren().add(anchorPane);
 
         } catch (IOException ex) {

@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminController implements Initializable {
+public class AdminController {
 
     @FXML
     private AnchorPane content_container;
@@ -97,6 +97,12 @@ public class AdminController implements Initializable {
         } else if (event.getSource() == main_credentials_button) {
             loadCredentials();
         }
+    }
+
+    @FXML
+    private void initialize() {
+        admin = new Admin(1, 1);
+        loadNoticeBoard();
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -298,16 +304,8 @@ public class AdminController implements Initializable {
         }
     }
 
-
-
-
-
     public void setAdmin(Admin admin) {
         this.admin = admin;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        admin = new Admin(1, 1);
-    }
 }
