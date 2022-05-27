@@ -91,7 +91,7 @@
                                                 <CheckBox fx:id="addshift_saturday1" layoutX="387.0" layoutY="59.0" mnemonicParsing="false" text="Sat" textFill="WHITE" />
                                             </children>
                                         </Pane>
-                                        <Button fx:id="addshift_button_add1" layoutX="441.0" layoutY="371.0" mnemonicParsing="false" onAction="#addShift" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
+                                        <Button fx:id="addshift_button_add1" disable="true" layoutX="441.0" layoutY="371.0" mnemonicParsing="false" onAction="#addShift" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
                                         <Button fx:id="addshift_button_cancel1" layoutX="505.0" layoutY="371.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
                                         <Spinner fx:id="addshift_timein_hour1" layoutX="260.0" layoutY="90.0" prefHeight="25.0" prefWidth="75.0" />
                                         <Spinner fx:id="addshift_timein_minute1" layoutX="340.0" layoutY="90.0" prefHeight="25.0" prefWidth="75.0" />

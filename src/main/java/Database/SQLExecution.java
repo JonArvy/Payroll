@@ -1,4 +1,4 @@
-package Classes;
+package Database;
 
 import Models.*;
 import javafx.collections.FXCollections;
@@ -89,6 +89,8 @@ public class SQLExecution {
                 "shift_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 "shift_type INTEGER," +
                 "shift_recipient INTEGER," +
+                "shift_breakstart TIME," +
+                "shift_breakend TIME," +
                 "shift_sunday BOOLEAN," +
                 "shift_monday BOOLEAN," +
                 "shift_tuesday BOOLEAN," +

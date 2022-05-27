@@ -1,44 +1,53 @@
 package Controller.Payroll;
 
+import Classes.Converters;
+import Database.SQLDepartment;
+import Database.SQLShift;
 import Models.Admin;
+import Models.Bonus;
+import Models.Department;
+import Models.Shift;
 import cw.payroll.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class AddShiftController {
 
     @FXML
-    private Spinner<?> addshift_breakend_hour;
+    private Spinner<String> addshift_breakend_hour;
 
     @FXML
-    private Spinner<?> addshift_breakend_hour1;
+    private Spinner<String> addshift_breakend_hour1;
 
     @FXML
-    private Spinner<?> addshift_breakend_minute;
+    private Spinner<String> addshift_breakend_minute;
 
     @FXML
-    private Spinner<?> addshift_breakend_minute1;
+    private Spinner<String> addshift_breakend_minute1;
 
     @FXML
-    private Spinner<?> addshift_breakstart_hour;
+    private Spinner<String> addshift_breakstart_hour;
 
     @FXML
-    private Spinner<?> addshift_breakstart_hour1;
+    private Spinner<String> addshift_breakstart_hour1;
 
     @FXML
-    private Spinner<?> addshift_breakstart_minute;
+    private Spinner<String> addshift_breakstart_minute;
 
     @FXML
-    private Spinner<?> addshift_breakstart_minute1;
+    private Spinner<String> addshift_breakstart_minute1;
 
     @FXML
     private Button addshift_button_add;
@@ -53,10 +62,10 @@ public class AddShiftController {
     private Button addshift_button_cancel1;
 
     @FXML
-    private ComboBox<?> addshift_department;
+    private ComboBox<Department> addshift_department;
 
     @FXML
-    private ComboBox<?> addshift_employee;
+    private ComboBox<String> addshift_employee;
 
     @FXML
     private CheckBox addshift_friday;
@@ -89,16 +98,16 @@ public class AddShiftController {
     private CheckBox addshift_thursday1;
 
     @FXML
-    private Spinner<?> addshift_timein_hour;
+    private Spinner<String> addshift_timein_hour;
 
     @FXML
-    private Spinner<?> addshift_timein_hour1;
+    private Spinner<String> addshift_timein_hour1;
 
     @FXML
-    private Spinner<?> addshift_timein_minute;
+    private Spinner<String> addshift_timein_minute;
 
     @FXML
-    private Spinner<?> addshift_timein_minute1;
+    private Spinner<String> addshift_timein_minute1;
 
     @FXML
     private TextField addshift_timeout;
@@ -120,7 +129,11 @@ public class AddShiftController {
 
     @FXML
     private void addShift(ActionEvent event) {
-        loadShift();
+        if (event.getSource() == addshift_button_add) {
+            checkShiftIfValid(1);
+        } else {
+            checkShiftIfValid(2);
+        }
     }
 
     @FXML
@@ -128,10 +141,38 @@ public class AddShiftController {
         loadShift();
     }
 
+    @FXML
+    private void initialize() {
+        initializeContainers();
+        addListeners();
+    }
+
     /****************************** FXML ENDS HERE ******************************/
 
     private Admin admin;
     private AnchorPane container;
+
+    private Department department;
+
+    private ObservableList<Department> departmentList = FXCollections.observableArrayList();
+
+    private SQLDepartment sqlDepartment = new SQLDepartment();
+    private SQLShift sqlShift = new SQLShift();
+
+    Converters converters = new Converters();
+
+    private ObservableList<String> hour = FXCollections.observableArrayList("00", "01", "02", "03" , "04", "05", "06", "07", "08" , "09",
+            "10", "11", "12", "13" , "14", "15", "16", "17", "18", "19",
+            "20", "21", "22", "23"
+    );
+    private ObservableList<String> minute = FXCollections.observableArrayList("00", "01", "02", "03" , "04", "05", "06", "07", "08" , "09",
+            "10", "11", "12", "13" , "14", "15", "16", "17", "18", "19",
+            "20", "21", "22", "23" , "24", "25", "26", "27", "28", "29",
+            "30", "31", "32", "33" , "34", "35", "36", "37", "38", "39",
+            "40", "41", "42", "43" , "44", "45", "46", "47", "48", "49",
+            "50", "51", "52", "53" , "54", "55", "56", "57", "58", "59"
+    );
+
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
@@ -153,5 +194,112 @@ public class AddShiftController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void checkShiftIfValid(int shifttype) {
+        if (addshift_timeout.getText().equals("Invalid Time Values")) {
+            System.out.println("Invalid Time Values");
+        } else {
+            try {
+                int recepient = addshift_department.getValue().getDepartment_ID();
+                boolean sunday = addshift_sunday.isSelected();
+                boolean monday = addshift_monday.isSelected();
+                boolean tuesday = addshift_tuesday.isSelected();
+                boolean wednesday = addshift_wednesday.isSelected();
+                boolean thursday = addshift_thursday.isSelected();
+                boolean friday = addshift_friday.isSelected();
+                boolean saturday = addshift_saturday.isSelected();
+
+                sqlShift.addShift(new Shift(shifttype, recepient, sunday, monday, tuesday, wednesday, thursday, friday, saturday));
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Success : Add Shift Success");
+                alert.setContentText("Add Shift Success for " + addshift_department.getValue().getDepartment_Name() + " Department");
+                alert.initStyle(StageStyle.UNDECORATED);
+                alert.showAndWait();
+
+                loadShift();
+            } catch (Exception e) {
+                System.out.println("Error");
+            }
+        }
+    }
+
+    private void initializeContainers() {
+        addshift_timein_hour.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(hour));
+        addshift_timein_minute.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(minute));
+        addshift_breakstart_hour.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(hour));
+        addshift_breakstart_minute.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(minute));
+        addshift_breakend_hour.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(hour));
+        addshift_breakend_minute.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(minute));
+
+        addshift_timein_hour.getValueFactory().setValue("08");
+        addshift_timein_minute.getValueFactory().setValue("00");
+        addshift_breakstart_hour.getValueFactory().setValue("12");
+        addshift_breakstart_minute.getValueFactory().setValue("00");
+        addshift_breakend_hour.getValueFactory().setValue("13");
+        addshift_breakend_minute.getValueFactory().setValue("00");
+
+        departmentList.clear();
+        departmentList = sqlDepartment.getDepartment();
+
+        addshift_department.setItems(departmentList);
+        addshift_department.getSelectionModel().select(0);
+
+        addshift_department.setConverter(converters.departmentConverter());
+
+        getEmployeeHoursToRender(new Department(addshift_department.getValue().getDepartment_ID()));
+        updateTimeOutValue();
+    }
+
+    private void getEmployeeHoursToRender(Department dept) {
+        department = sqlDepartment.getDepartment(dept);
+    }
+
+    private void updateTimeOutValue() {
+        String timein_timeString = addshift_timein_hour.getValue() + ":" + addshift_timein_minute.getValue() + ":" + "00";
+        String breaktimein_timeString = addshift_breakstart_hour.getValue() + ":" + addshift_breakstart_minute.getValue() + ":" + "00";
+        String breaktimeout_timeString = addshift_breakend_hour.getValue() + ":" + addshift_breakend_minute.getValue() + ":" + "00";
+
+        LocalTime timein = LocalTime.parse(timein_timeString, DateTimeFormatter.ISO_TIME);
+        LocalTime breaktimein = LocalTime.parse(breaktimein_timeString, DateTimeFormatter.ISO_TIME);
+        LocalTime breaktimeout = LocalTime.parse(breaktimeout_timeString, DateTimeFormatter.ISO_TIME);
+        long totalbreakminutes = breaktimein.until(breaktimeout, ChronoUnit.MINUTES);
+        LocalTime timeinwithbreak = timein.plusMinutes(totalbreakminutes);
+        long timetorender = department.getDepartment_HoursPerDay();
+        LocalTime totalout = timeinwithbreak.plusHours(timetorender);
+        long timedifferencetimebreak = timein.until(breaktimein, ChronoUnit.HOURS);
+        int timevalidation = timein.plusHours(timetorender).compareTo(breaktimein);
+
+        if (totalbreakminutes <= 0 || timedifferencetimebreak <= 0 || timevalidation < 0) {
+            addshift_timeout.setText("Invalid Time Values");
+        } else {
+            addshift_timeout.setText(totalout.toString());
+        }
+    }
+
+    private void addListeners() {
+        addshift_department.valueProperty().addListener((a, o, n) ->{
+            getEmployeeHoursToRender(new Department(addshift_department.getValue().getDepartment_ID()));
+        });
+        addshift_timein_hour.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        addshift_timein_minute.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        addshift_breakstart_hour.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        addshift_breakstart_minute.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        addshift_breakend_hour.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        addshift_breakend_minute.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
     }
 }

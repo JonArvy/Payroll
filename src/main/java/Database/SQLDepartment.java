@@ -40,6 +40,30 @@ public class SQLDepartment {
 
     }
 
+    public Department getDepartment(Department department) {
+        String command = "SELECT * FROM tbl_department " +
+                "WHERE department_id = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, department.getDepartment_ID());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                department.setDepartment_ID(resultSet.getInt("department_id"));
+                department.setDepartment_Name(resultSet.getString("department_name"));
+                department.setDepartment_MonthlyRate(resultSet.getDouble("department_monthlyrate"));
+                department.setDepartment_DaysPerMonth(resultSet.getInt("department_dayspermonth"));
+                department.setDepartment_HoursPerDay(resultSet.getInt("department_hoursperday"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return department;
+
+    }
+
     public void addDepartment(Department department) {
         String command = "INSERT INTO tbl_department (department_name, department_monthlyrate, department_dayspermonth, department_hoursperday)" +
                 "VALUES (?, ?, ?, ?)";

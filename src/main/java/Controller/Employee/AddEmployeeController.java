@@ -1,5 +1,6 @@
 package Controller.Employee;
 
+import Classes.Converters;
 import Database.SQLDepartment;
 import Models.Admin;
 import Models.BooleanValue;
@@ -114,6 +115,8 @@ public class AddEmployeeController {
 
     private SQLDepartment sqlDepartment = new SQLDepartment();
 
+    Converters converters = new Converters();
+
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
@@ -143,52 +146,6 @@ public class AddEmployeeController {
         }
     }
 
-    public StringConverter<Department> departmentConverter() {
-        StringConverter<Department> converter = new StringConverter<Department>() {
-            @Override
-            public String toString(Department department) {
-                String s = "";
-                try {
-                    s = department.getDepartment_Name();
-                } catch (NullPointerException e) {
-                    s = "";
-                }
-                return s;
-            }
-
-            @Override
-            public Department fromString(String s) {
-                return departmentList.stream()
-                        .filter(item -> item.getDepartment_Name().equals(s))
-                        .collect(Collectors.toList()).get(0);
-            }
-        };
-        return converter;
-    }
-
-    public StringConverter<BooleanValue> booleanValueConverter(ObservableList<BooleanValue> list) {
-        StringConverter<BooleanValue> converter = new StringConverter<BooleanValue>() {
-            @Override
-            public String toString(BooleanValue booleanValue) {
-                String s = "";
-                try {
-                    s = booleanValue.getName();
-                } catch (NullPointerException e) {
-                    s = "";
-                }
-                return s;
-            }
-
-            @Override
-            public BooleanValue fromString(String s) {
-                return list.stream()
-                        .filter(item -> item.getName().equals(s))
-                        .collect(Collectors.toList()).get(0);
-            }
-        };
-        return converter;
-    }
-
     private void initializeContainers() {
         genderList = FXCollections.observableArrayList(
                 new BooleanValue("Male", true),
@@ -198,22 +155,21 @@ public class AddEmployeeController {
                 new BooleanValue("Inactive", false));
 
 
-
         departmentList.clear();
         departmentList = sqlDepartment.getDepartment();
 
         addemployee_department.setItems(departmentList);
         addemployee_department.getSelectionModel().select(0);
 
-        addemployee_department.setConverter(departmentConverter());
+        addemployee_department.setConverter(converters.departmentConverter());
 
         addemployee_gender.setItems(genderList);
         addemployee_gender.getSelectionModel().select(0);
         addemployee_status.setItems(statusList);
         addemployee_status.getSelectionModel().select(0);
 
-        addemployee_gender.setConverter(booleanValueConverter(genderList));
-        addemployee_status.setConverter(booleanValueConverter(statusList));
+        addemployee_gender.setConverter(converters.booleanValueConverter(genderList));
+        addemployee_status.setConverter(converters.booleanValueConverter(statusList));
 
         addemployee_maritalstatus.getItems().addAll("Single", "Married", "Widowed", "Annuled");
         addemployee_maritalstatus.getSelectionModel().select(0);

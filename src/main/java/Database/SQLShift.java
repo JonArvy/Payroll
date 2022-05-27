@@ -61,8 +61,7 @@ public class SQLShift {
                 "shift_type," +
 
                 "shift_recipient," +
-                "emp_lname," +
-
+                "emp_lname  || ' ' || emp_fname || ' ' || emp_mname as fullname," +
                 "shift_sunday," +
                 "shift_monday," +
                 "shift_tuesday," +
@@ -83,7 +82,7 @@ public class SQLShift {
                                 resultSet.getInt("shift_id"),
                                 resultSet.getInt("shift_type"),
                                 resultSet.getInt("shift_recipient"),
-                                resultSet.getString("emp_lname"),
+                                resultSet.getString("fullname"),
                                 resultSet.getBoolean("shift_sunday"),
                                 resultSet.getBoolean("shift_monday"),
                                 resultSet.getBoolean("shift_tuesday"),

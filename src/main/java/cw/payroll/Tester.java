@@ -1,6 +1,6 @@
 package cw.payroll;
 
-import Classes.SQLExecution;
+import Database.SQLExecution;
 import Database.*;
 import Models.Attendance;
 import Models.Employee;

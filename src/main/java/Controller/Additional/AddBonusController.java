@@ -1,7 +1,14 @@
 package Controller.Additional;
 
+import Classes.Converters;
+import Database.SQLBonus;
+import Database.SQLDepartment;
 import Models.Admin;
+import Models.Bonus;
+import Models.Department;
 import cw.payroll.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.sql.Date;
 
 public class AddBonusController {
 
@@ -31,14 +39,14 @@ public class AddBonusController {
     private TextField addbonus_name;
 
     @FXML
-    private ComboBox<?> addbonus_recipient;
+    private ComboBox<Department> addbonus_recipient;
 
     @FXML
-    private ComboBox<?> addbonus_recipienttype;
+    private ComboBox<String> addbonus_recipienttype;
 
     @FXML
     private void addBonus(ActionEvent event) {
-        loadBonus();
+        checkBonusIfValid();
     }
 
     @FXML
@@ -46,10 +54,23 @@ public class AddBonusController {
         loadBonus();
     }
 
+    @FXML
+    private void initialize() {
+        initializeContainers();
+    }
+
     /****************************** FXML ENDS HERE ******************************/
 
     private Admin admin;
     private AnchorPane container;
+
+    private ObservableList<Department> departmentList = FXCollections.observableArrayList();
+
+    private SQLDepartment sqlDepartment = new SQLDepartment();
+    private SQLBonus sqlBonus = new SQLBonus();
+
+    Converters converters = new Converters();
+
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
@@ -70,6 +91,42 @@ public class AddBonusController {
 
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void initializeContainers() {
+        addbonus_recipienttype.getItems().addAll( "By Department");
+        addbonus_recipienttype.getSelectionModel().select(0);
+
+        departmentList.clear();
+        departmentList = sqlDepartment.getDepartment();
+
+        addbonus_recipient.setItems(departmentList);
+        addbonus_recipient.getSelectionModel().select(0);
+
+        addbonus_recipient.setConverter(converters.departmentConverter());
+    }
+
+    private void checkBonusIfValid() {
+        if (addbonus_name.getText() == null || addbonus_name.getText().trim().equals("")) {
+            System.out.println("Invalid Bonus Name");
+        } else {
+            try {
+                addbonus_dateapplicable.getConverter().fromString(addbonus_dateapplicable.getEditor().getText());
+
+                String name = addbonus_name.getText();
+                double amount = Double.parseDouble(addbonus_amount.getText());
+                int department = addbonus_recipient.getValue().getDepartment_ID();
+                Date date = Date.valueOf(addbonus_dateapplicable.getValue());
+
+                sqlBonus.addBonus(new Bonus(name, amount, department, date));
+
+                loadBonus();
+            } catch (NumberFormatException o) {
+                System.out.println("Invalid Amount");
+            } catch (Exception e) {
+                System.out.println("Invalid Date Value");
+            }
         }
     }
 }

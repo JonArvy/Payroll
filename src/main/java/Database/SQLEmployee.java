@@ -103,7 +103,6 @@ public class SQLEmployee {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("fullname"));
                 employeeList.add(new Employee(
                         resultSet.getInt("id"),
                         resultSet.getString("fullname"),

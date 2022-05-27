@@ -1,13 +1,18 @@
 package Controller.Payroll;
 
+import Database.SQLDepartment;
 import Models.Admin;
+import Models.Department;
 import cw.payroll.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -27,28 +32,28 @@ public class DepartmentController {
     private Button department_button_next;
 
     @FXML
-    private TableColumn<?, ?> department_column_dailyrate;
+    private TableColumn<Department, Double> department_column_dailyrate;
 
     @FXML
-    private TableColumn<?, ?> department_column_dayspermonth;
+    private TableColumn<Department, Integer> department_column_dayspermonth;
 
     @FXML
-    private TableColumn<?, ?> department_column_hourlyrate;
+    private TableColumn<Department, Double> department_column_hourlyrate;
 
     @FXML
-    private TableColumn<?, ?> department_column_hoursperday;
+    private TableColumn<Department, Integer> department_column_hoursperday;
 
     @FXML
-    private TableColumn<?, ?> department_column_monthlyrate;
+    private TableColumn<Department, Double> department_column_monthlyrate;
 
     @FXML
-    private TableColumn<?, ?> department_column_name;
+    private TableColumn<Department, String> department_column_name;
 
     @FXML
     private TableColumn<?, ?> department_column_shift;
 
     @FXML
-    private TableView<?> department_tableview;
+    private TableView department_tableview;
 
     @FXML
     private void addDepartment(ActionEvent event) {
@@ -70,10 +75,20 @@ public class DepartmentController {
         loadShift();
     }
 
+    @FXML
+    private void initialize() {
+        showDepartmentTable();
+    }
+
     /****************************** FXML ENDS HERE ******************************/
 
     private Admin admin;
     private AnchorPane container;
+
+    private ObservableList<Department> departmentList = FXCollections.observableArrayList();
+
+    private SQLDepartment sqlDepartment = new SQLDepartment();
+
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
@@ -131,5 +146,20 @@ public class DepartmentController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void showDepartmentTable() {
+        departmentList.clear();
+        departmentList = sqlDepartment.getDepartment();
+
+        department_column_name.setCellValueFactory(new PropertyValueFactory<Department, String>("Department_Name"));
+        department_column_monthlyrate.setCellValueFactory(new PropertyValueFactory<Department, Double>("Department_MonthlyRate"));
+        department_column_dayspermonth.setCellValueFactory(new PropertyValueFactory<Department, Integer>("Department_DaysPerMonth"));
+        department_column_dailyrate.setCellValueFactory(new PropertyValueFactory<Department, Double>("Daily_Rate"));
+        department_column_hoursperday.setCellValueFactory(new PropertyValueFactory<Department, Integer>("Department_HoursPerDay"));
+        department_column_hourlyrate.setCellValueFactory(new PropertyValueFactory<Department, Double>("Hourly_Rate"));
+
+
+        department_tableview.setItems(departmentList);
     }
 }

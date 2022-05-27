@@ -1,6 +1,9 @@
 package Controller.Payroll;
 
+import Database.SQLDepartment;
 import Models.Admin;
+import Models.Bonus;
+import Models.Department;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.sql.Date;
 
 public class AddDepartmentController {
 
@@ -33,7 +37,7 @@ public class AddDepartmentController {
 
     @FXML
     private void addDepartment(ActionEvent event) {
-        loadDepartment();
+        checkDepartmentIfValid();
     }
 
     @FXML
@@ -45,6 +49,9 @@ public class AddDepartmentController {
 
     private Admin admin;
     private AnchorPane container;
+
+    private SQLDepartment sqlDepartment = new SQLDepartment();
+
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
@@ -65,6 +72,27 @@ public class AddDepartmentController {
 
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void checkDepartmentIfValid() {
+        if (adddepartment_name.getText() == null || adddepartment_name.getText().trim().equals("")) {
+            System.out.println("Invalid Department Name");
+        } else {
+            try {
+                int dayspermonth = Integer.parseInt(adddepartment_dayspermonth.getText());
+                int hoursperday = Integer.parseInt(adddepartment_hoursperday.getText());
+                double monthlyrate = Double.parseDouble(adddepartment_monthlyrate.getText());
+                String name = adddepartment_name.getText();
+
+                sqlDepartment.addDepartment(new Department(name, monthlyrate, dayspermonth, hoursperday));
+
+                loadDepartment();
+            } catch (NumberFormatException o) {
+                System.out.println("Invalid Value/s");
+            } catch (Exception e) {
+                System.out.println("Invalid");
+            }
         }
     }
 }

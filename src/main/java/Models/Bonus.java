@@ -35,6 +35,13 @@ public class Bonus {
         this.Bonus_Date = Bonus_Date;
     }
 
+    public Bonus(String Bonus_Name, double Bonus_Amount, int Bonus_Recipient, Date Bonus_Date) {
+        this.Bonus_Name = Bonus_Name;
+        this.Bonus_Amount = Bonus_Amount;
+        this.Bonus_Recipient = Bonus_Recipient;
+        this.Bonus_Date = Bonus_Date;
+    }
+
     public int getBonus_ID() {
         return Bonus_ID;
     }

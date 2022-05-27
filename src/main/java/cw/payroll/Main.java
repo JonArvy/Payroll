@@ -1,7 +1,5 @@
 package cw.payroll;
 
-import Models.Employee;
-import Classes.SQLExecution;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,8 +7,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 
 public class Main extends Application {
     @Override

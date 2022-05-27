@@ -89,9 +89,12 @@ public class AddHolidayController {
         } else {
             try {
                 addholiday_date.getConverter().fromString(addholiday_date.getEditor().getText());
-                sqlHoliday.addHoliday(new Holiday(addholiday_name.getText(),
-                        Date.valueOf(addholiday_date.getValue()),
-                        addholiday_type.getValue()));
+
+                String name = addholiday_name.getText();
+                Date date = Date.valueOf(addholiday_date.getValue());
+                String holiday_type = addholiday_type.getValue();
+
+                sqlHoliday.addHoliday(new Holiday(name, date, holiday_type));
 
                 loadHolidayList();
             } catch (Exception e) {

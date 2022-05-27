@@ -27,9 +27,25 @@ public class Department {
         this.Hourly_Rate = Double.parseDouble(hourlyRateString);
     }
 
+    public Department(String Department_Name, double Department_MonthlyRate, int Department_DaysPerMonth, int Department_HoursPerDay) throws ParseException {
+        DecimalFormat df = new DecimalFormat("#.00");
+        String dailyRateString = df.format(Department_MonthlyRate / Department_DaysPerMonth);
+        String hourlyRateString = df.format(Department_MonthlyRate / Department_DaysPerMonth / Department_HoursPerDay);
+        this.Department_Name = Department_Name;
+        this.Department_MonthlyRate = Department_MonthlyRate;
+        this.Department_DaysPerMonth = Department_DaysPerMonth;
+        this.Department_HoursPerDay = Department_HoursPerDay;
+        this.Daily_Rate = Double.parseDouble(dailyRateString);
+        this.Hourly_Rate = Double.parseDouble(hourlyRateString);
+    }
+
     public Department(int department_ID, String department_Name) {
         Department_ID = department_ID;
         Department_Name = department_Name;
+    }
+
+    public Department(int department_ID) {
+        Department_ID = department_ID;
     }
 
     public int getDepartment_ID() {
@@ -58,5 +74,25 @@ public class Department {
 
     public double getHourly_Rate() {
         return Hourly_Rate;
+    }
+
+    public void setDepartment_ID(int department_ID) {
+        Department_ID = department_ID;
+    }
+
+    public void setDepartment_Name(String department_Name) {
+        Department_Name = department_Name;
+    }
+
+    public void setDepartment_MonthlyRate(double department_MonthlyRate) {
+        Department_MonthlyRate = department_MonthlyRate;
+    }
+
+    public void setDepartment_DaysPerMonth(int department_DaysPerMonth) {
+        Department_DaysPerMonth = department_DaysPerMonth;
+    }
+
+    public void setDepartment_HoursPerDay(int department_HoursPerDay) {
+        Department_HoursPerDay = department_HoursPerDay;
     }
 }
