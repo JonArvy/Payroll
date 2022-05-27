@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="biometrics_panel" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Employee.EditEmployeeController">
+    <children>
+        <Text layoutX="26.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT EMPLOYEE DETAILS">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="#01374d" layoutX="26.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Text>
+        <Text layoutX="25.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+        <Text layoutX="24.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+        <Text layoutX="25.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+        <Text layoutX="26.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+        <Text layoutX="26.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No." />
+        <Text layoutX="235.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name" />
+        <Text layoutX="235.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension" />
+        <Text layoutX="235.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" />
+        <Text layoutX="235.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+        <Text layoutX="455.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number" />
+        <Text layoutX="455.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
+        <Text layoutX="455.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status" />
+        <Text layoutX="455.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
+        <Text layoutX="455.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position" />
+        <Text layoutX="455.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status" />
+        <TextField fx:id="editemployee_firstname" layoutX="103.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="editemployee_lastname" layoutX="103.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextArea fx:id="editemployee_address" layoutX="103.0" layoutY="159.0" prefHeight="52.0" prefWidth="332.0" />
+        <ComboBox fx:id="editemployee_gender" layoutX="103.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" promptText="Gender" />
+        <TextField fx:id="editemployee_number" layoutX="103.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="editemployee_middlename" layoutX="325.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="editemployee_extension" layoutX="325.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+        <DatePicker fx:id="editemployee_birthdate" layoutX="325.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
+        <ComboBox fx:id="editemployee_status" layoutX="325.0" layoutY="241.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
+        <TextField fx:id="editemployee_employeeid" editable="false" layoutX="575.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="editemployee_nationality" layoutX="575.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
+        <ComboBox fx:id="editemployee_maritalstatus" layoutX="575.0" layoutY="159.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
+        <ComboBox fx:id="editemployee_department" layoutX="575.0" layoutY="186.0" prefHeight="25.0" prefWidth="109.0" promptText="Department" />
+        <TextField fx:id="editemployee_position" layoutX="575.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
+        <ComboBox fx:id="editemployee_employmentstatus" layoutX="575.0" layoutY="240.0" prefHeight="25.0" prefWidth="109.0" promptText="Employment Status" />
+        <Pane layoutY="290.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #545454;" />
+        <Text fill="#01374d" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Text>
+        <Text layoutX="25.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
+        <Text layoutX="25.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship" />
+        <Text layoutX="24.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+        <TextField fx:id="editemployee_contactname" layoutX="103.0" layoutY="349.0" prefHeight="25.0" prefWidth="175.0" />
+        <TextField fx:id="editemployee_contactrelationship" layoutX="103.0" layoutY="376.0" prefHeight="25.0" prefWidth="175.0" />
+        <TextArea fx:id="editemployee_contactaddress" layoutX="103.0" layoutY="403.0" prefHeight="52.0" prefWidth="332.0" />
+        <Text layoutX="455.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number" />
+        <TextField fx:id="editemployee_contactnumber" layoutX="575.0" layoutY="349.0" prefHeight="25.0" prefWidth="109.0" />
+        <Button fx:id="editemployee_button_save" layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#saveEmployee" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
+        <Button fx:id="editemployee_button_cancel" layoutX="619.0" layoutY="471.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
+    </children>
+</AnchorPane>

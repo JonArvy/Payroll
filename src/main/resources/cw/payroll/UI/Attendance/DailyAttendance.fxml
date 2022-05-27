@@ -2,16 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
-
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Attendance.DailyAttendanceController">
     <children>
         <Text layoutX="23.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAILY ATTENDANCE">
@@ -61,7 +61,7 @@
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <TextField layoutX="498.0" layoutY="25.0" prefHeight="25.0" prefWidth="175.0" text="Name" />
+        <TextField fx:id="dailyattendance_search" layoutX="498.0" layoutY="25.0" onAction="#search" prefHeight="25.0" prefWidth="175.0" promptText="Name" />
         <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="683.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../Assets/Search-blue.png" />

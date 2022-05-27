@@ -1,7 +1,9 @@
 package Controller.Additional;
 
 import Controller.Payroll.ShiftController;
+import Database.SQLHoliday;
 import Models.Admin;
+import Models.Holiday;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +13,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class AddHolidayController {
 
@@ -29,11 +35,11 @@ public class AddHolidayController {
     private TextField addholiday_name;
 
     @FXML
-    private ComboBox<?> addholiday_type;
+    private ComboBox<String> addholiday_type;
 
     @FXML
     private void addHoliday(ActionEvent event) {
-        loadHolidayList();
+        checkHolidayIfValid();
     }
 
     @FXML
@@ -41,10 +47,19 @@ public class AddHolidayController {
         loadHolidayList();
     }
 
+    @FXML
+    private void initialize() {
+        addholiday_type.getItems().addAll( "Regular Holiday", "Special Working Public Holiday", "Special Non-working Holiday", "Common local holiday", "Season", "Observance");
+        addholiday_type.getSelectionModel().select(0);
+    }
+
     /****************************** FXML ENDS HERE ******************************/
 
     private Admin admin;
     private AnchorPane container;
+
+    private SQLHoliday sqlHoliday = new SQLHoliday();
+
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
@@ -65,6 +80,23 @@ public class AddHolidayController {
 
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void checkHolidayIfValid() {
+        if (addholiday_name.getText() == null || addholiday_name.getText().trim().equals("")) {
+            System.out.println("Invalid Holiday Name");
+        } else {
+            try {
+                addholiday_date.getConverter().fromString(addholiday_date.getEditor().getText());
+                sqlHoliday.addHoliday(new Holiday(addholiday_name.getText(),
+                        Date.valueOf(addholiday_date.getValue()),
+                        addholiday_type.getValue()));
+
+                loadHolidayList();
+            } catch (Exception e) {
+                System.out.println("Invalid Date Value");
+            }
         }
     }
 }

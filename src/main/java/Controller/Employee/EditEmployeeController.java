@@ -1,6 +1,7 @@
 package Controller.Employee;
 
 import Database.SQLDepartment;
+import Database.SQLEmployee;
 import Models.Admin;
 import Models.BooleanValue;
 import Models.Department;
@@ -22,79 +23,82 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
-public class AddEmployeeController {
+public class EditEmployeeController {
 
     @FXML
-    private TextArea addemployee_address;
+    private AnchorPane biometrics_panel;
 
     @FXML
-    private DatePicker addemployee_bdate;
+    private TextArea editemployee_address;
 
     @FXML
-    private Button addemployee_button_next;
+    private DatePicker editemployee_birthdate;
 
     @FXML
-    private Button addemployee_button_reset;
+    private Button editemployee_button_cancel;
 
     @FXML
-    private TextArea addemployee_contactaddress;
+    private Button editemployee_button_save;
 
     @FXML
-    private TextField addemployee_contactname;
+    private TextArea editemployee_contactaddress;
 
     @FXML
-    private TextField addemployee_contactnumber;
+    private TextField editemployee_contactname;
 
     @FXML
-    private TextField addemployee_contactrelationship;
+    private TextField editemployee_contactnumber;
 
     @FXML
-    private ComboBox<Department> addemployee_department;
+    private TextField editemployee_contactrelationship;
 
     @FXML
-    private TextField addemployee_empid;
+    private ComboBox<Department> editemployee_department;
 
     @FXML
-    private ComboBox<String> addemployee_empstatus;
+    private TextField editemployee_employeeid;
 
     @FXML
-    private TextField addemployee_extension;
+    private ComboBox<String> editemployee_employmentstatus;
 
     @FXML
-    private TextField addemployee_firstname;
+    private TextField editemployee_extension;
 
     @FXML
-    private ComboBox<BooleanValue> addemployee_gender;
+    private TextField editemployee_firstname;
 
     @FXML
-    private TextField addemployee_lastname;
+    private ComboBox<BooleanValue> editemployee_gender;
 
     @FXML
-    private ComboBox<String> addemployee_maritalstatus;
+    private TextField editemployee_lastname;
 
     @FXML
-    private TextField addemployee_middlename;
+    private ComboBox<String> editemployee_maritalstatus;
 
     @FXML
-    private TextField addemployee_nationality;
+    private TextField editemployee_middlename;
 
     @FXML
-    private TextField addemployee_number;
+    private TextField editemployee_nationality;
 
     @FXML
-    private TextField addemployee_position;
+    private TextField editemployee_number;
 
     @FXML
-    private ComboBox<BooleanValue> addemployee_status;
+    private TextField editemployee_position;
 
     @FXML
-    private void nextPage(ActionEvent event) {
-        loadAddEmployeeBiometrics();
+    private ComboBox<BooleanValue> editemployee_status;
+
+    @FXML
+    private void cancel(ActionEvent event) {
+        loadManageEmployee();
     }
 
     @FXML
-    private void reset(ActionEvent event) {
-
+    private void saveEmployee(ActionEvent event) {
+        loadManageEmployee();
     }
 
     @FXML
@@ -106,12 +110,14 @@ public class AddEmployeeController {
 
     private Admin admin;
     private AnchorPane container;
-    private Employee employee;
+
+    private Employee emp;
 
     private ObservableList<BooleanValue> genderList;
     private ObservableList<BooleanValue> statusList;
     private ObservableList<Department> departmentList = FXCollections.observableArrayList();
 
+    private SQLEmployee sqlEmployee = new SQLEmployee();
     private SQLDepartment sqlDepartment = new SQLDepartment();
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
@@ -120,20 +126,18 @@ public class AddEmployeeController {
     }
 
     public void setEmployee(Employee employee) {
-        this.employee = employee;
+        this.emp = employee;
+        loadEmployeeFields();
     }
 
-    private void loadAddEmployeeBiometrics() {
-        AddEmployeeBiometricsController controller;
-
+    private void loadManageEmployee() {
+        ManageEmployeeController controller;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployeeBiometrics.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/ManageEmployee.fxml"));
             fxmlLoader.load();
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, container);
-
-            controller.setEmployee(employee);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
             container.getChildren().clear();
@@ -141,6 +145,31 @@ public class AddEmployeeController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void loadEmployeeFields() {
+        Employee employee = sqlEmployee.getEmployee(new Employee(emp.getEmployee_ID()));
+
+        editemployee_employeeid.setText(employee.getEmployee_ID() + "");
+        editemployee_nationality.setText(employee.getNationality());
+        editemployee_maritalstatus.setValue(employee.getMarital_Status());
+        editemployee_department.getSelectionModel().select(employee.getDepartment() - 1); //Will Fix Later
+        editemployee_position.setText(employee.getPosition());
+        editemployee_employmentstatus.setValue(employee.getEmployment_Status());
+        editemployee_firstname.setText(employee.getFirst_Name());
+        editemployee_lastname.setText(employee.getLast_Name());
+        editemployee_middlename.setText(employee.getMiddle_Name());
+        editemployee_extension.setText(employee.getExtension());
+        editemployee_address.setText(employee.getAddress());
+        editemployee_gender.getSelectionModel().select(employee.isGender() ? 0 : 1);  //Will Fix Later
+        editemployee_number.setText(employee.getNumber());
+        editemployee_birthdate.setValue(employee.getBirthdate().toLocalDate());
+        editemployee_status.getSelectionModel().select(employee.isActive() ? 0 : 1);  //Will Fix Later
+        editemployee_contactname.setText(employee.getContact_Name());
+        editemployee_contactrelationship.setText(employee.getContact_Relationship());
+        editemployee_contactaddress.setText(employee.getContact_Address());
+        editemployee_contactnumber.setText(employee.getContact_Number());
+
     }
 
     public StringConverter<Department> departmentConverter() {
@@ -202,24 +231,22 @@ public class AddEmployeeController {
         departmentList.clear();
         departmentList = sqlDepartment.getDepartment();
 
-        addemployee_department.setItems(departmentList);
-        addemployee_department.getSelectionModel().select(0);
+        editemployee_department.setItems(departmentList);
 
-        addemployee_department.setConverter(departmentConverter());
+        editemployee_department.setConverter(departmentConverter());
 
-        addemployee_gender.setItems(genderList);
-        addemployee_gender.getSelectionModel().select(0);
-        addemployee_status.setItems(statusList);
-        addemployee_status.getSelectionModel().select(0);
+        editemployee_gender.setItems(genderList);
+        editemployee_status.setItems(statusList);
 
-        addemployee_gender.setConverter(booleanValueConverter(genderList));
-        addemployee_status.setConverter(booleanValueConverter(statusList));
+        editemployee_gender.setConverter(booleanValueConverter(genderList));
+        editemployee_status.setConverter(booleanValueConverter(statusList));
 
-        addemployee_maritalstatus.getItems().addAll("Single", "Married", "Widowed", "Annuled");
-        addemployee_maritalstatus.getSelectionModel().select(0);
+        editemployee_maritalstatus.getItems().addAll("Single", "Married", "Widowed", "Annuled");
+        editemployee_maritalstatus.getSelectionModel().select(0);
 
-        addemployee_empstatus.getItems().addAll("Regular", "Contractual", "Part-Time");
-        addemployee_empstatus.getSelectionModel().select(0);
+        editemployee_employmentstatus.getItems().addAll("Regular", "Contractual", "Part-Time");
+        editemployee_employmentstatus.getSelectionModel().select(0);
     }
-}
 
+
+}

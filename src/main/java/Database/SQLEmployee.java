@@ -88,6 +88,37 @@ public class SQLEmployee {
 
     }
 
+    public ObservableList<Employee> getAllEmployeePayslip() {
+        ObservableList<Employee> employeeList = FXCollections.observableArrayList();
+        String command = "SELECT te.emp_id as id," +
+                "te.emp_lname || ' ' || te.emp_fname || ' ' || te.emp_mname as fullname," +
+                "td.department_name as department," +
+                "te.emp_position as position " +
+                "FROM tbl_employees te " +
+                "JOIN tbl_department td " +
+                "ON te.emp_department = td.department_id";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("fullname"));
+                employeeList.add(new Employee(
+                        resultSet.getInt("id"),
+                        resultSet.getString("fullname"),
+                        resultSet.getString("department"),
+                        resultSet.getString("position")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeeList;
+
+    }
+
     public Employee getEmployee(Employee emp) {
         String command = "SELECT * FROM tbl_employees WHERE emp_id = ?";
         try (Connection connection = connect();

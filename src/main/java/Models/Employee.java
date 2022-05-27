@@ -18,6 +18,9 @@ public class Employee {
     private String Last_Name;
     private String Middle_Name;
     private String Extension;
+
+    private String Full_Name;
+
     private String Address;
 
     private boolean Gender;
@@ -59,6 +62,7 @@ public class Employee {
         this.Last_Name = Last_Name;
         this.Middle_Name = Middle_Name;
         this.Extension = Extension;
+
         this.Address = Address;
 
         this.Gender = Gender;
@@ -130,6 +134,13 @@ public class Employee {
         this.Employment_Status = Employment_Status;
         this.Department_Name = Department_Name;
         this.Active = Active;
+    }
+
+    public Employee(int Employee_ID, String Full_Name, String Department_Name, String Position) {
+        this.Employee_ID = Employee_ID;
+        this.Full_Name = Full_Name;
+        this.Department_Name = Department_Name;
+        this.Position = Position;
     }
 
 
@@ -218,6 +229,10 @@ public class Employee {
 
     public String getContact_Number() {
         return Contact_Number;
+    }
+
+    public String getFull_Name() {
+        return Full_Name;
     }
 
     public void setEmployee_ID(int employee_ID) {

@@ -12,6 +12,7 @@ import Controller.Payroll.DepartmentController;
 import Controller.Payroll.PayrollSummaryController;
 import Controller.Payroll.PayslipController;
 import Models.Admin;
+import Models.Employee;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -134,6 +135,8 @@ public class AdminController {
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
+
+            controller.setEmployee(new Employee());
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
             content_container.getChildren().clear();

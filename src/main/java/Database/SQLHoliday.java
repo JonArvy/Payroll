@@ -38,15 +38,14 @@ public class SQLHoliday {
     }
 
     public void addHoliday(Holiday holiday) {
-        String command = "INSERT INTO tbl_holiday (holiday_name, holiday_date, holiday_type, holiday_repeat) " +
-                "VALUES (?, ?, ?, ?)";
+        String command = "INSERT INTO tbl_holiday (holiday_name, holiday_date, holiday_type) " +
+                "VALUES (?, ?, ?)";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
 
             preparedStatement.setString(1, holiday.getHoliday_Name());
             preparedStatement.setDate(2, holiday.getHoliday_Date()); //
             preparedStatement.setString(3, holiday.getHoliday_Type());
-            preparedStatement.setString(4, holiday.getHoliday_Repeat());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
