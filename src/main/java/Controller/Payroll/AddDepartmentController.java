@@ -1,4 +1,4 @@
-package Controller.Additional;
+package Controller.Payroll;
 
 import Models.Admin;
 import cw.payroll.Main;
@@ -6,43 +6,39 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class HolidayListController {
+public class AddDepartmentController {
 
     @FXML
-    private Button holiday_button_add;
+    private Button adddepartment_button_add;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_action;
+    private Button adddepartment_button_cancel;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_date;
+    private TextField adddepartment_dayspermonth;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_holidayname;
+    private TextField adddepartment_hoursperday;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_repeat;
+    private TextField adddepartment_monthlyrate;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_type;
+    private TextField adddepartment_name;
 
     @FXML
-    private TableView<?> holiday_tableview;
-
-    @FXML
-    private void addHoliday(ActionEvent event) {
-        loadAddHoliday();
+    private void addDepartment(ActionEvent event) {
+        loadDepartment();
     }
 
     @FXML
-    private void initialize() {
-
+    private void cancel(ActionEvent event) {
+        loadDepartment();
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -54,17 +50,17 @@ public class HolidayListController {
         this.container = anchorPane;
     }
 
-    private void loadAddHoliday() {
-        AddHolidayController controller;
+    private void loadDepartment() {
+        DepartmentController controller;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/AddHoliday.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/Department.fxml"));
             fxmlLoader.load();
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, container);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
-//            container.getChildren().clear();
+            container.getChildren().clear();
             container.getChildren().add(anchorPane);
 
         } catch (IOException ex) {

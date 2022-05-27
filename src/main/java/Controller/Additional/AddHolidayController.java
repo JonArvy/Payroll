@@ -1,48 +1,44 @@
 package Controller.Additional;
 
+import Controller.Payroll.ShiftController;
 import Models.Admin;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class HolidayListController {
+public class AddHolidayController {
 
     @FXML
-    private Button holiday_button_add;
+    private Button addholiday_button_add;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_action;
+    private Button addholiday_button_cancel;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_date;
+    private DatePicker addholiday_date;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_holidayname;
+    private TextField addholiday_name;
 
     @FXML
-    private TableColumn<?, ?> holiday_column_repeat;
-
-    @FXML
-    private TableColumn<?, ?> holiday_column_type;
-
-    @FXML
-    private TableView<?> holiday_tableview;
+    private ComboBox<?> addholiday_type;
 
     @FXML
     private void addHoliday(ActionEvent event) {
-        loadAddHoliday();
+        loadHolidayList();
     }
 
     @FXML
-    private void initialize() {
-
+    private void cancel(ActionEvent event) {
+        loadHolidayList();
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -54,17 +50,17 @@ public class HolidayListController {
         this.container = anchorPane;
     }
 
-    private void loadAddHoliday() {
-        AddHolidayController controller;
+    private void loadHolidayList() {
+        HolidayListController controller;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/AddHoliday.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/HolidayList.fxml"));
             fxmlLoader.load();
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, container);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
-//            container.getChildren().clear();
+            container.getChildren().clear();
             container.getChildren().add(anchorPane);
 
         } catch (IOException ex) {

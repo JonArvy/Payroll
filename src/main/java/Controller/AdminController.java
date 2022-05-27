@@ -5,6 +5,7 @@ import Controller.Additional.CredentialsController;
 import Controller.Additional.HolidayListController;
 import Controller.Attendance.AttendanceReportController;
 import Controller.Attendance.DailyAttendanceController;
+import Controller.Employee.AddEmployeeController;
 import Controller.Employee.ManageEmployeeController;
 import Controller.NoticeBoard.NoticeBoardController;
 import Controller.Payroll.DepartmentController;
@@ -99,6 +100,7 @@ public class AdminController implements Initializable {
     }
 
     /****************************** FXML ENDS HERE ******************************/
+
     private void loadNoticeBoard() {
         NoticeBoardController controller;
 
@@ -119,9 +121,13 @@ public class AdminController implements Initializable {
     }
 
     private void loadAddEmployee() {
+        AddEmployeeController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
             fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, content_container);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
             content_container.getChildren().clear();

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.ShiftController">
+    <children>
+        <TableView fx:id="shift_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css">
+            <columns>
+                <TableColumn fx:id="shift_column_shifttype" prefWidth="166.0" resizable="false" text="Shift Arrangement" />
+                <TableColumn fx:id="shift_column_recepient" prefWidth="198.66665649414062" resizable="false" text="Recepient" />
+                <TableColumn fx:id="shift_column_schema" minWidth="0.0" prefWidth="210.66668701171875" resizable="false" text="Schema" />
+            <TableColumn fx:id="shift_column_action" minWidth="0.0" prefWidth="141.33331298828125" resizable="false" text="Action" />
+            </columns>
+        </TableView>
+        <Label layoutX="42.0" layoutY="43.0" text="Shift">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <Button fx:id="shift_button_add" layoutX="104.0" layoutY="41.0" mnemonicParsing="false" onAction="#addShift" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="+ Add" />
+        <Label layoutX="586.0" layoutY="45.0" text="Page 2 of 2" />
+        <Button fx:id="shift_button_back" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#goBackToDepartment" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&lt;" />
+    </children>
+</AnchorPane>

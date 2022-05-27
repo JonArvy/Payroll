@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.ViewPayslipController">
+    <children>
+        <Pane layoutX="109.0" layoutY="22.0" prefHeight="500.0" prefWidth="540.0" style="-fx-background-color: #D9D9D9;">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="36.0" layoutX="134.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../Assets/CWBH Logo.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="185.0" layoutY="30.0" text="Canumay West Barangay Hall">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="186.0" layoutY="58.0" text="For the month of :" />
+                <TextField editable="false" layoutX="289.0" layoutY="54.0" prefHeight="25.0" prefWidth="102.0" />
+                <Label layoutX="57.0" layoutY="108.0" text="Employee:" />
+                <TextField editable="false" layoutX="121.0" layoutY="104.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="257.0" layoutY="108.0" text="Employee ID:" />
+                <TextField editable="false" layoutX="336.0" layoutY="104.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="48.0" layoutY="281.0" text="Basic Salary" />
+                <TextField editable="false" layoutX="121.0" layoutY="277.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="44.0" layoutY="138.0" text="Department:" />
+                <TextField editable="false" layoutX="121.0" layoutY="133.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="280.0" layoutY="138.0" text="Position:" />
+                <TextField editable="false" layoutX="336.0" layoutY="133.0" prefHeight="25.0" prefWidth="120.0" />
+                <Pane layoutX="35.0" layoutY="194.0" opacity="0.5" prefHeight="3.0" prefWidth="430.0" style="-fx-background-color: #545454;" />
+                <Label layoutX="56.0" layoutY="214.0" text="Hours Rendered" />
+                <TextField editable="false" layoutX="151.0" layoutY="210.0" prefHeight="25.0" prefWidth="90.0" />
+                <Label layoutX="263.0" layoutY="214.0" text="Days Rendered" />
+                <TextField editable="false" layoutX="352.0" layoutY="210.0" prefHeight="25.0" prefWidth="90.0" />
+                <Pane layoutX="35.0" layoutY="254.0" opacity="0.5" prefHeight="3.0" prefWidth="430.0" style="-fx-background-color: #545454;" />
+                <Button layoutX="510.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: red; -fx-text-fill: white;" text="X" />
+                <Label layoutX="60.0" layoutY="307.0" text="Overtime" />
+                <TextField editable="false" layoutX="121.0" layoutY="303.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="67.0" layoutY="333.0" text="Holiday" />
+                <TextField editable="false" layoutX="121.0" layoutY="329.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="75.0" layoutY="359.0" text="Bonus" />
+                <TextField editable="false" layoutX="121.0" layoutY="355.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="40.0" layoutY="385.0" text="Gross Salary">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font></Label>
+                <TextField editable="false" layoutX="121.0" layoutY="381.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="60.0" layoutY="432.0" text="NET PAY">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField editable="false" layoutX="121.0" layoutY="428.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="303.0" layoutY="281.0" text="Less" />
+                <TextField editable="false" layoutX="339.0" layoutY="277.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="278.0" layoutY="307.0" text="Pag-IBIG" />
+                <TextField editable="false" layoutX="339.0" layoutY="303.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="283.0" layoutY="333.0" text="UT/Late" />
+                <TextField editable="false" layoutX="339.0" layoutY="329.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="286.0" layoutY="359.0" text="Absent" />
+                <TextField editable="false" layoutX="339.0" layoutY="355.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="260.0" layoutY="385.0" text="Deductions">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField editable="false" layoutX="339.0" layoutY="381.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="374.0" layoutY="458.0" text="Signature" />
+                <Pane layoutX="339.0" layoutY="453.0" opacity="0.5" prefHeight="1.5" prefWidth="120.0" style="-fx-background-color: #545454;" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
