@@ -165,7 +165,7 @@
             </Pane>
          </children>
       </VBox>
-      <Pane fx:id="main_addemployee_panel_2" layoutX="244.0" layoutY="-4.0" prefHeight="545.0" prefWidth="717.0" style="-fx-background-color: #FFFFFF;">
+<!--      <Pane fx:id="main_addemployee_panel_2" layoutX="244.0" layoutY="-4.0" prefHeight="545.0" prefWidth="717.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Text layoutX="205.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register your fingerprint on the scanner">
                <font>
@@ -222,53 +222,6 @@
                   </AnchorPane>
                </content>
             </ScrollPane>
-         </children>
-      </Pane>
-      <Pane fx:id="main_department_edit_department_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
-         <children>
-            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
-               <children>
-                  <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="EDIT DEPARTMENT INFORMATION">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="209.0" layoutY="75.0" text="Name" />
-                  <TextField layoutX="261.0" layoutY="71.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="176.0" layoutY="107.0" text="Classification" />
-                  <ComboBox layoutX="261.0" layoutY="103.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="175.0" layoutY="140.0" text="Monthly Rate" />
-                  <TextField layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="154.0" layoutY="174.0" text="Days (per month)" />
-                  <TextField layoutX="261.0" layoutY="170.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="163.0" layoutY="208.0" text="Hours (per day)" />
-                  <TextField layoutX="261.0" layoutY="204.0" prefHeight="25.0" prefWidth="156.0" />
-                  <Label layoutX="179.0" layoutY="242.0" text="Time In Shift" />
-                  <TextField layoutX="261.0" layoutY="238.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Button layoutX="386.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/clock.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label layoutX="169.0" layoutY="276.0" text="Time Out Shift" />
-                  <TextField layoutX="261.0" layoutY="272.0" prefHeight="25.0" prefWidth="120.0" />
-                  <Button layoutX="386.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Assets/clock.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button layoutX="441.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
-                  <Button fx:id="main_department_edit_department_cancel_button" layoutX="505.0" layoutY="341.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
-               </children>
-            </Pane>
          </children>
       </Pane>
       <Pane fx:id="main_bonus_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
@@ -555,41 +508,6 @@
             </TableView>
          </children>
       </Pane>
-      <Pane fx:id="main_credentials_confirmation_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
-         <children>
-            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
-               <children>
-                  <Label layoutX="207.0" layoutY="64.0" text="Confirm Account Credentials">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-               </children></Pane>
-            <Button layoutX="273.0" layoutY="347.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Login">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Label layoutX="273.0" layoutY="191.0" text="Employee ID ">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <TextField layoutX="273.0" layoutY="210.0" prefHeight="25.0" prefWidth="191.0" />
-            <Label layoutX="273.0" layoutY="241.0" text="Password">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <PasswordField layoutX="273.0" layoutY="260.0" prefHeight="25.0" prefWidth="191.0" />
-            <CheckBox layoutX="273.0" layoutY="295.0" mnemonicParsing="false" text="Show password" />
-            <Button layoutX="371.0" layoutY="347.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="Cancel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
       <Pane fx:id="main_credentials_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="41.0" layoutY="36.0" text="Admin Credentials">
@@ -606,43 +524,6 @@
               </columns>
             </TableView>
             <Button layoutX="597.0" layoutY="34.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #545454;" text="Delete" textFill="WHITE" />
-         </children>
-      </Pane>
-      <Pane fx:id="main_credentials_add_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <Label layoutX="263.0" layoutY="98.0" text="Create Account Credentials">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <Button fx:id="main_credentials_create_button" layoutX="263.0" layoutY="349.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Create">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Label layoutX="263.0" layoutY="157.0" text="Employee ID ">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <TextField layoutX="263.0" layoutY="176.0" prefHeight="25.0" prefWidth="191.0" />
-            <Label layoutX="263.0" layoutY="207.0" text="Password">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <PasswordField layoutX="263.0" layoutY="226.0" prefHeight="25.0" prefWidth="191.0" />
-            <Label layoutX="263.0" layoutY="257.0" text="Confirm Password">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <PasswordField layoutX="263.0" layoutY="276.0" prefHeight="25.0" prefWidth="191.0" />
-            <CheckBox layoutX="263.0" layoutY="309.0" mnemonicParsing="false" text="Show all password" />
-            <Button layoutX="361.0" layoutY="349.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="Cancel">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
       <Pane fx:id="main_department_add_department_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
@@ -901,6 +782,178 @@
             <Button layoutX="619.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
          </children>
        </Pane>
+       <Pane fx:id="main_holiday_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="42.0" layoutY="43.0" text="Holiday">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TableView fx:id="main_holiday_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@css/tablecolumn_style.css">
+               <columns>
+                  <TableColumn fx:id="main_holiday_column_holidayname" prefWidth="198.0" resizable="false" text="Holiday" />
+                  <TableColumn fx:id="main_holiday_column_date" prefWidth="131.0" resizable="false" text="Date" />
+                  <TableColumn fx:id="main_holiday_column_type" minWidth="0.0" prefWidth="157.0" resizable="false" text="Type" />
+                  <TableColumn fx:id="main_holiday_column_repeat" minWidth="0.0" prefWidth="134.0" resizable="false" text="Repeat" />
+                  <TableColumn fx:id="main_holiday_column_action" minWidth="0.0" prefWidth="94.0" resizable="false" text="Action" />
+               </columns>
+            </TableView>
+            <Button fx:id="main_holiday_add_holiday_button" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
+         </children>
+      </Pane>
+      <Pane fx:id="main_admin_panel_edit" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/NoticeBoard.png" />
+               </image>
+            </ImageView>
+            <TextArea layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextArea>
+            <Button layoutX="498.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Update" textFill="WHITE" />
+            <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #545454;" text="Cancel" textFill="WHITE" />
+         </children>
+       </Pane>
+      <Pane fx:id="main_admin_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/NoticeBoard.png" />
+               </image>
+            </ImageView>
+            <TextArea editable="false" layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextArea>
+            <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Edit" textFill="WHITE" />
+           </children>
+       </Pane>
+-->
+      <Pane fx:id="main_department_edit_department_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
+         <children>
+            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
+               <children>
+                  <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="EDIT DEPARTMENT INFORMATION">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="209.0" layoutY="75.0" text="Name" />
+                  <TextField layoutX="261.0" layoutY="71.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="176.0" layoutY="107.0" text="Classification" />
+                  <ComboBox layoutX="261.0" layoutY="103.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="175.0" layoutY="140.0" text="Monthly Rate" />
+                  <TextField layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="154.0" layoutY="174.0" text="Days (per month)" />
+                  <TextField layoutX="261.0" layoutY="170.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="163.0" layoutY="208.0" text="Hours (per day)" />
+                  <TextField layoutX="261.0" layoutY="204.0" prefHeight="25.0" prefWidth="156.0" />
+                  <Label layoutX="179.0" layoutY="242.0" text="Time In Shift" />
+                  <TextField layoutX="261.0" layoutY="238.0" prefHeight="25.0" prefWidth="120.0" />
+                  <Button layoutX="386.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/clock.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="169.0" layoutY="276.0" text="Time Out Shift" />
+                  <TextField layoutX="261.0" layoutY="272.0" prefHeight="25.0" prefWidth="120.0" />
+                  <Button layoutX="386.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Assets/clock.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="441.0" layoutY="341.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
+                  <Button fx:id="main_department_edit_department_cancel_button" layoutX="505.0" layoutY="341.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="main_credentials_confirmation_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
+         <children>
+            <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
+               <children>
+                  <Label layoutX="207.0" layoutY="64.0" text="Confirm Account Credentials">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Button layoutX="273.0" layoutY="347.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Login">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="273.0" layoutY="191.0" text="Employee ID ">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField layoutX="273.0" layoutY="210.0" prefHeight="25.0" prefWidth="191.0" />
+            <Label layoutX="273.0" layoutY="241.0" text="Password">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <PasswordField layoutX="273.0" layoutY="260.0" prefHeight="25.0" prefWidth="191.0" />
+            <CheckBox layoutX="273.0" layoutY="295.0" mnemonicParsing="false" text="Show password" />
+            <Button layoutX="371.0" layoutY="347.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="Cancel">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+
+      <Pane fx:id="main_credentials_add_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="263.0" layoutY="98.0" text="Create Account Credentials">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="main_credentials_create_button" layoutX="263.0" layoutY="349.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Create">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label layoutX="263.0" layoutY="157.0" text="Employee ID ">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField layoutX="263.0" layoutY="176.0" prefHeight="25.0" prefWidth="191.0" />
+            <Label layoutX="263.0" layoutY="207.0" text="Password">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <PasswordField layoutX="263.0" layoutY="226.0" prefHeight="25.0" prefWidth="191.0" />
+            <Label layoutX="263.0" layoutY="257.0" text="Confirm Password">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <PasswordField layoutX="263.0" layoutY="276.0" prefHeight="25.0" prefWidth="191.0" />
+            <CheckBox layoutX="263.0" layoutY="309.0" mnemonicParsing="false" text="Show all password" />
+            <Button layoutX="361.0" layoutY="349.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="Cancel">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+
       <Pane fx:id="main_editemployee_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="540.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
          <children>
             <Text layoutX="26.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT EMPLOYEE DETAILS">
@@ -976,25 +1029,7 @@
             <Button layoutX="320.0" layoutY="281.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #01374D;" text="OK" textFill="WHITE" />
            </children>
        </Pane>
-      <Pane fx:id="main_holiday_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <Label layoutX="42.0" layoutY="43.0" text="Holiday">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <TableView fx:id="main_holiday_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@css/tablecolumn_style.css">
-               <columns>
-                  <TableColumn fx:id="main_holiday_column_holidayname" prefWidth="198.0" resizable="false" text="Holiday" />
-                  <TableColumn fx:id="main_holiday_column_date" prefWidth="131.0" resizable="false" text="Date" />
-                  <TableColumn fx:id="main_holiday_column_type" minWidth="0.0" prefWidth="157.0" resizable="false" text="Type" />
-                  <TableColumn fx:id="main_holiday_column_repeat" minWidth="0.0" prefWidth="134.0" resizable="false" text="Repeat" />
-                  <TableColumn fx:id="main_holiday_column_action" minWidth="0.0" prefWidth="94.0" resizable="false" text="Action" />
-               </columns>
-            </TableView>
-            <Button fx:id="main_holiday_add_holiday_button" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
-         </children>
-      </Pane>
+
       <Pane fx:id="main_editholiday_panel_1" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);">
          <children>
             <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
@@ -1186,36 +1221,6 @@
             </Pane>
          </children>
       </Pane>
-      <Pane fx:id="main_admin_panel_edit" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
-         <children>
-            <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/NoticeBoard.png" />
-               </image>
-            </ImageView>
-            <TextArea layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextArea>
-            <Button layoutX="498.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Update" textFill="WHITE" />
-            <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #545454;" text="Cancel" textFill="WHITE" />
-         </children>
-       </Pane>
-      <Pane fx:id="main_admin_panel" layoutX="244.0" layoutY="-1.0" prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;">
-         <children>
-            <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/NoticeBoard.png" />
-               </image>
-            </ImageView>
-            <TextArea editable="false" layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextArea>
-            <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Edit" textFill="WHITE" />
-           </children>
-       </Pane>
+
    </children>
 </AnchorPane>

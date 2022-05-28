@@ -2,8 +2,6 @@ package Classes;
 
 import Database.*;
 import Models.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,9 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 
-import javax.swing.*;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
