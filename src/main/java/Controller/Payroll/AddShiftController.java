@@ -23,6 +23,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
+import static Classes.CustomAlert.callAlert;
+
 public class AddShiftController {
 
     @FXML
@@ -198,7 +200,7 @@ public class AddShiftController {
 
     private void checkShiftIfValid(int shifttype) {
         if (addshift_timeout.getText().equals("Invalid Time Values")) {
-            System.out.println("Invalid Time Values");
+            callAlert("Invalid", "Invalid Time Values");
         } else {
             try {
                 int recepient = addshift_department.getValue().getDepartment_ID();
@@ -212,16 +214,9 @@ public class AddShiftController {
 
                 sqlShift.addShift(new Shift(shifttype, recepient, sunday, monday, tuesday, wednesday, thursday, friday, saturday));
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText("Success : Add Shift Success");
-                alert.setContentText("Add Shift Success for " + addshift_department.getValue().getDepartment_Name() + " Department");
-                alert.initStyle(StageStyle.UNDECORATED);
-                alert.showAndWait();
-
                 loadShift();
             } catch (Exception e) {
-                System.out.println("Error");
+                callAlert("Error!", "Error!");
             }
         }
     }

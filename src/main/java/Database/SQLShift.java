@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static Classes.CustomAlert.callAlert;
 import static Database.SQLConnection.connect;
 
 public class SQLShift {
@@ -119,8 +120,11 @@ public class SQLShift {
             prep.setBoolean(9, shift.isShift_Saturday());
 
             prep.executeUpdate();
+
+            callAlert("Success!", "Shift Added with days of " + shift.getShift_Schema());
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
+            callAlert("Error!", "Error connecting to SQLite Database");
         }
     }
 

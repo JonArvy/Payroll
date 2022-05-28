@@ -11,6 +11,7 @@ import java.time.LocalDate;
 
 public class Tester {
     private SQLExecution sqlExecution = new SQLExecution();
+    private SQLExecutionTesting sqlExecutionTesting = new SQLExecutionTesting();
     private SQLAdmin sqlAdmin = new SQLAdmin();
     private SQLAttendance sqlAttendance = new SQLAttendance();
     private SQLBonus sqlBonus = new SQLBonus();
@@ -19,19 +20,24 @@ public class Tester {
     private SQLHoliday sqlHoliday = new SQLHoliday();
     private SQLNoticeboard sqlNoticeboard = new SQLNoticeboard();
     private SQLShift sqlShift = new SQLShift();
+
     public static void main(String[] args) {
-        new Tester().insertDateAndTime();
-
-
+//        new Tester().insertDateAndTime();
+        Tester tester = new Tester();
+//        tester.dropTables();
+//        tester.createTables();
 
     }
 
     public void createTables() {
-        sqlExecution.createTables();
+//        sqlExecution.createTables();
+        sqlExecutionTesting.createTables();
     }
 
     public void dropTables() {
-        sqlExecution.dropTables();
+//        sqlExecution.dropTables();
+
+        sqlExecutionTesting.dropTables();
     }
 
     public void insertDateAndTime() {
