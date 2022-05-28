@@ -1,5 +1,6 @@
 package Controller.Employee;
 
+import Classes.Converters;
 import Database.SQLDepartment;
 import Database.SQLEmployee;
 import Models.Admin;
@@ -21,7 +22,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.stream.Collectors;
+
+import static Classes.CustomAlert.callAlert;
 
 public class EditEmployeeController {
 
@@ -98,7 +104,7 @@ public class EditEmployeeController {
 
     @FXML
     private void saveEmployee(ActionEvent event) {
-        loadManageEmployee();
+        validateFields();
     }
 
     @FXML
@@ -119,6 +125,8 @@ public class EditEmployeeController {
 
     private SQLEmployee sqlEmployee = new SQLEmployee();
     private SQLDepartment sqlDepartment = new SQLDepartment();
+
+    private Converters converters = new Converters();
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
@@ -172,50 +180,70 @@ public class EditEmployeeController {
 
     }
 
-    public StringConverter<Department> departmentConverter() {
-        StringConverter<Department> converter = new StringConverter<Department>() {
-            @Override
-            public String toString(Department department) {
-                String s = "";
-                try {
-                    s = department.getDepartment_Name();
-                } catch (NullPointerException e) {
-                    s = "";
-                }
-                return s;
+    private void validateFields() {
+        try {
+            editemployee_birthdate.getConverter().fromString(editemployee_birthdate.getEditor().getText());
+
+            int empid = Integer.parseInt(editemployee_employeeid.getText());
+            String marital_status = editemployee_maritalstatus.getValue();
+            int department = editemployee_department.getValue().getDepartment_ID(); // Will fix later
+            String position = editemployee_position.getText();
+            String employment_status = editemployee_employmentstatus.getValue();
+            String first_name = editemployee_firstname.getText();
+            String last_name = editemployee_lastname.getText();
+            String address = editemployee_address.getText();
+            boolean isMale = editemployee_gender.getValue().isBool();
+            String number = editemployee_number.getText();
+            boolean isActive = editemployee_status.getValue().isBool();
+            String contact_full_name = editemployee_contactname.getText();
+            String contact_relationship = editemployee_contactrelationship.getText();
+            String contact_number = editemployee_contactnumber.getText();
+
+            String nationality = editemployee_nationality.getText();
+            String middle_name = editemployee_middlename.getText();
+            String extension_name = editemployee_extension.getText();
+            String contact_address = editemployee_contactaddress.getText();
+
+            Date birthdate = Date.valueOf(LocalDate.of(2000, 1, 1));
+            try {
+                birthdate = Date.valueOf(editemployee_birthdate.getValue());
+            } catch (RuntimeException e) {
+                birthdate = Date.valueOf(LocalDate.of(2000, 1, 1));
             }
 
-            @Override
-            public Department fromString(String s) {
-                return departmentList.stream()
-                        .filter(item -> item.getDepartment_Name().equals(s))
-                        .collect(Collectors.toList()).get(0);
-            }
-        };
-        return converter;
-    }
+            if (empid > 100000 || empid <= 0) {
+                callAlert("Error!", "Invalid Employee ID");
+            } else if (first_name.trim().equals("")) {
+                callAlert("Error!", "The first name is empty!");
+            } else if (last_name.trim().equals("")) {
+                callAlert("Error!", "The last name is empty!");
+            } else if (address.trim().equals("")) {
+                callAlert("Error!", "The address is empty!");
+            } else if (number.trim().equals("")) {
+                callAlert("Error!", "The contact number is empty!");
+            } else if (position.trim().equals("")) {
+                callAlert("Error!", "The position is empty!");
+            } else if (contact_full_name.trim().equals("")) {
+                callAlert("Error!", "The emergency contact name is empty!");
+            } else if (contact_relationship.trim().equals("")) {
+                callAlert("Error!", "The emergency contact relationship is empty!");
+            } else if (contact_number.trim().equals("")) {
+                callAlert("Error!", "The emergency contact number is empty!");
+            } else {
+                sqlEmployee.updateEmployee(new Employee(empid, nationality,
+                    marital_status, department, position, employment_status, first_name, last_name,
+                    middle_name, extension_name, address, isMale, number, birthdate, isActive,
+                    contact_full_name, contact_relationship, contact_address, contact_number
+                ));
 
-    public StringConverter<BooleanValue> booleanValueConverter(ObservableList<BooleanValue> list) {
-        StringConverter<BooleanValue> converter = new StringConverter<BooleanValue>() {
-            @Override
-            public String toString(BooleanValue booleanValue) {
-                String s = "";
-                try {
-                    s = booleanValue.getName();
-                } catch (NullPointerException e) {
-                    s = "";
-                }
-                return s;
+                loadManageEmployee();
             }
 
-            @Override
-            public BooleanValue fromString(String s) {
-                return list.stream()
-                        .filter(item -> item.getName().equals(s))
-                        .collect(Collectors.toList()).get(0);
-            }
-        };
-        return converter;
+        } catch (NumberFormatException e) {
+            callAlert("Error!", "Invalid ID");
+        } catch (DateTimeParseException o) {
+            callAlert("Error!", "Invalid Date");
+        }
     }
 
     private void initializeContainers() {
@@ -233,13 +261,13 @@ public class EditEmployeeController {
 
         editemployee_department.setItems(departmentList);
 
-        editemployee_department.setConverter(departmentConverter());
+        editemployee_department.setConverter(converters.departmentConverter());
 
         editemployee_gender.setItems(genderList);
         editemployee_status.setItems(statusList);
 
-        editemployee_gender.setConverter(booleanValueConverter(genderList));
-        editemployee_status.setConverter(booleanValueConverter(statusList));
+        editemployee_gender.setConverter(converters.booleanValueConverter(genderList));
+        editemployee_status.setConverter(converters.booleanValueConverter(statusList));
 
         editemployee_maritalstatus.getItems().addAll("Single", "Married", "Widowed", "Annuled");
         editemployee_maritalstatus.getSelectionModel().select(0);

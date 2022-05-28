@@ -136,8 +136,6 @@ public class AdminController {
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            controller.setEmployee(new Employee());
-
             AnchorPane anchorPane = fxmlLoader.getRoot();
             content_container.getChildren().clear();
             content_container.getChildren().add(anchorPane);

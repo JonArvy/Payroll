@@ -5,6 +5,7 @@ import Database.SQLDepartment;
 import Models.Admin;
 import Models.Attendance;
 import Models.Department;
+import Models.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.util.Callback;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -106,7 +109,42 @@ public class DailyAttendanceController {
         main_dailyattendance_column_position.setCellValueFactory(new PropertyValueFactory<Attendance, String>("Employee_Position"));
         main_dailyattendance_column_timein.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeIn"));
         main_dailyattendance_column_timeout.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeOut"));
-//        main_dailyattendance_column_action.setCellValueFactory(new PropertyValueFactory<Department, Double>("Hourly_Rate"));
+
+        Callback<TableColumn<Attendance, Void>, TableCell<Attendance, Void>> cellFactory = new Callback<TableColumn<Attendance, Void>, TableCell<Attendance, Void>>() {
+            @Override
+            public TableCell<Attendance, Void> call(final TableColumn<Attendance, Void> param) {
+                final TableCell<Attendance, Void> cell = new TableCell<Attendance, Void>() {
+                    private final Button btn = new Button("Edit");
+
+                    {
+                        String style = "-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
+                                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
+                                "-fx-background-radius: 30; " +
+                                "-fx-background-insets: 0,1,1; " +
+                                "-fx-text-fill: black; " +
+                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);";
+
+                        btn.setStyle(style);
+                        btn.setOnAction((ActionEvent event) -> {
+                            Attendance attendance = getTableView().getItems().get(getIndex());
+                            System.out.println(attendance.getAttendance_ID());
+                        });
+                    }
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox allbtn = new HBox(btn);
+                            setGraphic(allbtn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        main_dailyattendance_column_action.setCellFactory(cellFactory);
 
         main_dailyattendance_tableview.setItems(attendanceList);
     }

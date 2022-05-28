@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
+import static Classes.CustomAlert.callAlert;
 import static Database.SQLConnection.connect;
 
 public class SQLEmployee {
@@ -183,6 +184,8 @@ public class SQLEmployee {
             preparedStatement.setString(20, employee.getEmployee_Biometrics());
 
             preparedStatement.executeUpdate();
+
+            callAlert("Success!", "Employee " + employee.getFirst_Name() + " " + employee.getLast_Name() + " has been added!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -235,8 +238,11 @@ public class SQLEmployee {
             preparedStatement.setInt(19, employee.getEmployee_ID());
 
             preparedStatement.executeUpdate();
+
+            callAlert("Success!", "Employee " + employee.getFirst_Name() + " " + employee.getLast_Name() + " has been updated!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
+            callAlert("Error!", "Error connecting to SQLite database");
             e.printStackTrace();
         }
     }

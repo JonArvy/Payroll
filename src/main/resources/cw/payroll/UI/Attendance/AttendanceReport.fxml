@@ -2,20 +2,20 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Attendance.AttendanceReportController">
     <children>
         <Text layoutX="24.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" />
         <Button layoutX="528.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: #D9D9D9; -fx-text-fill: #000000;" text="GENERATE REPORT .csv" />
-        <Button layoutX="312.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="SHOW" />
+        <Button fx:id="attendancereport_show" layoutX="312.0" layoutY="32.0" mnemonicParsing="false" onAction="#show" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="SHOW" />
         <Text layoutX="167.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
-        <DatePicker layoutX="24.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" />
-        <DatePicker layoutX="167.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" />
+        <DatePicker fx:id="attendancereport_from" layoutX="24.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" />
+        <DatePicker fx:id="attendancereport_to" disable="true" layoutX="167.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" />
         <Text layoutX="155.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
         <ScrollPane layoutX="1.0" layoutY="70.0" prefHeight="470.0" prefWidth="717.0">
             <content>

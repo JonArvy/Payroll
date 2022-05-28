@@ -46,7 +46,7 @@
         <TextField fx:id="editemployee_extension" layoutX="325.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
         <DatePicker fx:id="editemployee_birthdate" layoutX="325.0" layoutY="213.0" prefHeight="25.0" prefWidth="109.0" />
         <ComboBox fx:id="editemployee_status" layoutX="325.0" layoutY="241.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
-        <TextField fx:id="editemployee_employeeid" editable="false" layoutX="575.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="editemployee_employeeid" disable="true" editable="false" layoutX="575.0" layoutY="105.0" prefHeight="25.0" prefWidth="109.0" />
         <TextField fx:id="editemployee_nationality" layoutX="575.0" layoutY="132.0" prefHeight="25.0" prefWidth="109.0" />
         <ComboBox fx:id="editemployee_maritalstatus" layoutX="575.0" layoutY="159.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
         <ComboBox fx:id="editemployee_department" layoutX="575.0" layoutY="186.0" prefHeight="25.0" prefWidth="109.0" promptText="Department" />

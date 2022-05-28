@@ -2,7 +2,6 @@ package Controller.Payroll;
 
 import Database.SQLDepartment;
 import Models.Admin;
-import Models.Bonus;
 import Models.Department;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
@@ -13,32 +12,31 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import static Classes.CustomAlert.callAlert;
 
-public class AddDepartmentController {
+public class EditDepartmentController {
 
     @FXML
-    private Button adddepartment_button_add;
+    private Button editdepartment_button_add;
 
     @FXML
-    private Button adddepartment_button_cancel;
+    private Button editdepartment_button_cancel;
 
     @FXML
-    private TextField adddepartment_dayspermonth;
+    private TextField editdepartment_dayspermonth;
 
     @FXML
-    private TextField adddepartment_hoursperday;
+    private TextField editdepartment_hoursperday;
 
     @FXML
-    private TextField adddepartment_monthlyrate;
+    private TextField editdepartment_monthlyrate;
 
     @FXML
-    private TextField adddepartment_name;
+    private TextField editdepartment_name;
 
     @FXML
-    private void addDepartment(ActionEvent event) {
+    private void editdepartment(ActionEvent event) {
         checkDepartmentIfValid();
     }
 
@@ -78,14 +76,14 @@ public class AddDepartmentController {
     }
 
     private void checkDepartmentIfValid() {
-        if (adddepartment_name.getText() == null || adddepartment_name.getText().trim().equals("")) {
+        if (editdepartment_name.getText() == null || editdepartment_name.getText().trim().equals("")) {
             callAlert("Invalid", "Invalid Department Name");
         } else {
             try {
-                int dayspermonth = Integer.parseInt(adddepartment_dayspermonth.getText());
-                int hoursperday = Integer.parseInt(adddepartment_hoursperday.getText());
-                double monthlyrate = Double.parseDouble(adddepartment_monthlyrate.getText());
-                String name = adddepartment_name.getText();
+                int dayspermonth = Integer.parseInt(editdepartment_dayspermonth.getText());
+                int hoursperday = Integer.parseInt(editdepartment_hoursperday.getText());
+                double monthlyrate = Double.parseDouble(editdepartment_monthlyrate.getText());
+                String name = editdepartment_name.getText();
 
                 sqlDepartment.addDepartment(new Department(name, monthlyrate, dayspermonth, hoursperday));
 

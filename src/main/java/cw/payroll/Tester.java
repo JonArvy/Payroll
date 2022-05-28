@@ -24,8 +24,8 @@ public class Tester {
     public static void main(String[] args) {
 //        new Tester().insertDateAndTime();
         Tester tester = new Tester();
-//        tester.dropTables();
-//        tester.createTables();
+        tester.dropTables();
+        tester.createTables();
 
     }
 

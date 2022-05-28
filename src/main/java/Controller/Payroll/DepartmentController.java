@@ -131,9 +131,9 @@ public class DepartmentController {
     }
 
     private void loadEditDepartment() {
-        AddDepartmentController controller;
+        EditDepartmentController controller;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/AddDepartment.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/EditDepartment.fxml"));
             fxmlLoader.load();
 
             controller = fxmlLoader.getController();

@@ -21,6 +21,8 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.sql.Date;
 
+import static Classes.CustomAlert.callAlert;
+
 public class AddBonusController {
 
     @FXML
@@ -109,7 +111,7 @@ public class AddBonusController {
 
     private void checkBonusIfValid() {
         if (addbonus_name.getText() == null || addbonus_name.getText().trim().equals("")) {
-            System.out.println("Invalid Bonus Name");
+            callAlert("Invalid", "Invalid Bonus Name");
         } else {
             try {
                 addbonus_dateapplicable.getConverter().fromString(addbonus_dateapplicable.getEditor().getText());
@@ -123,9 +125,9 @@ public class AddBonusController {
 
                 loadBonus();
             } catch (NumberFormatException o) {
-                System.out.println("Invalid Amount");
+                callAlert("Invalid", "Invalid Amount");
             } catch (Exception e) {
-                System.out.println("Invalid Date Value");
+                callAlert("Invalid", "Invalid Date Value");
             }
         }
     }

@@ -28,11 +28,11 @@ public class SQLExecutionTesting {
                 "emp_lname VARCHAR(30) NOT NULL, " +
                 "emp_mname VARCHAR(30), " +
                 "emp_ext VARCHAR(10), " +
-                "emp_address VARCHAR(250), " +
-                "emp_gender BOOLEAN NOT NULL, " +
+                "emp_address VARCHAR(250) NOT NULL, " +
+                "emp_ismale BOOLEAN NOT NULL, " +
                 "emp_contactno VARCHAR(20) NOT NULL, " +
                 "emp_bday DATE, " +
-                "emp_status BOOLEAN NOT NULL, " +
+                "emp_isactive BOOLEAN NOT NULL, " +
 
                 "emp_contact_fname VARCHAR(128) NOT NULL, " +
                 "emp_contact_relationship VARCHAR(30) NOT NULL, " +
@@ -47,7 +47,7 @@ public class SQLExecutionTesting {
 
                 "noticeboard_message VARCHAR(500), " +
                 "noticeboard_date DATE NOT NULL, " +
-                "noticeboard_active BOOLEAN NOT NULL)";
+                "noticeboard_isactive BOOLEAN NOT NULL)";
 
         // DEPARTMENT TABLE
         String department_tbl = "CREATE TABLE IF NOT EXISTS tbl_department (" +

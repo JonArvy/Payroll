@@ -20,6 +20,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import static Classes.CustomAlert.callAlert;
+
 public class AddHolidayController {
 
     @FXML
@@ -85,7 +87,7 @@ public class AddHolidayController {
 
     private void checkHolidayIfValid() {
         if (addholiday_name.getText() == null || addholiday_name.getText().trim().equals("")) {
-            System.out.println("Invalid Holiday Name");
+            callAlert("Invalid", "Invalid Holiday Name");
         } else {
             try {
                 addholiday_date.getConverter().fromString(addholiday_date.getEditor().getText());
@@ -98,7 +100,7 @@ public class AddHolidayController {
 
                 loadHolidayList();
             } catch (Exception e) {
-                System.out.println("Invalid Date Value");
+                callAlert("Invalid", "Invalid Date Value");
             }
         }
     }

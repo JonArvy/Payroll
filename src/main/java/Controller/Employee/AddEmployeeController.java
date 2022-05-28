@@ -2,6 +2,7 @@ package Controller.Employee;
 
 import Classes.Converters;
 import Database.SQLDepartment;
+import Database.SQLEmployee;
 import Models.Admin;
 import Models.BooleanValue;
 import Models.Department;
@@ -18,10 +19,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.StringConverter;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+import static Classes.CustomAlert.callAlert;
 
 public class AddEmployeeController {
 
@@ -90,12 +94,12 @@ public class AddEmployeeController {
 
     @FXML
     private void nextPage(ActionEvent event) {
-        loadAddEmployeeBiometrics();
+        validateFields();
     }
 
     @FXML
     private void reset(ActionEvent event) {
-
+        loadAddEmployee();
     }
 
     @FXML
@@ -114,6 +118,7 @@ public class AddEmployeeController {
     private ObservableList<Department> departmentList = FXCollections.observableArrayList();
 
     private SQLDepartment sqlDepartment = new SQLDepartment();
+    private SQLEmployee sqlEmployee = new SQLEmployee();
 
     Converters converters = new Converters();
 
@@ -124,6 +129,7 @@ public class AddEmployeeController {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+        fillFields();
     }
 
     private void loadAddEmployeeBiometrics() {
@@ -143,6 +149,114 @@ public class AddEmployeeController {
             container.getChildren().add(anchorPane);
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void loadAddEmployee() {
+        AddEmployeeController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void fillFields() {
+        addemployee_empid.setText(Integer.toString(employee.getEmployee_ID()));
+        addemployee_nationality.setText(employee.getNationality());
+        addemployee_maritalstatus.setValue(employee.getMarital_Status());
+        addemployee_department.getSelectionModel().select(employee.getDepartment());
+        addemployee_position.setText(employee.getPosition());
+        addemployee_empstatus.setValue(employee.getEmployment_Status());
+        addemployee_firstname.setText(employee.getFirst_Name());
+        addemployee_lastname.setText(employee.getLast_Name());
+        addemployee_middlename.setText(employee.getMiddle_Name());
+        addemployee_extension.setText(employee.getExtension());
+        addemployee_address.setText(employee.getAddress());
+        addemployee_gender.getSelectionModel().select(employee.isGender() ? 0 : 1);
+        addemployee_number.setText(employee.getNumber());
+        addemployee_bdate.setValue(employee.getBirthdate().toLocalDate());
+        addemployee_status.getSelectionModel().select(employee.isActive() ? 0 : 1);
+        addemployee_contactname.setText(employee.getContact_Name());
+        addemployee_contactrelationship.setText(employee.getContact_Relationship());
+        addemployee_contactaddress.setText(employee.getContact_Address());
+        addemployee_contactnumber.setText(employee.getContact_Number());
+    }
+
+    private void validateFields() {
+        try {
+            addemployee_bdate.getConverter().fromString(addemployee_bdate.getEditor().getText());
+
+            int empid = Integer.parseInt(addemployee_empid.getText());
+            String marital_status = addemployee_maritalstatus.getValue();
+            int department = addemployee_department.getValue().getDepartment_ID(); // Will fix later
+            String position = addemployee_position.getText();
+            String employment_status = addemployee_empstatus.getValue();
+            String first_name = addemployee_firstname.getText();
+            String last_name = addemployee_lastname.getText();
+            String address = addemployee_address.getText();
+            boolean isMale = addemployee_gender.getValue().isBool();
+            String number = addemployee_number.getText();
+            boolean isActive = addemployee_status.getValue().isBool();
+            String contact_full_name = addemployee_contactname.getText();
+            String contact_relationship = addemployee_contactrelationship.getText();
+            String contact_number = addemployee_contactnumber.getText();
+
+            String nationality = addemployee_nationality.getText();
+            String middle_name = addemployee_middlename.getText();
+            String extension_name = addemployee_extension.getText();
+            String contact_address = addemployee_contactaddress.getText();
+
+            Date birthdate = Date.valueOf(LocalDate.of(2000, 1, 1));
+            try {
+                birthdate = Date.valueOf(addemployee_bdate.getValue());
+            } catch (RuntimeException e) {
+                birthdate = Date.valueOf(LocalDate.of(2000, 1, 1));
+            }
+
+            if (empid > 100000 || empid <= 0) {
+                callAlert("Error!", "Invalid Employee ID");
+            } else if (first_name.trim().equals("")) {
+                callAlert("Error!", "The first name is empty!");
+            } else if (last_name.trim().equals("")) {
+                callAlert("Error!", "The last name is empty!");
+            } else if (address.trim().equals("")) {
+                callAlert("Error!", "The address is empty!");
+            } else if (number.trim().equals("")) {
+                callAlert("Error!", "The contact number is empty!");
+            } else if (position.trim().equals("")) {
+                callAlert("Error!", "The position is empty!");
+            } else if (contact_full_name.trim().equals("")) {
+                callAlert("Error!", "The emergency contact name is empty!");
+            } else if (contact_relationship.trim().equals("")) {
+                callAlert("Error!", "The emergency contact relationship is empty!");
+            } else if (contact_number.trim().equals("")) {
+                callAlert("Error!", "The emergency contact number is empty!");
+            } else {
+                if (sqlEmployee.checkIfEmployeeIDExists(empid)) {
+                    this.employee = new Employee( empid, nationality, marital_status,
+                        department, position, employment_status, first_name, last_name, middle_name,
+                        extension_name, address, isMale, number, birthdate, isActive, contact_full_name,
+                        contact_relationship, contact_address, contact_number, "Biometrics");
+
+                    loadAddEmployeeBiometrics();
+                } else {
+                    callAlert("Invalid!", "Employee with same ID already exists!");
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            callAlert("Error!", "Invalid ID");
+        } catch (DateTimeParseException o) {
+            callAlert("Error!", "Invalid Date");
         }
     }
 

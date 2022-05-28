@@ -1,6 +1,7 @@
 package Controller.Employee;
 
 import Controller.NoticeBoard.NoticeBoardController;
+import Database.SQLEmployee;
 import Models.Admin;
 import Models.Employee;
 import cw.payroll.Main;
@@ -11,6 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.sql.Date;
+
+import static Classes.CustomAlert.callAlert;
 
 public class AddEmployeeBiometricsController {
 
@@ -22,7 +26,7 @@ public class AddEmployeeBiometricsController {
 
     @FXML
     private void addEmployee(ActionEvent event) {
-
+        checkEmployeeIfValid();
     }
 
     @FXML
@@ -36,6 +40,8 @@ public class AddEmployeeBiometricsController {
     private AnchorPane container;
     private Employee employee;
 
+    private SQLEmployee sqlEmployee = new SQLEmployee();
+
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
@@ -45,25 +51,50 @@ public class AddEmployeeBiometricsController {
         this.employee = employee;
     }
 
-//    private void loadAddEmployee() {
-//        AddEmployeeController controller;
-//
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
-//            fxmlLoader.load();
-//
-//            controller = fxmlLoader.getController();
-//            controller.setRetrievedData(admin, container);
-//
-//            AnchorPane anchorPane = fxmlLoader.getRoot();
-//            container.getChildren().clear();
-//            container.getChildren().add(anchorPane);
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//    }
-
     private void loadAddEmployee() {
-        biometrics_panel.toBack();
+        AddEmployeeController controller;
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+
+            controller.setEmployee(employee);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void loadManageEmployee() {
+        ManageEmployeeController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/ManageEmployee.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void checkEmployeeIfValid() {
+        try {
+            sqlEmployee.addEmployee(employee);
+
+            loadManageEmployee();
+        } catch (Exception e) {
+            callAlert("Error!", "An Error Occured!");
+        }
     }
 }
