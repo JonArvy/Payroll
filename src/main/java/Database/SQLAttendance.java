@@ -275,4 +275,19 @@ public class SQLAttendance {
         return attendanceReportList;
 
     }
+
+    public void deleteAttendance(Attendance attendance) {
+        String command = "DELETE FROM tbl_attendance " +
+                "WHERE emp_attendance_date = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setDate(1, attendance.getEmployee_Attendance_Date());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
 }

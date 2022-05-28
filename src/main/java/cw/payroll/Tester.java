@@ -26,27 +26,42 @@ public class Tester {
         Tester tester = new Tester();
 //        tester.dropTables();
 //        tester.createTables();
-
+//        tester.insertDateAndTime();
+//        tester.deleteDate();
     }
 
     public void createTables() {
-//        sqlExecution.createTables();
-        sqlExecutionTesting.createTables();
+        sqlExecution.createTables();
+//        sqlExecutionTesting.createTables();
     }
 
     public void dropTables() {
-//        sqlExecution.dropTables();
+        sqlExecution.dropTables();
 
-        sqlExecutionTesting.dropTables();
+//        sqlExecutionTesting.dropTables();
     }
 
     public void insertDateAndTime() {
-        int empid = 1;
-        Date attendance_date = Date.valueOf("2022-05-11");
-        Time attendance_timein = Time.valueOf("08:30:00");
-        Time attendance_timeout = Time.valueOf("16:20:00");
-        sqlAttendance.registerAttendance(new Attendance(empid, attendance_date, attendance_timein, attendance_timeout));
+        for (int o = 23; o < 28; o++) {
+            for (int i = 1000; i < 1006; i++) {
+                if (i == 1001) continue;
+                int empid = i;
+                Date attendance_date = Date.valueOf("2022-05-" + o);
+                Time attendance_timein = Time.valueOf("08:" + i % o + ":00");
+                Time attendance_timeout = Time.valueOf("17:" + i % o + ":00");
+                sqlAttendance.registerAttendance(new Attendance(empid, attendance_date, attendance_timein, attendance_timeout));
+            }
+        }
     }
+
+    public void deleteDate() {
+        for (int i = 1000; i < 1006; i++) {
+            int empid = i;
+            Date attendance_date = Date.valueOf("2022-05-09");
+            sqlAttendance.deleteAttendance(new Attendance(empid, attendance_date));
+        }
+    }
+
     public void populateEmployeeTable() {
         sqlExecution.createTables();
 

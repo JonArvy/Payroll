@@ -45,6 +45,11 @@ public class Attendance {
         Employee_TimeOut = employee_TimeOut;
     }
 
+    public Attendance(int employee_ID, Date employee_Attendance_Date) {
+        Employee_ID = employee_ID;
+        Employee_Attendance_Date = employee_Attendance_Date;
+    }
+
     public int getAttendance_ID() {
         return Attendance_ID;
     }
