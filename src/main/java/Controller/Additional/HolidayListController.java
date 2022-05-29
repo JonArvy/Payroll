@@ -134,7 +134,7 @@ public class HolidayListController {
                             loadEditHoliday(getTableView().getItems().get(getIndex()));
 //                            Employee emp = getTableView().getItems().get(getIndex());
                         });
-
+                        btn2.setDisable(true);
                         btn2.setStyle(style);
                         btn2.setOnAction((ActionEvent event) -> {
 //                            Employee emp = getTableView().getItems().get(getIndex());

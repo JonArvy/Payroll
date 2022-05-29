@@ -27,7 +27,7 @@
         </Label>
         <Button fx:id="department_button_add" layoutX="286.0" layoutY="41.0" mnemonicParsing="false" onAction="#addDepartment" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
         <Button fx:id="department_button_edit" layoutX="334.0" layoutY="41.0" mnemonicParsing="false" onAction="#editDepartment" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Edit" />
-        <Button fx:id="department_button_delete" layoutX="380.0" layoutY="41.0" mnemonicParsing="false" onAction="#deleteDepartment" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Delete" />
+        <Button fx:id="department_button_delete" disable="true" layoutX="380.0" layoutY="41.0" mnemonicParsing="false" onAction="#deleteDepartment" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Delete" />
         <Label layoutX="586.0" layoutY="45.0" text="Page 1 of 2" />
         <Button fx:id="department_button_next" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" />
     </children>

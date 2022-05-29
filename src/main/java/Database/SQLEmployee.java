@@ -165,9 +165,11 @@ public class SQLEmployee {
                 "te.emp_position as position " +
                 "FROM tbl_employees te " +
                 "JOIN tbl_department td " +
-                "ON te.emp_department = td.department_id";
+                "ON te.emp_department = td.department_id " +
+                "WHERE te.emp_status = ?";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setBoolean(1, true);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

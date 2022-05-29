@@ -125,6 +125,7 @@ public class DailyAttendanceController {
                                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);";
 
                         btn.setStyle(style);
+                        btn.setDisable(true);
                         btn.setOnAction((ActionEvent event) -> {
                             Attendance attendance = getTableView().getItems().get(getIndex());
                             System.out.println(attendance.getAttendance_ID());

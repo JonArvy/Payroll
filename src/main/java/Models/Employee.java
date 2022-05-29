@@ -29,6 +29,7 @@ public class Employee {
 
     private Date Birthdate;
     private Boolean Active;
+    private String Active_Message;
 
     private String Employee_Biometrics;
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -71,6 +72,7 @@ public class Employee {
 
         this.Birthdate = Birthdate;
         this.Active = Active;
+        this.Active_Message = (Active ? "Active" : "Inactive");
 
         this.Contact_Name = Contact_Name;
         this.Contact_Relationship = Contact_Relationship;
@@ -101,6 +103,7 @@ public class Employee {
 
         this.Birthdate = Birthdate;
         this.Active = Active;
+        this.Active_Message = (Active ? "Active" : "Inactive");
 
         this.Contact_Name = Contact_Name;
         this.Contact_Relationship = Contact_Relationship;
@@ -134,6 +137,7 @@ public class Employee {
         this.Employment_Status = Employment_Status;
         this.Department_Name = Department_Name;
         this.Active = Active;
+        this.Active_Message = (Active ? "Active" : "Inactive");
     }
 
     public Employee(int Employee_ID, String Full_Name, String Department_Name, String Position) {
@@ -209,6 +213,10 @@ public class Employee {
 
     public boolean isActive() {
         return Active;
+    }
+
+    public String getActive_Message() {
+        return Active_Message;
     }
 
     public String getEmployee_Biometrics() {

@@ -89,11 +89,12 @@ public class SQLAttendance {
                 "ON tbl_employees.emp_department = tbl_department.department_id " +
                 "WHERE emp_attendance_date >= ? " +
                 "AND emp_attendance_date < ? " +
-                "AND tbl_employees.emp_status = true";
+                "AND tbl_employees.emp_status = ?";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
             preparedStatement.setDate(1, dt1);
             preparedStatement.setDate(2, dt2);
+            preparedStatement.setBoolean(3, true);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

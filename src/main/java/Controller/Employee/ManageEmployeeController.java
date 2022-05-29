@@ -41,7 +41,7 @@ public class ManageEmployeeController {
     private TableColumn<Employee, String> manageemployee_column_lname;
 
     @FXML
-    private TableColumn<Employee, Boolean> manageemployee_column_status;
+    private TableColumn<Employee, String> manageemployee_column_status;
 
     @FXML
     private TextField manageemployee_searchbar;
@@ -117,7 +117,7 @@ public class ManageEmployeeController {
         manageemployee_column_fname.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_Name"));
         manageemployee_column_empstatus.setCellValueFactory(new PropertyValueFactory<Employee, String>("Employment_Status"));
         manageemployee_column_department.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department_Name"));
-        manageemployee_column_status.setCellValueFactory(new PropertyValueFactory<Employee, Boolean>("Active"));
+        manageemployee_column_status.setCellValueFactory(new PropertyValueFactory<Employee, String>("Active_Message"));
 
         Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>> cellFactory = new Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>>() {
             @Override
