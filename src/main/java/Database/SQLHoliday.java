@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static Classes.CustomAlert.callAlert;
 import static Database.SQLConnection.connect;
 
 public class SQLHoliday {
@@ -48,6 +49,8 @@ public class SQLHoliday {
             preparedStatement.setString(3, holiday.getHoliday_Type());
 
             preparedStatement.executeUpdate();
+
+            callAlert("Success!", "Holiday: " + holiday.getHoliday_Name() + " has been added!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -65,6 +68,8 @@ public class SQLHoliday {
             preparedStatement.setString(3, holiday.getHoliday_Type());
 
             preparedStatement.executeUpdate();
+
+            callAlert("Success!", "Holiday: " + holiday.getHoliday_Name() + " has been updated!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();

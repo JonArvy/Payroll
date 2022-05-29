@@ -3,6 +3,7 @@ package Database;
 import java.sql.*;
 import java.time.LocalDate;
 
+import static Classes.CustomAlert.callAlert;
 import static Database.SQLConnection.connect;
 
 public class SQLNoticeboard {
@@ -42,6 +43,7 @@ public class SQLNoticeboard {
 
             preparedStatement.executeUpdate();
 
+            callAlert("Success!", "Noticeboard has been updated!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();

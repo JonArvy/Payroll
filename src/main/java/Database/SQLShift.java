@@ -155,8 +155,32 @@ public class SQLShift {
             prep.setInt(10, shift.getShift_ID());
 
             prep.executeUpdate();
+
+            callAlert("Success!", "Shift has been updated!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
         }
+    }
+
+    public boolean checkIfShiftExist(int recepient) {
+        boolean exist = false;
+        String command = "SELECT * " +
+                "FROM tbl_shift te " +
+                "WHERE shift_recipient = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setInt(1, recepient);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                exist = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return exist;
     }
 }

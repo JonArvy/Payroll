@@ -212,8 +212,11 @@ public class AddShiftController {
                 boolean friday = addshift_friday.isSelected();
                 boolean saturday = addshift_saturday.isSelected();
 
-                sqlShift.addShift(new Shift(shifttype, recepient, sunday, monday, tuesday, wednesday, thursday, friday, saturday));
-
+                if (sqlShift.checkIfShiftExist(recepient)) {
+                    callAlert("Invalid", "A shift already exists for that recipient");
+                } else {
+                    sqlShift.addShift(new Shift(shifttype, recepient, sunday, monday, tuesday, wednesday, thursday, friday, saturday));
+                }
                 loadShift();
             } catch (Exception e) {
                 callAlert("Error!", "Error!");

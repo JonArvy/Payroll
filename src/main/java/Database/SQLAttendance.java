@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
+import static Classes.CustomAlert.callAlert;
 import static Database.SQLConnection.connect;
 
 public class SQLAttendance {
@@ -129,6 +130,8 @@ public class SQLAttendance {
             preparedStatement.setTime(4, attendance.getEmployee_TimeOut()); // Need to connect to dept table
 
             preparedStatement.executeUpdate();
+
+            callAlert("Success!", "Attendance has been recorded!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -318,6 +321,8 @@ public class SQLAttendance {
             preparedStatement.setDate(1, attendance.getEmployee_Attendance_Date());
 
             preparedStatement.executeUpdate();
+
+            callAlert("Success!", "Attendance has been deleted!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();

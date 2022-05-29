@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static Classes.CustomAlert.callAlert;
 import static Database.SQLConnection.connect;
 
 public class SQLBonus {
@@ -52,6 +53,7 @@ public class SQLBonus {
             prep.setDate(4, bonus.getBonus_Date());
 
             prep.executeUpdate();
+            callAlert("Success!", "Bonus: " + bonus.getBonus_Name() + " has been added!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
         }
@@ -97,6 +99,8 @@ public class SQLBonus {
             prep.setInt(5, bonus.getBonus_ID());
 
             prep.executeUpdate();
+
+            callAlert("Success!", "Bonus: " + bonus.getBonus_Name() + " has been updated!");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
         }
