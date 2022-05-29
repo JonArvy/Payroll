@@ -17,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
+import static Classes.CustomAlert.callAlert;
+
 public class DepartmentController {
 
     @FXML
@@ -67,7 +69,7 @@ public class DepartmentController {
 
     @FXML
     private void editDepartment(ActionEvent event) {
-        loadEditDepartment();
+        loadTableEntry();
     }
 
     @FXML
@@ -130,7 +132,7 @@ public class DepartmentController {
         }
     }
 
-    private void loadEditDepartment() {
+    private void loadEditDepartment(Department dept) {
         EditDepartmentController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/EditDepartment.fxml"));
@@ -138,6 +140,8 @@ public class DepartmentController {
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, container);
+
+            controller.setDepartment(dept);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
 //            container.getChildren().clear();
@@ -161,5 +165,15 @@ public class DepartmentController {
 
 
         department_tableview.setItems(departmentList);
+    }
+
+    private void loadTableEntry() {
+        try {
+            Department dept = (Department) department_tableview.getSelectionModel().getSelectedItem();
+//            System.out.println(dept.getDepartment_Name());
+            loadEditDepartment(dept);
+        } catch (Exception e) {
+            callAlert("Invalid", "No row/entry selected");
+        }
     }
 }

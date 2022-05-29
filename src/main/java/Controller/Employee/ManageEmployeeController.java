@@ -56,6 +56,9 @@ public class ManageEmployeeController {
 
     @FXML
     private void initialize() {
+        manageemployee_checkbox_hideinactive.selectedProperty().addListener((a, o, n) -> {
+            showEmployeeList();
+        });
         showEmployeeList();
     }
 
@@ -107,7 +110,7 @@ public class ManageEmployeeController {
 
     private void showEmployeeList() {
         employeeList.clear();
-        employeeList = sqlEmployee.getAllEmployees();
+        employeeList = sqlEmployee.getAllEmployees(manageemployee_checkbox_hideinactive.isSelected());
 
         manageemployee_column_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
         manageemployee_column_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));

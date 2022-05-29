@@ -55,6 +55,74 @@ public class SQLEmployee {
 
     }
 
+    public ObservableList<Employee> getAllEmployees(boolean active) {
+        ObservableList<Employee> employeeList = FXCollections.observableArrayList();
+        if (active == true) {
+            String command = "SELECT emp_id," +
+                    "tbl_employees.emp_lname," +
+                    "tbl_employees.emp_fname," +
+                    "tbl_employees.emp_employmentstatus," +
+                    "tbl_department.department_name," +
+                    "tbl_employees.emp_status " +
+                    "FROM tbl_employees JOIN tbl_department " +
+                    "ON tbl_employees.emp_department = tbl_department.department_id " +
+                    "WHERE tbl_employees.emp_status = ?";
+            try (Connection connection = connect();
+                 PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+                preparedStatement.setBoolean(1, active);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    employeeList.add(new Employee(
+                            resultSet.getInt("emp_id"),
+
+                            resultSet.getString("emp_lname"),
+                            resultSet.getString("emp_fname"),
+                            resultSet.getString("emp_employmentstatus"),
+                            resultSet.getString("department_name"),
+                            resultSet.getBoolean("emp_status")
+                    ));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String command = "SELECT emp_id," +
+                    "tbl_employees.emp_lname," +
+                    "tbl_employees.emp_fname," +
+                    "tbl_employees.emp_employmentstatus," +
+                    "tbl_department.department_name," +
+                    "tbl_employees.emp_status " +
+                    "FROM tbl_employees JOIN tbl_department " +
+                    "ON tbl_employees.emp_department = tbl_department.department_id";
+            try (Connection connection = connect();
+                 PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    employeeList.add(new Employee(
+                            resultSet.getInt("emp_id"),
+
+                            resultSet.getString("emp_lname"),
+                            resultSet.getString("emp_fname"),
+                            resultSet.getString("emp_employmentstatus"),
+                            resultSet.getString("department_name"),
+                            resultSet.getBoolean("emp_status")
+                    ));
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return employeeList;
+
+    }
+
     public ObservableList<Employee> getAllEmployees() {
         ObservableList<Employee> employeeList = FXCollections.observableArrayList();
         String command = "SELECT emp_id," +

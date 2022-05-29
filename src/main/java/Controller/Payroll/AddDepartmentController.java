@@ -87,9 +87,13 @@ public class AddDepartmentController {
                 double monthlyrate = Double.parseDouble(adddepartment_monthlyrate.getText());
                 String name = adddepartment_name.getText();
 
-                sqlDepartment.addDepartment(new Department(name, monthlyrate, dayspermonth, hoursperday));
-
-                loadDepartment();
+                boolean exist = sqlDepartment.checkIfDepartmentNameExists(name);
+                if (exist == true) {
+                    callAlert("Invalid", "A department with same name already exists");
+                } else {
+                    sqlDepartment.addDepartment(new Department(name, monthlyrate, dayspermonth, hoursperday));
+                    loadDepartment();
+                }
             } catch (NumberFormatException o) {
                 callAlert("Invalid", "Invalid Value/s");
             } catch (Exception e) {

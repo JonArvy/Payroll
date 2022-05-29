@@ -13,51 +13,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
-      <Pane fx:id="login_pane_fingerprint_re_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Label layoutX="145.0" layoutY="96.0" text="Couldn't recognize your fingerprint. Please TRY AGAIN">
-               <font>
-                  <Font name="Tw Cen MT Italic" size="15.0" />
-               </font>
-            </Label>
-            <Button fx:id="login_pane_fingerprint_re_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/FINGERPRINT.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="login_pane_fingerprint_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Button fx:id="login_pane_fingerprint_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Label layoutX="198.0" layoutY="97.0" text="Please put your finger on the scanner">
-               <font>
-                  <Font name="Tw Cen MT Italic" size="15.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Assets/FINGERPRINT.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
       <Pane fx:id="login_pane_login_admin" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <ImageView fitHeight="89.0" fitWidth="90.0" layoutX="256.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/ADMIN.png" />
+                  <Image url="@../Assets/ADMIN.png" />
                </image>
             </ImageView>
             <Label layoutX="270.0" layoutY="73.0" text="ADMIN">
@@ -87,11 +49,53 @@
             </Button>
          </children>
       </Pane>
+      <Pane fx:id="login_pane_fingerprint_re_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label layoutX="145.0" layoutY="96.0" text="Couldn't recognize your fingerprint. Please TRY AGAIN">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="login_pane_fingerprint_re_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/FINGERPRINT.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="login_pane_fingerprint_place_proceed1" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
+            <TextField fx:id="login_pane_fingerprint_place_empid1" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
+         </children>
+      </Pane>
+      <Pane fx:id="login_pane_fingerprint_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Button fx:id="login_pane_fingerprint_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="198.0" layoutY="97.0" text="Please put your finger on the scanner">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/FINGERPRINT.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="login_pane_fingerprint_place_proceed" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
+            <TextField fx:id="login_pane_fingerprint_place_empid" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
+         </children>
+      </Pane>
       <Pane fx:id="login_pane_login_start" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <ImageView fitHeight="89.0" fitWidth="90.0" layoutX="261.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/CWBH Logo.png" />
+                  <Image url="@../Assets/CWBH Logo.png" />
                </image>
             </ImageView>
             <Label layoutX="230.0" layoutY="178.0" text="PAYROLL SYSTEM">
@@ -123,7 +127,27 @@
                   <Font name="Tw Cen MT Bold" size="14.0" />
                </font>
             </Label>
-            <Pane layoutX="21.0" layoutY="28.0" prefHeight="89.0" prefWidth="276.0" style="-fx-background-color: #016E8D;" />
+            <Pane layoutX="21.0" layoutY="28.0" prefHeight="89.0" prefWidth="276.0" style="-fx-background-color: #F2F2F2;">
+               <children>
+                  <Label layoutX="13.0" layoutY="35.0" text="Emp Name:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="13.0" layoutY="17.0" text="Emp ID:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="13.0" layoutY="53.0" text="Department:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="employee_panel_text_department" layoutX="98.0" layoutY="52.0" text="Department" />
+                  <Label fx:id="employee_panel_text_name" layoutX="98.0" layoutY="35.0" text="Name" />
+                  <Label fx:id="employee_panel_text_empid" layoutX="98.0" layoutY="18.0" text="0" />
+               </children></Pane>
             <Label layoutX="28.0" layoutY="165.0" text="Date FROM:" />
             <DatePicker fx:id="employee_panel_datepicker_datefrom" layoutX="100.0" layoutY="161.0" prefHeight="25.0" prefWidth="185.0" />
             <Label layoutX="28.0" layoutY="194.0" text="Date TO:" />
@@ -134,28 +158,13 @@
             <Button fx:id="employee_panel_button_total" layoutX="29.0" layoutY="283.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="61.0" style="-fx-background-color: #01374D;" text="TOTAL" textFill="WHITE" />
             <TextField fx:id="employee_panel_text_hours" layoutX="100.0" layoutY="283.0" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #D9D9D9;" />
             <Label layoutX="230.0" layoutY="287.0" text="hrs" />
-            <TableView fx:id="employee_panel_tableview" layoutX="311.0" layoutY="28.0" prefHeight="355.0" prefWidth="276.0" style="-fx-background-color: #D9D9D9;" stylesheets="@css/tablecolumn_style.css">
+            <TableView fx:id="employee_panel_tableview" layoutX="311.0" layoutY="28.0" prefHeight="355.0" prefWidth="276.0" style="-fx-background-color: #D9D9D9;" stylesheets="@../css/tablecolumn_style.css">
               <columns>
                 <TableColumn fx:id="employee_panel_column_date" prefWidth="88.0" text="DATE" />
                 <TableColumn fx:id="employee_panel_column_timein" prefWidth="94.0" text="TIME IN" />
                   <TableColumn fx:id="employee_panel_column_timeout" prefWidth="102.0" text="TIME OUT" />
               </columns>
             </TableView>
-            <Label layoutX="28.0" layoutY="345.0" text="Emp Name:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="28.0" layoutY="327.0" text="Emp ID:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="28.0" layoutY="363.0" text="Department:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label fx:id="employee_panel_text_department" layoutX="113.0" layoutY="362.0" text="Department" />
-            <Label fx:id="employee_panel_text_name" layoutX="113.0" layoutY="345.0" text="Name" />
-            <Label fx:id="employee_panel_text_empid" layoutX="113.0" layoutY="328.0" text="1" />
          </children>
       </Pane>
    </children>

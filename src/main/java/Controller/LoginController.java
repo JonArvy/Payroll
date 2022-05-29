@@ -1,4 +1,4 @@
-package Classes;
+package Controller;
 
 import Database.*;
 import Models.Attendance;
@@ -101,6 +101,27 @@ public class LoginController {
 
     @FXML
     private Button login_pane_login_admin_back;
+
+    @FXML
+    private TextField login_pane_fingerprint_place_empid;
+
+    @FXML
+    private TextField login_pane_fingerprint_re_place_empid;
+
+    @FXML
+    private Button login_pane_fingerprint_place_proceed;
+
+    @FXML
+    private Button login_pane_fingerprint_re_place_proceed;
+
+    @FXML
+    private void proceed(ActionEvent event) {
+        if (event.getSource() == login_pane_fingerprint_place_proceed) {
+
+        } else if (event.getSource() == login_pane_fingerprint_re_place_proceed) {
+
+        }
+    }
 
     private SQLExecution sql = new SQLExecution();
     private SQLAdmin sqlAdmin = new SQLAdmin();

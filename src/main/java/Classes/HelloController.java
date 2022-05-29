@@ -703,7 +703,7 @@ public class HelloController implements Initializable {
             //Manage Employee Button
         } else if (event.getSource() == main_manageemployee_button) {
             main_manageemployee_panel_1.toFront();
-            showEmployeeTable();
+//            showEmployeeTable();
 
         //Add Employee Next Button (to second page)
         } else if (event.getSource() == addemployee_button_next) {
@@ -1001,73 +1001,73 @@ public class HelloController implements Initializable {
         main_department_tableview.setItems(departmentList);
     }
 
-    public void showEmployeeTable() {
-        employeeList.clear();
-        employeeList = sqlEmployee.getAllEmployees();
-
-        main_manageemployee_col_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
-        main_manageemployee_col_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));
-        main_manageemployee_col_fname.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_Name"));
-        main_manageemployee_col_empstatus.setCellValueFactory(new PropertyValueFactory<Employee, String>("Employment_Status"));
-        main_manageemployee_col_dept.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department_Name"));
-        main_manageemployee_col_status.setCellValueFactory(new PropertyValueFactory<Employee, Boolean>("Active"));
-
-//        main_manageemployee_col_action.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
-
-        main_manageemployee_table_view.setItems(employeeList);
-
-        Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>> cellFactory = new Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>>() {
-            @Override
-            public TableCell<Employee, Void> call(final TableColumn<Employee, Void> param) {
-                final TableCell<Employee, Void> cell = new TableCell<Employee, Void>() {
-                    private final Button btn = new Button("View");
-                    private final Button btn2 = new Button("Edit");
-
-
-                    {
-                        btn.setStyle("-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
-                                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
-                                "-fx-background-radius: 30; " +
-                                "-fx-background-insets: 0,1,1; " +
-                                "-fx-text-fill: black; " +
-                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);");
-                        btn.setDisable(true);
-                        btn.setOnAction((ActionEvent event) -> {
-                            Employee emp = getTableView().getItems().get(getIndex());
-                            System.out.println("Edit" + emp.getFirst_Name() + " " + emp.getLast_Name());
-                        });
-
-                        btn2.setStyle("-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
-                                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
-                                "-fx-background-radius: 30; " +
-                                "-fx-background-insets: 0,1,1; " +
-                                "-fx-text-fill: black; " +
-                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);");
-
-                        btn2.setOnAction((ActionEvent event) -> {
-                            Employee emp = getTableView().getItems().get(getIndex());
-//                            System.out.println("Delete" + emp.getFirst_Name() + " " + emp.getLast_Name());
-                            main_editemployee_panel_1.toFront();
-                            loadEmployeePanel(emp);
-                        });
-                    }
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            HBox allbtn = new HBox(btn, btn2);
-                            setGraphic(allbtn);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-
-        main_manageemployee_col_action.setCellFactory(cellFactory);
-    }
+//    public void showEmployeeTable() {
+//        employeeList.clear();
+//        employeeList = sqlEmployee.getAllEmployees();
+//
+//        main_manageemployee_col_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
+//        main_manageemployee_col_lname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Last_Name"));
+//        main_manageemployee_col_fname.setCellValueFactory(new PropertyValueFactory<Employee, String>("First_Name"));
+//        main_manageemployee_col_empstatus.setCellValueFactory(new PropertyValueFactory<Employee, String>("Employment_Status"));
+//        main_manageemployee_col_dept.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department_Name"));
+//        main_manageemployee_col_status.setCellValueFactory(new PropertyValueFactory<Employee, Boolean>("Active"));
+//
+////        main_manageemployee_col_action.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
+//
+//        main_manageemployee_table_view.setItems(employeeList);
+//
+//        Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>> cellFactory = new Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>>() {
+//            @Override
+//            public TableCell<Employee, Void> call(final TableColumn<Employee, Void> param) {
+//                final TableCell<Employee, Void> cell = new TableCell<Employee, Void>() {
+//                    private final Button btn = new Button("View");
+//                    private final Button btn2 = new Button("Edit");
+//
+//
+//                    {
+//                        btn.setStyle("-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
+//                                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
+//                                "-fx-background-radius: 30; " +
+//                                "-fx-background-insets: 0,1,1; " +
+//                                "-fx-text-fill: black; " +
+//                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);");
+//                        btn.setDisable(true);
+//                        btn.setOnAction((ActionEvent event) -> {
+//                            Employee emp = getTableView().getItems().get(getIndex());
+//                            System.out.println("Edit" + emp.getFirst_Name() + " " + emp.getLast_Name());
+//                        });
+//
+//                        btn2.setStyle("-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
+//                                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
+//                                "-fx-background-radius: 30; " +
+//                                "-fx-background-insets: 0,1,1; " +
+//                                "-fx-text-fill: black; " +
+//                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);");
+//
+//                        btn2.setOnAction((ActionEvent event) -> {
+//                            Employee emp = getTableView().getItems().get(getIndex());
+////                            System.out.println("Delete" + emp.getFirst_Name() + " " + emp.getLast_Name());
+//                            main_editemployee_panel_1.toFront();
+//                            loadEmployeePanel(emp);
+//                        });
+//                    }
+//                    @Override
+//                    public void updateItem(Void item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (empty) {
+//                            setGraphic(null);
+//                        } else {
+//                            HBox allbtn = new HBox(btn, btn2);
+//                            setGraphic(allbtn);
+//                        }
+//                    }
+//                };
+//                return cell;
+//            }
+//        };
+//
+//        main_manageemployee_col_action.setCellFactory(cellFactory);
+//    }
 
     public void loadEmployeePanel(Employee emp) {
         initializeComboboxOnEditEmployee();

@@ -58,7 +58,8 @@ public class SQLAttendance {
                 "JOIN tbl_department " +
                 "ON tbl_employees.emp_department = tbl_department.department_id " +
                 "WHERE emp_attendance_date >= ? " +
-                "AND emp_attendance_date < ?";
+                "AND emp_attendance_date < ? " +
+                "AND tbl_employees.emp_status = true";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
             preparedStatement.setDate(1, dt1);
@@ -244,7 +245,8 @@ public class SQLAttendance {
                 ") as holiday " +
                 "FROM tbl_employees te " +
                 "JOIN tbl_department td " +
-                "ON te.emp_department = td.department_id";
+                "ON te.emp_department = td.department_id " +
+                "WHERE te.emp_status = true";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
             preparedStatement.setDate(1, from);

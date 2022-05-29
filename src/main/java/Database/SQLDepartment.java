@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import static Classes.CustomAlert.callAlert;
 import static Database.SQLConnection.connect;
 
 public class SQLDepartment {
@@ -76,6 +77,8 @@ public class SQLDepartment {
             preparedStatement.setInt(4, department.getDepartment_HoursPerDay());
 
             preparedStatement.executeUpdate();
+
+            callAlert("Success", "Department " + department.getDepartment_Name() + " has been added");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -83,12 +86,12 @@ public class SQLDepartment {
     }
 
     public void editDepartment(Department department) {
-        String command = "UPDATE tbl_deparment" +
+        String command = "UPDATE tbl_department " +
                 "SET department_name = ?," +
                 "    department_monthlyrate = ?," +
                 "    department_dayspermonth = ?, " +
                 "    department_hoursperday = ?" +
-                "WHERE deparment_id = ?";
+                "WHERE department_id = ?";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
 
@@ -99,9 +102,60 @@ public class SQLDepartment {
             preparedStatement.setInt(5, department.getDepartment_ID());
 
             preparedStatement.executeUpdate();
+
+            callAlert("Success", "Department " + department.getDepartment_Name() + " has been updated");
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
         }
+    }
+
+    public boolean checkIfDepartmentNameExists(int deptid, String deptname) {
+        boolean exist = false;
+        String command = "SELECT * " +
+                "FROM tbl_department te " +
+                "WHERE department_name = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setString(1, deptname);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                exist = true;
+                if (resultSet.getInt("department_id") == deptid) {
+                    exist = false;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return exist;
+    }
+
+    public boolean checkIfDepartmentNameExists(String deptname) {
+        boolean exist = false;
+        String command = "SELECT * " +
+                "FROM tbl_department te " +
+                "WHERE department_name = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setString(1, deptname);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                exist = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return exist;
     }
 }

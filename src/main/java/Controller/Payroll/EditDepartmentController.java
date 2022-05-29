@@ -3,6 +3,7 @@ package Controller.Payroll;
 import Database.SQLDepartment;
 import Models.Admin;
 import Models.Department;
+import Models.Employee;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,11 +51,18 @@ public class EditDepartmentController {
     private Admin admin;
     private AnchorPane container;
 
+    private Department department;
+
     private SQLDepartment sqlDepartment = new SQLDepartment();
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+        loadDepartmentFields();
     }
 
     private void loadDepartment() {
@@ -85,14 +93,27 @@ public class EditDepartmentController {
                 double monthlyrate = Double.parseDouble(editdepartment_monthlyrate.getText());
                 String name = editdepartment_name.getText();
 
-                sqlDepartment.addDepartment(new Department(name, monthlyrate, dayspermonth, hoursperday));
-
-                loadDepartment();
+                boolean exist = sqlDepartment.checkIfDepartmentNameExists(department.getDepartment_ID(), name);
+                if (exist == true) {
+                    callAlert("Invalid", "A department with same name already exists");
+                } else {
+                    sqlDepartment.editDepartment(new Department(department.getDepartment_ID(), name, monthlyrate, dayspermonth, hoursperday));
+                    loadDepartment();
+                }
             } catch (NumberFormatException o) {
                 callAlert("Invalid", "Invalid Value/s");
             } catch (Exception e) {
                 callAlert("Invalid", "Invalid Value/s");
             }
         }
+    }
+
+    private void loadDepartmentFields() {
+        Department dept = sqlDepartment.getDepartment(new Department(department.getDepartment_ID()));
+
+        editdepartment_name.setText(dept.getDepartment_Name());
+        editdepartment_monthlyrate.setText(Double.toString(dept.getDepartment_MonthlyRate()));
+        editdepartment_dayspermonth.setText(Integer.toString(dept.getDepartment_DaysPerMonth()));
+        editdepartment_hoursperday.setText(Integer.toString(dept.getDepartment_HoursPerDay()));
     }
 }

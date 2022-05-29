@@ -47,7 +47,7 @@
                 <Image url="@../../Assets/Search-blue.png" />
             </image>
         </ImageView>
-        <CheckBox fx:id="manageemployee_checkbox_hideinactive" layoutX="258.0" layoutY="30.0" mnemonicParsing="false" text="Hide Inactive" />
+        <CheckBox fx:id="manageemployee_checkbox_hideinactive" layoutX="258.0" layoutY="30.0" mnemonicParsing="false" selected="true" text="Hide Inactive" />
         <Button layoutX="360.0" layoutY="26.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="36.0" text="set" />
     </children>
 </AnchorPane>

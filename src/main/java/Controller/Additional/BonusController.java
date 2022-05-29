@@ -3,6 +3,7 @@ package Controller.Additional;
 import Database.SQLBonus;
 import Models.Admin;
 import Models.Bonus;
+import Models.Shift;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,10 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -92,6 +96,46 @@ public class BonusController {
         bonus_column_department.setCellValueFactory(new PropertyValueFactory<Bonus, String>("Recipient_Name"));
         bonus_column_dateapplicable.setCellValueFactory(new PropertyValueFactory<Bonus, Date>("Bonus_Date"));
 //        main_bonus_action.setCellValueFactory(new PropertyValueFactory<Bonus, Integer>("Department_HoursPerDay"));
+        Callback<TableColumn<Bonus, Void>, TableCell<Bonus, Void>> cellFactory = new Callback<TableColumn<Bonus, Void>, TableCell<Bonus, Void>>() {
+            @Override
+            public TableCell<Bonus, Void> call(final TableColumn<Bonus, Void> param) {
+                final TableCell<Bonus, Void> cell = new TableCell<Bonus, Void>() {
+                    private final Button btn = new Button("Edit");
+                    private final Button btn2 = new Button("Delete");
+
+                    {
+                        String style = "-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
+                                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
+                                "-fx-background-radius: 30; " +
+                                "-fx-background-insets: 0,1,1; " +
+                                "-fx-text-fill: black; " +
+                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);";
+
+                        btn.setStyle(style);
+                        btn.setOnAction((ActionEvent event) -> {
+//                            Employee emp = getTableView().getItems().get(getIndex());
+                        });
+
+                        btn2.setStyle(style);
+                        btn2.setOnAction((ActionEvent event) -> {
+//                            Employee emp = getTableView().getItems().get(getIndex());
+                        });
+                    }
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox allbtn = new HBox(btn, btn2);
+                            setGraphic(allbtn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        bonus_column_action.setCellFactory(cellFactory);
 
         bonus_tableview.setItems(bonusList);
     }
