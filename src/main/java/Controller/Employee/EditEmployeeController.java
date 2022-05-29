@@ -217,19 +217,23 @@ public class EditEmployeeController {
                 callAlert("Error!", "The first name is empty!");
             } else if (last_name.trim().equals("")) {
                 callAlert("Error!", "The last name is empty!");
-            } else if (address.trim().equals("")) {
-                callAlert("Error!", "The address is empty!");
             } else if (number.trim().equals("")) {
                 callAlert("Error!", "The contact number is empty!");
             } else if (position.trim().equals("")) {
                 callAlert("Error!", "The position is empty!");
-            } else if (contact_full_name.trim().equals("")) {
-                callAlert("Error!", "The emergency contact name is empty!");
-            } else if (contact_relationship.trim().equals("")) {
-                callAlert("Error!", "The emergency contact relationship is empty!");
-            } else if (contact_number.trim().equals("")) {
-                callAlert("Error!", "The emergency contact number is empty!");
             } else {
+                if (address.trim().equals("")) {
+                    address.equals("");
+                }
+                if (contact_full_name.trim().equals("")) {
+                    contact_full_name.equals("");
+                }
+                if (contact_relationship.trim().equals("")) {
+                    contact_relationship.equals("");
+                }
+                if (contact_number.trim().equals("")) {
+                    contact_number.equals("");
+                }
                 sqlEmployee.updateEmployee(new Employee(empid, nationality,
                     marital_status, department, position, employment_status, first_name, last_name,
                     middle_name, extension_name, address, isMale, number, birthdate, isActive,

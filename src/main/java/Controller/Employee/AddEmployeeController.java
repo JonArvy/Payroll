@@ -8,6 +8,8 @@ import Models.BooleanValue;
 import Models.Department;
 import Models.Employee;
 import cw.payroll.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -222,25 +224,27 @@ public class AddEmployeeController {
                 birthdate = Date.valueOf(LocalDate.of(2000, 1, 1));
             }
 
-            if (empid > 100000 || empid <= 0) {
-                callAlert("Error!", "Invalid Employee ID");
-            } else if (first_name.trim().equals("")) {
+            if (first_name.trim().equals("")) {
                 callAlert("Error!", "The first name is empty!");
             } else if (last_name.trim().equals("")) {
                 callAlert("Error!", "The last name is empty!");
-            } else if (address.trim().equals("")) {
-                callAlert("Error!", "The address is empty!");
             } else if (number.trim().equals("")) {
                 callAlert("Error!", "The contact number is empty!");
             } else if (position.trim().equals("")) {
                 callAlert("Error!", "The position is empty!");
-            } else if (contact_full_name.trim().equals("")) {
-                callAlert("Error!", "The emergency contact name is empty!");
-            } else if (contact_relationship.trim().equals("")) {
-                callAlert("Error!", "The emergency contact relationship is empty!");
-            } else if (contact_number.trim().equals("")) {
-                callAlert("Error!", "The emergency contact number is empty!");
             } else {
+                if (address.trim().equals("")) {
+                    address.equals("");
+                }
+                if (contact_full_name.trim().equals("")) {
+                    contact_full_name.equals("");
+                }
+                if (contact_relationship.trim().equals("")) {
+                    contact_relationship.equals("");
+                }
+                if (contact_number.trim().equals("")) {
+                    contact_number.equals("");
+                }
                 if (sqlEmployee.checkIfEmployeeIDExists(empid)) {
                     this.employee = new Employee( empid, nationality, marital_status,
                         department, position, employment_status, first_name, last_name, middle_name,
@@ -290,6 +294,9 @@ public class AddEmployeeController {
 
         addemployee_empstatus.getItems().addAll("Regular", "Contractual", "Part-Time");
         addemployee_empstatus.getSelectionModel().select(0);
+
+        int currentid = sqlEmployee.getFinalEmployeeIDFromDatabase(new Employee()).getEmployee_ID() + 1;
+        addemployee_empid.setText(Integer.toString(currentid));
     }
 }
 

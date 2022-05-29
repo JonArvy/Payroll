@@ -223,6 +223,21 @@ public class SQLEmployee {
         return emp;
     }
 
+    public Employee getFinalEmployeeIDFromDatabase(Employee emp) {
+        String command = "SELECT * FROM tbl_employees";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                emp.setEmployee_ID(resultSet.getInt("emp_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return emp;
+    }
+
     public void addEmployee(Employee employee) {
         String command = "INSERT INTO `tbl_employees`" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
