@@ -68,5 +68,40 @@
         <TextField fx:id="editemployee_contactnumber" layoutX="575.0" layoutY="349.0" prefHeight="25.0" prefWidth="109.0" />
         <Button fx:id="editemployee_button_save" layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#saveEmployee" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
         <Button fx:id="editemployee_button_cancel" layoutX="619.0" layoutY="471.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
+      <Text fill="RED" layoutX="215.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="215.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="215.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="437.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="686.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="686.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="686.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
