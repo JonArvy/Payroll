@@ -25,56 +25,56 @@
                 </Label>
                 <Label layoutX="186.0" layoutY="58.0" text="For the month of :" />
                 <TextField fx:id="viewpayslip_monthof" disable="true" editable="false" layoutX="289.0" layoutY="54.0" prefHeight="25.0" prefWidth="102.0" />
-                <Label layoutX="57.0" layoutY="108.0" text="Employee:" />
-                <TextField fx:id="viewpayslip_name" disable="true" editable="false" layoutX="121.0" layoutY="104.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="257.0" layoutY="108.0" text="Employee ID:" />
-                <TextField fx:id="viewpayslip_employeeid" disable="true" editable="false" layoutX="336.0" layoutY="104.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="48.0" layoutY="281.0" text="Basic Salary" />
-                <TextField fx:id="viewpayslip_basicsalary" disable="true" editable="false" layoutX="121.0" layoutY="277.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="44.0" layoutY="138.0" text="Department:" />
-                <TextField fx:id="viewpayslip_department" disable="true" editable="false" layoutX="121.0" layoutY="133.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="280.0" layoutY="138.0" text="Position:" />
-                <TextField fx:id="viewpayslip_position" disable="true" editable="false" layoutX="336.0" layoutY="133.0" prefHeight="25.0" prefWidth="120.0" />
-                <Pane layoutX="35.0" layoutY="194.0" opacity="0.5" prefHeight="3.0" prefWidth="430.0" style="-fx-background-color: #545454;" />
-                <Label layoutX="56.0" layoutY="214.0" text="Hours Rendered" />
-                <TextField fx:id="viewpayslip_hoursrendered" disable="true" editable="false" layoutX="151.0" layoutY="210.0" prefHeight="25.0" prefWidth="90.0" />
-                <Label layoutX="263.0" layoutY="214.0" text="Days Rendered" />
-                <TextField fx:id="viewpayslip_daysrendered" disable="true" editable="false" layoutX="352.0" layoutY="210.0" prefHeight="25.0" prefWidth="90.0" />
-                <Pane layoutX="35.0" layoutY="254.0" opacity="0.5" prefHeight="3.0" prefWidth="430.0" style="-fx-background-color: #545454;" />
+                <Label layoutX="51.0" layoutY="108.0" text="Employee Name:" />
+                <TextField fx:id="viewpayslip_name" disable="true" editable="false" layoutX="152.0" layoutY="104.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="288.0" layoutY="108.0" text="Employee ID:" />
+                <TextField fx:id="viewpayslip_employeeid" disable="true" editable="false" layoutX="367.0" layoutY="104.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="75.0" layoutY="281.0" text="Basic Salary" />
+                <TextField fx:id="viewpayslip_basicsalary" disable="true" editable="false" layoutX="148.0" layoutY="277.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="75.0" layoutY="138.0" text="Department:" />
+                <TextField fx:id="viewpayslip_department" disable="true" editable="false" layoutX="152.0" layoutY="133.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="311.0" layoutY="138.0" text="Position:" />
+                <TextField fx:id="viewpayslip_position" disable="true" editable="false" layoutX="367.0" layoutY="133.0" prefHeight="25.0" prefWidth="120.0" />
+                <Pane layoutX="55.0" layoutY="194.0" opacity="0.5" prefHeight="3.0" prefWidth="430.0" style="-fx-background-color: #545454;" />
+                <Label layoutX="74.0" layoutY="214.0" text="Employment Status" />
+                <TextField fx:id="viewpayslip_hoursrendered" disable="true" editable="false" layoutX="181.0" layoutY="210.0" prefHeight="25.0" prefWidth="90.0" />
+                <Label layoutX="308.0" layoutY="214.0" text="Days Rendered" />
+                <TextField fx:id="viewpayslip_daysrendered" disable="true" editable="false" layoutX="397.0" layoutY="210.0" prefHeight="25.0" prefWidth="90.0" />
+                <Pane layoutX="56.0" layoutY="254.0" opacity="0.5" prefHeight="3.0" prefWidth="430.0" style="-fx-background-color: #545454;" />
                 <Button fx:id="viewpayslip_button_close" layoutX="510.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: red; -fx-text-fill: white;" text="X" />
-                <Label layoutX="60.0" layoutY="307.0" text="Overtime" />
-                <TextField fx:id="viewpayslip_overtime" disable="true" editable="false" layoutX="121.0" layoutY="303.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="67.0" layoutY="333.0" text="Holiday" />
-                <TextField fx:id="viewpayslip_holiday" disable="true" editable="false" layoutX="121.0" layoutY="329.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="75.0" layoutY="359.0" text="Bonus" />
-                <TextField fx:id="viewpayslip_bonus" disable="true" editable="false" layoutX="121.0" layoutY="355.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="40.0" layoutY="385.0" text="Gross Salary">
+                <Label layoutX="87.0" layoutY="307.0" text="Overtime" />
+                <TextField fx:id="viewpayslip_overtime" disable="true" editable="false" layoutX="148.0" layoutY="303.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="94.0" layoutY="333.0" text="Holiday" />
+                <TextField fx:id="viewpayslip_holiday" disable="true" editable="false" layoutX="148.0" layoutY="329.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="102.0" layoutY="359.0" text="Bonus" />
+                <TextField fx:id="viewpayslip_bonus" disable="true" editable="false" layoutX="148.0" layoutY="355.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="67.0" layoutY="385.0" text="Gross Salary">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font></Label>
-                <TextField fx:id="viewpayslip_grosssalary" disable="true" editable="false" layoutX="121.0" layoutY="381.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="60.0" layoutY="432.0" text="NET PAY">
+                <TextField fx:id="viewpayslip_grosssalary" disable="true" editable="false" layoutX="148.0" layoutY="381.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="87.0" layoutY="432.0" text="NET PAY">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <TextField fx:id="viewpayslip_netpay" disable="true" editable="false" layoutX="121.0" layoutY="428.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="303.0" layoutY="281.0" text="Less" />
-                <TextField fx:id="viewpayslip_less" disable="true" editable="false" layoutX="339.0" layoutY="277.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="278.0" layoutY="307.0" text="Pag-IBIG" />
-                <TextField fx:id="viewpayslip_pagibig" disable="true" editable="false" layoutX="339.0" layoutY="303.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="283.0" layoutY="333.0" text="UT/Late" />
-                <TextField fx:id="viewpayslip_late" disable="true" editable="false" layoutX="339.0" layoutY="329.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="286.0" layoutY="359.0" text="Absent" />
-                <TextField fx:id="viewpayslip_absent" disable="true" editable="false" layoutX="339.0" layoutY="355.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="260.0" layoutY="385.0" text="Deductions">
+                <TextField fx:id="viewpayslip_netpay" disable="true" editable="false" layoutX="148.0" layoutY="428.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="330.0" layoutY="281.0" text="Less" />
+                <TextField fx:id="viewpayslip_less" disable="true" editable="false" layoutX="366.0" layoutY="277.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="305.0" layoutY="307.0" text="Pag-IBIG" />
+                <TextField fx:id="viewpayslip_pagibig" disable="true" editable="false" layoutX="366.0" layoutY="303.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="310.0" layoutY="333.0" text="UT/Late" />
+                <TextField fx:id="viewpayslip_late" disable="true" editable="false" layoutX="366.0" layoutY="329.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="313.0" layoutY="359.0" text="Absent" />
+                <TextField fx:id="viewpayslip_absent" disable="true" editable="false" layoutX="366.0" layoutY="355.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="287.0" layoutY="385.0" text="Deductions">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <TextField fx:id="viewpayslip_deductions" disable="true" editable="false" layoutX="339.0" layoutY="381.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="374.0" layoutY="458.0" text="Signature" />
-                <Pane layoutX="339.0" layoutY="453.0" opacity="0.5" prefHeight="1.5" prefWidth="120.0" style="-fx-background-color: #545454;" />
+                <TextField fx:id="viewpayslip_deductions" disable="true" editable="false" layoutX="366.0" layoutY="381.0" prefHeight="25.0" prefWidth="120.0" />
+                <Label layoutX="401.0" layoutY="458.0" text="Signature" />
+                <Pane layoutX="366.0" layoutY="453.0" opacity="0.5" prefHeight="1.5" prefWidth="120.0" style="-fx-background-color: #545454;" />
             </children>
         </Pane>
     </children>
