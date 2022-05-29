@@ -41,7 +41,7 @@
         <TextField fx:id="addemployee_middlename" layoutX="325.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
         <TextField fx:id="addemployee_extension" layoutX="325.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
         <DatePicker fx:id="addemployee_bdate" layoutX="325.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" />
-        <TextField fx:id="addemployee_empid" layoutX="575.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="addemployee_empid" editable="false" layoutX="575.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
         <ComboBox fx:id="addemployee_status" layoutX="325.0" layoutY="209.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
         <TextField fx:id="addemployee_nationality" layoutX="575.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
         <ComboBox fx:id="addemployee_maritalstatus" layoutX="575.0" layoutY="127.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
@@ -64,5 +64,40 @@
         <TextField fx:id="addemployee_contactnumber" layoutX="575.0" layoutY="333.0" prefHeight="25.0" prefWidth="109.0" />
         <Button fx:id="addemployee_button_next" layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF;" text="Next" />
         <Button fx:id="addemployee_button_reset" layoutX="619.0" layoutY="471.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Reset" />
+      <Text fill="RED" layoutX="215.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="215.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="437.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="215.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="686.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="686.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="686.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
