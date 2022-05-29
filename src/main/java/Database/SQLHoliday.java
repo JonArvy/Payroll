@@ -53,4 +53,21 @@ public class SQLHoliday {
             e.printStackTrace();
         }
     }
+
+    public void editHoliday(Holiday holiday) {
+        String command = "INSERT INTO tbl_holiday (holiday_name, holiday_date, holiday_type) " +
+                "VALUES (?, ?, ?)";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setString(1, holiday.getHoliday_Name());
+            preparedStatement.setDate(2, holiday.getHoliday_Date()); //
+            preparedStatement.setString(3, holiday.getHoliday_Type());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
 }

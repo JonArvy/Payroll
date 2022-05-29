@@ -57,8 +57,31 @@ public class SQLBonus {
         }
     }
 
+    public Bonus getBonus(Bonus bonus) {
+        String command = "SELECT * FROM tbl_bonus " +
+                "WHERE bonus_id = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, bonus.getBonus_ID());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                bonus.setBonus_ID(resultSet.getInt("bonus_id"));
+                bonus.setBonus_Name(resultSet.getString("bonus_name"));
+                bonus.setBonus_Recipient(resultSet.getInt("bonus_recipient"));
+                bonus.setBonus_Amount(resultSet.getDouble("bonus_amount"));
+                bonus.setBonus_Date(resultSet.getDate("bonus_date"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bonus;
+    }
+
     public void editBonus(Bonus bonus) {
-        String command = "UPDATE tbl_bonus" +
+        String command = "UPDATE tbl_bonus " +
                 "SET bonus_name = ?," +
                 "    bonus_amount = ?," +
                 "    bonus_recipient = ?, " +

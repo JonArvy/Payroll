@@ -87,6 +87,25 @@ public class BonusController {
         }
     }
 
+    private void loadEditBonus(Bonus bonus) {
+        EditBonusController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/EditBonus.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+            controller.setBonus(bonus);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void showBonusList() {
         bonusList.clear();
         bonusList = sqlBonus.getBonus();
@@ -113,6 +132,8 @@ public class BonusController {
 
                         btn.setStyle(style);
                         btn.setOnAction((ActionEvent event) -> {
+                            Bonus bonus = getTableView().getItems().get(getIndex());
+                            loadEditBonus(bonus);
 //                            Employee emp = getTableView().getItems().get(getIndex());
                         });
 

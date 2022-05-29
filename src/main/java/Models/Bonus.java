@@ -42,6 +42,10 @@ public class Bonus {
         this.Bonus_Date = Bonus_Date;
     }
 
+    public Bonus(int Bonus_ID) {
+        this.Bonus_ID = Bonus_ID;
+    }
+
     public int getBonus_ID() {
         return Bonus_ID;
     }
@@ -64,5 +68,29 @@ public class Bonus {
 
     public String getRecipient_Name() {
         return Recipient_Name;
+    }
+
+    public void setBonus_ID(int bonus_ID) {
+        Bonus_ID = bonus_ID;
+    }
+
+    public void setBonus_Name(String bonus_Name) {
+        Bonus_Name = bonus_Name;
+    }
+
+    public void setBonus_Amount(double bonus_Amount) {
+        Bonus_Amount = bonus_Amount;
+    }
+
+    public void setBonus_Recipient(int bonus_Recipient) {
+        Bonus_Recipient = bonus_Recipient;
+    }
+
+    public void setBonus_Date(Date bonus_Date) {
+        Bonus_Date = bonus_Date;
+    }
+
+    public void setRecipient_Name(String recipient_Name) {
+        Recipient_Name = recipient_Name;
     }
 }

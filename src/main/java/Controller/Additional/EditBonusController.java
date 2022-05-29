@@ -20,34 +20,35 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import static Classes.CustomAlert.callAlert;
 
 public class EditBonusController {
 
     @FXML
-    private TextField addbonus_amount;
+    private TextField editbonus_amount;
 
     @FXML
-    private Button addbonus_button_add;
+    private Button editbonus_button_add;
 
     @FXML
-    private Button addbonus_button_cancel;
+    private Button editbonus_button_cancel;
 
     @FXML
-    private DatePicker addbonus_dateapplicable;
+    private DatePicker editbonus_dateapplicable;
 
     @FXML
-    private TextField addbonus_name;
+    private TextField editbonus_name;
 
     @FXML
-    private ComboBox<Department> addbonus_recipient;
+    private ComboBox<Department> editbonus_recipient;
 
     @FXML
-    private ComboBox<String> addbonus_recipienttype;
+    private ComboBox<String> editbonus_recipienttype;
 
     @FXML
-    private void addBonus(ActionEvent event) {
+    private void updateBonus(ActionEvent event) {
         checkBonusIfValid();
     }
 
@@ -59,12 +60,15 @@ public class EditBonusController {
     @FXML
     private void initialize() {
         initializeContainers();
+        editbonus_button_add.setDisable(true);
     }
 
     /****************************** FXML ENDS HERE ******************************/
 
     private Admin admin;
     private AnchorPane container;
+
+    private Bonus bonus;
 
     private ObservableList<Department> departmentList = FXCollections.observableArrayList();
 
@@ -76,6 +80,11 @@ public class EditBonusController {
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
+    }
+
+    public void setBonus(Bonus bonus) {
+        this.bonus = bonus;
+        initializeFields();
     }
 
     private void loadBonus() {
@@ -97,31 +106,31 @@ public class EditBonusController {
     }
 
     private void initializeContainers() {
-        addbonus_recipienttype.getItems().addAll( "By Department");
-        addbonus_recipienttype.getSelectionModel().select(0);
+        editbonus_recipienttype.getItems().addAll( "By Department");
+        editbonus_recipienttype.getSelectionModel().select(0);
 
         departmentList.clear();
         departmentList = sqlDepartment.getDepartment();
 
-        addbonus_recipient.setItems(departmentList);
-        addbonus_recipient.getSelectionModel().select(0);
+        editbonus_recipient.setItems(departmentList);
+        editbonus_recipient.getSelectionModel().select(0);
 
-        addbonus_recipient.setConverter(converters.departmentConverter());
+        editbonus_recipient.setConverter(converters.departmentConverter());
     }
 
     private void checkBonusIfValid() {
-        if (addbonus_name.getText() == null || addbonus_name.getText().trim().equals("")) {
+        if (editbonus_name.getText() == null || editbonus_name.getText().trim().equals("")) {
             callAlert("Invalid", "Invalid Bonus Name");
         } else {
             try {
-                addbonus_dateapplicable.getConverter().fromString(addbonus_dateapplicable.getEditor().getText());
+                editbonus_dateapplicable.getConverter().fromString(editbonus_dateapplicable.getEditor().getText());
 
-                String name = addbonus_name.getText();
-                double amount = Double.parseDouble(addbonus_amount.getText());
-                int department = addbonus_recipient.getValue().getDepartment_ID();
-                Date date = Date.valueOf(addbonus_dateapplicable.getValue());
+                String name = editbonus_name.getText();
+                double amount = Double.parseDouble(editbonus_amount.getText());
+                int department = editbonus_recipient.getValue().getDepartment_ID();
+                Date date = Date.valueOf(editbonus_dateapplicable.getValue());
 
-                sqlBonus.addBonus(new Bonus(name, amount, department, date));
+                sqlBonus.editBonus(new Bonus(name, amount, department, date));
 
                 loadBonus();
             } catch (NumberFormatException o) {
@@ -130,5 +139,12 @@ public class EditBonusController {
                 callAlert("Invalid", "Invalid Date Value");
             }
         }
+    }
+
+    private void initializeFields() {
+        editbonus_name.setText(bonus.getBonus_Name());
+        editbonus_amount.setText(Double.toString(bonus.getBonus_Amount()));
+        editbonus_recipient.getSelectionModel().select(bonus.getBonus_Recipient());
+        editbonus_dateapplicable.setValue(bonus.getBonus_Date().toLocalDate());
     }
 }

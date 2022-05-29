@@ -13,22 +13,22 @@
     <children>
         <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
             <children>
-                <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="ADD BONUS">
+                <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="EDIT BONUS">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Label>
                 <Label layoutX="175.0" layoutY="126.0" text="Bonus Name" />
-                <TextField fx:id="addbonus_name" layoutX="261.0" layoutY="122.0" prefHeight="25.0" prefWidth="156.0" />
+                <TextField fx:id="editbonus_name" layoutX="261.0" layoutY="122.0" prefHeight="25.0" prefWidth="156.0" />
                 <Label layoutX="199.0" layoutY="161.0" text="Amount" />
-                <TextField fx:id="addbonus_amount" layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
+                <TextField fx:id="editbonus_amount" layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
                 <Label layoutX="194.0" layoutY="196.0" text="Recipient" />
-                <ComboBox fx:id="addbonus_recipient" layoutX="261.0" layoutY="227.0" prefHeight="25.0" prefWidth="156.0" />
+                <ComboBox fx:id="editbonus_recipient" layoutX="261.0" layoutY="227.0" prefHeight="25.0" prefWidth="156.0" />
                 <Label layoutX="160.0" layoutY="267.0" text="Date Applicable" />
-                <DatePicker fx:id="addbonus_dateapplicable" layoutX="261.0" layoutY="263.0" prefHeight="25.0" prefWidth="156.0" />
-                <Button fx:id="addbonus_button_cancel" layoutX="505.0" layoutY="362.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
-                <Button fx:id="addbonus_button_add" layoutX="441.0" layoutY="362.0" mnemonicParsing="false" onAction="#addBonus" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
-            <ComboBox fx:id="addbonus_recipienttype" layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
+                <DatePicker fx:id="editbonus_dateapplicable" layoutX="261.0" layoutY="263.0" prefHeight="25.0" prefWidth="156.0" />
+                <Button fx:id="editbonus_button_cancel" layoutX="505.0" layoutY="362.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
+                <Button fx:id="editbonus_button_add" layoutX="441.0" layoutY="362.0" mnemonicParsing="false" onAction="#updateBonus" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Update" />
+            <ComboBox fx:id="editbonus_recipienttype" layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
             </children>
         </Pane>
     </children>

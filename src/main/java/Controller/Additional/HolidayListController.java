@@ -86,6 +86,25 @@ public class HolidayListController {
         }
     }
 
+    private void loadEditHoliday(Holiday holiday) {
+        EditHolidayController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/EditHoliday.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+            controller.setHoliday(holiday);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void showHolidayList() {
         holidayList.clear();
         holidayList = sqlHoliday.getHolidays();
@@ -112,6 +131,7 @@ public class HolidayListController {
 
                         btn.setStyle(style);
                         btn.setOnAction((ActionEvent event) -> {
+                            loadEditHoliday(getTableView().getItems().get(getIndex()));
 //                            Employee emp = getTableView().getItems().get(getIndex());
                         });
 
