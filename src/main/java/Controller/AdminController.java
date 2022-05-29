@@ -12,19 +12,19 @@ import Controller.Payroll.DepartmentController;
 import Controller.Payroll.PayrollSummaryController;
 import Controller.Payroll.PayslipController;
 import Models.Admin;
-import Models.Employee;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class AdminController {
 
@@ -97,16 +97,23 @@ public class AdminController {
             loadBonus();
         } else if (event.getSource() == main_credentials_button) {
             loadCredentials();
+        } else if (event.getSource() == main_logout_button) {
+            logOut();
         }
     }
 
     @FXML
     private void initialize() {
-        admin = new Admin(1, 1);
-        loadNoticeBoard();
+        setAdmin(new Admin(1, 1));
+
     }
 
     /****************************** FXML ENDS HERE ******************************/
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+        loadNoticeBoard();
+    }
 
     private void loadNoticeBoard() {
         NoticeBoardController controller;
@@ -305,8 +312,22 @@ public class AdminController {
         }
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
+    private void logOut() {
+        Stage stage = (Stage) main_logout_button.getScene().getWindow();
+        stage.close();
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Login.fxml"));
+            root = fxmlLoader.load();
+            Stage stage2 = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
+            stage2.setScene(scene);
+            stage2.initStyle(StageStyle.UNDECORATED);
+            stage2.setResizable(false);
+            stage2.show();
+        } catch (IOException e) {
 
+        }
+    }
 }

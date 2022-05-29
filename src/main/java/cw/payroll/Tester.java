@@ -2,6 +2,7 @@ package cw.payroll;
 
 import Database.SQLExecution;
 import Database.*;
+import Models.Admin;
 import Models.Attendance;
 import Models.Employee;
 
@@ -28,6 +29,11 @@ public class Tester {
 //        tester.createTables();
 //        tester.insertDateAndTime();
 //        tester.deleteDate();
+
+    }
+
+    public Tester() {
+//        sqlAdmin.addAdmin(new Admin(0, "admin", 0, 0));
     }
 
     public void createTables() {

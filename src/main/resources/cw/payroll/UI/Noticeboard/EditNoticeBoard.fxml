@@ -14,7 +14,7 @@
                 <Image url="@../../Assets/NoticeBoard.png" />
             </image>
         </ImageView>
-        <TextArea layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
+        <TextArea fx:id="editnoticeboard_message" layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
             <font>
                 <Font size="14.0" />
             </font>

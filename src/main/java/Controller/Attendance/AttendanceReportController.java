@@ -67,10 +67,10 @@ public class AttendanceReportController {
 
     @FXML
     private void initialize() {
-        attendancereport_from.setValue(LocalDate.now().minusMonths(1));
+        attendancereport_from.setValue(LocalDate.now().minusMonths(1).plusDays(1));
         attendancereport_to.setValue(LocalDate.now());
         attendancereport_from.valueProperty().addListener((o, ol, nw) -> {
-            attendancereport_to.setValue(attendancereport_from.getValue().plusMonths(1));
+            attendancereport_to.setValue(attendancereport_from.getValue().plusMonths(1).minusDays(1));
         });
         searchAttendance();
     }

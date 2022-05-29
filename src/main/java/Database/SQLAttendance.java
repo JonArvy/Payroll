@@ -36,6 +36,36 @@ public class SQLAttendance {
         return attendanceList;
     }
 
+    public ObservableList<Attendance> getAttendance(int id, Date from, Date to) {
+        ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
+        String command = "SELECT * FROM tbl_attendance " +
+                "WHERE emp_id = ? " +
+                "AND emp_attendance_date BETWEEN ? AND ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.setDate(2, from);
+            preparedStatement.setDate(3, to);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                attendanceList.add(new Attendance(
+                        resultSet.getInt("emp_id"),
+
+                        resultSet.getDate("emp_attendance_date"),
+                        resultSet.getTime("emp_timein"),
+                        resultSet.getTime("emp_timeout")
+
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return attendanceList;
+    }
+
     public ObservableList<Attendance> getDailyAttendance(Date dt1, Date dt2) {
         ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
         String command = "SELECT attendance_id, " +

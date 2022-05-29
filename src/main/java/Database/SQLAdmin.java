@@ -4,13 +4,66 @@ import Models.Admin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static Database.SQLConnection.connect;
 
 public class SQLAdmin {
+    public Admin getAdmin(Admin admin) {
+        String command = "SELECT * " +
+                "FROM tbl_admin " +
+                "WHERE emp_id = ? " +
+                "AND admin_password = ?";
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, admin.getEmployee_ID());
+            preparedStatement.setString(2, admin.getAdmin_Password());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                admin.setAdmin_ID(resultSet.getInt("admin_id"));
+                admin.setEmployee_ID(resultSet.getInt("emp_id"));
+                admin.setAdmin_Password(resultSet.getString("admin_password"));
+                admin.setAdmin_Grantor(resultSet.getInt("admin_grantor"));
+                admin.setAdmin_Disabler(resultSet.getInt("admin_disabler"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return admin;
+    }
+
+    public boolean checkIfValidAdmin(Admin admin) {
+        boolean correct = false;
+        String command = "SELECT * " +
+                "FROM tbl_admin " +
+                "WHERE emp_id = ? " +
+                "AND admin_password = ?";
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, admin.getEmployee_ID());
+            preparedStatement.setString(2, admin.getAdmin_Password());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                correct = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return correct;
+    }
+
     public void addAdmin(Admin admin) {
-        String command = "INSERT INTO tbl_admin" +
+        String command = "INSERT INTO tbl_admin (emp_id, admin_password, admin_grantor, admin_disabler) " +
                 "VALUES (?, ?, ?, ?)";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {

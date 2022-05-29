@@ -1,14 +1,17 @@
 package Controller.Payroll;
 
+import Controller.Additional.AddBonusController;
 import Database.SQLDepartment;
 import Database.SQLEmployee;
 import Models.Admin;
 import Models.Department;
 import Models.Employee;
+import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -17,6 +20,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
+
+import java.io.IOException;
 
 public class PayslipController {
 
@@ -57,6 +62,25 @@ public class PayslipController {
         this.container = anchorPane;
     }
 
+    private void loadViewPayslip(Employee employee) {
+        ViewPayslipController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/ViewPayslip.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+            controller.setEmployee(employee);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void showPayslipList() {
         employeeList.clear();
         employeeList = sqlEmployee.getAllEmployeePayslip();
@@ -83,7 +107,7 @@ public class PayslipController {
                         btn.setStyle(style);
                         btn.setOnAction((ActionEvent event) -> {
                             Employee emp = getTableView().getItems().get(getIndex());
-                            System.out.println(emp.getEmployee_ID());
+                            loadViewPayslip(emp);
                         });
                     }
                     @Override

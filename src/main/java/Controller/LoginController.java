@@ -1,11 +1,18 @@
 package Controller;
 
 import Database.*;
+import Models.Admin;
 import Models.Attendance;
+import Models.Department;
+import Models.Employee;
+import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -14,10 +21,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+
+import static Classes.CustomAlert.callAlert;
 
 public class LoginController {
 
@@ -106,21 +121,56 @@ public class LoginController {
     private TextField login_pane_fingerprint_place_empid;
 
     @FXML
-    private TextField login_pane_fingerprint_re_place_empid;
+    private TextField login_pane_fingerprint_place_empid1;
 
     @FXML
     private Button login_pane_fingerprint_place_proceed;
 
     @FXML
-    private Button login_pane_fingerprint_re_place_proceed;
+    private Button login_pane_fingerprint_place_proceed1;
+
+    @FXML
+    private Pane login_pane_fingerprint_place1;
+
+    @FXML
+    private Button login_pane_fingerprint_place_back1;
 
     @FXML
     private void proceed(ActionEvent event) {
         if (event.getSource() == login_pane_fingerprint_place_proceed) {
-
-        } else if (event.getSource() == login_pane_fingerprint_re_place_proceed) {
-
+            try {
+                boolean exist = sqlEmployee.checkIfEmployeeIDExists(Integer.parseInt(login_pane_fingerprint_place_empid.getText()));
+                if (!exist) {
+                    employee = new Employee(Integer.parseInt(login_pane_fingerprint_place_empid.getText()));
+                    showEmployeeAttendanceTable();
+                } else {
+                    login_pane_fingerprint_re_place.toFront();
+                }
+            } catch (NumberFormatException e) {
+                callAlert("Invalid", "Invalid Employee ID");
+            }
+        } else if (event.getSource() == login_pane_fingerprint_place_proceed1) {
+            try {
+                boolean exist = sqlEmployee.checkIfEmployeeIDExists(Integer.parseInt(login_pane_fingerprint_place_empid1.getText()));
+                if (!exist) {
+                    employee = new Employee(Integer.parseInt(login_pane_fingerprint_place_empid1.getText()));
+                    showEmployeeAttendanceTable();
+                } else {
+                    login_pane_fingerprint_place_empid1.setText("");
+                }
+            } catch (NumberFormatException e) {
+                callAlert("Invalid", "Invalid Employee ID");
+            }
         }
+    }
+
+    private void showEmployeeAttendanceTable() {
+        Employee emp = sqlEmployee.getEmployee(employee);
+        Department dept = sqlDepartment.getDepartment(new Department(emp.getDepartment()));
+        employee_panel_text_empid.setText(Integer.toString(emp.getEmployee_ID()));
+        employee_panel_text_name.setText(emp.getFirst_Name() + " " + emp.getLast_Name());
+        employee_panel_text_department.setText(dept.getDepartment_Name());
+        login_pane_employee_panel.toFront();
     }
 
     private SQLExecution sql = new SQLExecution();
@@ -133,12 +183,14 @@ public class LoginController {
     private SQLNoticeboard sqlNoticeboard = new SQLNoticeboard();
     private SQLShift sqlShift = new SQLShift();
 
+    private Employee employee = new Employee();
+
     private ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
 
     @FXML
     void clickNavigate(ActionEvent event) {
         if (event.getSource() == login_pane_login_start_button_attendance) {
-            login_pane_fingerprint_place.toFront();
+            login_pane_fingerprint_place1.toFront();
 
         } else if (event.getSource() == login_pane_login_start_button_employee) {
             login_pane_fingerprint_place.toFront();
@@ -146,26 +198,81 @@ public class LoginController {
         } else if (event.getSource() == login_pane_login_start_button_admin) {
             login_pane_login_admin.toFront();
 
-        } else if (event.getSource() == login_pane_fingerprint_place_back) {
+        } else if (event.getSource() == login_pane_fingerprint_place_back ||
+                event.getSource() == login_pane_fingerprint_place_back1 ||
+                event.getSource() == login_pane_fingerprint_re_place_back ||
+                event.getSource() == login_pane_login_admin_back ||
+                event.getSource() == employee_panel_button_clear) {
             login_pane_login_start.toFront();
 
-        } else if (event.getSource() == login_pane_fingerprint_re_place_back) {
-            login_pane_login_start.toFront();
-
-        } else if (event.getSource() == login_pane_login_admin_back) {
-            login_pane_login_start.toFront();
         }
     }
 
     @FXML
     void logIn(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(login_pane_login_admin_empid.getText());
+            String pass = login_pane_login_admin_password.getText();
+            Admin adm = new Admin(id, pass);
+            boolean valid = sqlAdmin.checkIfValidAdmin(adm);
+            if (valid) {
+                logInAsAdmin(sqlAdmin.getAdmin(adm));
+            } else {
+                callAlert("Invalid", "Invalid Username or Password");
+            }
+        } catch (NumberFormatException e) {
+            callAlert("Invalid", "Invalid Username or Password");
+        }
 
+    }
+
+    private void logInAsAdmin(Admin admin) {
+        Parent root;
+        AdminController adminController;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Admin.fxml"));
+            root = fxmlLoader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setResizable(false);
+            stage.show();
+
+            adminController = fxmlLoader.getController();
+            adminController.setAdmin(admin);
+
+            Stage currentstage = (Stage) login_pane_login_admin_empid.getScene().getWindow();
+            currentstage.close();
+        } catch (IOException e) {
+
+        }
     }
 
     @FXML
     void view(ActionEvent event) {
+        try {
+            employee_panel_datepicker_datefrom.getConverter().fromString(employee_panel_datepicker_datefrom.getEditor().getText());
+            employee_panel_datepicker_dateto.getConverter().fromString(employee_panel_datepicker_dateto.getEditor().getText());
+
+            Date datefrom = Date.valueOf(employee_panel_datepicker_datefrom.getValue());
+            Date dateto = Date.valueOf(employee_panel_datepicker_dateto.getValue());
+
+            if (datefrom.before(dateto)) {
+                showData(datefrom, dateto);
+            } else {
+                callAlert("Invalid", "Invalid Date Values");
+            }
+
+        } catch (Exception e) {
+            callAlert("Invalid", "Invalid Date Values");
+        }
+    }
+
+    private void showData(Date datefrom, Date dateto) {
         attendanceList.clear();
-        attendanceList = sqlAttendance.getAttendance(Integer.parseInt(employee_panel_text_empid.getText()));
+        attendanceList = sqlAttendance.getAttendance(employee.getEmployee_ID(), datefrom, dateto);
 
         employee_panel_column_date.setCellValueFactory(new PropertyValueFactory<Attendance, Date>("Employee_Attendance_Date"));
         employee_panel_column_timein.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeIn"));
@@ -174,4 +281,9 @@ public class LoginController {
         employee_panel_tableview.setItems(attendanceList);
     }
 
+    @FXML
+    private void initialize() {
+        employee_panel_datepicker_datefrom.setValue(LocalDate.now().minusMonths(1));
+        employee_panel_datepicker_dateto.setValue(LocalDate.now());
+    }
 }
