@@ -216,8 +216,8 @@ public class AddShiftController {
                     callAlert("Invalid", "A shift already exists for that recipient");
                 } else {
                     sqlShift.addShift(new Shift(shifttype, recepient, sunday, monday, tuesday, wednesday, thursday, friday, saturday));
+                    loadShift();
                 }
-                loadShift();
             } catch (Exception e) {
                 callAlert("Error!", "Error!");
             }
