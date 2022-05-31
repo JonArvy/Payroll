@@ -14,15 +14,18 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </Label>
-        <TableView fx:id="bonus_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css">
+        <Button fx:id="bonus_button_add" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#addBonus" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" AnchorPane.rightAnchor="30.0" />
+        <TableView fx:id="bonus_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
             <columns>
-                <TableColumn fx:id="bonus_column_name" prefWidth="161.0" resizable="false" text="Bonus Name" />
-                <TableColumn fx:id="bonus_column_amount" prefWidth="111.0" resizable="false" text="Amount" />
-                <TableColumn fx:id="bonus_column_department" minWidth="0.0" prefWidth="127.0" resizable="false" text="Department" />
-                <TableColumn fx:id="bonus_column_dateapplicable" minWidth="0.0" prefWidth="165.0" resizable="false" text="Date Applicable" />
-                <TableColumn fx:id="bonus_column_action" minWidth="0.0" prefWidth="151.0" resizable="false" text="Action" />
+                <TableColumn fx:id="bonus_column_name" prefWidth="161.0" text="Bonus Name" />
+                <TableColumn fx:id="bonus_column_amount" prefWidth="111.0" text="Amount" />
+                <TableColumn fx:id="bonus_column_department" minWidth="0.0" prefWidth="127.0" text="Department" />
+                <TableColumn fx:id="bonus_column_dateapplicable" minWidth="0.0" prefWidth="165.0" text="Date Applicable" />
+                <TableColumn fx:id="bonus_column_action" minWidth="0.0" prefWidth="151.0" text="Action" />
             </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
         </TableView>
-        <Button fx:id="bonus_button_add" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#addBonus" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
     </children>
 </AnchorPane>

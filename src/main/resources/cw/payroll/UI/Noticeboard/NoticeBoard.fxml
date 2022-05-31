@@ -9,16 +9,16 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #D9D9D9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.NoticeBoard.NoticeBoardController">
     <children>
-        <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="543.0" fitWidth="550.0" layoutX="99.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.33333333333337123" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="0.0">
             <image>
                 <Image url="@../../Assets/NoticeBoard.png" />
             </image>
         </ImageView>
-        <TextArea fx:id="noticeboard_message" editable="false" layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true">
+        <TextArea fx:id="noticeboard_message" editable="false" layoutX="121.0" layoutY="183.0" prefHeight="228.0" prefWidth="506.0" wrapText="true" AnchorPane.bottomAnchor="132.33333333333337" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="183.0">
             <font>
                 <Font size="14.0" />
             </font>
         </TextArea>
-        <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" onAction="#editNoticeBoard" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Edit" textFill="WHITE" />
+        <Button layoutX="571.0" layoutY="475.0" mnemonicParsing="false" onAction="#editNoticeBoard" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #01374D;" text="Edit" textFill="WHITE" AnchorPane.bottomAnchor="43.00000000000004" AnchorPane.rightAnchor="74.66666666666667" />
     </children>
 </AnchorPane>

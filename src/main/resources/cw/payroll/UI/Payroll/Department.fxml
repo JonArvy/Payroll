@@ -9,17 +9,6 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.DepartmentController">
     <children>
-        <TableView fx:id="department_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css">
-            <columns>
-                <TableColumn fx:id="department_column_name" prefWidth="124.0" resizable="false" text="Name" />
-                <TableColumn fx:id="department_column_monthlyrate" minWidth="0.0" prefWidth="82.0" resizable="false" text="Monthly Rate" />
-                <TableColumn fx:id="department_column_dayspermonth" prefWidth="103.0" resizable="false" text="Days (per month)" />
-                <TableColumn fx:id="department_column_dailyrate" prefWidth="72.0" resizable="false" text="Daily Rate" />
-                <TableColumn fx:id="department_column_hoursperday" prefWidth="115.0" resizable="false" text="Hours (per day)" />
-                <TableColumn fx:id="department_column_hourlyrate" prefWidth="77.0" resizable="false" text="Hourly Rate" />
-                <TableColumn fx:id="department_column_shift" prefWidth="141.0" resizable="false" text="Shift" />
-            </columns>
-        </TableView>
         <Label layoutX="42.0" layoutY="43.0" text="Department">
             <font>
                 <Font name="System Bold" size="15.0" />
@@ -28,7 +17,21 @@
         <Button fx:id="department_button_add" layoutX="286.0" layoutY="41.0" mnemonicParsing="false" onAction="#addDepartment" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
         <Button fx:id="department_button_edit" layoutX="334.0" layoutY="41.0" mnemonicParsing="false" onAction="#editDepartment" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Edit" />
         <Button fx:id="department_button_delete" disable="true" layoutX="380.0" layoutY="41.0" mnemonicParsing="false" onAction="#deleteDepartment" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Delete" />
-        <Label layoutX="586.0" layoutY="45.0" text="Page 1 of 2" />
-        <Button fx:id="department_button_next" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" />
+        <Label layoutX="586.0" layoutY="45.0" text="Page 1 of 2" AnchorPane.rightAnchor="70.0" />
+        <Button fx:id="department_button_next" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" AnchorPane.rightAnchor="30.0" />
+        <TableView fx:id="department_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <columns>
+                <TableColumn fx:id="department_column_name" prefWidth="124.0" text="Name" />
+                <TableColumn fx:id="department_column_monthlyrate" minWidth="0.0" prefWidth="82.0" text="Monthly Rate" />
+                <TableColumn fx:id="department_column_dayspermonth" prefWidth="103.0" text="Days (per month)" />
+                <TableColumn fx:id="department_column_dailyrate" prefWidth="72.0" text="Daily Rate" />
+                <TableColumn fx:id="department_column_hoursperday" prefWidth="115.0" text="Hours (per day)" />
+                <TableColumn fx:id="department_column_hourlyrate" prefWidth="77.0" text="Hourly Rate" />
+                <TableColumn fx:id="department_column_shift" prefWidth="141.0" text="Shift" />
+            </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+        </TableView>
     </children>
 </AnchorPane>

@@ -16,6 +16,7 @@ import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -120,14 +121,20 @@ public class AdminController {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/NoticeBoard/NoticeBoard.fxml"));
-            fxmlLoader.load();
+
+//            fxmlLoader.load();
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
 //            Logger.getLogger(this.class).log(Level.SEVERE, null, ex);
@@ -138,14 +145,20 @@ public class AdminController {
         AddEmployeeController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -155,14 +168,20 @@ public class AdminController {
         ManageEmployeeController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/ManageEmployee.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -172,15 +191,21 @@ public class AdminController {
         DailyAttendanceController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/DailyAttendance.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
 
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -190,15 +215,21 @@ public class AdminController {
         AttendanceReportController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/AttendanceReport.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
 
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -208,15 +239,21 @@ public class AdminController {
         PayslipController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/Payslip.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
 
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -226,15 +263,21 @@ public class AdminController {
         PayrollSummaryController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/PayrollSummary.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
 
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -244,15 +287,21 @@ public class AdminController {
         DepartmentController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/Department.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
 
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -262,15 +311,21 @@ public class AdminController {
         HolidayListController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/HolidayList.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
 
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -280,15 +335,21 @@ public class AdminController {
         BonusController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/Bonus.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
 
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -298,15 +359,21 @@ public class AdminController {
         CredentialsController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/Credentials.fxml"));
-            fxmlLoader.load();
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
 
-            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
 
             content_container.getChildren().clear();
-            content_container.getChildren().add(anchorPane);
+            content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
