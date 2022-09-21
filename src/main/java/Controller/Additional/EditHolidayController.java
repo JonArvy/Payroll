@@ -68,6 +68,7 @@ public class EditHolidayController {
 
     public void setHoliday(Holiday holiday) {
         this.holiday = holiday;
+        loadHolidayFields();
     }
 
     private void loadHolidayList() {
@@ -106,5 +107,13 @@ public class EditHolidayController {
                 callAlert("Invalid", "Invalid Date Value");
             }
         }
+    }
+
+    private void loadHolidayFields() {
+        Holiday hold = sqlHoliday.getHoliday(new Holiday(holiday.getHoliday_ID()));
+
+        editholiday_name.setText(hold.getHoliday_Name());
+        editholiday_date.setValue(hold.getHoliday_Date().toLocalDate());
+        editholiday_type.setValue(hold.getHoliday_Type());
     }
 }

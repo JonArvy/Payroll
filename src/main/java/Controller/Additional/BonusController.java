@@ -132,6 +132,7 @@ public class BonusController {
 
                         btn.setStyle(style);
                         btn.setOnAction((ActionEvent event) -> {
+//                            System.out.println(getTableView().getItems().get(getIndex()).getBonus_Name());
                             Bonus bonus = getTableView().getItems().get(getIndex());
                             loadEditBonus(bonus);
 //                            Employee emp = getTableView().getItems().get(getIndex());

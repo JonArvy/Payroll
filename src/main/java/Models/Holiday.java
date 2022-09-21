@@ -30,6 +30,12 @@ public class Holiday {
         Holiday_Type = holiday_Type;
     }
 
+    public Holiday(int holiday_ID) {
+        Holiday_ID = holiday_ID;
+    }
+
+
+
     public int getHoliday_ID() {
         return Holiday_ID;
     }
@@ -48,5 +54,25 @@ public class Holiday {
 
     public String getHoliday_Repeat() {
         return Holiday_Repeat;
+    }
+
+    public void setHoliday_ID(int holiday_ID) {
+        Holiday_ID = holiday_ID;
+    }
+
+    public void setHoliday_Name(String holiday_Name) {
+        Holiday_Name = holiday_Name;
+    }
+
+    public void setHoliday_Date(Date holiday_Date) {
+        Holiday_Date = holiday_Date;
+    }
+
+    public void setHoliday_Type(String holiday_Type) {
+        Holiday_Type = holiday_Type;
+    }
+
+    public void setHoliday_Repeat(String holiday_Repeat) {
+        Holiday_Repeat = holiday_Repeat;
     }
 }

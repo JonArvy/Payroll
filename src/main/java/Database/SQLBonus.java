@@ -27,6 +27,7 @@ public class SQLBonus {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 bonusList.add(new Bonus(
+//                                resultSet.getInt("bonus_id"),
                                 resultSet.getString("bonus_name"),
                                 resultSet.getDouble("bonus_amount"),
                                 resultSet.getString("department_name"),
@@ -84,10 +85,10 @@ public class SQLBonus {
 
     public void editBonus(Bonus bonus) {
         String command = "UPDATE tbl_bonus " +
-                "SET bonus_name = ?," +
-                "    bonus_amount = ?," +
+                "SET bonus_name = ?, " +
+                "    bonus_amount = ?, " +
                 "    bonus_recipient = ?, " +
-                "    bonus_date = ?" +
+                "    bonus_date = ? " +
                 "WHERE bonus_id = ?";
 
         try (Connection conn = connect();

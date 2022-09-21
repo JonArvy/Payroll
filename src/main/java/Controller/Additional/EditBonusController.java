@@ -60,7 +60,7 @@ public class EditBonusController {
     @FXML
     private void initialize() {
         initializeContainers();
-        editbonus_button_add.setDisable(true);
+//        editbonus_button_add.setDisable(true);
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -130,7 +130,8 @@ public class EditBonusController {
                 int department = editbonus_recipient.getValue().getDepartment_ID();
                 Date date = Date.valueOf(editbonus_dateapplicable.getValue());
 
-                sqlBonus.editBonus(new Bonus(name, amount, department, date));
+                System.out.println(bonus.getBonus_ID());
+//                sqlBonus.editBonus(new Bonus(bonus.getBonus_ID(), name, amount, department, date));
 
                 loadBonus();
             } catch (NumberFormatException o) {

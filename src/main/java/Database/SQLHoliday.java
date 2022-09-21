@@ -75,4 +75,27 @@ public class SQLHoliday {
             e.printStackTrace();
         }
     }
+
+    public Holiday getHoliday(Holiday holiday) {
+        String command = "SELECT * FROM tbl_holiday " +
+                "WHERE holiday_id = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, holiday.getHoliday_ID());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                holiday.setHoliday_ID(resultSet.getInt("holiday_id"));
+                holiday.setHoliday_Name(resultSet.getString("holiday_name"));
+                holiday.setHoliday_Date(resultSet.getDate("holiday_date"));
+                holiday.setHoliday_Type(resultSet.getString("holiday_type"));
+                holiday.setHoliday_Repeat(resultSet.getString("holiday_repeat"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return holiday;
+    }
 }
