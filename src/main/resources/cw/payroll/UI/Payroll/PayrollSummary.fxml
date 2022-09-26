@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.PayrollSummaryController">
     <children>
-        <ScrollPane layoutY="100.0" prefHeight="444.0" prefWidth="710.0">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="709.0">
-                    <children>
-                        <TableView layoutY="-1.0" prefHeight="436.0" prefWidth="701.0" stylesheets="@../../css/tablecolumn_style.css">
-                            <columns>
-                                <TableColumn prefWidth="138.0">
-                                    <columns>
-                                        <TableColumn fx:id="col_edit" editable="false" prefWidth="38.0" resizable="false" sortable="false" text="Edit" />
-                                        <TableColumn fx:id="col_number" prefWidth="40.0" resizable="false" text="No." />
-                                        <TableColumn fx:id="col_name" prefWidth="98.0" resizable="false" text="Name" />
-                                        <TableColumn fx:id="col_position" prefWidth="59.0" resizable="false" sortable="false" text="Position" />
-                                    </columns>
-                                </TableColumn>
-                                <TableColumn prefWidth="345.0" text="COMPENSATION">
-                                    <columns>
-                                        <TableColumn fx:id="col_wage" prefWidth="42.0" resizable="false" sortable="false" text="Wage" />
-                                        <TableColumn fx:id="col_benefits" prefWidth="54.0" resizable="false" sortable="false" text="Other Benefits" />
-                                        <TableColumn fx:id="col_noofdayspresent" prefWidth="71.0" resizable="false" sortable="false" text="No. of Days" />
-                                        <TableColumn fx:id="col_noofdaysabsent" prefWidth="59.0" resizable="false" sortable="false" text="No. of Days Absent" />
-                                        <TableColumn minWidth="0.0" prefWidth="0.0" text="Total" />
-                                        <TableColumn fx:id="col_bir" prefWidth="51.0" sortable="false" text="BIR w/ Holding Tax" />
-                                    </columns>
-                                </TableColumn>
-                                <TableColumn prefWidth="230.0" text="DEDUCTIONS">
-                                    <columns>
-                                        <TableColumn fx:id="col_less" prefWidth="75.0" sortable="false" text="Less" />
-                                        <TableColumn fx:id="col_pagibig" prefWidth="75.0" sortable="false" text="Pag-IBIG" />
-                                        <TableColumn fx:id="col_total" prefWidth="75.0" sortable="false" text="Total" />
-                                        <TableColumn fx:id="col_netamount" prefWidth="75.0" sortable="false" text="Net Amount" />
-                                        <TableColumn fx:id="col_signature" prefWidth="75.0" sortable="false" text="Signature of Recipient" />
-                                    </columns>
-                                </TableColumn>
-                            </columns>
-                        </TableView>
-                    </children>
-                </AnchorPane>
-            </content>
-        </ScrollPane>
+          <AnchorPane layoutX="4.0" layoutY="112.0" minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="710.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="112.0">
+              <children>
+                  <TableView fx:id="payrollSummary_table" layoutY="-1.0" prefHeight="431.0" prefWidth="710.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <columns>
+                          <TableColumn prefWidth="138.0">
+                              <columns>
+                                  <TableColumn fx:id="col_edit" editable="false" prefWidth="40.0" resizable="false" sortable="false" text="Edit" />
+                                  <TableColumn fx:id="col_number" prefWidth="50.0" resizable="false" text="No." />
+                                  <TableColumn fx:id="col_name" prefWidth="200.0" resizable="false" text="Name" />
+                                  <TableColumn fx:id="col_position" prefWidth="100.0" resizable="false" sortable="false" text="Position" />
+                              </columns>
+                          </TableColumn>
+                          <TableColumn prefWidth="345.0" text="COMPENSATION">
+                              <columns>
+                                  <TableColumn fx:id="col_wage" prefWidth="100.0" resizable="false" sortable="false" text="Wage" />
+                                  <TableColumn fx:id="col_benefits" prefWidth="100.0" resizable="false" sortable="false" text="Other Benefits" />
+                                  <TableColumn fx:id="col_noofdayspresent" prefWidth="150.0" resizable="false" sortable="false" text="No. of Days" />
+                                  <TableColumn fx:id="col_noofdaysabsent" prefWidth="150.0" resizable="false" sortable="false" text="No. of Days Absent" />
+                                  <TableColumn fx:id="col_totalcompensation" minWidth="0.0" prefWidth="100.0" text="Total" />
+                                  <TableColumn fx:id="col_bir" prefWidth="150.0" sortable="false" text="BIR w/ Holding Tax" />
+                              </columns>
+                          </TableColumn>
+                          <TableColumn prefWidth="230.0" text="DEDUCTIONS">
+                              <columns>
+                                  <TableColumn fx:id="col_less" prefWidth="100.0" sortable="false" text="Less" />
+                                  <TableColumn fx:id="col_pagibig" prefWidth="100.0" sortable="false" text="Pag-IBIG" />
+                                  <TableColumn fx:id="col_totaldeduction" prefWidth="100.0" sortable="false" text="Total" />
+                                  <TableColumn fx:id="col_netamount" prefWidth="100.0" sortable="false" text="Net Amount" />
+                                  <TableColumn fx:id="col_signature" prefWidth="150.0" sortable="false" text="Signature of Recipient" />
+                              </columns>
+                          </TableColumn>
+                      </columns>
+                  </TableView>
+              </children>
+          </AnchorPane>
+      <DatePicker fx:id="date_from" layoutX="324.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="258.0" AnchorPane.topAnchor="33.0" />
+      <DatePicker fx:id="date_to" disable="true" layoutX="476.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="33.0" />
+      <Button fx:id="generate_Button" layoutX="624.0" layoutY="33.0" mnemonicParsing="false" onAction="#generate" prefHeight="25.0" prefWidth="72.0" text="Generate" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="33.0" />
     </children>
 </AnchorPane>

@@ -89,6 +89,8 @@ public class SQLExecution {
                 "shift_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 "shift_type INTEGER," +
                 "shift_recipient INTEGER," +
+                "shift_in TIME," +
+                "shift_out TIME," +
                 "shift_breakstart TIME," +
                 "shift_breakend TIME," +
                 "shift_sunday BOOLEAN," +
