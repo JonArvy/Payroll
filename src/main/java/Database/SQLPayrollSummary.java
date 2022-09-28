@@ -266,6 +266,7 @@ public class SQLPayrollSummary {
                 "AND emp_attendance_date BETWEEN ? AND ?";
 
         int late = 0;
+        int undertime = 0;
 
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -289,6 +290,7 @@ public class SQLPayrollSummary {
                 System.out.println("Date: " + resultSet.getDate("emp_attendance_date") + " " + resultSet.getTime("emp_timein") + " - " + resultSet.getTime("emp_timeout"));
                 System.out.println("Difference: " + resultSet.getTime("emp_timein").toLocalTime() + " " + timein.toLocalTime());
                 long i = Duration.between(timein.toLocalTime(), resultSet.getTime("emp_timein").toLocalTime()).toMinutes();
+                long o = Duration.between(timeout.toLocalTime(), resultSet.getTime("emp_timeout").toLocalTime()).toMinutes();
                 System.out.println(i);
 
                 if (i > 15) {
