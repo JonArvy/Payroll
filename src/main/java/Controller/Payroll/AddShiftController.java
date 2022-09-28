@@ -19,6 +19,8 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -212,12 +214,26 @@ public class AddShiftController {
                 boolean friday = addshift_friday.isSelected();
                 boolean saturday = addshift_saturday.isSelected();
 
+                Time now = Time.valueOf(LocalTime.now());
+                Time in = Time.valueOf(LocalTime.parse(addshift_timein_hour.getValue() + ":" + addshift_timein_minute.getValue()));
+                Time out = Time.valueOf(LocalTime.parse(addshift_timeout.getText()));
+
+                Time breakstart = Time.valueOf(LocalTime.parse(addshift_breakstart_hour.getValue() + ":" + addshift_breakstart_minute.getValue()));
+                Time breakend = Time.valueOf(LocalTime.parse(addshift_breakend_hour.getValue() + ":" + addshift_breakend_minute.getValue()));
+
                 if (sqlShift.checkIfShiftExist(recepient)) {
                     callAlert("Invalid", "A shift already exists for that recipient");
                 } else {
-                    sqlShift.addShift(new Shift(shifttype, recepient, sunday, monday, tuesday, wednesday, thursday, friday, saturday));
+                    sqlShift.addShift(new Shift(shifttype, recepient, in, out, breakstart, breakend, sunday, monday, tuesday, wednesday, thursday, friday, saturday));
                     loadShift();
                 }
+                System.out.println(now);
+
+                System.out.println(in);
+                System.out.println(out);
+                System.out.println(breakstart);
+                System.out.println(breakend);
+
             } catch (Exception e) {
                 callAlert("Error!", "Error!");
             }

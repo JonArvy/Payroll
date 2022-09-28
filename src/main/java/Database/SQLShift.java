@@ -105,19 +105,23 @@ public class SQLShift {
 
     public void addShift(Shift shift) {
 
-        String command = "INSERT INTO tbl_shift (shift_type, shift_recipient, shift_sunday, shift_monday, shift_tuesday, shift_wednesday, shift_thursday, shift_friday, shift_saturday)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String command = "INSERT INTO tbl_shift (shift_type, shift_recipient, shift_in, shift_out, shift_breakstart, shift_breakend, shift_sunday, shift_monday, shift_tuesday, shift_wednesday, shift_thursday, shift_friday, shift_saturday)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = connect();
              PreparedStatement prep = conn.prepareStatement(command)) {
             prep.setInt(1, shift.getShift_Type());
             prep.setInt(2, shift.getShift_Recipient());
-            prep.setBoolean(3, shift.isShift_Sunday());
-            prep.setBoolean(4, shift.isShift_Monday());
-            prep.setBoolean(5, shift.isShift_Tuesday());
-            prep.setBoolean(6, shift.isShift_Wednesday());
-            prep.setBoolean(7, shift.isShift_Thursday());
-            prep.setBoolean(8, shift.isShift_Friday());
-            prep.setBoolean(9, shift.isShift_Saturday());
+            prep.setTime(3, shift.getTime_In());
+            prep.setTime(4, shift.getTime_Out());
+            prep.setTime(5, shift.getBreak_Start());
+            prep.setTime(6, shift.getBreak_End());
+            prep.setBoolean(7, shift.isShift_Sunday());
+            prep.setBoolean(8, shift.isShift_Monday());
+            prep.setBoolean(9, shift.isShift_Tuesday());
+            prep.setBoolean(10, shift.isShift_Wednesday());
+            prep.setBoolean(11, shift.isShift_Thursday());
+            prep.setBoolean(12, shift.isShift_Friday());
+            prep.setBoolean(13, shift.isShift_Saturday());
 
             prep.executeUpdate();
 

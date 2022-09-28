@@ -51,7 +51,7 @@ public class AddHolidayController {
 
     @FXML
     private void initialize() {
-        addholiday_type.getItems().addAll( "Regular Holiday", "Special Working Public Holiday", "Special Non-working Holiday", "Common local holiday", "Season", "Observance");
+        addholiday_type.getItems().addAll( "Suspension", "Regular Holiday", "Special Working Public Holiday", "Special Non-working Holiday", "Common local holiday", "Season", "Observance");
         addholiday_type.getSelectionModel().select(0);
     }
 

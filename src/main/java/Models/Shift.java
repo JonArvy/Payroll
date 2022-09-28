@@ -1,5 +1,7 @@
 package Models;
 
+import java.sql.Time;
+
 public class Shift {
     private int Shift_ID;
     private int Shift_Type;
@@ -7,6 +9,12 @@ public class Shift {
 
     private int Shift_Recipient;
     private String Recipient_Name;
+
+    private Time Time_In;
+    private Time Time_Out;
+
+    private Time Break_Start;
+    private Time Break_End;
 
     private boolean Shift_Sunday;
     private boolean Shift_Monday;
@@ -51,6 +59,23 @@ public class Shift {
     public Shift(int Shift_Type, int Shift_Recipient, boolean Shift_Sunday, boolean Shift_Monday, boolean Shift_Tuesday, boolean Shift_Wednesday, boolean Shift_Thursday, boolean Shift_Friday, boolean Shift_Saturday) {
         this.Shift_Type = Shift_Type;
         this.Shift_Recipient = Shift_Recipient;
+        this.Shift_Sunday = Shift_Sunday;
+        this.Shift_Monday = Shift_Monday;
+        this.Shift_Tuesday = Shift_Tuesday;
+        this.Shift_Wednesday = Shift_Wednesday;
+        this.Shift_Thursday = Shift_Thursday;
+        this.Shift_Friday = Shift_Friday;
+        this.Shift_Saturday = Shift_Saturday;
+        setShiftNameAndSchema();
+    }
+
+    public Shift(int Shift_Type, int Shift_Recipient, Time Time_In, Time Time_Out, Time Break_Start, Time Break_End, boolean Shift_Sunday, boolean Shift_Monday, boolean Shift_Tuesday, boolean Shift_Wednesday, boolean Shift_Thursday, boolean Shift_Friday, boolean Shift_Saturday) {
+        this.Shift_Type = Shift_Type;
+        this.Shift_Recipient = Shift_Recipient;
+        this.Time_In = Time_In;
+        this.Time_Out = Time_Out;
+        this.Break_Start = Break_Start;
+        this.Break_End = Break_End;
         this.Shift_Sunday = Shift_Sunday;
         this.Shift_Monday = Shift_Monday;
         this.Shift_Tuesday = Shift_Tuesday;
@@ -142,5 +167,37 @@ public class Shift {
 
     public String getShift_Schema() {
         return Shift_Schema;
+    }
+
+    public Time getTime_In() {
+        return Time_In;
+    }
+
+    public void setTime_In(Time time_In) {
+        Time_In = time_In;
+    }
+
+    public Time getTime_Out() {
+        return Time_Out;
+    }
+
+    public void setTime_Out(Time time_Out) {
+        Time_Out = time_Out;
+    }
+
+    public Time getBreak_Start() {
+        return Break_Start;
+    }
+
+    public void setBreak_Start(Time break_Start) {
+        Break_Start = break_Start;
+    }
+
+    public Time getBreak_End() {
+        return Break_End;
+    }
+
+    public void setBreak_End(Time break_End) {
+        Break_End = break_End;
     }
 }

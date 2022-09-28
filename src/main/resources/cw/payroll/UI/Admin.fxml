@@ -117,7 +117,7 @@
                   <Font name="Tw Cen MT Bold" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="main_holiday_button" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="247.0" style="-fx-background-color: #01374D;" text="Holiday List" textFill="WHITE">
+            <Button fx:id="main_holiday_button" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="247.0" style="-fx-background-color: #01374D;" text="Suspension &amp; Holiday List" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

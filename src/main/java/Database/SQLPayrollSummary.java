@@ -159,6 +159,10 @@ public class SQLPayrollSummary {
 //                "   SELECT present_days * " +
 //                ") as total_from_presentdays," +
 
+//                "( " +
+//                "   SELECT " +
+//                "   " +
+
                 "( " +
                 "   SELECT " +
                 "   tq.department_dayspermonth - " +
