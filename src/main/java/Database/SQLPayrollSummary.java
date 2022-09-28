@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.Duration;
 
 import static Database.SQLConnection.connect;
 
@@ -142,6 +143,13 @@ public class SQLPayrollSummary {
 
                 "(" +
                 "   SELECT " +
+                "   td.department_monthlyrate / td.department_dayspermonth / td.department_hoursperday" +
+                "   FROM tbl_department td" +
+                "   WHERE te.emp_department = td.department_id" +
+                ") as hourlyrate," +
+
+                "(" +
+                "   SELECT " +
                 "   (" +
                 "       SELECT " +
                 "       COUNT(*) " +
@@ -233,9 +241,9 @@ public class SQLPayrollSummary {
 
                                 resultSet.getInt("dailyrate") * resultSet.getInt("present_days"),
 
-                                calculateReduction(resultSet.getInt("employee_id"), from, to, resultSet.getTime("timein"), resultSet.getTime("timeout")),
-                                resultSet.getDouble("monthlywage"),
-//                                resultSet.getDouble("monthlywage"),//Deduction
+                                calculateReduction(resultSet.getInt("employee_id"), from, to, resultSet.getTime("timein"), resultSet.getTime("timeout"), resultSet.getDouble("hourlyrate")),
+//                                resultSet.getDouble("monthlywage"),
+                                resultSet.getDouble("monthlywage"),//Deduction
 //                                resultSet.getDouble("monthlywage"),//Total after deduction
                                 resultSet.getDouble("monthlywage")
 //                                resultSet.getInt("late_hours"),
@@ -252,10 +260,12 @@ public class SQLPayrollSummary {
         return summaryObservableList;
     }
 
-    public double calculateReduction(int emp_id, Date from, Date to, Time timein, Time timeout) {
+    public double calculateReduction(int emp_id, Date from, Date to, Time timein, Time timeout, double hourlyrate) {
         String command = "SELECT * FROM tbl_attendance " +
                 "WHERE emp_id = ? " +
                 "AND emp_attendance_date BETWEEN ? AND ?";
+
+        int late = 0;
 
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -277,13 +287,24 @@ public class SQLPayrollSummary {
 //                ));
                 System.out.println("Employee: " + resultSet.getInt("emp_id"));
                 System.out.println("Date: " + resultSet.getDate("emp_attendance_date") + " " + resultSet.getTime("emp_timein") + " - " + resultSet.getTime("emp_timeout"));
+                System.out.println("Difference: " + resultSet.getTime("emp_timein").toLocalTime() + " " + timein.toLocalTime());
+                long i = Duration.between(timein.toLocalTime(), resultSet.getTime("emp_timein").toLocalTime()).toMinutes();
+                System.out.println(i);
+
+                if (i > 15) {
+                    System.out.println("Late");
+                    int latetobeadded = (int) Math.ceil(i / 60) + 1;
+                    late += latetobeadded;
+                } else {
+                    System.out.println("Not late");
+                }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0.0;
+        return hourlyrate * late;
     }
 
     public int lateChecker() {

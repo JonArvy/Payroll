@@ -143,34 +143,6 @@ public class PayrollSummaryController {
         col_name.setCellValueFactory(new PropertyValueFactory<Summary, String>("Name"));
         col_position.setCellValueFactory(new PropertyValueFactory<Summary, String>("Position"));
 
-//        col_wage.setCellValueFactory(new PropertyValueFactory<Summary, Double>("Wage"));
-//        col_benefits.setCellValueFactory(new PropertyValueFactory<Summary, Double>("Benefits"));
-//        col_noofdayspresent.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("PresentDays"));
-//        col_noofdaysabsent.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("AbsentDays"));
-//        col_totalcompensation.setCellValueFactory(new PropertyValueFactory<Summary, Double>("TotalCompensation"));
-//
-//        col_less.setCellValueFactory(new PropertyValueFactory<Summary, Double>("Less"));
-//        col_totaldeduction.setCellValueFactory(new PropertyValueFactory<Summary, Double>("TotalDeduction"));
-//        col_netamount.setCellValueFactory(new PropertyValueFactory<Summary, Double>("NetAmount"));
-
-        payrollSummary_table.setItems(summaryList);
-
-//        col_bir;
-//        col_edit;
-//        col_pagibig;
-//        col_signature;
-    }
-
-
-    private void generatePayrollSummary(Date from, Date to) {
-        summaryList.clear();
-
-        summaryList = sqlPayrollSummary.loadPayrollSummary(from, to);
-
-        col_number.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("Number"));
-        col_name.setCellValueFactory(new PropertyValueFactory<Summary, String>("Name"));
-        col_position.setCellValueFactory(new PropertyValueFactory<Summary, String>("Position"));
-
         col_wage.setCellValueFactory(new PropertyValueFactory<Summary, Double>("Wage"));
         col_benefits.setCellValueFactory(new PropertyValueFactory<Summary, Double>("Benefits"));
         col_noofdayspresent.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("PresentDays"));
@@ -182,6 +154,34 @@ public class PayrollSummaryController {
         col_netamount.setCellValueFactory(new PropertyValueFactory<Summary, Double>("NetAmount"));
 
         payrollSummary_table.setItems(summaryList);
+
+//        col_bir;
+//        col_edit;
+//        col_pagibig;
+//        col_signature;
+    }
+
+
+    private void generatePayrollSummary(Date from, Date to) {
+//        summaryList.clear();
+//
+//        summaryList = sqlPayrollSummary.loadPayrollSummary(from, to);
+//
+//        col_number.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("Number"));
+//        col_name.setCellValueFactory(new PropertyValueFactory<Summary, String>("Name"));
+//        col_position.setCellValueFactory(new PropertyValueFactory<Summary, String>("Position"));
+//
+//        col_wage.setCellValueFactory(new PropertyValueFactory<Summary, Double>("Wage"));
+//        col_benefits.setCellValueFactory(new PropertyValueFactory<Summary, Double>("Benefits"));
+//        col_noofdayspresent.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("PresentDays"));
+//        col_noofdaysabsent.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("AbsentDays"));
+//        col_totalcompensation.setCellValueFactory(new PropertyValueFactory<Summary, Double>("TotalCompensation"));
+//
+//        col_less.setCellValueFactory(new PropertyValueFactory<Summary, Double>("Less"));
+//        col_totaldeduction.setCellValueFactory(new PropertyValueFactory<Summary, Double>("TotalDeduction"));
+//        col_netamount.setCellValueFactory(new PropertyValueFactory<Summary, Double>("NetAmount"));
+//
+//        payrollSummary_table.setItems(summaryList);
 
 //        col_bir;
 //        col_edit;
