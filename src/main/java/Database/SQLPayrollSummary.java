@@ -1,5 +1,6 @@
 package Database;
 
+import Models.Attendance;
 import Models.AttendanceReport;
 import Models.Summary;
 import javafx.collections.FXCollections;
@@ -163,6 +164,20 @@ public class SQLPayrollSummary {
 //                "   SELECT " +
 //                "   " +
 
+                "(" +
+                "   SELECT " +
+                "   ts.shift_in " +
+                "   FROM tbl_shift ts " +
+                "   WHERE te.emp_department = ts.shift_recipient " +
+                ") as timein," +
+
+                "(" +
+                "   SELECT " +
+                "   ts.shift_out" +
+                "   FROM tbl_shift ts" +
+                "   WHERE te.emp_department = ts.shift_recipient" +
+                ") as timeout," +
+
                 "( " +
                 "   SELECT " +
                 "   tq.department_dayspermonth - " +
@@ -218,8 +233,10 @@ public class SQLPayrollSummary {
 
                                 resultSet.getInt("dailyrate") * resultSet.getInt("present_days"),
 
+                                calculateReduction(resultSet.getInt("employee_id"), from, to, resultSet.getTime("timein"), resultSet.getTime("timeout")),
                                 resultSet.getDouble("monthlywage"),
-                                resultSet.getDouble("monthlywage"),
+//                                resultSet.getDouble("monthlywage"),//Deduction
+//                                resultSet.getDouble("monthlywage"),//Total after deduction
                                 resultSet.getDouble("monthlywage")
 //                                resultSet.getInt("late_hours"),
 //                                resultSet.getInt("holiday")
@@ -234,6 +251,91 @@ public class SQLPayrollSummary {
 
         return summaryObservableList;
     }
+
+    public double calculateReduction(int emp_id, Date from, Date to, Time timein, Time timeout) {
+        String command = "SELECT * FROM tbl_attendance " +
+                "WHERE emp_id = ? " +
+                "AND emp_attendance_date BETWEEN ? AND ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setInt(1, emp_id);
+            preparedStatement.setDate(2, from);
+            preparedStatement.setDate(3, to);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                resultSet.getTime("emp_timein");
+//                attendanceList.add(new Attendance(
+//                        resultSet.getInt("emp_id"),
+//
+//                        resultSet.getDate("emp_attendance_date"),
+//                        resultSet.getTime("emp_timein"),
+//                        resultSet.getTime("emp_timeout")
+//
+//                ));
+                System.out.println("Employee: " + resultSet.getInt("emp_id"));
+                System.out.println("Date: " + resultSet.getDate("emp_attendance_date") + " " + resultSet.getTime("emp_timein") + " - " + resultSet.getTime("emp_timeout"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return 0.0;
+    }
+
+    public int lateChecker() {
+        return 1;
+    }
+//        public ObservableList<Summary> generatePayrollSummary(Date from, Date to, ObservableList<Summary> summaryObservableList) {
+////
+//
+//            String command = "SELECT * " +
+//                    "   FROM tbl_attendance " +
+//                    "   WHERE emp_id = ? " +
+//                    "   AND emp_attendance_date BETWEEN ? AND ?";
+//
+//
+//            try (Connection connection = connect();
+//                 PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+//                preparedStatement.setInt(1, summaryObservableList.get(0).getNumber());
+//                preparedStatement.setDate(2, from);
+//                preparedStatement.setDate(3, to);
+//
+//                ResultSet resultSet = preparedStatement.executeQuery();
+//                while (resultSet.next()) {
+//                    summaryObservableList.add(new Summary(
+//                                    id,
+//                                    resultSet.getString("full_name"),
+//                                    resultSet.getString("employee_position"),
+//                                    resultSet.getDouble("monthlywage"),
+//
+//                                    resultSet.getDouble("monthlywage"),
+//
+//                                    resultSet.getInt("present_days"),
+//                                    resultSet.getInt("absent_days"),
+////                                resultSet.getInt("total_from_presentdays"),
+//
+//                                    resultSet.getInt("dailyrate") * resultSet.getInt("present_days"),
+//
+//                                    resultSet.getDouble("monthlywage"),
+//                                    resultSet.getDouble("monthlywage"),
+//                                    resultSet.getDouble("monthlywage")
+////                                resultSet.getInt("late_hours"),
+////                                resultSet.getInt("holiday")
+//                            )
+//                    );
+//                    id++;
+//                }
+//
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//
+//            return summaryObservableList;
+//        }
 
 //        try (Connection connection = connect();
 //             PreparedStatement preparedStatement = connection.prepareStatement(command_emp);

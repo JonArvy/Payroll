@@ -16,6 +16,13 @@ public class Summary {
     private double NetAmount;
 
 
+    public Summary(int number, String name, String position) {
+        Number = number;
+        Name = name;
+        Position = position;
+    }
+
+
     public Summary(int number, String name, String position, double wage, double benefits, int presentDays, int absentDays, double totalCompensation, double less, double totalDeduction, double netAmount) {
         Number = number;
         Name = name;

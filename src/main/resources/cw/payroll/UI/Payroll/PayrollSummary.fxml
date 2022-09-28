@@ -43,8 +43,9 @@
                   </TableView>
               </children>
           </AnchorPane>
-      <DatePicker fx:id="date_from" layoutX="324.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="258.0" AnchorPane.topAnchor="33.0" />
-      <DatePicker fx:id="date_to" disable="true" layoutX="476.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="33.0" />
-      <Button fx:id="generate_Button" layoutX="624.0" layoutY="33.0" mnemonicParsing="false" onAction="#generate" prefHeight="25.0" prefWidth="72.0" text="Generate" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="33.0" />
+      <DatePicker fx:id="date_from" layoutX="239.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="343.0" AnchorPane.topAnchor="33.0" />
+      <DatePicker fx:id="date_to" disable="true" layoutX="391.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="33.0" />
+      <Button fx:id="loadActiveEmployees_button" layoutX="624.0" layoutY="33.0" mnemonicParsing="false" onAction="#loadEmployees" prefHeight="25.0" prefWidth="160.0" text="Load Active Employees" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="33.0" />
+      <Button fx:id="generateReport_button" disable="true" layoutX="536.0" layoutY="69.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="Generate Payroll Report" textFill="WHITE" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="69.0" />
     </children>
 </AnchorPane>
