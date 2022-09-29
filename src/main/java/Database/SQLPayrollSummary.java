@@ -135,6 +135,8 @@ public class SQLPayrollSummary {
                 "   AND emp_attendance_date BETWEEN ? AND ? " +
                 ") as present_days," +
 
+
+
                 "(" +
                 "   SELECT " +
                 "   tq.department_dayspermonth - " +
@@ -250,9 +252,9 @@ public class SQLPayrollSummary {
                 sm.setPosition(resultSet.getString("employee_position"));
                 sm.setDepartment(resultSet.getString("dept_name"));
 
+                sm.setWage(resultSet.getDouble("monthlywage"));
                 sm.setNetAmount(resultSet.getDouble("monthlywage"));
                 sm.setPresentDays(resultSet.getInt("dayspermonth"));
-                sm.setPresentDays(resultSet.getInt("present_days"));
                 sm.setAbsentDays(resultSet.getInt("absent_days"));
                 sm.setTotalCompensation(resultSet.getInt("dailyrate") * resultSet.getInt("present_days"));
 
@@ -315,7 +317,7 @@ public class SQLPayrollSummary {
                 preparedStatement.setInt(2, sum.getNumber());
                 preparedStatement.setInt(3, sum.getEmployeeNumber());
                 preparedStatement.setString(4, sum.getName());
-                preparedStatement.setDate(5, sum.getDateCreated());
+                preparedStatement.setDate(5, Date.valueOf(LocalDate.now()));
                 preparedStatement.setString(6, sum.getDepartment());
                 preparedStatement.setString(7, sum.getPosition());
                 preparedStatement.setInt(8, sum.getLateUT());
@@ -513,7 +515,7 @@ public class SQLPayrollSummary {
 //    }
 //        return list;
 
-    public ObservableList<SummarySchema> getSummaryList() {
+    public ObservableList<SummarySchema> getSchemaSummaryList() {
         String command = "SELECT * FROM payroll_summary_schema";
         ObservableList<SummarySchema> list = FXCollections.observableArrayList();
 
@@ -535,5 +537,43 @@ public class SQLPayrollSummary {
         }
 
         return list;
+    }
+
+    public ObservableList<Summary> getSummaryList(int id) {
+        ObservableList<Summary> summaryList = FXCollections.observableArrayList();
+        String command = "SELECT * FROM payroll_summary WHERE summary_id = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                Summary sm = new Summary();
+//                sm.setDateCreated(resultSet.getDate("summary_date_created"));
+                sm.setName(resultSet.getString("summary_name"));
+                sm.setEmployeeNumber(resultSet.getInt("summary_employee_number"));
+                sm.setDepartment(resultSet.getString("summary_department"));
+                sm.setPosition(resultSet.getString("summary_position"));
+                sm.setDatabaseID(resultSet.getInt("summary_individual_id"));
+
+                sm.setWage(resultSet.getDouble("summary_wage"));
+                sm.setLateUT(resultSet.getInt("summary_late_ut"));
+                sm.setAbsentDays(resultSet.getInt("summary_absent_days"));
+                sm.setTotalCompensation(resultSet.getDouble("summary_total_compensation"));
+                sm.setTotalDeduction(resultSet.getDouble("summary_total_deduction"));
+
+                sm.setNetAmount(resultSet.getDouble("summary_net_amount"));
+                summaryList.add(
+                        sm
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return summaryList;
     }
 }

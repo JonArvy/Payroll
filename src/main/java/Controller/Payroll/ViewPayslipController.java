@@ -131,6 +131,7 @@ package Controller.Payroll;
 import Database.SQLEmployee;
 import Models.Admin;
 import Models.Employee;
+import Models.Summary;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -192,7 +193,7 @@ public class ViewPayslipController {
     private Admin admin;
     private AnchorPane container;
 
-    private Employee employee;
+    private Summary summary;
 
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
 
@@ -221,13 +222,23 @@ public class ViewPayslipController {
         }
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setSummary(Summary summary) {
+        this.summary = summary;
         initializePayslipValues();
     }
 
     public void initializePayslipValues() {
-
+        emp_id.setText(String.valueOf(summary.getEmployeeNumber()));
+        emp_name.setText(summary.getName());
+        department.setText(summary.getDepartment());
+        date.setText(String.valueOf(summary.getDateCreated()));
+        basic_salary.setText(String.valueOf(summary.getWage()));
+        gross_salary.setText(String.valueOf(summary.getTotalCompensation()));
+        deductions.setText(String.valueOf(summary.getTotalDeduction()));
+        netpay.setText(String.valueOf(summary.getNetAmount()));
+        absent.setText(String.valueOf(summary.getAbsentDays()));
+        ut_late.setText(String.valueOf(summary.getLateUT()));
+        pagibig.setText("---");
     }
 
 }

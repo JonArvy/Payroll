@@ -3,6 +3,17 @@ package Models;
 import java.sql.Date;
 
 public class Summary {
+
+    private int DatabaseID;
+
+    public int getDatabaseID() {
+        return DatabaseID;
+    }
+
+    public void setDatabaseID(int databaseID) {
+        DatabaseID = databaseID;
+    }
+
     private int Number;
 
     private int EmployeeNumber;

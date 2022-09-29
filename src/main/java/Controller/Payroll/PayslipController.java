@@ -24,19 +24,19 @@ import java.io.IOException;
 public class PayslipController {
 
     @FXML
-    private TableColumn<Employee, Void> main_payslip_column_action;
+    private TableColumn<Summary, Void> main_payslip_column_action;
 
     @FXML
-    private TableColumn<Employee, String> main_payslip_column_department;
+    private TableColumn<Summary, String> main_payslip_column_department;
 
     @FXML
-    private TableColumn<Employee, Integer> main_payslip_column_empid;
+    private TableColumn<Summary, Integer> main_payslip_column_empid;
 
     @FXML
-    private TableColumn<Employee, String> main_payslip_column_fullname;
+    private TableColumn<Summary, String> main_payslip_column_fullname;
 
     @FXML
-    private TableColumn<Employee, String> main_payslip_column_position;
+    private TableColumn<Summary, String> main_payslip_column_position;
 
     @FXML
     private TableView main_payslip_tableview;
@@ -46,7 +46,7 @@ public class PayslipController {
 
     @FXML
     private void load(ActionEvent event) {
-
+        loadPaySlips();
     }
 
     @FXML
@@ -74,7 +74,7 @@ public class PayslipController {
         this.container = anchorPane;
     }
 
-    private void loadViewPayslip(Employee employee) {
+    private void loadViewPayslip(Summary summary) {
         ViewPayslipController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/ViewPayslip.fxml"));
@@ -82,7 +82,7 @@ public class PayslipController {
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, container);
-            controller.setEmployee(employee);
+            controller.setSummary(summary);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
 //            container.getChildren().clear();
@@ -93,59 +93,63 @@ public class PayslipController {
         }
     }
 
-    private void showPayslipList() {
-//        employeeList.clear();
-//        employeeList = sqlEmployee.getAllEmployeePayslip();
-//
-//        main_payslip_column_empid.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("Employee_ID"));
-//        main_payslip_column_fullname.setCellValueFactory(new PropertyValueFactory<Employee, String>("Full_Name"));
-//        main_payslip_column_department.setCellValueFactory(new PropertyValueFactory<Employee, String>("Department_Name"));
-//        main_payslip_column_position.setCellValueFactory(new PropertyValueFactory<Employee, String>("Position"));
-//
-//        Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>> cellFactory = new Callback<TableColumn<Employee, Void>, TableCell<Employee, Void>>() {
-//            @Override
-//            public TableCell<Employee, Void> call(final TableColumn<Employee, Void> param) {
-//                final TableCell<Employee, Void> cell = new TableCell<Employee, Void>() {
-//                    private final Button btn = new Button("View");
-//
-//                    {
-//                        String style = "-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
-//                                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
-//                                "-fx-background-radius: 30; " +
-//                                "-fx-background-insets: 0,1,1; " +
-//                                "-fx-text-fill: black; " +
-//                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);";
-//
-//                        btn.setStyle(style);
-//                        btn.setOnAction((ActionEvent event) -> {
-//                            Employee emp = getTableView().getItems().get(getIndex());
-//                            loadViewPayslip(emp);
-//                        });
-//                    }
-//                    @Override
-//                    public void updateItem(Void item, boolean empty) {
-//                        super.updateItem(item, empty);
-//                        if (empty) {
-//                            setGraphic(null);
-//                        } else {
-//                            HBox allbtn = new HBox(btn);
-//                            setGraphic(allbtn);
-//                        }
-//                    }
-//                };
-//                return cell;
-//            }
-//        };
-//        main_payslip_column_action.setCellFactory(cellFactory);
-//
-//        main_payslip_tableview.setItems(employeeList);
-    }
-
     private void initalizeFields() {
         summarySchemas.clear();
 
-        summarySchemas = sqlPayrollSummary.getSummaryList();
+        summarySchemas = sqlPayrollSummary.getSchemaSummaryList();
         payslip_schema.setItems(summarySchemas);
         payslip_schema.setConverter(converters.summarySchemaStringConverter(summarySchemas));
+
+        payslip_schema.getSelectionModel().select(0);
+    }
+
+    private void loadPaySlips() {
+        int id = payslip_schema.getSelectionModel().getSelectedItem().getSummary_id();
+
+        summaries = sqlPayrollSummary.getSummaryList(id);
+
+        main_payslip_column_empid.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("EmployeeNumber"));
+        main_payslip_column_fullname.setCellValueFactory(new PropertyValueFactory<Summary, String>("Name"));
+        main_payslip_column_department.setCellValueFactory(new PropertyValueFactory<Summary, String>("Department"));
+        main_payslip_column_position.setCellValueFactory(new PropertyValueFactory<Summary, String>("Position"));
+
+        Callback<TableColumn<Summary, Void>, TableCell<Summary, Void>> cellFactory = new Callback<TableColumn<Summary, Void>, TableCell<Summary, Void>>() {
+            @Override
+            public TableCell<Summary, Void> call(final TableColumn<Summary, Void> param) {
+                final TableCell<Summary, Void> cell = new TableCell<Summary, Void>() {
+                    private final Button btn = new Button("View");
+
+                    {
+                        String style = "-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
+                                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
+                                "-fx-background-radius: 30; " +
+                                "-fx-background-insets: 0,1,1; " +
+                                "-fx-text-fill: black; " +
+                                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);";
+
+                        btn.setStyle(style);
+                        btn.setOnAction((ActionEvent event) -> {
+                            Summary sm = getTableView().getItems().get(getIndex());
+
+                            loadViewPayslip(sm);
+                        });
+                    }
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox allbtn = new HBox(btn);
+                            setGraphic(allbtn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        main_payslip_column_action.setCellFactory(cellFactory);
+
+        main_payslip_tableview.setItems(summaries);
     }
 }
