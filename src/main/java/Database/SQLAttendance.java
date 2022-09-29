@@ -328,4 +328,30 @@ public class SQLAttendance {
             e.printStackTrace();
         }
     }
+
+    public void updateAttendance(Attendance attendance) {
+        String command = "UPDATE tbl_attendance " +
+                "SET emp_timein = ?, " +
+                "emp_timeout = ?, " +
+                "emp_attendance_date = ? " +
+                "WHERE attendance_id = ?";
+
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setTime(1, attendance.getEmployee_TimeIn()); //
+            preparedStatement.setTime(2, attendance.getEmployee_TimeOut());
+            preparedStatement.setDate(3, attendance.getEmployee_Attendance_Date());
+            preparedStatement.setInt(4, attendance.getAttendance_ID());
+
+            preparedStatement.executeUpdate();
+
+            callAlert("Success!", "Attendance has been updated!");
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            callAlert("Error!", "Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
 }

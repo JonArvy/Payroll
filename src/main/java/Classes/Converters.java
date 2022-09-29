@@ -2,6 +2,7 @@ package Classes;
 
 import Models.BooleanValue;
 import Models.Department;
+import Models.SummarySchema;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.StringConverter;
@@ -51,6 +52,30 @@ public class Converters {
             public BooleanValue fromString(String s) {
                 return list.stream()
                         .filter(item -> item.getName().equals(s))
+                        .collect(Collectors.toList()).get(0);
+            }
+        };
+        return converter;
+    }
+
+
+    public StringConverter<SummarySchema> summarySchemaStringConverter(ObservableList<SummarySchema> list) {
+        StringConverter<SummarySchema> converter = new StringConverter<SummarySchema>() {
+            @Override
+            public String toString(SummarySchema summarySchema) {
+                String s = "";
+                try {
+                    s = summarySchema.getSummary_name();
+                } catch (NullPointerException e) {
+                    s = "";
+                }
+                return s;
+            }
+
+            @Override
+            public SummarySchema fromString(String s) {
+                return list.stream()
+                        .filter(item -> item.getSummary_name().equals(s))
                         .collect(Collectors.toList()).get(0);
             }
         };

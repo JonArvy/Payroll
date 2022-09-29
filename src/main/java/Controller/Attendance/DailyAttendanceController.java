@@ -1,21 +1,25 @@
 package Controller.Attendance;
 
+import Controller.Employee.EditEmployeeController;
 import Database.SQLAttendance;
 import Database.SQLDepartment;
 import Models.Admin;
 import Models.Attendance;
 import Models.Department;
 import Models.Employee;
+import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -77,10 +81,10 @@ public class DailyAttendanceController {
 
     @FXML
     private void initialize() {
-        main_dailyattendance_datepicker.setValue(LocalDate.now());
         main_dailyattendance_datepicker.valueProperty().addListener((o, ol, nw) -> {
             showDailyAttendanceTable();
         });
+        main_dailyattendance_datepicker.setValue(LocalDate.now());
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -95,6 +99,10 @@ public class DailyAttendanceController {
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
+    }
+
+    public void setDateInfo(Date date) {
+        main_dailyattendance_datepicker.setValue(date.toLocalDate());
     }
 
     private void showDailyAttendanceTable() {
@@ -125,10 +133,11 @@ public class DailyAttendanceController {
                                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);";
 
                         btn.setStyle(style);
-                        btn.setDisable(true);
+//                        btn.setDisable(true);
                         btn.setOnAction((ActionEvent event) -> {
                             Attendance attendance = getTableView().getItems().get(getIndex());
                             System.out.println(attendance.getAttendance_ID());
+                            loadEditDailyAttendance(attendance);
                         });
                     }
                     @Override
@@ -148,5 +157,26 @@ public class DailyAttendanceController {
         main_dailyattendance_column_action.setCellFactory(cellFactory);
 
         main_dailyattendance_tableview.setItems(attendanceList);
+    }
+
+    private void loadEditDailyAttendance(Attendance attendance) {
+        EditDailyAttendanceController controller;
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/EditDailyAttendance.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+
+//            controller.setEmployee(employee);
+            controller.setInfo(attendance);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

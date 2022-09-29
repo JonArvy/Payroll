@@ -82,6 +82,35 @@ public class Attendance {
         return Employee_TimeOut;
     }
 
+    public void setAttendance_ID(int attendance_ID) {
+        Attendance_ID = attendance_ID;
+    }
 
+    public void setEmployee_ID(int employee_ID) {
+        Employee_ID = employee_ID;
+    }
 
+    public void setEmployee_FullName(String employee_FullName) {
+        Employee_FullName = employee_FullName;
+    }
+
+    public void setDepartment_Name(String department_Name) {
+        Department_Name = department_Name;
+    }
+
+    public void setEmployee_Position(String employee_Position) {
+        Employee_Position = employee_Position;
+    }
+
+    public void setEmployee_Attendance_Date(Date employee_Attendance_Date) {
+        Employee_Attendance_Date = employee_Attendance_Date;
+    }
+
+    public void setEmployee_TimeIn(Time employee_TimeIn) {
+        Employee_TimeIn = employee_TimeIn;
+    }
+
+    public void setEmployee_TimeOut(Time employee_TimeOut) {
+        Employee_TimeOut = employee_TimeOut;
+    }
 }

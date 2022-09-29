@@ -108,6 +108,36 @@ public class SQLExecution {
                 "holiday_type VARCHAR(30)," +
                 "holiday_repeat VARCHAR(30))";
 
+        String payrollsummary_tbl = "CREATE TABLE IF NOT EXISTS payroll_summary ( " +
+                "    summary_individual_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                "    summary_id INTEGER NOT NULL, " +
+
+                "    summary_number INTEGER NOT NULL, " +
+                "    summary_employee_number INTEGER NOT NULL, " +
+                "    summary_name VARCHAR(100) NOT NULL, " +
+
+                "    summary_date_created DATE NOT NULL, " +
+                "    summary_department VARCHAR(30) NOT NULL, " +
+
+                "    summary_position VARCHAR(30) NOT NULL, " +
+
+                "    summary_late_ut INTEGER NOT NULL, " +
+                "    summary_wage DOUBLE NOT NULL, " +
+                "    summary_benefits DOUBLE NOT NULL, " +
+
+                "    summary_present_days INTEGER NOT NULL, " +
+                "    summary_absent_days INTEGER NOT NULL, " +
+
+                "    summary_total_compensation DOUBLE NOT NULL, " +
+                "    summary_less DOUBLE NOT NULL, " +
+                "    summary_total_deduction DOUBLE NOT NULL, " +
+                "    summary_net_amount DOUBLE NOT NULL)";
+
+        String payrollsummaryschema_tbl = "CREATE TABLE IF NOT EXISTS payroll_summary_schema ( " +
+                "    summary_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                "    summary_date_from DATE NOT NULL, " +
+                "    summary_date_to DATE NOT NULL)";
+
         ExecuteWithoutReturn(department_tbl);
         ExecuteWithoutReturn(noticeboard_tbl);
         ExecuteWithoutReturn(holiday_tbl);
@@ -118,6 +148,9 @@ public class SQLExecution {
 
         ExecuteWithoutReturn(bonus_tbl);
         ExecuteWithoutReturn(shift_tbl);
+
+        ExecuteWithoutReturn(payrollsummary_tbl);
+        ExecuteWithoutReturn(payrollsummaryschema_tbl);
     }
 
     public void dropTables() {
@@ -132,6 +165,9 @@ public class SQLExecution {
         String bonus_tbl = "DROP TABLE IF EXISTS tbl_bonus";
         String shift_tbl = "DROP TABLE IF EXISTS tbl_shift";
 
+        String payrollsummary_tbl = "DROP TABLE IF EXISTS payroll_summary";
+        String payrollsummaryschema_tbl = "DROP TABLE IF EXISTS payroll_summary_schema";
+
 
         ExecuteWithoutReturn(department_tbl);
         ExecuteWithoutReturn(noticeboard_tbl);
@@ -143,6 +179,9 @@ public class SQLExecution {
 
         ExecuteWithoutReturn(bonus_tbl);
         ExecuteWithoutReturn(shift_tbl);
+
+        ExecuteWithoutReturn(payrollsummary_tbl);
+        ExecuteWithoutReturn(payrollsummaryschema_tbl);
     }
 
     private void ExecuteWithoutReturn(String sql) {

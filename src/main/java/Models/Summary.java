@@ -1,8 +1,19 @@
 package Models;
 
+import java.sql.Date;
+
 public class Summary {
     private int Number;
+
+    private int EmployeeNumber;
     private String Name;
+
+    private Date DateCreated;
+
+    private String Department;
+
+    private int LateUT;
+
     private String Position;
 
     private double Wage;
@@ -127,5 +138,37 @@ public class Summary {
 
     public void setNetAmount(double netAmount) {
         NetAmount = netAmount;
+    }
+
+    public int getEmployeeNumber() {
+        return EmployeeNumber;
+    }
+
+    public void setEmployeeNumber(int employeeNumber) {
+        EmployeeNumber = employeeNumber;
+    }
+
+    public Date getDateCreated() {
+        return DateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        DateCreated = dateCreated;
+    }
+
+    public String getDepartment() {
+        return Department;
+    }
+
+    public void setDepartment(String department) {
+        Department = department;
+    }
+
+    public int getLateUT() {
+        return LateUT;
+    }
+
+    public void setLateUT(int lateUT) {
+        LateUT = lateUT;
     }
 }

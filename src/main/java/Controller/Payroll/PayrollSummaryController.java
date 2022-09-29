@@ -1,6 +1,7 @@
 package Controller.Payroll;
 
 
+import Classes.Converters;
 import Database.SQLPayrollSummary;
 import Models.AttendanceReport;
 import Models.Summary;
@@ -93,7 +94,7 @@ public class PayrollSummaryController {
 
     @FXML
     private void generateReport() {
-
+        generatePayrollSummary(Date.valueOf(date_from.getValue()), Date.valueOf(date_to.getValue()));
     }
 
     @FXML
@@ -114,6 +115,7 @@ public class PayrollSummaryController {
     private ObservableList<Summary> summaryList = FXCollections.observableArrayList();
 
     private SQLPayrollSummary sqlPayrollSummary = new SQLPayrollSummary();
+
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
@@ -163,6 +165,7 @@ public class PayrollSummaryController {
 
 
     private void generatePayrollSummary(Date from, Date to) {
+        sqlPayrollSummary.savePayrollSummary(summaryList, from, to);
 //        summaryList.clear();
 //
 //        summaryList = sqlPayrollSummary.loadPayrollSummary(from, to);
@@ -188,5 +191,7 @@ public class PayrollSummaryController {
 //        col_pagibig;
 //        col_signature;
     }
+
+
 
 }
