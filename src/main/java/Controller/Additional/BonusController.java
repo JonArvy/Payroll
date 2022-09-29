@@ -120,7 +120,7 @@ public class BonusController {
             public TableCell<Bonus, Void> call(final TableColumn<Bonus, Void> param) {
                 final TableCell<Bonus, Void> cell = new TableCell<Bonus, Void>() {
                     private final Button btn = new Button("Edit");
-                    private final Button btn2 = new Button("Delete");
+                    private final Button btn2 = new Button("View");
 
                     {
                         String style = "-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
@@ -137,10 +137,12 @@ public class BonusController {
                             loadEditBonus(bonus);
 //                            Employee emp = getTableView().getItems().get(getIndex());
                         });
-                        btn2.setDisable(true);
+                        btn2.setDisable(false);
                         btn2.setStyle(style);
                         btn2.setOnAction((ActionEvent event) -> {
 //                            Employee emp = getTableView().getItems().get(getIndex());
+//                            getTableView().getItems().get(getIndex());
+                            showBonusReport();
                         });
                     }
                     @Override
@@ -160,5 +162,23 @@ public class BonusController {
         bonus_column_action.setCellFactory(cellFactory);
 
         bonus_tableview.setItems(bonusList);
+    }
+
+    private void showBonusReport() {
+        BonusReportController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/BonusReport.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
