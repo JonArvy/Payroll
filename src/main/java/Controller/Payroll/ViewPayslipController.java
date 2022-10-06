@@ -128,6 +128,7 @@
 
 package Controller.Payroll;
 
+import Classes.PDFWriter;
 import Database.SQLEmployee;
 import Models.Admin;
 import Models.Employee;
@@ -141,8 +142,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import static Classes.PDFWriter.*;
 
 public class ViewPayslipController {
 
@@ -185,10 +191,23 @@ public class ViewPayslipController {
     @FXML
     private TextField wages;
 
+    @FXML
+    private Pane payslip;
+
+    @FXML
+    private Button print_button;
+
 
     @FXML
     private void close(ActionEvent event) {
         loadPayslip();
+    }
+
+    @FXML
+    void print(ActionEvent event) {
+        loadPayslip();
+        getImage(payslip);
+        writePDF(summary.getName() + " " + LocalDate.now().toString());
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -235,6 +254,14 @@ public class ViewPayslipController {
         emp_name.setText(summary.getName());
         department.setText(summary.getDepartment());
         date.setText(String.valueOf(summary.getDateCreated()));
+        position.setText(summary.getPosition());
+        wages.setText(String.valueOf(summary.getWage()));
+        present_days.setText(String.valueOf(summary.getPresentDays()));
+        absent_days.setText(String.valueOf(summary.getAbsentDays()));
+        total.setText(String.valueOf(summary.getTotalCompensation()));
+        less.setText(String.valueOf(summary.getLess()));
+        netpay.setText(String.valueOf(summary.getNetAmount()));
+        date.setText(String.valueOf(LocalDate.now()));
 //        basic_salary.setText(String.valueOf(summary.getWage()));
 //        gross_salary.setText(String.valueOf(summary.getTotalCompensation()));
 //        deductions.setText(String.valueOf(summary.getTotalDeduction()));

@@ -55,6 +55,11 @@ public class PayslipController {
         initalizeFields();
     }
 
+    @FXML
+    private void generate() {
+
+    }
+
     /****************************** FXML ENDS HERE ******************************/
 
     private Admin admin;

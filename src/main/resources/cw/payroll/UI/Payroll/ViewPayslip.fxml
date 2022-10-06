@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.ViewPayslipController">
     <children>
-        <Pane layoutX="17.0" layoutY="117.0" prefHeight="294.0" prefWidth="682.0" style="-fx-background-color: #D9D9D9;">
+        <Pane fx:id="payslip" layoutX="17.0" layoutY="117.0" prefHeight="294.0" prefWidth="682.0" style="-fx-background-color: #D9D9D9;">
             <children>
                 <TextField fx:id="date" alignment="CENTER" editable="false" layoutX="488.0" layoutY="17.0" prefHeight="25.0" prefWidth="144.0" promptText="XX/XX/XXXX" />
                 <Label layoutX="39.0" layoutY="56.0" text="EMPLOYEE NAME:">
@@ -93,5 +93,6 @@
             </children>
         </Pane>
           <Button fx:id="close_button" layoutX="658.0" layoutY="30.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: red; -fx-text-fill: white;" text="X" />
+      <Button fx:id="print_button" layoutX="606.0" layoutY="475.0" mnemonicParsing="false" onAction="#print" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Save as PDF" />
     </children>
 </AnchorPane>

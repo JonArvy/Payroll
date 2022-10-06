@@ -27,11 +27,23 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:18-ea+2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:18-ea+2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:18-ea+2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:18-ea+2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:win:18-ea+2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:kernel:7.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.13" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:io:7.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:layout:7.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:forms:7.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:pdfa:7.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:sign:7.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:barcodes:7.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:font-asian:7.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:hyph:7.0.2" level="project" />
   </component>
 </module>
