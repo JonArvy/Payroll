@@ -22,17 +22,17 @@
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font></Label>
-                <TextField editable="false" layoutX="153.0" layoutY="79.0" prefHeight="25.0" prefWidth="203.0" />
+                <TextField fx:id="department" editable="false" layoutX="153.0" layoutY="79.0" prefHeight="25.0" prefWidth="203.0" />
                 <Label layoutX="56.0" layoutY="152.0" prefHeight="13.0" prefWidth="96.0" text="SALARIES &amp; WAGES" textAlignment="RIGHT" wrapText="true">
                <font>
                   <Font name="Century Gothic" size="10.0" />
                </font></Label>
-                <TextField editable="false" layoutX="153.0" layoutY="145.0" prefHeight="25.0" prefWidth="204.0" />
+                <TextField fx:id="wages" editable="false" layoutX="153.0" layoutY="145.0" prefHeight="25.0" prefWidth="204.0" />
                 <Label layoutX="80.0" layoutY="176.0" prefHeight="20.0" prefWidth="70.0" text="NO. OF DAYS WORKED " textAlignment="RIGHT" wrapText="true">
                     <font>
                         <Font name="Century Gothic" size="8.0" />
                     </font></Label>
-                <TextField editable="false" layoutX="153.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" />
+                <TextField fx:id="present_days" editable="false" layoutX="153.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" />
                 <Label layoutX="396.0" layoutY="206.0" text="NET PAY">
                     <font>
                         <Font name="Century Gothic Bold" size="10.0" />
@@ -43,7 +43,7 @@
                <font>
                   <Font name="Century Gothic" size="10.0" />
                </font></Label>
-                <TextField editable="false" layoutX="446.0" layoutY="145.0" prefHeight="25.0" prefWidth="187.0" />
+                <TextField fx:id="less" editable="false" layoutX="446.0" layoutY="145.0" prefHeight="25.0" prefWidth="187.0" />
             <TextField alignment="CENTER" editable="false" layoutX="396.0" layoutY="117.0" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: AAAAAA;" text="DEDUCTIONS">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
@@ -54,7 +54,7 @@
                   <Font name="Century Gothic" size="8.0" />
                </font>
             </Label>
-            <TextField editable="false" layoutX="287.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" />
+            <TextField fx:id="absent_days" editable="false" layoutX="287.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" />
             <Label layoutX="397.0" layoutY="57.0" text="EMPLOYEE ID:">
                <font>
                   <Font name="Century Gothic" size="12.0" />
@@ -66,7 +66,7 @@
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Label>
-            <TextField editable="false" layoutX="488.0" layoutY="79.0" prefHeight="25.0" prefWidth="144.0" />
+            <TextField fx:id="position" editable="false" layoutX="488.0" layoutY="79.0" prefHeight="25.0" prefWidth="144.0" />
             <TextField alignment="CENTER" editable="false" layoutX="39.0" layoutY="117.0" prefHeight="25.0" prefWidth="317.0" style="-fx-background-color: AAAAAA;" text="COMPENSATION">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
@@ -78,7 +78,7 @@
                </font>
             </Label>
             <TextField fx:id="pagibig" editable="false" layoutX="446.0" layoutY="173.0" prefHeight="25.0" prefWidth="187.0" />
-            <TextField editable="false" layoutX="153.0" layoutY="201.0" prefHeight="25.0" prefWidth="204.0" />
+            <TextField fx:id="total" editable="false" layoutX="153.0" layoutY="201.0" prefHeight="25.0" prefWidth="204.0" />
             <Label layoutX="118.0" layoutY="207.0" prefHeight="13.0" prefWidth="37.0" text="TOTAL" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Century Gothic" size="10.0" />

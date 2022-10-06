@@ -147,19 +147,13 @@ import java.io.IOException;
 public class ViewPayslipController {
 
     @FXML
-    private TextField absent;
-
-    @FXML
-    private TextField basic_salary;
+    private TextField absent_days;
 
     @FXML
     private Button close_button;
 
     @FXML
     private TextField date;
-
-    @FXML
-    private TextField deductions;
 
     @FXML
     private TextField department;
@@ -171,7 +165,7 @@ public class ViewPayslipController {
     private TextField emp_name;
 
     @FXML
-    private TextField gross_salary;
+    private TextField less;
 
     @FXML
     private TextField netpay;
@@ -180,7 +174,16 @@ public class ViewPayslipController {
     private TextField pagibig;
 
     @FXML
-    private TextField ut_late;
+    private TextField position;
+
+    @FXML
+    private TextField present_days;
+
+    @FXML
+    private TextField total;
+
+    @FXML
+    private TextField wages;
 
 
     @FXML
@@ -232,12 +235,12 @@ public class ViewPayslipController {
         emp_name.setText(summary.getName());
         department.setText(summary.getDepartment());
         date.setText(String.valueOf(summary.getDateCreated()));
-        basic_salary.setText(String.valueOf(summary.getWage()));
-        gross_salary.setText(String.valueOf(summary.getTotalCompensation()));
-        deductions.setText(String.valueOf(summary.getTotalDeduction()));
-        netpay.setText(String.valueOf(summary.getNetAmount()));
-        absent.setText(String.valueOf(summary.getAbsentDays()));
-        ut_late.setText(String.valueOf(summary.getLateUT()));
+//        basic_salary.setText(String.valueOf(summary.getWage()));
+//        gross_salary.setText(String.valueOf(summary.getTotalCompensation()));
+//        deductions.setText(String.valueOf(summary.getTotalDeduction()));
+//        netpay.setText(String.valueOf(summary.getNetAmount()));
+//        absent.setText(String.valueOf(summary.getAbsentDays()));
+//        ut_late.setText(String.valueOf(summary.getLateUT()));
         pagibig.setText("---");
     }
 
