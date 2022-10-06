@@ -6,44 +6,90 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.ViewPayslipController">
     <children>
-        <Pane layoutX="17.0" layoutY="160.0" prefHeight="224.0" prefWidth="682.0" style="-fx-background-color: #D9D9D9;">
+        <Pane layoutX="17.0" layoutY="116.0" prefHeight="294.0" prefWidth="682.0" style="-fx-background-color: #D9D9D9;">
             <children>
-                <Label layoutX="462.0" layoutY="30.0" text="Date:" />
-                <TextField fx:id="date" editable="false" layoutX="498.0" layoutY="26.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="49.0" layoutY="28.0" text="Employee Name:" />
-                <TextField fx:id="emp_name" editable="false" layoutX="150.0" layoutY="24.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="71.0" layoutY="59.0" text="Employee ID:" />
-                <TextField fx:id="emp_id" editable="false" layoutX="150.0" layoutY="55.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="77.0" layoutY="106.0" text="Basic Salary" />
-                <TextField fx:id="basic_salary" editable="false" layoutX="150.0" layoutY="102.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="421.0" layoutY="62.0" text="Department:" />
-                <TextField fx:id="department" editable="false" layoutX="498.0" layoutY="57.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="69.0" layoutY="133.0" text="Gross Salary">
+                <TextField fx:id="date" alignment="CENTER" editable="false" layoutX="488.0" layoutY="17.0" prefHeight="25.0" prefWidth="144.0" promptText="XX/XX/XXXX" />
+                <Label layoutX="39.0" layoutY="56.0" text="EMPLOYEE NAME:">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
+                <TextField fx:id="emp_name" editable="false" layoutX="153.0" layoutY="52.0" prefHeight="25.0" prefWidth="203.0" />
+                <Label layoutX="39.0" layoutY="84.0" text="DEPARTMENT:">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
+                <TextField editable="false" layoutX="153.0" layoutY="79.0" prefHeight="25.0" prefWidth="203.0" />
+                <Label layoutX="56.0" layoutY="152.0" prefHeight="13.0" prefWidth="96.0" text="SALARIES &amp; WAGES" textAlignment="RIGHT" wrapText="true">
+               <font>
+                  <Font name="Century Gothic" size="10.0" />
+               </font></Label>
+                <TextField editable="false" layoutX="153.0" layoutY="145.0" prefHeight="25.0" prefWidth="204.0" />
+                <Label layoutX="80.0" layoutY="176.0" prefHeight="20.0" prefWidth="70.0" text="NO. OF DAYS WORKED " textAlignment="RIGHT" wrapText="true">
                     <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Century Gothic" size="8.0" />
                     </font></Label>
-                <TextField fx:id="gross_salary" editable="false" layoutX="150.0" layoutY="129.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="89.0" layoutY="184.0" text="NET PAY">
+                <TextField editable="false" layoutX="153.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" />
+                <Label layoutX="396.0" layoutY="206.0" text="NET PAY">
                     <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Century Gothic Bold" size="10.0" />
                     </font>
                 </Label>
-                <TextField fx:id="netpay" editable="false" layoutX="150.0" layoutY="180.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="437.0" layoutY="106.0" text="Pag-IBIG" />
-                <TextField fx:id="pagibig" editable="false" layoutX="498.0" layoutY="102.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="442.0" layoutY="132.0" text="UT/Late" />
-                <TextField fx:id="ut_late" editable="false" layoutX="498.0" layoutY="128.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="445.0" layoutY="158.0" text="Absent" />
-                <TextField fx:id="absent" editable="false" layoutX="498.0" layoutY="154.0" prefHeight="25.0" prefWidth="120.0" />
-                <Label layoutX="419.0" layoutY="184.0" text="Deductions">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="deductions" editable="false" layoutX="498.0" layoutY="180.0" prefHeight="25.0" prefWidth="120.0" />
+                <TextField fx:id="netpay" editable="false" layoutX="446.0" layoutY="201.0" prefHeight="25.0" prefWidth="187.0" />
+                <Label layoutX="396.0" layoutY="152.0" text="LESS" textAlignment="RIGHT">
+               <font>
+                  <Font name="Century Gothic" size="10.0" />
+               </font></Label>
+                <TextField editable="false" layoutX="446.0" layoutY="145.0" prefHeight="25.0" prefWidth="187.0" />
+            <TextField alignment="CENTER" editable="false" layoutX="396.0" layoutY="117.0" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: AAAAAA;" text="DEDUCTIONS">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </TextField>
+            <Label layoutX="228.0" layoutY="171.0" prefHeight="29.0" prefWidth="56.0" text="NO. OF DAYS ABSENT " textAlignment="RIGHT" wrapText="true">
+               <font>
+                  <Font name="Century Gothic" size="8.0" />
+               </font>
+            </Label>
+            <TextField editable="false" layoutX="287.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" />
+            <Label layoutX="397.0" layoutY="57.0" text="EMPLOYEE ID:">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emp_id" editable="false" layoutX="488.0" layoutY="52.0" prefHeight="25.0" prefWidth="144.0" />
+            <Label layoutX="397.0" layoutY="84.0" text="POSITION:">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <TextField editable="false" layoutX="488.0" layoutY="79.0" prefHeight="25.0" prefWidth="144.0" />
+            <TextField alignment="CENTER" editable="false" layoutX="39.0" layoutY="117.0" prefHeight="25.0" prefWidth="317.0" style="-fx-background-color: AAAAAA;" text="COMPENSATION">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </TextField>
+            <Label layoutX="396.0" layoutY="178.0" text="PAG-IBIG">
+               <font>
+                  <Font name="Century Gothic" size="10.0" />
+               </font>
+            </Label>
+            <TextField fx:id="pagibig" editable="false" layoutX="446.0" layoutY="173.0" prefHeight="25.0" prefWidth="187.0" />
+            <TextField editable="false" layoutX="153.0" layoutY="201.0" prefHeight="25.0" prefWidth="204.0" />
+            <Label layoutX="118.0" layoutY="207.0" prefHeight="13.0" prefWidth="37.0" text="TOTAL" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Century Gothic" size="10.0" />
+               </font>
+            </Label>
+            <Text layoutX="273.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGNATURE OVER PRINTED NAME">
+               <font>
+                  <Font name="Century Gothic" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="270.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="                                                 " underline="true" wrappingWidth="165.0" />
             </children>
         </Pane>
           <Button fx:id="close_button" layoutX="658.0" layoutY="30.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: red; -fx-text-fill: white;" text="X" />
