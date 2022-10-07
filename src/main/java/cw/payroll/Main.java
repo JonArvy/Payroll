@@ -8,6 +8,8 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+import static Classes.PDFWriter.createTablePDF;
+
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -21,7 +23,10 @@ public class Main extends Application {
         stage.setMinWidth(975);
 //        stage.initStyle(StageStyle.UNDECORATED);
 //        stage.setResizable(false);
+
+        createTablePDF();
         stage.show();
+
 
     }
 

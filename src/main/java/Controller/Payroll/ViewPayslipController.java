@@ -200,6 +200,7 @@ public class ViewPayslipController {
 
     @FXML
     private void close(ActionEvent event) {
+//        createTablePDF();
         loadPayslip();
     }
 
