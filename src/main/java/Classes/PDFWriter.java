@@ -3,6 +3,7 @@ package Classes;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.color.Color;
+import com.itextpdf.kernel.color.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -103,7 +104,7 @@ public class PDFWriter {
             String[][] arr = {{},};
 
             for (int i = 0; i < 10; i++) {
-                table.addCell(new Cell(0, 14).add("DEPARTMENT OF " + i).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(Color.BLUE));
+                table.addCell(new Cell(0, 14).add("DEPARTMENT OF " + i).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(new DeviceRgb(153, 217, 234)));
                 for (int y = 0; y < 20; y++) {
                     for (int x = 0; x < 14; x++) {
                         table.addCell(new Cell(0, 0).add(y + " " + x).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
@@ -113,6 +114,8 @@ public class PDFWriter {
 
 
             document.add(table);
+
+//            Table table2 = new Table();
 
             document.close();
             System.out.println("Table Created");
