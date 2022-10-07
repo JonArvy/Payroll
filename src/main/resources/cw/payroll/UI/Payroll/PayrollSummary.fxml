@@ -47,5 +47,6 @@
       <DatePicker fx:id="date_to" disable="true" layoutX="391.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="33.0" />
       <Button fx:id="loadActiveEmployees_button" layoutX="624.0" layoutY="33.0" mnemonicParsing="false" onAction="#loadEmployees" prefHeight="25.0" prefWidth="160.0" text="Load Active Employees" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="33.0" />
       <Button fx:id="generateReport_button" disable="true" layoutX="536.0" layoutY="69.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="Generate Payroll Report" textFill="WHITE" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="69.0" />
+      <Button fx:id="pdf_button" disable="true" layoutX="366.0" layoutY="69.0" mnemonicParsing="false" onAction="#toPDF" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="PRINT REPORT TO PDF" textFill="WHITE" />
     </children>
 </AnchorPane>

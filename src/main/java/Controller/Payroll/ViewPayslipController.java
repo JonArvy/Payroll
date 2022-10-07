@@ -205,11 +205,12 @@ public class ViewPayslipController {
     }
 
     @FXML
-    void print(ActionEvent event) {
+    private void print(ActionEvent event) {
         loadPayslip();
         getImage(payslip);
         writePDF(summary.getName() + " " + LocalDate.now().toString());
     }
+
 
     /****************************** FXML ENDS HERE ******************************/
 

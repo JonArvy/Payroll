@@ -1,5 +1,6 @@
 package Classes;
 
+import Models.Summary;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.color.Color;
@@ -12,6 +13,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.WritableImage;
@@ -59,7 +61,7 @@ public class PDFWriter {
         }
     }
 
-    public static void createTablePDF() {
+    public static void createTablePDF(ObservableList<Summary> summaryList) {
         try {
             String path = "src/main/resources/cw/payroll/output/table.pdf";
             PdfWriter pdfWriter = new PdfWriter(path);
@@ -101,14 +103,26 @@ public class PDFWriter {
             table.addCell(new Cell(1, 0).add("Net Amount").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
             table.addCell(new Cell(1, 0).add("Signature of Recipient").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
-            String[][] arr = {{},};
-
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 1; i++) {
                 table.addCell(new Cell(0, 14).add("DEPARTMENT OF " + i).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(new DeviceRgb(153, 217, 234)));
-                for (int y = 0; y < 20; y++) {
-                    for (int x = 0; x < 14; x++) {
-                        table.addCell(new Cell(0, 0).add(y + " " + x).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    }
+                for (int y = 0; y < summaryList.size(); y++) {
+//                    for (int x = 0; x < 14; x++) {
+//                        table.addCell(new Cell(0, 0).add(y + " " + x).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+//                    }
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getNumber())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getName())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getPosition())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getWage())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add("-").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getPresentDays())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getAbsentDays())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getTotalCompensation())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add("EXEMPTED").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBold());
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getLess())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add("").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getTotalDeduction())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getNetAmount())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    table.addCell(new Cell(0, 0).add("").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
                 }
             }
 

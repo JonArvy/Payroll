@@ -24,7 +24,7 @@ public class Main extends Application {
 //        stage.initStyle(StageStyle.UNDECORATED);
 //        stage.setResizable(false);
 
-        createTablePDF();
+//        createTablePDF();
         stage.show();
 
 

@@ -22,6 +22,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import static Classes.CustomAlert.callAlert;
+import static Classes.PDFWriter.createTablePDF;
 
 
 public class PayrollSummaryController {
@@ -87,14 +88,23 @@ public class PayrollSummaryController {
     private Button generateReport_button;
 
     @FXML
+    private Button pdf_button;
+    @FXML
     private void loadEmployees(ActionEvent event) {
         generatePayroll();
         generateReport_button.setDisable(false);
+        pdf_button.setDisable(false);
     }
 
     @FXML
     private void generateReport() {
         generatePayrollSummary(Date.valueOf(date_from.getValue()), Date.valueOf(date_to.getValue()));
+    }
+
+
+    @FXML
+    private void toPDF() {
+        createTablePDF(summaryList);
     }
 
     @FXML
