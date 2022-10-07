@@ -2,6 +2,7 @@ package Classes;
 
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.color.Color;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -9,6 +10,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.WritableImage;
@@ -63,67 +65,51 @@ public class PDFWriter {
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             Document document = new Document(pdfDocument, PageSize.LEGAL.rotate());
 
-            float[] column_width = {200f, 50f, 100f, 50f, 50f, 200f, 50f, 100f, 50f, 50f, 200f, 50f, 100f, 50f};
+            float[] column_width = {30f, 200f, 100f, 50f, 50f, 200f, 50f, 100f, 50f, 50f, 200f, 50f, 100f, 50f};
             Table table = new Table(column_width);
 
-            Cell cell = new Cell(0, 14).add("PAYROLL-PERSONAL SERVICES");
+            float fontsize = 5f;
 
-            Cell cell2 = new Cell(0, 14).add("NOVEMBER 2021");
-
-            Cell cell3_1 = new Cell(2, 3).add("Barangay: CANUMAY WEST \n Barangay Treasurer: ZAMORA A. NAVARRO");
-            Cell cell3_2 = new Cell(2, 6).add("City/Municipality: VALENZUELA \n Province: METROPOLITAN MANILA");
-            Cell cell3_3 = new Cell(2, 5).add("Payroll No. 2021-11-032 \n Page No. 2021-01-PS");
-
-            Cell cell4_1 = new Cell().add("");
-            Cell cell4_2 = new Cell().add("");
-            Cell cell4_3 = new Cell().add("");
-            Cell cell4_4 = new Cell(0, 6).add("COMPENSATION");
-            Cell cell4_5 = new Cell(0, 5).add("DEDUCTIONS");
-
-            Cell cell5_1 = new Cell(2, 0).add("NO.");
-            Cell cell5_2 = new Cell(2, 0).add("NAME");
-            Cell cell5_3 = new Cell(2, 0).add("Position");
-            Cell cell5_4 = new Cell(2, 0).add("Salaries and Wages");
-            Cell cell5_5 = new Cell(2, 0).add("Other Benefits");
-            Cell cell5_6 = new Cell(2, 0).add("No. of days");
-            Cell cell5_7 = new Cell(2, 0).add("No. of Days Absent");
-            Cell cell5_8 = new Cell(2, 0).add("Total");
-            Cell cell5_9 = new Cell(2, 0).add("BIR w/ Holding Tax");
-            Cell cell5_10 = new Cell(2, 0).add("Less");
-            Cell cell5_11 = new Cell(2, 0).add("Pag-IBIG");
-            Cell cell5_12 = new Cell(2, 0).add("Total");
-            Cell cell5_13 = new Cell(2, 0).add("Net Amount");
-            Cell cell5_14 = new Cell(2, 0).add("Signature of Recipient");
-
-            Cell dept_title = new Cell(0, 14).add("DEPARTMENT OF HEALTH");
+            table.addCell(new Cell(0, 14).add("PAYROLL-PERSONAL SERVICES").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
 
+            table.addCell(new Cell(0, 14).add("NOVEMBER 2021").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
-            table.addCell(cell);
-            table.addCell(cell2);
-            table.addCell(cell3_1);
-            table.addCell(cell3_2);
-            table.addCell(cell3_3);
-            table.addCell(cell4_1);
-            table.addCell(cell4_2);
-            table.addCell(cell4_3);
-            table.addCell(cell4_4);
-            table.addCell(cell4_5);
-            table.addCell(cell5_1);
-            table.addCell(cell5_2);
-            table.addCell(cell5_3);
-            table.addCell(cell5_4);
-            table.addCell(cell5_5);
-            table.addCell(cell5_6);
-            table.addCell(cell5_7);
-            table.addCell(cell5_8);
-            table.addCell(cell5_9);
-            table.addCell(cell5_10);
-            table.addCell(cell5_11);
-            table.addCell(cell5_12);
-            table.addCell(cell5_13);
-            table.addCell(cell5_14);
-            table.addCell(dept_title);
+            table.addCell(new Cell(1, 3).add("Barangay: CANUMAY WEST \n Barangay Treasurer: ZAMORA A. NAVARRO").setFontSize(fontsize));
+            table.addCell(new Cell(1, 6).add("City/Municipality: VALENZUELA \n Province: METROPOLITAN MANILA").setFontSize(fontsize));
+            table.addCell(new Cell(1, 5).add("Payroll No. 2021-11-032 \n Page No. 2021-01-PS").setFontSize(fontsize));
+
+            table.addCell(new Cell(0, 0).add("").setFontSize(fontsize));
+            table.addCell(new Cell(0, 0).add("").setFontSize(fontsize));
+            table.addCell(new Cell(0, 0).add("").setFontSize(fontsize));
+            table.addCell(new Cell(0, 6).add("COMPENSATION").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(0, 5).add("DEDUCTIONS").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+
+            table.addCell(new Cell(1, 0).add("NO.").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("NAME").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Position").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Salaries and Wages").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Other Benefits").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("No. of days").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("No. of Days Absent").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Total").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("BIR w/ Holding Tax").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Less").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Pag-IBIG").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Total").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Net Amount").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(1, 0).add("Signature of Recipient").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+
+            String[][] arr = {{},};
+
+            for (int i = 0; i < 10; i++) {
+                table.addCell(new Cell(0, 14).add("DEPARTMENT OF " + i).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(Color.BLUE));
+                for (int y = 0; y < 20; y++) {
+                    for (int x = 0; x < 14; x++) {
+                        table.addCell(new Cell(0, 0).add(y + " " + x).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    }
+                }
+            }
 
 
             document.add(table);
