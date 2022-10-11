@@ -13,12 +13,12 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Attendance.DailyAttendanceController">
     <children>
-        <Text layoutX="23.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAILY ATTENDANCE">
+        <Text fill="#01374d" layoutX="196.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAILY ATTENDANCE" textAlignment="CENTER" wrappingWidth="319.765625">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Century Gothic Bold" size="18.0" />
             </font>
         </Text>
-        <Button fx:id="main_dailyattendance_nextdate" layoutX="428.0" layoutY="23.0" mnemonicParsing="false" onAction="#moveAttendanceDate" prefWidth="5.0">
+        <Button fx:id="main_dailyattendance_nextdate" layoutX="425.0" layoutY="50.0" mnemonicParsing="false" onAction="#moveAttendanceDate" prefWidth="5.0">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -27,7 +27,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="main_dailyattendance_previousdate" layoutX="255.0" layoutY="23.0" mnemonicParsing="false" onAction="#moveAttendanceDate" prefWidth="5.0">
+        <Button fx:id="main_dailyattendance_previousdate" layoutX="252.0" layoutY="50.0" mnemonicParsing="false" onAction="#moveAttendanceDate" prefWidth="5.0">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -36,8 +36,8 @@
                 </ImageView>
             </graphic>
         </Button>
-        <DatePicker fx:id="main_dailyattendance_datepicker" layoutX="299.0" layoutY="25.0" prefHeight="25.0" prefWidth="120.0" />
-            <TableView fx:id="main_dailyattendance_tableview" layoutY="70.0" prefHeight="464.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+        <DatePicker fx:id="main_dailyattendance_datepicker" layoutX="296.0" layoutY="52.0" prefHeight="25.0" prefWidth="120.0" />
+            <TableView fx:id="main_dailyattendance_tableview" layoutY="93.0" prefHeight="450.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
                 <columns>
                     <TableColumn fx:id="main_dailyattendance_column_date" prefWidth="76.0" text="Date" />
                     <TableColumn fx:id="main_dailyattendance_column_empid" prefWidth="75.0" text="Emp ID" />
@@ -52,11 +52,33 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
-        <TextField fx:id="dailyattendance_search" layoutX="498.0" layoutY="25.0" onAction="#search" prefHeight="25.0" prefWidth="175.0" promptText="Name" AnchorPane.rightAnchor="45.0" />
-        <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="683.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0">
+        <TextField fx:id="dailyattendance_search" layoutX="500.0" layoutY="52.0" onAction="#search" prefHeight="25.0" prefWidth="154.0" promptText="Name" AnchorPane.rightAnchor="42.0" />
+        <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="683.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="17.0">
             <image>
                 <Image url="@../../Assets/Search-blue.png" />
             </image>
         </ImageView>
+      <Button layoutX="32.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Add">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/PlusButton.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="107.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #C70C0C; -fx-text-fill: #ffffff;" text="Remove">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/MinusButton.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
     </children>
 </AnchorPane>

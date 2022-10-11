@@ -3,16 +3,18 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Additional.BonusReportController">
     <children>
-        <Text layoutX="22.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonus Name:">
+        <Text layoutX="29.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonus Name:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Text>
+      <TextField layoutX="132.0" layoutY="32.0" text="Name" />
         <Button fx:id="attendancereport_show" disable="true" layoutX="605.0" layoutY="31.0" mnemonicParsing="false" onAction="#show" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Print" />
             <TableView fx:id="main_attendancereport_tableview" layoutY="85.0" prefHeight="458.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                 <columns>
@@ -34,20 +36,11 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
-      <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonus Date:">
+      <Text layoutX="317.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bonus Date:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Text layoutX="125.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="125.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
+      <TextField layoutX="414.0" layoutY="32.0" text="Date" />
         </children>
 </AnchorPane>

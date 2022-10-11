@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,18 +13,24 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Employee.ManageEmployeeController">
     <children>
-        <Text layoutX="23.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Details">
+        <Text layoutX="23.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMPLOYEES' INFORMATION">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Century Gothic Bold" size="16.0" />
             </font>
         </Text>
-        <TextField fx:id="manageemployee_searchbar" layoutX="484.0" layoutY="27.0" onAction="#search" prefHeight="25.0" prefWidth="175.0" promptText="Name" AnchorPane.rightAnchor="57.0" />
-        <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="669.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0">
+        <TextField fx:id="manageemployee_searchbar" layoutX="533.0" layoutY="25.0" onAction="#search" prefHeight="25.0" prefWidth="129.0" promptText="Name" AnchorPane.rightAnchor="55.0">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></TextField>
+        <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="670.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0">
             <image>
                 <Image url="@../../Assets/Search-blue.png" />
             </image>
         </ImageView>
-        <CheckBox fx:id="manageemployee_checkbox_hideinactive" layoutX="369.0" layoutY="32.0" mnemonicParsing="false" selected="true" text="Hide Inactive" AnchorPane.rightAnchor="260.0" />
+        <CheckBox fx:id="manageemployee_checkbox_hideinactive" layoutX="412.0" layoutY="28.0" mnemonicParsing="false" selected="true" text="Hide Inactive" AnchorPane.rightAnchor="207.0">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></CheckBox>
             <TableView fx:id="manageemployee_tableview" layoutY="70.0" prefHeight="473.0" prefWidth="723.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                 <columns>
                     <TableColumn fx:id="manageemployee_column_empid" text="Employee ID" />
@@ -38,5 +45,17 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
+      <Button layoutX="258.0" layoutY="24.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="129.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Add Employee" textAlignment="CENTER" textFill="#01374d">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="18.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/AddEmployee%20Button.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Century Gothic Bold" size="11.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
