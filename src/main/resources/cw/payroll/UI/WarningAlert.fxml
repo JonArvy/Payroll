@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="70.0" prefWidth="459.0" style="-fx-background-color: #FFEEBB;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomAlertController">
+   <children>
+      <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/Warning%20alert%20icon.png" />
+         </image>
+      </ImageView>
+      <Text fill="#b58f47" layoutX="67.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Warning!" textAlignment="CENTER" wrappingWidth="78.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Button fx:id="alert_button_close" layoutX="405.0" layoutY="15.0" mnemonicParsing="false" onAction="#close" prefHeight="39.0" prefWidth="48.0" style="-fx-background-color: #FFEEBB;" text="x" textFill="#b58f47">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <Text fill="#c9a154" layoutX="73.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User has to be admin!" wrappingWidth="254.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
