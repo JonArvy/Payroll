@@ -41,10 +41,8 @@ public class AddBonusController {
     private TextField addbonus_name;
 
     @FXML
-    private ComboBox<Department> addbonus_recipient;
+    private ComboBox<String> addbonus_recipient;
 
-    @FXML
-    private ComboBox<String> addbonus_recipienttype;
 
     @FXML
     private void addBonus(ActionEvent event) {
@@ -97,16 +95,16 @@ public class AddBonusController {
     }
 
     private void initializeContainers() {
-        addbonus_recipienttype.getItems().addAll( "By Department");
-        addbonus_recipienttype.getSelectionModel().select(0);
 
         departmentList.clear();
         departmentList = sqlDepartment.getDepartment();
 
-        addbonus_recipient.setItems(departmentList);
+        addbonus_recipient.getItems().addAll("Regular", "Contractual", "Part-Time");
         addbonus_recipient.getSelectionModel().select(0);
 
-        addbonus_recipient.setConverter(converters.departmentConverter());
+
+
+//        addbonus_recipient.setConverter(converters.departmentConverter());
     }
 
     private void checkBonusIfValid() {
@@ -118,10 +116,10 @@ public class AddBonusController {
 
                 String name = addbonus_name.getText();
                 double amount = Double.parseDouble(addbonus_amount.getText());
-                int department = addbonus_recipient.getValue().getDepartment_ID();
+                String recipient = addbonus_recipient.getValue();
                 Date date = Date.valueOf(addbonus_dateapplicable.getValue());
 
-                sqlBonus.addBonus(new Bonus(name, amount, department, date));
+                sqlBonus.addBonus(new Bonus(name, amount, recipient, date));
 
                 loadBonus();
             } catch (NumberFormatException o) {

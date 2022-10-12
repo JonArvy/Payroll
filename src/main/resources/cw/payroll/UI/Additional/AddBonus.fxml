@@ -23,12 +23,11 @@
                 <Label layoutX="199.0" layoutY="161.0" text="Amount" />
                 <TextField fx:id="addbonus_amount" layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
                 <Label layoutX="194.0" layoutY="196.0" text="Recipient" />
-                <ComboBox fx:id="addbonus_recipient" layoutX="261.0" layoutY="227.0" prefHeight="25.0" prefWidth="156.0" />
-                <Label layoutX="160.0" layoutY="267.0" text="Date Applicable" />
-                <DatePicker fx:id="addbonus_dateapplicable" layoutX="261.0" layoutY="263.0" prefHeight="25.0" prefWidth="156.0" />
+                <ComboBox fx:id="addbonus_recipient" layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
+                <Label layoutX="160.0" layoutY="234.0" text="Date Applicable" />
+                <DatePicker fx:id="addbonus_dateapplicable" layoutX="261.0" layoutY="230.0" prefHeight="25.0" prefWidth="156.0" />
                 <Button fx:id="addbonus_button_cancel" layoutX="505.0" layoutY="362.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
                 <Button fx:id="addbonus_button_add" layoutX="441.0" layoutY="362.0" mnemonicParsing="false" onAction="#addBonus" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
-            <ComboBox fx:id="addbonus_recipienttype" layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
             </children>
         </Pane>
     </children>

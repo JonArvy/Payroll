@@ -25,6 +25,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 
+import static Classes.CustomAlert.callAlert;
+
 public class DailyAttendanceController {
 
     @FXML
@@ -81,6 +83,12 @@ public class DailyAttendanceController {
     }
 
     @FXML
+    private void addAttendance() {
+        loadAddDailyAttendance();
+    }
+
+
+    @FXML
     private void initialize() {
         main_dailyattendance_datepicker.valueProperty().addListener((o, ol, nw) -> {
             showDailyAttendanceTable();
@@ -88,14 +96,10 @@ public class DailyAttendanceController {
         main_dailyattendance_datepicker.setValue(LocalDate.now());
     }
 
-    @FXML
-    private void addAttendance() {
-        loadAddAttendance();
-    }
 
     @FXML
-    private void removeAttendance() {
-
+    private void remove() {
+        deleteAttendance();
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -191,6 +195,27 @@ public class DailyAttendanceController {
         }
     }
 
+    private void loadAddDailyAttendance() {
+        AddAttendanceController controller;
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/AddAttendance.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+            controller.setDate(main_dailyattendance_datepicker.getValue());
+
+//            controller.setEmployee(employee);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
     private void loadAddAttendance() {
         AddAttendanceController controller;
@@ -207,6 +232,21 @@ public class DailyAttendanceController {
 
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void deleteAttendance() {
+        try {
+            Attendance attendance = (Attendance) main_dailyattendance_tableview.getSelectionModel().getSelectedItem();
+            boolean exist = sqlAttendance.checkIfAttendanceExist(attendance);
+            if (!exist) {
+                sqlAttendance.deleteAttendance(attendance);
+                showDailyAttendanceTable();
+            } else {
+                callAlert("Error!","Attendance does not exist");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -42,7 +42,7 @@ public class EditBonusController {
     private TextField editbonus_name;
 
     @FXML
-    private ComboBox<Department> editbonus_recipient;
+    private ComboBox<String> editbonus_recipient;
 
     @FXML
     private ComboBox<String> editbonus_recipienttype;
@@ -112,10 +112,9 @@ public class EditBonusController {
         departmentList.clear();
         departmentList = sqlDepartment.getDepartment();
 
-        editbonus_recipient.setItems(departmentList);
+        editbonus_recipient.getItems().addAll("Regular", "Contractual", "Part-Time");
         editbonus_recipient.getSelectionModel().select(0);
 
-        editbonus_recipient.setConverter(converters.departmentConverter());
     }
 
     private void checkBonusIfValid() {
@@ -127,11 +126,10 @@ public class EditBonusController {
 
                 String name = editbonus_name.getText();
                 double amount = Double.parseDouble(editbonus_amount.getText());
-                int department = editbonus_recipient.getValue().getDepartment_ID();
+                String recipient = editbonus_recipient.getValue();
                 Date date = Date.valueOf(editbonus_dateapplicable.getValue());
 
-                System.out.println(bonus.getBonus_ID());
-//                sqlBonus.editBonus(new Bonus(bonus.getBonus_ID(), name, amount, department, date));
+                sqlBonus.editBonus(new Bonus(bonus.getBonus_ID(), name, amount, recipient, date));
 
                 loadBonus();
             } catch (NumberFormatException o) {

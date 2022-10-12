@@ -21,10 +21,13 @@ import javafx.embed.swing.SwingFXUtils;
 
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+
+import static Classes.CustomAlert.callAlert;
 
 public class PDFWriter {
     public static void writePDF(String name) {
@@ -132,7 +135,11 @@ public class PDFWriter {
 //            Table table2 = new Table();
 
             document.close();
-            System.out.println("Table Created");
+            callAlert("PDF Created", "PDF Created Successfully");
+//            Runtime.getRuntime().exec("explorer.exe /select," + "C:\\Users\\Arvy Enriquez\\Desktop\\Text.txt");
+            File file = new File ("src/main/resources/cw/payroll/output/table.pdf");
+            Desktop desktop = Desktop.getDesktop();
+            desktop.open(file);
         } catch (IOException e) {
             e.printStackTrace();
         }

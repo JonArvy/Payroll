@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Attendance.AddAttendanceController">
    <children>
       <Pane fx:id="main_pane" layoutX="59.0" layoutY="72.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
@@ -25,11 +24,9 @@
             <Label layoutX="193.0" layoutY="140.0" text="Full Name" />
             <Label layoutX="183.0" layoutY="174.0" text="Department" />
             <TextField fx:id="department" disable="true" editable="false" layoutX="261.0" layoutY="170.0" prefHeight="25.0" prefWidth="142.0" />
-            <Label layoutX="204.0" layoutY="208.0" text="Position" />
-            <TextField fx:id="position" disable="true" editable="false" layoutX="261.0" layoutY="204.0" prefHeight="25.0" prefWidth="142.0" />
-            <Label layoutX="207.0" layoutY="242.0" text="Time In" />
-            <Label layoutX="197.0" layoutY="277.0" text="Time Out" />
-            <Button fx:id="button_command" layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#command" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
+            <Label layoutX="207.0" layoutY="208.0" text="Time In" />
+            <Label layoutX="197.0" layoutY="242.0" text="Time Out" />
+            <Button layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#command" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
             <Button layoutX="505.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
             <DatePicker fx:id="date" layoutX="451.0" layoutY="45.0" prefHeight="25.0" prefWidth="119.0" />
             <ComboBox fx:id="full_name" layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="142.0" />

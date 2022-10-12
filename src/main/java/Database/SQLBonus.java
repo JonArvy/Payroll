@@ -1,6 +1,7 @@
 package Database;
 
 import Models.Bonus;
+import Models.BonusSummary;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,22 +16,18 @@ import static Database.SQLConnection.connect;
 public class SQLBonus {
     public ObservableList<Bonus> getBonus() {
         ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
-        String command = "SELECT bonus_name," +
-                "bonus_amount," +
-                "department_name," +
-                "bonus_date " +
-                "FROM tbl_bonus JOIN tbl_department " +
-                "ON bonus_recipient = department_id";
+        String command = "SELECT * " +
+                "FROM tbl_bonus";
 
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 bonusList.add(new Bonus(
-//                                resultSet.getInt("bonus_id"),
+                                resultSet.getInt("bonus_id"),
                                 resultSet.getString("bonus_name"),
                                 resultSet.getDouble("bonus_amount"),
-                                resultSet.getString("department_name"),
+                                resultSet.getString("bonus_recipient"),
                                 resultSet.getDate("bonus_date")
                         )
                 );
@@ -50,7 +47,7 @@ public class SQLBonus {
              PreparedStatement prep = conn.prepareStatement(command)) {
             prep.setString(1, bonus.getBonus_Name());
             prep.setDouble(2, bonus.getBonus_Amount());
-            prep.setInt(3, bonus.getBonus_Recipient());
+            prep.setString(3, bonus.getBonus_Recipient());
             prep.setDate(4, bonus.getBonus_Date());
 
             prep.executeUpdate();
@@ -73,7 +70,7 @@ public class SQLBonus {
             while (resultSet.next()) {
                 bonus.setBonus_ID(resultSet.getInt("bonus_id"));
                 bonus.setBonus_Name(resultSet.getString("bonus_name"));
-                bonus.setBonus_Recipient(resultSet.getInt("bonus_recipient"));
+                bonus.setBonus_Recipient(resultSet.getString("bonus_recipient"));
                 bonus.setBonus_Amount(resultSet.getDouble("bonus_amount"));
                 bonus.setBonus_Date(resultSet.getDate("bonus_date"));
             }
@@ -85,7 +82,7 @@ public class SQLBonus {
 
     public void editBonus(Bonus bonus) {
         String command = "UPDATE tbl_bonus " +
-                "SET bonus_name = ?, " +
+                "   SET bonus_name = ?, " +
                 "    bonus_amount = ?, " +
                 "    bonus_recipient = ?, " +
                 "    bonus_date = ? " +
@@ -95,7 +92,7 @@ public class SQLBonus {
              PreparedStatement prep = conn.prepareStatement(command)) {
             prep.setString(1, bonus.getBonus_Name());
             prep.setDouble(2, bonus.getBonus_Amount());
-            prep.setInt(3, bonus.getBonus_Recipient());
+            prep.setString(3, bonus.getBonus_Recipient());
             prep.setDate(4, bonus.getBonus_Date());
             prep.setInt(5, bonus.getBonus_ID());
 
@@ -105,5 +102,38 @@ public class SQLBonus {
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
         }
+    }
+
+    public ObservableList<BonusSummary> getBonusSummary(Bonus bonus) {
+        ObservableList<BonusSummary> bonusSummaryList = FXCollections.observableArrayList();
+        String command = "SELECT * " +
+                "FROM tbl_employees " +
+                "WHERE emp_employmentstatus = ? " +
+                "AND ";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setString(1, bonus.getBonus_Recipient());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                bonusSummaryList.add(new BonusSummary(
+                                resultSet.getInt("bonus_id"),
+                                resultSet.getString("emp_firstname"),
+                                resultSet.getString("emp_position"),
+                                resultSet.getDouble("emp_salary"),
+                                resultSet.getDouble("emp_salary") * bonus.getBonus_Amount()
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return bonusSummaryList;
     }
 }

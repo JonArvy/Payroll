@@ -1315,7 +1315,7 @@ public class HelloController implements Initializable {
         int id = 0;
 
 
-        sqlBonus.addBonus(new Bonus(id, bonusName, bonusAmount, bonusRecipient, bonusDate));
+//        sqlBonus.addBonus(new Bonus(id, bonusName, bonusAmount, bonusRecipient, bonusDate));
     }
 
     public void addShift(boolean isDepartment) {

@@ -19,7 +19,7 @@
             <columns>
                 <TableColumn fx:id="bonus_column_name" prefWidth="161.0" text="Bonus Name" />
                 <TableColumn fx:id="bonus_column_amount" prefWidth="111.0" text="Amount" />
-                <TableColumn fx:id="bonus_column_department" minWidth="0.0" prefWidth="127.0" text="Department" />
+                <TableColumn fx:id="bonus_column_recipient" minWidth="0.0" prefWidth="127.0" text="Department" />
                 <TableColumn fx:id="bonus_column_dateapplicable" minWidth="0.0" prefWidth="165.0" text="Date Applicable" />
                 <TableColumn fx:id="bonus_column_action" minWidth="0.0" prefWidth="151.0" text="Action" />
             </columns>

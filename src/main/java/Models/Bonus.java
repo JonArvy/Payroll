@@ -6,12 +6,11 @@ public class Bonus {
     private int Bonus_ID;
     private String Bonus_Name;
     private double Bonus_Amount;
-    private int Bonus_Recipient;
+    private String Bonus_Recipient;
     private Date Bonus_Date;
 
-    private String Recipient_Name;
 
-    public Bonus(int Bonus_ID, String Bonus_Name, double Bonus_Amount, int Bonus_Recipient, Date Bonus_Date) {
+    public Bonus(int Bonus_ID, String Bonus_Name, double Bonus_Amount, String Bonus_Recipient, Date Bonus_Date) {
         this.Bonus_ID = Bonus_ID;
         this.Bonus_Name = Bonus_Name;
         this.Bonus_Amount = Bonus_Amount;
@@ -19,23 +18,7 @@ public class Bonus {
         this.Bonus_Date = Bonus_Date;
     }
 
-    public Bonus(int Bonus_ID, String Bonus_Name, double Bonus_Amount, String Recipient_Name, Date Bonus_Date) {
-        this.Bonus_ID = Bonus_ID;
-        this.Bonus_Name = Bonus_Name;
-        this.Bonus_Amount = Bonus_Amount;
-        this.Recipient_Name = Recipient_Name;
-        this.Bonus_Date = Bonus_Date;
-    }
-
-    public Bonus(String Bonus_Name, double Bonus_Amount, String Recipient_Name, Date Bonus_Date) {
-        this.Bonus_ID = Bonus_ID;
-        this.Bonus_Name = Bonus_Name;
-        this.Bonus_Amount = Bonus_Amount;
-        this.Recipient_Name = Recipient_Name;
-        this.Bonus_Date = Bonus_Date;
-    }
-
-    public Bonus(String Bonus_Name, double Bonus_Amount, int Bonus_Recipient, Date Bonus_Date) {
+    public Bonus(String Bonus_Name, double Bonus_Amount, String Bonus_Recipient, Date Bonus_Date) {
         this.Bonus_Name = Bonus_Name;
         this.Bonus_Amount = Bonus_Amount;
         this.Bonus_Recipient = Bonus_Recipient;
@@ -58,7 +41,7 @@ public class Bonus {
         return Bonus_Amount;
     }
 
-    public int getBonus_Recipient() {
+    public String getBonus_Recipient() {
         return Bonus_Recipient;
     }
 
@@ -66,9 +49,6 @@ public class Bonus {
         return Bonus_Date;
     }
 
-    public String getRecipient_Name() {
-        return Recipient_Name;
-    }
 
     public void setBonus_ID(int bonus_ID) {
         Bonus_ID = bonus_ID;
@@ -82,7 +62,7 @@ public class Bonus {
         Bonus_Amount = bonus_Amount;
     }
 
-    public void setBonus_Recipient(int bonus_Recipient) {
+    public void setBonus_Recipient(String bonus_Recipient) {
         Bonus_Recipient = bonus_Recipient;
     }
 
@@ -90,7 +70,4 @@ public class Bonus {
         Bonus_Date = bonus_Date;
     }
 
-    public void setRecipient_Name(String recipient_Name) {
-        Recipient_Name = recipient_Name;
-    }
 }

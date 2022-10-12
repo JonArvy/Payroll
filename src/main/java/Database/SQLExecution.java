@@ -82,7 +82,7 @@ public class SQLExecution {
                 "bonus_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 "bonus_name VARCHAR(50)," +
                 "bonus_amount REAL," +
-                "bonus_recipient INTEGER CONSTRAINT fk_department_id_bonus REFERENCES tbl_department(department_id) ON DELETE SET NULL ON UPDATE CASCADE," +
+                "bonus_recipient VARCHAR(50)," +
                 "bonus_date DATE)";
 
         String shift_tbl = "CREATE TABLE IF NOT EXISTS tbl_shift (" +

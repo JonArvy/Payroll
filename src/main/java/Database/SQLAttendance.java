@@ -138,6 +138,31 @@ public class SQLAttendance {
         }
     }
 
+    public boolean checkIfAttendanceExist(Attendance attendance) {
+        boolean success = false;
+        String command = "SELECT * FROM tbl_attendance " +
+                "WHERE emp_id = ? " +
+                "AND emp_attendance_date = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, attendance.getEmployee_ID());
+            preparedStatement.setDate(2, attendance.getEmployee_Attendance_Date());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                success = false;
+            } else {
+                success = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+
     public ObservableList<AttendanceReport> getAttendanceReport() {
         ObservableList<AttendanceReport> attendanceReportList = FXCollections.observableArrayList();
         int id = 1;
@@ -314,11 +339,11 @@ public class SQLAttendance {
 
     public void deleteAttendance(Attendance attendance) {
         String command = "DELETE FROM tbl_attendance " +
-                "WHERE emp_attendance_date = ?";
+                "WHERE attendance_id = ?";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
 
-            preparedStatement.setDate(1, attendance.getEmployee_Attendance_Date());
+            preparedStatement.setInt(1, attendance.getAttendance_ID());
 
             preparedStatement.executeUpdate();
 

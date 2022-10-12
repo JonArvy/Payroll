@@ -14,21 +14,21 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Text>
-      <TextField layoutX="132.0" layoutY="32.0" text="Name" />
-        <Button fx:id="attendancereport_show" disable="true" layoutX="605.0" layoutY="31.0" mnemonicParsing="false" onAction="#show" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Print" />
+      <TextField fx:id="name" editable="false" layoutX="132.0" layoutY="32.0" text="Name" />
+        <Button disable="true" layoutX="605.0" layoutY="31.0" mnemonicParsing="false" onAction="#print" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Print" />
             <TableView fx:id="main_attendancereport_tableview" layoutY="85.0" prefHeight="458.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                 <columns>
                     <TableColumn prefWidth="528.0000427365303" text="Employee Details">
                         <columns>
-                            <TableColumn fx:id="column_number" prefWidth="34.0" text="No." />
-                            <TableColumn fx:id="column_fullname" prefWidth="104.0" text="Full Name" />
-                            <TableColumn fx:id="column_empid" prefWidth="61.0" text="Emp ID" />
-                            <TableColumn fx:id="column_dept" prefWidth="104.0" text="Department" />
+                            <TableColumn fx:id="number" prefWidth="34.0" text="No." />
+                            <TableColumn fx:id="fullname" prefWidth="104.0" text="Full Name" />
+                            <TableColumn fx:id="emp_id" prefWidth="61.0" text="Emp ID" />
+                            <TableColumn fx:id="department" prefWidth="104.0" text="Department" />
                         </columns>
                     </TableColumn>
                     <TableColumn minWidth="0.0" prefWidth="187.99993896484375" text="SUMMARY">
                         <columns>
-                            <TableColumn fx:id="column_amount" prefWidth="113.60003662109375" text="Bonus Amount" />
+                            <TableColumn fx:id="amount" prefWidth="113.60003662109375" text="Bonus Amount" />
                         </columns>
                     </TableColumn>
                 </columns>
@@ -41,6 +41,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <TextField layoutX="414.0" layoutY="32.0" text="Date" />
+      <TextField fx:id="date" editable="false" layoutX="414.0" layoutY="32.0" text="Date" />
         </children>
 </AnchorPane>

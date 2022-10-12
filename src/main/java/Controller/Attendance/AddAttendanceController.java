@@ -2,24 +2,32 @@ package Controller.Attendance;
 
 import Classes.Converters;
 import Classes.TimeSpinner;
+import Database.SQLAttendance;
 import Database.SQLEmployee;
 import Models.Admin;
+import Models.Attendance;
 import Models.Employee;
+import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.util.StringConverter;
 
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+
+import static Classes.CustomAlert.callAlert;
 
 
 public class AddAttendanceController {
-    @FXML
-    private Button button_command;
     @FXML
     private Pane main_pane;
 
@@ -35,13 +43,9 @@ public class AddAttendanceController {
     @FXML
     private ComboBox<Employee> full_name;
 
-
-    @FXML
-    private TextField position;
-
     @FXML
     void cancel(ActionEvent event) {
-
+        loadAttendance();
     }
 
     @FXML
@@ -59,6 +63,7 @@ public class AddAttendanceController {
 //                }
 //            }
 //        });
+        addAttendance();
     }
 
 
@@ -72,6 +77,8 @@ public class AddAttendanceController {
 
     SQLEmployee sqlEmployee = new SQLEmployee();
 
+    SQLAttendance sqlAttendance = new SQLAttendance();
+
     Converters converters = new Converters();
 
     ObservableList<Employee> employees = FXCollections.observableArrayList();
@@ -81,21 +88,7 @@ public class AddAttendanceController {
         this.admin = admin;
         this.container = anchorPane;
 
-        spinner.setLayoutX(261);
-        spinner.setLayoutY(238);
 
-        spinner2.setLayoutX(261);
-        spinner2.setLayoutY(273);
-
-        spinner.setPrefWidth(142);
-        spinner2.setPrefWidth(142);
-
-//        spinner.setPrefWidth();
-
-        spinner.getEditor().setText("08:00");
-        spinner2.getEditor().setText("17:00");
-
-        main_pane.setVisible(true);
 
 //        List<Button> arr = new ArrayList<Button>();
 //        arr.add(new Button("1"));
@@ -115,15 +108,37 @@ public class AddAttendanceController {
 
 
 //        main_pane.getChildren().add(vBox);
+    }
+
+    public void setDate(LocalDate localDate) {
+        date.setValue(localDate);
+    }
+
+    private void addSpinner() {
+        spinner.setLayoutX(261);
+        spinner.setLayoutY(204);
+
+        spinner2.setLayoutX(261);
+        spinner2.setLayoutY(238);
+
+        spinner.setPrefWidth(142);
+        spinner2.setPrefWidth(142);
+
+//        spinner.setPrefWidth();
+
+        spinner.getEditor().setText("08:00");
+        spinner2.getEditor().setText("17:00");
+
+//        main_pane.setVisible(true);
         main_pane.getChildren().add(spinner);
         main_pane.getChildren().add(spinner2);
-
 
     }
 
     private void initializeComponents() {
+        addSpinner();
         employees.clear();
-        employees = sqlEmployee.getAllEmployees();
+        employees = sqlEmployee.getAllEmployees(true);
         FXCollections.sort(employees, Comparator.comparing(Employee::getFull_Name));
         full_name.setItems(employees);
         full_name.setConverter(converters.employeeStringConverter(employees));
@@ -134,10 +149,40 @@ public class AddAttendanceController {
             if (n != null) {
                 emp_id.setText(String.valueOf(n.getEmployee_ID()));
                 department.setText(String.valueOf(n.getDepartment_Name()));
-                position.setText(n.getPosition());
             }
         });
 
         full_name.getSelectionModel().select(0);
+    }
+
+    private void addAttendance() {
+        int id = full_name.valueProperty().getValue().getEmployee_ID();
+        Date datevalue = Date.valueOf(date.getValue());
+        Time in = Time.valueOf(spinner.getEditor().getText() + ":00");
+        Time out = Time.valueOf(spinner2.getEditor().getText() + ":00");
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        Attendance attd = new Attendance(id, datevalue, in, out);
+        boolean success = sqlAttendance.checkIfAttendanceExist(attd);
+        if (success) {
+            sqlAttendance.registerAttendance(attd);
+            loadAttendance();
+        } else {
+            callAlert("Error!", "Attendance already exist!");
+        }
+    }
+
+    private void loadAttendance() {
+        DailyAttendanceController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/DailyAttendance.fxml"));
+            fxmlLoader.load();
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+            controller.setDateInfo(Date.valueOf(date.getValue()));
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+            container.getChildren().add(anchorPane);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

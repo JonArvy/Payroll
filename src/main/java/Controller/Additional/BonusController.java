@@ -37,7 +37,7 @@ public class BonusController {
     private TableColumn<Bonus, Date> bonus_column_dateapplicable;
 
     @FXML
-    private TableColumn<Bonus, String> bonus_column_department;
+    private TableColumn<Bonus, String> bonus_column_recipient;
 
     @FXML
     private TableColumn<Bonus, String> bonus_column_name;
@@ -112,7 +112,7 @@ public class BonusController {
 
         bonus_column_name.setCellValueFactory(new PropertyValueFactory<Bonus, String>("Bonus_Name"));
         bonus_column_amount.setCellValueFactory(new PropertyValueFactory<Bonus, Double>("Bonus_Amount"));
-        bonus_column_department.setCellValueFactory(new PropertyValueFactory<Bonus, String>("Recipient_Name"));
+        bonus_column_recipient.setCellValueFactory(new PropertyValueFactory<Bonus, String>("Bonus_Recipient"));
         bonus_column_dateapplicable.setCellValueFactory(new PropertyValueFactory<Bonus, Date>("Bonus_Date"));
 //        main_bonus_action.setCellValueFactory(new PropertyValueFactory<Bonus, Integer>("Department_HoursPerDay"));
         Callback<TableColumn<Bonus, Void>, TableCell<Bonus, Void>> cellFactory = new Callback<TableColumn<Bonus, Void>, TableCell<Bonus, Void>>() {
@@ -120,7 +120,7 @@ public class BonusController {
             public TableCell<Bonus, Void> call(final TableColumn<Bonus, Void> param) {
                 final TableCell<Bonus, Void> cell = new TableCell<Bonus, Void>() {
                     private final Button btn = new Button("Edit");
-                    private final Button btn2 = new Button("View");
+                    private final Button btn2 = new Button("Summary");
 
                     {
                         String style = "-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
@@ -142,7 +142,7 @@ public class BonusController {
                         btn2.setOnAction((ActionEvent event) -> {
 //                            Employee emp = getTableView().getItems().get(getIndex());
 //                            getTableView().getItems().get(getIndex());
-                            showBonusReport();
+                            showBonusReport(getTableView().getItems().get(getIndex()));
                         });
                     }
                     @Override
@@ -164,7 +164,7 @@ public class BonusController {
         bonus_tableview.setItems(bonusList);
     }
 
-    private void showBonusReport() {
+    private void showBonusReport(Bonus bonus) {
         BonusReportController controller;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/BonusReport.fxml"));
@@ -172,6 +172,7 @@ public class BonusController {
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, container);
+            controller.setBonus(bonus);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
 //            container.getChildren().clear();
