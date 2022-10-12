@@ -58,7 +58,7 @@
                 <Image url="@../../Assets/Search-blue.png" />
             </image>
         </ImageView>
-      <Button layoutX="32.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Add">
+      <Button layoutX="32.0" layoutY="50.0" mnemonicParsing="false" onAction="#addAttendance" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Add">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>
@@ -69,7 +69,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="107.0" layoutY="50.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #C70C0C; -fx-text-fill: #ffffff;" text="Remove">
+      <Button layoutX="107.0" layoutY="50.0" mnemonicParsing="false" onAction="#removeAttendance" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #C70C0C; -fx-text-fill: #ffffff;" text="Remove">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>

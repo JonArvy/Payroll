@@ -2,6 +2,7 @@ package Classes;
 
 import Models.BooleanValue;
 import Models.Department;
+import Models.Employee;
 import Models.SummarySchema;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,6 +77,30 @@ public class Converters {
             public SummarySchema fromString(String s) {
                 return list.stream()
                         .filter(item -> item.getSummary_name().equals(s))
+                        .collect(Collectors.toList()).get(0);
+            }
+        };
+        return converter;
+    }
+
+
+    public StringConverter<Employee> employeeStringConverter(ObservableList<Employee> list) {
+        StringConverter<Employee> converter = new StringConverter<Employee>() {
+            @Override
+            public String toString(Employee employee) {
+                String s = "";
+                try {
+                    s = employee.getFull_Name();
+                } catch (NullPointerException e) {
+                    s = "";
+                }
+                return s;
+            }
+
+            @Override
+            public Employee fromString(String s) {
+                return list.stream()
+                        .filter(item -> item.getFull_Name().equals(s))
                         .collect(Collectors.toList()).get(0);
             }
         };

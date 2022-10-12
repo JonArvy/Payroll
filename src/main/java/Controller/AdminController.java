@@ -32,8 +32,6 @@ public class AdminController {
     @FXML
     private AnchorPane content_container;
 
-    @FXML
-    private Button main_addemployee_button;
 
     @FXML
     private Button main_admin_button;
@@ -78,8 +76,6 @@ public class AdminController {
     private void clickNavigation_Choices(ActionEvent event) {
         if (event.getSource() == main_admin_button) {
             loadNoticeBoard();
-        } else if (event.getSource() == main_addemployee_button) {
-            loadAddEmployee();
         } else if (event.getSource() == main_manageemployee_button) {
             loadManageEmployee();
         } else if (event.getSource() == main_dailyattendance_button) {
@@ -141,28 +137,6 @@ public class AdminController {
         }
     }
 
-    private void loadAddEmployee() {
-        AddEmployeeController controller;
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
-//            fxmlLoader.load();
-
-            Node n = (Node) fxmlLoader.load();
-            AnchorPane.setTopAnchor(n, 0.0);
-            AnchorPane.setBottomAnchor(n, 0.0);
-            AnchorPane.setLeftAnchor(n, 0.0);
-            AnchorPane.setRightAnchor(n, 0.0);
-
-            controller = fxmlLoader.getController();
-            controller.setRetrievedData(admin, content_container);
-
-//            AnchorPane anchorPane = fxmlLoader.getRoot();
-            content_container.getChildren().clear();
-            content_container.getChildren().add(n);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
 
     private void loadManageEmployee() {
         ManageEmployeeController controller;

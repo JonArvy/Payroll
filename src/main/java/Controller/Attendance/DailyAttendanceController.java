@@ -1,5 +1,6 @@
 package Controller.Attendance;
 
+import Controller.Additional.BonusReportController;
 import Controller.Employee.EditEmployeeController;
 import Database.SQLAttendance;
 import Database.SQLDepartment;
@@ -85,6 +86,16 @@ public class DailyAttendanceController {
             showDailyAttendanceTable();
         });
         main_dailyattendance_datepicker.setValue(LocalDate.now());
+    }
+
+    @FXML
+    private void addAttendance() {
+        loadAddAttendance();
+    }
+
+    @FXML
+    private void removeAttendance() {
+
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -175,6 +186,25 @@ public class DailyAttendanceController {
             AnchorPane anchorPane = fxmlLoader.getRoot();
 //            container.getChildren().clear();
             container.getChildren().add(anchorPane);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    private void loadAddAttendance() {
+        AddAttendanceController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/AddAttendance.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }

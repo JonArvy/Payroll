@@ -240,9 +240,13 @@ public class Employee {
     }
 
     public String getFull_Name() {
+        setFull_Name();
         return Full_Name;
     }
 
+    private void setFull_Name() {
+        this.Full_Name = this.Last_Name + ", " + this.First_Name + " " + this.Middle_Name;
+    }
     public void setEmployee_ID(int employee_ID) {
         Employee_ID = employee_ID;
     }

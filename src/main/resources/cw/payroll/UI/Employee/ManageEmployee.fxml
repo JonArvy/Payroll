@@ -45,7 +45,7 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
-      <Button layoutX="258.0" layoutY="24.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="129.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Add Employee" textAlignment="CENTER" textFill="#01374d">
+      <Button layoutX="258.0" layoutY="24.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="5.0" prefWidth="129.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Add Employee" textAlignment="CENTER" textFill="#01374d">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="18.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>

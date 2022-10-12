@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -55,6 +56,11 @@ public class ManageEmployeeController {
     }
 
     @FXML
+    private void addEmployee() {
+        loadAddEmployee();
+    }
+
+    @FXML
     private void initialize() {
         manageemployee_checkbox_hideinactive.selectedProperty().addListener((a, o, n) -> {
             showEmployeeList();
@@ -73,20 +79,20 @@ public class ManageEmployeeController {
         this.admin = admin;
         this.container = anchorPane;
     }
-
-    private void loadAddEmployee() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
-            fxmlLoader.load();
-
-            AnchorPane anchorPane = fxmlLoader.getRoot();
-            container.getChildren().clear();
-            container.getChildren().add(anchorPane);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+//
+//    private void loadAddEmployee() {
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
+//            fxmlLoader.load();
+//
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+//            container.getChildren().add(anchorPane);
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
     private void loadEditEmployee(Employee employee) {
         EditEmployeeController controller;
@@ -164,5 +170,28 @@ public class ManageEmployeeController {
         manageemployee_column_action.setCellFactory(cellFactory);
 
         manageemployee_tableview.setItems(employeeList);
+    }
+
+    private void loadAddEmployee() {
+        AddEmployeeController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Employee/AddEmployee.fxml"));
+//            fxmlLoader.load();
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
+            container.getChildren().clear();
+            container.getChildren().add(n);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
