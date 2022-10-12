@@ -106,27 +106,39 @@ public class SQLBonus {
 
     public ObservableList<BonusSummary> getBonusSummary(Bonus bonus) {
         ObservableList<BonusSummary> bonusSummaryList = FXCollections.observableArrayList();
-        String command = "SELECT * " +
-                "FROM tbl_employees " +
-                "WHERE emp_employmentstatus = ? " +
-                "AND ";
+        String command = "SELECT " +
+                "te.emp_id as employee_id," +
+                "te.emp_fname || ' ' || te.emp_mname || ' ' || te.emp_lname as full_name," +
+                "(" +
+                "   SELECT " +
+                "   department_name " +
+                "   FROM tbl_department td " +
+                "   WHERE td.department_id = te.emp_department" +
+                ") as dept_name " +
+
+                "FROM tbl_employees te JOIN tbl_department td " +
+                "ON te.emp_department = td.department_id " +
+                "WHERE te.emp_employmentstatus = ? " +
+                "AND te.emp_status = ?";
 
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
 
             preparedStatement.setString(1, bonus.getBonus_Recipient());
+            preparedStatement.setBoolean(2, true);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
+            int bonusCount = 1;
             while (resultSet.next()) {
                 bonusSummaryList.add(new BonusSummary(
-                                resultSet.getInt("bonus_id"),
-                                resultSet.getString("emp_firstname"),
-                                resultSet.getString("emp_position"),
-                                resultSet.getDouble("emp_salary"),
-                                resultSet.getDouble("emp_salary") * bonus.getBonus_Amount()
+                                bonusCount,
+                                resultSet.getString("full_name"),
+                                resultSet.getInt("employee_id"),
+                                resultSet.getString("dept_name"),
+                                bonus.getBonus_Amount()
                         )
                 );
+                bonusCount++;
             }
 
         } catch (SQLException e) {

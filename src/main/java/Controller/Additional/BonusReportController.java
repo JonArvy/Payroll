@@ -13,37 +13,40 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+
+import static Classes.PDFWriter.createBonusSummaryPDF;
 
 public class BonusReportController {
 
     @FXML
-    private TableColumn<?, ?> amount;
+    private TableColumn<BonusSummary, Double> amount;
 
     @FXML
     private TextField date;
 
     @FXML
-    private TableColumn<?, ?> department;
+    private TableColumn<BonusSummary, String> department;
 
     @FXML
-    private TableColumn<?, ?> emp_id;
+    private TableColumn<BonusSummary, Integer> emp_id;
 
     @FXML
-    private TableColumn<?, ?> fullname;
+    private TableColumn<BonusSummary, String> fullname;
 
     @FXML
-    private TableView<?> main_attendancereport_tableview;
+    private TableView main_attendancereport_tableview;
 
     @FXML
     private TextField name;
 
     @FXML
-    private TableColumn<?, ?> number;
+    private TableColumn<BonusSummary, Integer> number;
 
     @FXML
     void print(ActionEvent event) {
-
+        createBonusSummaryPDF(bonusSummaryList);
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -72,6 +75,14 @@ public class BonusReportController {
         date.setText(bonus.getBonus_Date().toString());
 
         bonusSummaryList = sqlBonus.getBonusSummary(bonus);
+
+        number.setCellValueFactory(new PropertyValueFactory<BonusSummary, Integer>("Bonus_ID"));
+        fullname.setCellValueFactory(new PropertyValueFactory<BonusSummary, String>("Fullname"));
+        emp_id.setCellValueFactory(new PropertyValueFactory<BonusSummary, Integer>("Emp_ID"));
+        department.setCellValueFactory(new PropertyValueFactory<BonusSummary, String>("Department"));
+        amount.setCellValueFactory(new PropertyValueFactory<BonusSummary, Double>("Amount"));
+
+        main_attendancereport_tableview.setItems(bonusSummaryList);
     }
 
 }

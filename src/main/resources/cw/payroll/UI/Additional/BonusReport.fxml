@@ -15,7 +15,7 @@
             <Font name="System Bold" size="14.0" />
          </font></Text>
       <TextField fx:id="name" editable="false" layoutX="132.0" layoutY="32.0" text="Name" />
-        <Button disable="true" layoutX="605.0" layoutY="31.0" mnemonicParsing="false" onAction="#print" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Print" />
+        <Button layoutX="605.0" layoutY="31.0" mnemonicParsing="false" onAction="#print" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Print" />
             <TableView fx:id="main_attendancereport_tableview" layoutY="85.0" prefHeight="458.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                 <columns>
                     <TableColumn prefWidth="528.0000427365303" text="Employee Details">

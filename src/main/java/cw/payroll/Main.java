@@ -4,11 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-import static Classes.PDFWriter.createTablePDF;
 
 public class Main extends Application {
     @Override
@@ -24,7 +22,6 @@ public class Main extends Application {
 //        stage.initStyle(StageStyle.UNDECORATED);
 //        stage.setResizable(false);
 
-//        createTablePDF();
         stage.show();
 
 

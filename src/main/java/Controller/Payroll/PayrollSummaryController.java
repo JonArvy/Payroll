@@ -22,7 +22,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import static Classes.CustomAlert.callAlert;
-import static Classes.PDFWriter.createTablePDF;
+import static Classes.PDFWriter.createPayrollSummaryPDF;
 
 
 public class PayrollSummaryController {
@@ -104,7 +104,7 @@ public class PayrollSummaryController {
 
     @FXML
     private void toPDF() {
-        createTablePDF(summaryList);
+        createPayrollSummaryPDF(summaryList);
     }
 
     @FXML
