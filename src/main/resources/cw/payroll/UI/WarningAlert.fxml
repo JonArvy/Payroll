@@ -23,7 +23,7 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-      <Text fill="#c9a154" layoutX="73.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User has to be admin!" wrappingWidth="254.0">
+      <Text fx:id="alert_content" fill="#c9a154" layoutX="73.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User has to be admin!" wrappingWidth="254.0">
          <font>
             <Font size="15.0" />
          </font>

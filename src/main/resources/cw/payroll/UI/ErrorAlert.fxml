@@ -14,7 +14,7 @@
             <Image url="@../Assets/Error%20alert%20icon.png" />
          </image>
       </ImageView>
-      <Text fill="#b55b5a" layoutX="73.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error!" wrappingWidth="78.0">
+      <Text fx:id="alert_header" fill="#b55b5a" layoutX="73.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error!" wrappingWidth="78.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -23,7 +23,7 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-      <Text fill="#b55b5a" layoutX="73.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Server Error! Unable to proceed" wrappingWidth="254.0">
+      <Text fx:id="alert_content" fill="#b55b5a" layoutX="73.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Server Error! Unable to proceed" wrappingWidth="254.0">
          <font>
             <Font size="15.0" />
          </font>

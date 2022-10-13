@@ -136,6 +136,9 @@ public class LoginController {
     private Button login_pane_fingerprint_place_back1;
 
     @FXML
+    private TextField login_emp_id;
+
+    @FXML
     private void proceed(ActionEvent event) {
         if (event.getSource() == login_pane_fingerprint_place_proceed) {
             try {
@@ -285,5 +288,21 @@ public class LoginController {
     private void initialize() {
         employee_panel_datepicker_datefrom.setValue(LocalDate.now().minusMonths(1));
         employee_panel_datepicker_dateto.setValue(LocalDate.now());
+    }
+
+    @FXML
+    private void loginAttendancce() {
+        try {
+            int id = Integer.parseInt(login_emp_id.getText());
+            if (!sqlEmployee.checkIfEmployeeIDExists(id)) {
+
+                callAlert("Success", "Successfully Logged in");
+            } else {
+                callAlert("Error", "Employee does not exist");
+                login_emp_id.setText("");
+            }
+        } catch (NumberFormatException e) {
+            callAlert("Invalid", "Invalid Employee ID");
+        }
     }
 }
