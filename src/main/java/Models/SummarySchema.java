@@ -1,6 +1,8 @@
 package Models;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class SummarySchema {
     private int summary_id;
@@ -17,7 +19,10 @@ public class SummarySchema {
     }
 
     private void setSummary_name() {
-        this.summary_name = summary_date_from + " - " + summary_date_to;
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("MMMM dd yyyy");
+        String s = formatter.format(summary_date_from) + " - " + formatter.format(summary_date_to);
+        this.summary_name = s;
     }
 
     public int getSummary_id() {

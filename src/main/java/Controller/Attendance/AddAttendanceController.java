@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLOutput;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -82,6 +83,8 @@ public class AddAttendanceController {
     Converters converters = new Converters();
 
     ObservableList<Employee> employees = FXCollections.observableArrayList();
+
+    ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
 //    VBox vBox = new VBox();
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
@@ -137,8 +140,37 @@ public class AddAttendanceController {
 
     private void initializeComponents() {
         addSpinner();
+
+        date.valueProperty().addListener((a, o, n) -> {
+            addItemsOnList();
+        });
+
+    }
+
+    private void addItemsOnList() {
         employees.clear();
         employees = sqlEmployee.getAllEmployees(true);
+
+        attendanceList = sqlAttendance.getDailyAttendance(Date.valueOf(date.getValue()),
+                Date.valueOf(date.getValue().plusDays(1)));
+
+        for (Employee e : employees) {
+            System.out.println("Emp");
+            System.out.println(e.getEmployee_ID());
+        }
+        for (Attendance a : attendanceList) {
+            System.out.println("Attend");
+            System.out.println(a.getEmployee_ID());
+        }
+
+//        for (int i = 0; i < employees.size(); i++) {
+//            for (int o = 0; o < attendanceList.size(); o++) {
+//                if (employees.remove(employees.get())) {
+//
+//                }
+//            }
+//        }
+
         FXCollections.sort(employees, Comparator.comparing(Employee::getFull_Name));
         full_name.setItems(employees);
         full_name.setConverter(converters.employeeStringConverter(employees));

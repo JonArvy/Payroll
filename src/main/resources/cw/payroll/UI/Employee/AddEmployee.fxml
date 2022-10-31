@@ -12,10 +12,13 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Employee.AddEmployeeController">
     <children>
-        <Text layoutX="648.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1" />
+        <Text layoutX="648.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
         <Text layoutX="25.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Century Gothic Bold" size="16.0" />
             </font>
         </Text>
         <Text layoutX="25.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />

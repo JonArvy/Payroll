@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -11,14 +13,50 @@
     <children>
         <Label layoutX="42.0" layoutY="43.0" text="Department">
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="Century Gothic Bold" size="15.0" />
             </font>
         </Label>
-        <Button fx:id="department_button_add" layoutX="286.0" layoutY="41.0" mnemonicParsing="false" onAction="#addDepartment" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" />
-        <Button fx:id="department_button_edit" layoutX="334.0" layoutY="41.0" mnemonicParsing="false" onAction="#editDepartment" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Edit" />
-        <Button fx:id="department_button_delete" disable="true" layoutX="380.0" layoutY="41.0" mnemonicParsing="false" onAction="#deleteDepartment" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Delete" />
-        <Label layoutX="586.0" layoutY="45.0" text="Page 1 of 2" AnchorPane.rightAnchor="70.0" />
-        <Button fx:id="department_button_next" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" AnchorPane.rightAnchor="30.0" />
+        <Button fx:id="department_button_add" layoutX="262.0" layoutY="41.0" mnemonicParsing="false" onAction="#addDepartment" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add">
+         <graphic>
+            <ImageView fitHeight="12.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/PlusButton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
+        <Button fx:id="department_button_edit" layoutX="326.0" layoutY="41.0" mnemonicParsing="false" onAction="#editDepartment" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Edit">
+         <graphic>
+            <ImageView fitHeight="11.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/EditButton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
+        <Button fx:id="department_button_delete" disable="true" layoutX="388.0" layoutY="41.0" mnemonicParsing="false" onAction="#deleteDepartment" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Delete">
+         <graphic>
+            <ImageView fitHeight="13.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/DeleteButton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
+        <Label layoutX="586.0" layoutY="45.0" text="Page 1 of 2" AnchorPane.rightAnchor="70.0">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Label>
+        <Button fx:id="department_button_next" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" AnchorPane.rightAnchor="30.0">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
         <TableView fx:id="department_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
             <columns>
                 <TableColumn fx:id="department_column_name" prefWidth="124.0" text="Name" />
