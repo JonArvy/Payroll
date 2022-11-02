@@ -72,7 +72,7 @@
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="position" editable="false" layoutX="496.0" layoutY="106.0" prefHeight="25.0" prefWidth="136.0" />
+            <TextField fx:id="monthly_rate" editable="false" layoutX="496.0" layoutY="106.0" prefHeight="25.0" prefWidth="136.0" />
             <TextField alignment="CENTER" editable="false" layoutX="39.0" layoutY="181.0" prefHeight="25.0" prefWidth="317.0" style="-fx-background-color: #DFDFDF;" text="COMPENSATION">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
@@ -111,7 +111,7 @@
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="department1" editable="false" layoutX="153.0" layoutY="133.0" prefHeight="25.0" prefWidth="203.0" />
+            <TextField fx:id="position" editable="false" layoutX="153.0" layoutY="133.0" prefHeight="25.0" prefWidth="203.0" />
             <ImageView fitHeight="41.0" fitWidth="44.0" layoutX="201.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 20;">
                <image>
                   <Image url="@../../Assets/CWBH%20Logo%20-%20bnw.png" />

@@ -143,6 +143,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -159,7 +160,7 @@ public class ViewPayslipController {
     private Button close_button;
 
     @FXML
-    private TextField date;
+    private Text date;
 
     @FXML
     private TextField department;
@@ -174,10 +175,16 @@ public class ViewPayslipController {
     private TextField less;
 
     @FXML
+    private TextField monthly_rate;
+
+    @FXML
     private TextField netpay;
 
     @FXML
     private TextField pagibig;
+
+    @FXML
+    private Pane payslip;
 
     @FXML
     private TextField position;
@@ -186,16 +193,13 @@ public class ViewPayslipController {
     private TextField present_days;
 
     @FXML
+    private Button print_button;
+
+    @FXML
     private TextField total;
 
     @FXML
     private TextField wages;
-
-    @FXML
-    private Pane payslip;
-
-    @FXML
-    private Button print_button;
 
 
     @FXML
@@ -264,6 +268,7 @@ public class ViewPayslipController {
         less.setText(String.valueOf(summary.getLess()));
         netpay.setText(String.valueOf(summary.getNetAmount()));
         date.setText(String.valueOf(LocalDate.now()));
+        monthly_rate.setText(String.valueOf(summary.getNetAmount()));
 //        basic_salary.setText(String.valueOf(summary.getWage()));
 //        gross_salary.setText(String.valueOf(summary.getTotalCompensation()));
 //        deductions.setText(String.valueOf(summary.getTotalDeduction()));
