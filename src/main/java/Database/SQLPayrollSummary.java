@@ -243,6 +243,9 @@ public class SQLPayrollSummary {
             preparedStatement.setDate(3, from);
             preparedStatement.setDate(4, to);
 
+            SQLHoliday sqlHoliday = new SQLHoliday();
+            int holiday_count = sqlHoliday.getHolidayCount(from, to);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Summary sm = new Summary();
@@ -254,8 +257,8 @@ public class SQLPayrollSummary {
 
                 sm.setWage(resultSet.getDouble("monthlywage"));
                 sm.setNetAmount(resultSet.getDouble("monthlywage"));
-                sm.setPresentDays(resultSet.getInt("dayspermonth"));
-                sm.setAbsentDays(resultSet.getInt("absent_days"));
+                sm.setPresentDays(resultSet.getInt("dayspermonth") - holiday_count);
+                sm.setAbsentDays(resultSet.getInt("absent_days") - holiday_count);
                 sm.setTotalCompensation(resultSet.getInt("dailyrate") * resultSet.getInt("present_days"));
 
                 int utandlate = calculateReduction(resultSet.getInt("employee_id"), from, to, resultSet.getTime("timein"), resultSet.getTime("timeout"));
@@ -440,6 +443,70 @@ public class SQLPayrollSummary {
     public int lateChecker() {
         return 1;
     }
+
+    public ObservableList<SummarySchema> getSchemaSummaryList() {
+        String command = "SELECT * FROM payroll_summary_schema";
+        ObservableList<SummarySchema> list = FXCollections.observableArrayList();
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                list.add(new SummarySchema(
+                        resultSet.getInt("summary_id"),
+                        resultSet.getDate("summary_date_from"),
+                        resultSet.getDate("summary_date_to")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public ObservableList<Summary> getSummaryList(int id) {
+        ObservableList<Summary> summaryList = FXCollections.observableArrayList();
+        String command = "SELECT * FROM payroll_summary WHERE summary_id = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                Summary sm = new Summary();
+//                sm.setDateCreated(resultSet.getDate("summary_date_created"));
+                sm.setName(resultSet.getString("summary_name"));
+                sm.setEmployeeNumber(resultSet.getInt("summary_employee_number"));
+                sm.setDepartment(resultSet.getString("summary_department"));
+                sm.setPosition(resultSet.getString("summary_position"));
+                sm.setDatabaseID(resultSet.getInt("summary_individual_id"));
+
+                sm.setWage(resultSet.getDouble("summary_wage"));
+                sm.setLateUT(resultSet.getInt("summary_late_ut"));
+                sm.setAbsentDays(resultSet.getInt("summary_absent_days"));
+                sm.setTotalCompensation(resultSet.getDouble("summary_total_compensation"));
+                sm.setTotalDeduction(resultSet.getDouble("summary_total_deduction"));
+
+                sm.setNetAmount(resultSet.getDouble("summary_net_amount"));
+                summaryList.add(
+                        sm
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return summaryList;
+    }
+}
+
 //        public ObservableList<Summary> generatePayrollSummary(Date from, Date to, ObservableList<Summary> summaryObservableList) {
 ////
 //
@@ -514,66 +581,3 @@ public class SQLPayrollSummary {
 //        System.out.println(e.getMessage());
 //    }
 //        return list;
-
-    public ObservableList<SummarySchema> getSchemaSummaryList() {
-        String command = "SELECT * FROM payroll_summary_schema";
-        ObservableList<SummarySchema> list = FXCollections.observableArrayList();
-
-        try (Connection connection = connect();
-             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                list.add(new SummarySchema(
-                        resultSet.getInt("summary_id"),
-                        resultSet.getDate("summary_date_from"),
-                        resultSet.getDate("summary_date_to")
-                ));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return list;
-    }
-
-    public ObservableList<Summary> getSummaryList(int id) {
-        ObservableList<Summary> summaryList = FXCollections.observableArrayList();
-        String command = "SELECT * FROM payroll_summary WHERE summary_id = ?";
-
-        try (Connection connection = connect();
-             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
-
-            preparedStatement.setInt(1, id);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()) {
-                Summary sm = new Summary();
-//                sm.setDateCreated(resultSet.getDate("summary_date_created"));
-                sm.setName(resultSet.getString("summary_name"));
-                sm.setEmployeeNumber(resultSet.getInt("summary_employee_number"));
-                sm.setDepartment(resultSet.getString("summary_department"));
-                sm.setPosition(resultSet.getString("summary_position"));
-                sm.setDatabaseID(resultSet.getInt("summary_individual_id"));
-
-                sm.setWage(resultSet.getDouble("summary_wage"));
-                sm.setLateUT(resultSet.getInt("summary_late_ut"));
-                sm.setAbsentDays(resultSet.getInt("summary_absent_days"));
-                sm.setTotalCompensation(resultSet.getDouble("summary_total_compensation"));
-                sm.setTotalDeduction(resultSet.getDouble("summary_total_deduction"));
-
-                sm.setNetAmount(resultSet.getDouble("summary_net_amount"));
-                summaryList.add(
-                        sm
-                );
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return summaryList;
-    }
-}
