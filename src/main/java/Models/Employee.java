@@ -21,6 +21,8 @@ public class Employee {
 
     private String Full_Name;
 
+    private String Full_Name_Without_Middle;
+
     private String Address;
 
     private boolean Gender;
@@ -40,6 +42,7 @@ public class Employee {
     private String Contact_Address;
 
     private String Contact_Number;
+
 
 
     // --------------------------------------------------------------------
@@ -244,9 +247,19 @@ public class Employee {
         return Full_Name;
     }
 
+    public String getFull_Name_Without_Middle() {
+        setFull_Name_Without_Middle();
+        return Full_Name_Without_Middle;
+    }
+
     private void setFull_Name() {
         this.Full_Name = this.Last_Name + ", " + this.First_Name + " " + this.Middle_Name;
     }
+
+    private void setFull_Name_Without_Middle() {
+        this.Full_Name_Without_Middle = this.Last_Name + ", " + this.First_Name;
+    }
+
     public void setEmployee_ID(int employee_ID) {
         Employee_ID = employee_ID;
     }
@@ -330,4 +343,6 @@ public class Employee {
     public void setContact_Number(String contact_Number) {
         Contact_Number = contact_Number;
     }
+
+
 }

@@ -45,6 +45,9 @@ public class AddAttendanceController {
     private ComboBox<Employee> full_name;
 
     @FXML
+    private Button save;
+
+    @FXML
     void cancel(ActionEvent event) {
         loadAttendance();
     }
@@ -83,8 +86,6 @@ public class AddAttendanceController {
     Converters converters = new Converters();
 
     ObservableList<Employee> employees = FXCollections.observableArrayList();
-
-    ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
 //    VBox vBox = new VBox();
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
@@ -149,19 +150,28 @@ public class AddAttendanceController {
 
     private void addItemsOnList() {
         employees.clear();
-        employees = sqlEmployee.getAllEmployees(true);
-
-        attendanceList = sqlAttendance.getDailyAttendance(Date.valueOf(date.getValue()),
+        employees = sqlEmployee.getAllEmployeesExcept(true, Date.valueOf(date.getValue()),
                 Date.valueOf(date.getValue().plusDays(1)));
 
-        for (Employee e : employees) {
-            System.out.println("Emp");
-            System.out.println(e.getEmployee_ID());
+        if (employees.size() <= 0) {
+            save.setDisable(true);
+        } else {
+            save.setDisable(false);
         }
-        for (Attendance a : attendanceList) {
-            System.out.println("Attend");
-            System.out.println(a.getEmployee_ID());
-        }
+
+//        System.out.println(date.getValue());
+
+//        attendanceList = sqlAttendance.getDailyAttendance(Date.valueOf(date.getValue()),
+//                Date.valueOf(date.getValue().plusDays(1)));
+
+//        for (Employee e : employees) {
+//            System.out.println("Emp");
+//            System.out.println(e.getEmployee_ID());
+//        }
+//        for (Attendance a : attendanceList) {
+//            System.out.println("Attend");
+//            System.out.println(a.getEmployee_ID());
+//        }
 
 //        for (int i = 0; i < employees.size(); i++) {
 //            for (int o = 0; o < attendanceList.size(); o++) {

@@ -90,7 +90,7 @@ public class Converters {
             public String toString(Employee employee) {
                 String s = "";
                 try {
-                    s = employee.getFull_Name();
+                    s = employee.getFull_Name_Without_Middle();
                 } catch (NullPointerException e) {
                     s = "";
                 }

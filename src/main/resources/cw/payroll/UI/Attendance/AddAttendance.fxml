@@ -44,7 +44,7 @@
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font></Label>
-            <Button layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#command" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save">
+            <Button fx:id="save" layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#command" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font></Button>
