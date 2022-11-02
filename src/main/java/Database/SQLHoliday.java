@@ -4,10 +4,7 @@ import Models.Holiday;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import static Classes.CustomAlert.callAlert;
 import static Database.SQLConnection.connect;
@@ -97,5 +94,31 @@ public class SQLHoliday {
             e.printStackTrace();
         }
         return holiday;
+    }
+
+    public Boolean checkIfHoliday(Date dt1, Date dt2) {
+        boolean isHoliday = false;
+        String command = "SELECT * " +
+                "FROM tbl_holiday hol " +
+                "WHERE holiday_date >= ? " +
+                "AND holiday_date < ? ";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setDate(1, dt1);
+            preparedStatement.setDate(2, dt2);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                isHoliday = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return isHoliday;
     }
 }

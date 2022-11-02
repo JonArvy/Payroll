@@ -4,6 +4,7 @@ import Classes.Converters;
 import Classes.TimeSpinner;
 import Database.SQLAttendance;
 import Database.SQLEmployee;
+import Database.SQLHoliday;
 import Models.Admin;
 import Models.Attendance;
 import Models.Employee;
@@ -83,6 +84,8 @@ public class AddAttendanceController {
 
     SQLAttendance sqlAttendance = new SQLAttendance();
 
+    SQLHoliday sqlHoliday = new SQLHoliday();
+
     Converters converters = new Converters();
 
     ObservableList<Employee> employees = FXCollections.observableArrayList();
@@ -142,8 +145,15 @@ public class AddAttendanceController {
     private void initializeComponents() {
         addSpinner();
 
-        date.valueProperty().addListener((a, o, n) -> {
-            addItemsOnList();
+        date.valueProperty().addListener((obj, old_value, new_value) -> {
+            boolean isHoliday = sqlHoliday.checkIfHoliday(Date.valueOf(new_value), Date.valueOf(new_value.plusDays(1)));
+            if (isHoliday) {
+                emp_id.setText("Date is Holiday");
+                save.setDisable(true);
+                employees.clear();
+            } else {
+                addItemsOnList();
+            }
         });
 
     }
