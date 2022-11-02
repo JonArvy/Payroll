@@ -312,10 +312,10 @@ public class SQLAttendance {
             preparedStatement.setDate(2, to);
             preparedStatement.setDate(3, from);
             preparedStatement.setDate(4, to);
-            SQLHoliday sqlHoliday = new SQLHoliday();
 
+            SQLHoliday sqlHoliday = new SQLHoliday();
             int holiday_count = sqlHoliday.getHolidayCount(from, to);
-            System.out.println(holiday_count);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 attendanceReportList.add(new AttendanceReport(
