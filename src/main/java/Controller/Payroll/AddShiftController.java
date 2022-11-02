@@ -202,7 +202,7 @@ public class AddShiftController {
 
     private void checkShiftIfValid(int shifttype) {
         if (addshift_timeout.getText().equals("Invalid Time Values")) {
-            callAlert("Invalid", "Invalid Time Values");
+            callAlert("Invalid Time Values", 3);
         } else {
             try {
                 int recepient = addshift_department.getValue().getDepartment_ID();
@@ -222,7 +222,7 @@ public class AddShiftController {
                 Time breakend = Time.valueOf(LocalTime.parse(addshift_breakend_hour.getValue() + ":" + addshift_breakend_minute.getValue()));
 
                 if (sqlShift.checkIfShiftExist(recepient)) {
-                    callAlert("Invalid", "A shift already exists for that recipient");
+                    callAlert("A shift already exists for that recipient", 3);
                 } else {
                     sqlShift.addShift(new Shift(shifttype, recepient, in, out, breakstart, breakend, sunday, monday, tuesday, wednesday, thursday, friday, saturday));
                     loadShift();
@@ -235,7 +235,7 @@ public class AddShiftController {
                 System.out.println(breakend);
 
             } catch (Exception e) {
-                callAlert("Error!", "Error!");
+                callAlert("Error!", 1);
             }
         }
     }

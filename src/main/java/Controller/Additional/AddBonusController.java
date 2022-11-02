@@ -109,7 +109,7 @@ public class AddBonusController {
 
     private void checkBonusIfValid() {
         if (addbonus_name.getText() == null || addbonus_name.getText().trim().equals("")) {
-            callAlert("Invalid", "Invalid Bonus Name");
+            callAlert("Invalid Bonus Name", 3);
         } else {
             try {
                 addbonus_dateapplicable.getConverter().fromString(addbonus_dateapplicable.getEditor().getText());
@@ -123,9 +123,9 @@ public class AddBonusController {
 
                 loadBonus();
             } catch (NumberFormatException o) {
-                callAlert("Invalid", "Invalid Amount");
+                callAlert("Invalid Amount", 3);
             } catch (Exception e) {
-                callAlert("Invalid", "Invalid Date Value");
+                callAlert("Invalid Date Value", 3);
             }
         }
     }

@@ -125,10 +125,10 @@ public class SQLShift {
 
             prep.executeUpdate();
 
-            callAlert("Success!", "Shift Added with days of " + shift.getShift_Schema());
+            callAlert("Shift Added with days of " + shift.getShift_Schema(), 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
-            callAlert("Error!", "Error connecting to SQLite Database");
+            callAlert("Error connecting to SQLite Database", 1);
         }
     }
 
@@ -160,7 +160,7 @@ public class SQLShift {
 
             prep.executeUpdate();
 
-            callAlert("Success!", "Shift has been updated!");
+            callAlert("Shift has been updated!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
         }

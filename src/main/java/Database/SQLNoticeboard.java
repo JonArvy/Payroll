@@ -43,7 +43,7 @@ public class SQLNoticeboard {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success!", "Noticeboard has been updated!");
+            callAlert("Noticeboard has been updated!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();

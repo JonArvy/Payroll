@@ -270,7 +270,7 @@ public class SQLEmployee {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success!", "Employee " + employee.getFirst_Name() + " " + employee.getLast_Name() + " has been added!");
+            callAlert("Employee " + employee.getFirst_Name() + " " + employee.getLast_Name() + " has been added!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -324,10 +324,10 @@ public class SQLEmployee {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success!", "Employee " + employee.getFirst_Name() + " " + employee.getLast_Name() + " has been updated!");
+            callAlert("Employee " + employee.getFirst_Name() + " " + employee.getLast_Name() + " has been updated!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
-            callAlert("Error!", "Error connecting to SQLite database");
+            callAlert("Error connecting to SQLite database", 1);
             e.printStackTrace();
         }
     }

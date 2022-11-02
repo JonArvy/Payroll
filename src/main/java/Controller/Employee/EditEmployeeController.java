@@ -212,15 +212,15 @@ public class EditEmployeeController {
             }
 
             if (empid > 100000 || empid <= 0) {
-                callAlert("Error!", "Invalid Employee ID");
+                callAlert("Invalid Employee ID", 3);
             } else if (first_name.trim().equals("")) {
-                callAlert("Error!", "The first name is empty!");
+                callAlert("The first name is empty!", 3);
             } else if (last_name.trim().equals("")) {
-                callAlert("Error!", "The last name is empty!");
+                callAlert("The last name is empty!", 3);
             } else if (number.trim().equals("")) {
-                callAlert("Error!", "The contact number is empty!");
+                callAlert("The contact number is empty!", 3);
             } else if (position.trim().equals("")) {
-                callAlert("Error!", "The position is empty!");
+                callAlert("The position is empty!", 3);
             } else {
                 if (address.trim().equals("")) {
                     address.equals("");
@@ -244,9 +244,9 @@ public class EditEmployeeController {
             }
 
         } catch (NumberFormatException e) {
-            callAlert("Error!", "Invalid ID");
+            callAlert("Invalid ID", 1);
         } catch (DateTimeParseException o) {
-            callAlert("Error!", "Invalid Date");
+            callAlert("Invalid Date", 1);
         }
     }
 

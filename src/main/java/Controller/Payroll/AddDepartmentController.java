@@ -79,7 +79,7 @@ public class AddDepartmentController {
 
     private void checkDepartmentIfValid() {
         if (adddepartment_name.getText() == null || adddepartment_name.getText().trim().equals("")) {
-            callAlert("Invalid", "Invalid Department Name");
+            callAlert("Invalid Department Name", 3);
         } else {
             try {
                 int dayspermonth = Integer.parseInt(adddepartment_dayspermonth.getText());
@@ -89,15 +89,15 @@ public class AddDepartmentController {
 
                 boolean exist = sqlDepartment.checkIfDepartmentNameExists(name);
                 if (exist == true) {
-                    callAlert("Invalid", "A department with same name already exists");
+                    callAlert("A department with same name already exists", 3);
                 } else {
                     sqlDepartment.addDepartment(new Department(name, monthlyrate, dayspermonth, hoursperday));
                     loadDepartment();
                 }
             } catch (NumberFormatException o) {
-                callAlert("Invalid", "Invalid Value/s");
+                callAlert("Invalid Value/s", 3);
             } catch (Exception e) {
-                callAlert("Invalid", "Invalid Value/s");
+                callAlert("Invalid Value/s", 3);
             }
         }
     }

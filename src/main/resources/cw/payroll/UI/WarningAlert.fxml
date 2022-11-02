@@ -14,7 +14,7 @@
             <Image url="@../Assets/Warning%20alert%20icon.png" />
          </image>
       </ImageView>
-      <Text fill="#b58f47" layoutX="67.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Warning!" textAlignment="CENTER" wrappingWidth="78.0">
+      <Text fx:id="alert_header" fill="#b58f47" layoutX="67.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Warning!" textAlignment="CENTER" wrappingWidth="78.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

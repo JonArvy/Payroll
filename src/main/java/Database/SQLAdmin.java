@@ -75,7 +75,7 @@ public class SQLAdmin {
             preparedStatement.setInt(4, admin.getAdmin_Disabler());
 
             preparedStatement.executeUpdate();
-            callAlert("Success!", "New admin added!");
+            callAlert("New admin added!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();

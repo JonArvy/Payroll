@@ -199,7 +199,7 @@ public class AddAttendanceController {
             sqlAttendance.registerAttendance(attd);
             loadAttendance();
         } else {
-            callAlert("Error!", "Attendance already exist!");
+            callAlert("Attendance already exist!", 3);
         }
     }
 

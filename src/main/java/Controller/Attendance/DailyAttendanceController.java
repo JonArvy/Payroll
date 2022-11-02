@@ -243,7 +243,7 @@ public class DailyAttendanceController {
                 sqlAttendance.deleteAttendance(attendance);
                 showDailyAttendanceTable();
             } else {
-                callAlert("Error!","Attendance does not exist");
+                callAlert("Attendance does not exist", 3);
             }
         } catch (Exception e) {
             e.printStackTrace();

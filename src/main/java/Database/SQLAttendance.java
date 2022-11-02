@@ -131,7 +131,7 @@ public class SQLAttendance {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success!", "Attendance has been recorded!");
+            callAlert("Attendance has been recorded!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -347,7 +347,7 @@ public class SQLAttendance {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success!", "Attendance has been deleted!");
+            callAlert("Attendance has been deleted!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -372,10 +372,10 @@ public class SQLAttendance {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success!", "Attendance has been updated!");
+            callAlert("Attendance has been updated!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
-            callAlert("Error!", "Error connecting to SQLite database");
+            callAlert("Error connecting to SQLite database", 1);
             e.printStackTrace();
         }
     }

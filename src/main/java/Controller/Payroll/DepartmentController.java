@@ -173,7 +173,7 @@ public class DepartmentController {
 //            System.out.println(dept.getDepartment_Name());
             loadEditDepartment(dept);
         } catch (Exception e) {
-            callAlert("Invalid", "No row/entry selected");
+            callAlert("No row/entry selected", 4);
         }
     }
 }

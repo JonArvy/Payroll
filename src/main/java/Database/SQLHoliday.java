@@ -50,7 +50,7 @@ public class SQLHoliday {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success!", "Holiday: " + holiday.getHoliday_Name() + " has been added!");
+            callAlert("Holiday: " + holiday.getHoliday_Name() + " has been added!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -69,7 +69,7 @@ public class SQLHoliday {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success!", "Holiday: " + holiday.getHoliday_Name() + " has been updated!");
+            callAlert("Holiday: " + holiday.getHoliday_Name() + " has been updated!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();

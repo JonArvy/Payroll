@@ -94,7 +94,7 @@ public class AddEmployeeBiometricsController {
 
             loadManageEmployee();
         } catch (Exception e) {
-            callAlert("Error!", "An Error Occured!");
+            callAlert("An Error Occurred!", 1);
         }
     }
 }

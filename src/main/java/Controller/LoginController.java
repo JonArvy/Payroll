@@ -150,7 +150,7 @@ public class LoginController {
                     login_pane_fingerprint_re_place.toFront();
                 }
             } catch (NumberFormatException e) {
-                callAlert("Invalid", "Invalid Employee ID");
+                callAlert("Invalid Employee ID", 3);
             }
         } else if (event.getSource() == login_pane_fingerprint_place_proceed1) {
             try {
@@ -162,7 +162,7 @@ public class LoginController {
                     login_pane_fingerprint_place_empid1.setText("");
                 }
             } catch (NumberFormatException e) {
-                callAlert("Invalid", "Invalid Employee ID");
+                callAlert("Invalid Employee ID", 3);
             }
         }
     }
@@ -221,10 +221,10 @@ public class LoginController {
             if (valid) {
                 logInAsAdmin(sqlAdmin.getAdmin(adm));
             } else {
-                callAlert("Invalid", "Invalid Username or Password");
+                callAlert("Invalid Username or Password", 3);
             }
         } catch (NumberFormatException e) {
-            callAlert("Invalid", "Invalid Username or Password");
+            callAlert("Invalid Username or Password", 3);
         }
 
     }
@@ -265,11 +265,11 @@ public class LoginController {
             if (datefrom.before(dateto)) {
                 showData(datefrom, dateto);
             } else {
-                callAlert("Invalid", "Invalid Date Values");
+                callAlert("Invalid Date Values", 4);
             }
 
         } catch (Exception e) {
-            callAlert("Invalid", "Invalid Date Values");
+            callAlert("Invalid Date Values", 4);
         }
     }
 
@@ -296,13 +296,13 @@ public class LoginController {
             int id = Integer.parseInt(login_emp_id.getText());
             if (!sqlEmployee.checkIfEmployeeIDExists(id)) {
 
-                callAlert("Success", "Successfully Logged in");
+                callAlert("Successfully Logged in", 2);
             } else {
-                callAlert("Error", "Employee does not exist");
+                callAlert("Employee does not exist", 4);
                 login_emp_id.setText("");
             }
         } catch (NumberFormatException e) {
-            callAlert("Invalid", "Invalid Employee ID");
+            callAlert("Invalid Employee ID", 1);
         }
     }
 }

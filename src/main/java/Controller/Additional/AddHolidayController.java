@@ -87,7 +87,7 @@ public class AddHolidayController {
 
     private void checkHolidayIfValid() {
         if (addholiday_name.getText() == null || addholiday_name.getText().trim().equals("")) {
-            callAlert("Invalid", "Invalid Holiday Name");
+            callAlert("Invalid Holiday Name", 3);
         } else {
             try {
                 addholiday_date.getConverter().fromString(addholiday_date.getEditor().getText());
@@ -100,7 +100,7 @@ public class AddHolidayController {
 
                 loadHolidayList();
             } catch (Exception e) {
-                callAlert("Invalid", "Invalid Date Value");
+                callAlert("Invalid Date Value", 3);
             }
         }
     }

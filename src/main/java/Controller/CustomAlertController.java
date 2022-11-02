@@ -13,7 +13,7 @@ public class CustomAlertController {
     private Button alert_button_close;
 
     @FXML
-    private TextArea alert_content;
+    private Text alert_content;
 
     @FXML
     private Text alert_header;
@@ -33,14 +33,14 @@ public class CustomAlertController {
     private String title = "Error!";
     private String content = "Error!";
 
-    public void setAlertMessage(String title, String content) {
-        this.title = title;
+    public void setAlertMessage(String content) {
+//        this.title = title;
         this.content = content;
         setMessage();
     }
 
     private void setMessage() {
-        alert_header.setText(title);
+//        alert_header.setText(title);
         alert_content.setText(content);
     }
 }

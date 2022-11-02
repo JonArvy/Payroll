@@ -14,7 +14,7 @@
             <Image url="@../Assets/info%20alert.png" />
          </image>
       </ImageView>
-      <Text fill="#4781ab" layoutX="73.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Missing Info!" wrappingWidth="119.0">
+      <Text fx:id="alert_header" fill="#4781ab" layoutX="73.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Missing Info!" wrappingWidth="119.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

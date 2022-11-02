@@ -142,7 +142,7 @@ public class PayrollSummaryController {
             showPayrollSummary(from, to);
         } catch (Exception e) {
             e.printStackTrace();
-            callAlert("Invalid", "Invalid Date Value");
+            callAlert("Invalid Date Value", 3);
         }
     }
 

@@ -117,7 +117,7 @@ public class AttendanceReportController {
             showAttendanceReport(from, to);
         } catch (Exception e) {
             e.printStackTrace();
-            callAlert("Invalid", "Invalid Date Value");
+            callAlert("Invalid Date Value", 3);
         }
     }
 }

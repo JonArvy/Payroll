@@ -225,13 +225,13 @@ public class AddEmployeeController {
             }
 
             if (first_name.trim().equals("")) {
-                callAlert("Error!", "The first name is empty!");
+                callAlert("The first name is empty!", 4);
             } else if (last_name.trim().equals("")) {
-                callAlert("Error!", "The last name is empty!");
+                callAlert("The last name is empty!", 4);
             } else if (number.trim().equals("")) {
-                callAlert("Error!", "The contact number is empty!");
+                callAlert("The contact number is empty!", 4);
             } else if (position.trim().equals("")) {
-                callAlert("Error!", "The position is empty!");
+                callAlert("The position is empty!", 4);
             } else {
                 if (address.trim().equals("")) {
                     address.equals("");
@@ -253,14 +253,14 @@ public class AddEmployeeController {
 
                     loadAddEmployeeBiometrics();
                 } else {
-                    callAlert("Invalid!", "Employee with same ID already exists!");
+                    callAlert("Employee with same ID already exists!", 3);
                 }
             }
 
         } catch (NumberFormatException e) {
-            callAlert("Error!", "Invalid ID");
+            callAlert("Invalid ID", 3);
         } catch (DateTimeParseException o) {
-            callAlert("Error!", "Invalid Date");
+            callAlert("Invalid Date", 3);
         }
     }
 

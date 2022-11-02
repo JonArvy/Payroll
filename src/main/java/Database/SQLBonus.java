@@ -51,7 +51,7 @@ public class SQLBonus {
             prep.setDate(4, bonus.getBonus_Date());
 
             prep.executeUpdate();
-            callAlert("Success!", "Bonus: " + bonus.getBonus_Name() + " has been added!");
+            callAlert("Bonus: " + bonus.getBonus_Name() + " has been added!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
         }
@@ -98,7 +98,7 @@ public class SQLBonus {
 
             prep.executeUpdate();
 
-            callAlert("Success!", "Bonus: " + bonus.getBonus_Name() + " has been updated!");
+            callAlert("Bonus: " + bonus.getBonus_Name() + " has been updated!", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite Database");
         }

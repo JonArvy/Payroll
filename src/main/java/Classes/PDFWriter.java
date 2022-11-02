@@ -142,7 +142,7 @@ public class PDFWriter {
 //            Table table2 = new Table();
 
             document.close();
-            callAlert("PDF Created", "PDF Created Successfully");
+            callAlert("PDF Created Successfully", 2);
 //            Runtime.getRuntime().exec("explorer.exe /select," + "C:\\Users\\Arvy Enriquez\\Desktop\\Text.txt");
             File file = new File (path);
             Desktop desktop = Desktop.getDesktop();
@@ -197,7 +197,7 @@ public class PDFWriter {
             document.add(table);
 
             document.close();
-            callAlert("PDF Created", "PDF Created Successfully");
+            callAlert("PDF Created Successfully", 2);
 //            Runtime.getRuntime().exec("explorer.exe /select," + "C:\\Users\\Arvy Enriquez\\Desktop\\Text.txt");
             File file = new File (path);
             Desktop desktop = Desktop.getDesktop();

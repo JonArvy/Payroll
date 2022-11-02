@@ -78,7 +78,7 @@ public class SQLDepartment {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success", "Department " + department.getDepartment_Name() + " has been added");
+            callAlert("Department " + department.getDepartment_Name() + " has been added", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
@@ -103,7 +103,7 @@ public class SQLDepartment {
 
             preparedStatement.executeUpdate();
 
-            callAlert("Success", "Department " + department.getDepartment_Name() + " has been updated");
+            callAlert("Department " + department.getDepartment_Name() + " has been updated", 2);
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
