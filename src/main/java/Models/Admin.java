@@ -8,6 +8,9 @@ public class Admin {
     private int Admin_Disabler;
 
 
+    public Admin(int admin_ID) {
+        Admin_ID = admin_ID;
+    }
     public Admin(int admin_ID, int employee_ID) {
         Admin_ID = admin_ID;
         Employee_ID = employee_ID;

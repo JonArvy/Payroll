@@ -39,6 +39,33 @@ public class SQLAdmin {
         return admin;
     }
 
+    public boolean getAdminByID(Admin admin, int id, String password) {
+        boolean valid = false;
+        String command = "SELECT * " +
+                "FROM tbl_admin " +
+                "WHERE admin_id = ? " +
+                "AND emp_id = ? " +
+                "AND admin_password = ?";
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, admin.getAdmin_ID());
+            preparedStatement.setInt(2, id);
+            preparedStatement.setString(3, password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                valid = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return valid;
+    }
+
     public boolean checkIfValidAdmin(Admin admin) {
         boolean correct = false;
         String command = "SELECT * " +
@@ -112,4 +139,5 @@ public class SQLAdmin {
             e.printStackTrace();
         }
     }
+
 }

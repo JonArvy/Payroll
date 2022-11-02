@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.Additional.BonusController;
 import Controller.Additional.CredentialsController;
+import Controller.Additional.CredentialsValidationController;
 import Controller.Additional.HolidayListController;
 import Controller.Attendance.AttendanceReportController;
 import Controller.Attendance.DailyAttendanceController;
@@ -101,7 +102,7 @@ public class AdminController {
 
     @FXML
     private void initialize() {
-        setAdmin(new Admin(1, 1));
+        setAdmin(new Admin(1));
 
     }
 
@@ -330,9 +331,9 @@ public class AdminController {
     }
 
     private void loadCredentials() {
-        CredentialsController controller;
+        CredentialsValidationController controller;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/Credentials.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Additional/CredentialsValidation.fxml"));
 //            fxmlLoader.load();
 
             Node n = (Node) fxmlLoader.load();
