@@ -102,7 +102,7 @@ public class AttendanceReportController {
         main_attendancereport_column_present.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Present"));
         main_attendancereport_column_absent.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Absent"));
 //        main_attendancereport_column_late.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Late"));
-//        main_attendancereport_column_holiday.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Holiday"));
+        main_attendancereport_column_holiday.setCellValueFactory(new PropertyValueFactory<AttendanceReport, Integer>("Holiday"));
 
         main_attendancereport_tableview.setItems(attendanceReportList);
     }

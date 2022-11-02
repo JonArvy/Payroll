@@ -121,4 +121,28 @@ public class SQLHoliday {
 
         return isHoliday;
     }
+
+    public int getHolidayCount(Date dt1, Date dt2) {
+        int count = 0;
+        String command = "SELECT COUNT(*) AS count " +
+                "FROM tbl_holiday hol " +
+                "WHERE holiday_date >= ? " +
+                "AND holiday_date <= ? ";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setDate(1, dt1);
+            preparedStatement.setDate(2, dt2);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 }

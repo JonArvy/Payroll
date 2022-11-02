@@ -312,7 +312,10 @@ public class SQLAttendance {
             preparedStatement.setDate(2, to);
             preparedStatement.setDate(3, from);
             preparedStatement.setDate(4, to);
+            SQLHoliday sqlHoliday = new SQLHoliday();
 
+            int holiday_count = sqlHoliday.getHolidayCount(from, to);
+            System.out.println(holiday_count);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 attendanceReportList.add(new AttendanceReport(
@@ -322,9 +325,9 @@ public class SQLAttendance {
                                 resultSet.getString("department"),
                                 resultSet.getString("employee_position"),
                                 resultSet.getInt("present_days"),
-                                resultSet.getInt("absent_days"),
+                                resultSet.getInt("absent_days") - holiday_count,
                                 resultSet.getInt("late_hours"),
-                                resultSet.getInt("holiday")
+                                holiday_count
                         )
                 );
                 id++;
