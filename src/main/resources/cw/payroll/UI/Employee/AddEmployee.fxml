@@ -12,92 +12,155 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Employee.AddEmployeeController">
     <children>
-        <Text layoutX="648.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1">
+        <Text layoutX="648.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 1">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Text>
-        <Text layoutX="25.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
+        <Text layoutX="25.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Details">
             <font>
                 <Font name="Century Gothic Bold" size="16.0" />
             </font>
         </Text>
-        <Text layoutX="25.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
-        <Text layoutX="24.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-        <Text layoutX="25.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
-        <Text layoutX="26.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
-        <Text layoutX="26.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No." />
-        <Text layoutX="235.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name" />
-        <Text layoutX="235.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension" />
-        <Text layoutX="235.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" />
-        <Text layoutX="235.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
-        <Text layoutX="455.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number" />
-        <Text layoutX="455.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
-        <Text layoutX="455.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status" />
-        <Text layoutX="455.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" />
-        <Text layoutX="455.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position" />
-        <Text layoutX="455.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status" />
-        <TextField fx:id="addemployee_firstname" layoutX="103.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
-        <TextField fx:id="addemployee_lastname" layoutX="103.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
-        <TextArea fx:id="addemployee_address" layoutX="103.0" layoutY="127.0" prefHeight="52.0" prefWidth="332.0" />
-        <ComboBox fx:id="addemployee_gender" layoutX="103.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" promptText="Gender" />
-        <TextField fx:id="addemployee_number" layoutX="103.0" layoutY="208.0" prefHeight="25.0" prefWidth="109.0" />
-        <TextField fx:id="addemployee_middlename" layoutX="325.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
-        <TextField fx:id="addemployee_extension" layoutX="325.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
-        <DatePicker fx:id="addemployee_bdate" layoutX="325.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" />
-        <TextField fx:id="addemployee_empid" editable="false" layoutX="575.0" layoutY="73.0" prefHeight="25.0" prefWidth="109.0" />
-        <ComboBox fx:id="addemployee_status" layoutX="325.0" layoutY="209.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
-        <TextField fx:id="addemployee_nationality" layoutX="575.0" layoutY="100.0" prefHeight="25.0" prefWidth="109.0" />
-        <ComboBox fx:id="addemployee_maritalstatus" layoutX="575.0" layoutY="127.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
-        <ComboBox fx:id="addemployee_department" layoutX="575.0" layoutY="154.0" prefHeight="25.0" prefWidth="109.0" promptText="Department" />
-        <TextField fx:id="addemployee_position" layoutX="575.0" layoutY="181.0" prefHeight="25.0" prefWidth="109.0" />
-        <ComboBox fx:id="addemployee_empstatus" layoutX="575.0" layoutY="208.0" prefHeight="25.0" prefWidth="109.0" promptText="Employment Status" />
-        <Pane layoutY="266.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #000000;" />
-        <Text layoutX="25.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
+        <Text layoutX="25.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="24.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="25.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="26.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="26.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No.">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="235.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Middle Name">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="235.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extension">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="235.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="235.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="455.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Number">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="455.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="455.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marital Status">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="455.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="455.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="455.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employment Status">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <TextField fx:id="addemployee_firstname" layoutX="103.0" layoutY="82.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="addemployee_lastname" layoutX="103.0" layoutY="109.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextArea fx:id="addemployee_address" layoutX="103.0" layoutY="136.0" prefHeight="52.0" prefWidth="332.0" />
+        <ComboBox fx:id="addemployee_gender" layoutX="103.0" layoutY="190.0" prefHeight="25.0" prefWidth="109.0" promptText="Gender" />
+        <TextField fx:id="addemployee_number" layoutX="103.0" layoutY="217.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="addemployee_middlename" layoutX="325.0" layoutY="82.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="addemployee_extension" layoutX="325.0" layoutY="109.0" prefHeight="25.0" prefWidth="109.0" />
+        <DatePicker fx:id="addemployee_bdate" layoutX="325.0" layoutY="190.0" prefHeight="25.0" prefWidth="109.0" />
+        <TextField fx:id="addemployee_empid" editable="false" layoutX="575.0" layoutY="82.0" prefHeight="25.0" prefWidth="109.0" />
+        <ComboBox fx:id="addemployee_status" layoutX="325.0" layoutY="218.0" prefHeight="25.0" prefWidth="109.0" promptText="Active" />
+        <TextField fx:id="addemployee_nationality" layoutX="575.0" layoutY="109.0" prefHeight="25.0" prefWidth="109.0" />
+        <ComboBox fx:id="addemployee_maritalstatus" layoutX="575.0" layoutY="136.0" prefHeight="25.0" prefWidth="109.0" promptText="Marital Status" />
+        <ComboBox fx:id="addemployee_department" layoutX="575.0" layoutY="163.0" prefHeight="25.0" prefWidth="109.0" promptText="Department" />
+        <TextField fx:id="addemployee_position" layoutX="575.0" layoutY="190.0" prefHeight="25.0" prefWidth="109.0" />
+        <ComboBox fx:id="addemployee_empstatus" layoutX="575.0" layoutY="217.0" prefHeight="25.0" prefWidth="109.0" promptText="Employment Status" />
+        <Pane layoutY="276.0" prefHeight="5.0" prefWidth="717.0" style="-fx-background-color: #000000;" />
+        <Text layoutX="25.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emergency Contact Information">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Century Gothic Bold" size="16.0" />
             </font>
         </Text>
-        <Text layoutX="25.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
-        <Text layoutX="25.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship" />
-        <Text layoutX="24.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-        <TextField fx:id="addemployee_contactname" layoutX="103.0" layoutY="333.0" prefHeight="25.0" prefWidth="175.0" />
-        <TextField fx:id="addemployee_contactrelationship" layoutX="103.0" layoutY="360.0" prefHeight="25.0" prefWidth="175.0" />
-        <TextArea fx:id="addemployee_contactaddress" layoutX="103.0" layoutY="387.0" prefHeight="52.0" prefWidth="332.0" />
-        <Text layoutX="455.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number" />
-        <TextField fx:id="addemployee_contactnumber" layoutX="575.0" layoutY="333.0" prefHeight="25.0" prefWidth="109.0" />
-        <Button fx:id="addemployee_button_next" layoutX="545.0" layoutY="471.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF;" text="Next" />
-        <Button fx:id="addemployee_button_reset" layoutX="619.0" layoutY="471.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Reset" />
-      <Text fill="RED" layoutX="215.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+        <Text layoutX="25.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="25.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relationship">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <Text layoutX="24.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <TextField fx:id="addemployee_contactname" layoutX="103.0" layoutY="351.0" prefHeight="25.0" prefWidth="175.0" />
+        <TextField fx:id="addemployee_contactrelationship" layoutX="103.0" layoutY="378.0" prefHeight="25.0" prefWidth="175.0" />
+        <TextArea fx:id="addemployee_contactaddress" layoutX="103.0" layoutY="405.0" prefHeight="52.0" prefWidth="332.0" />
+        <Text layoutX="455.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
+        <TextField fx:id="addemployee_contactnumber" layoutX="575.0" layoutY="351.0" prefHeight="25.0" prefWidth="109.0" />
+        <Button fx:id="addemployee_button_next" layoutX="545.0" layoutY="481.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF;" text="Next">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
+        <Button fx:id="addemployee_button_reset" layoutX="619.0" layoutY="481.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Reset">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
+      <Text fill="RED" layoutX="215.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="215.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+      <Text fill="RED" layoutX="215.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="437.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+      <Text fill="RED" layoutX="437.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="215.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+      <Text fill="RED" layoutX="215.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="686.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+      <Text fill="RED" layoutX="686.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="686.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+      <Text fill="RED" layoutX="686.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fill="RED" layoutX="686.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+      <Text fill="RED" layoutX="686.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
          <font>
             <Font size="14.0" />
          </font>

@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.PayrollSummaryController">
     <children>
@@ -43,10 +45,20 @@
                   </TableView>
               </children>
           </AnchorPane>
-      <DatePicker fx:id="date_from" layoutX="239.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="343.0" AnchorPane.topAnchor="33.0" />
-      <DatePicker fx:id="date_to" disable="true" layoutX="391.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="33.0" />
-      <Button fx:id="loadActiveEmployees_button" layoutX="624.0" layoutY="33.0" mnemonicParsing="false" onAction="#loadEmployees" prefHeight="25.0" prefWidth="160.0" text="Load Active Employees" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="33.0" />
-      <Button fx:id="generateReport_button" disable="true" layoutX="536.0" layoutY="69.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="Generate Payroll Report" textFill="WHITE" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="69.0" />
-      <Button fx:id="pdf_button" disable="true" layoutX="366.0" layoutY="69.0" mnemonicParsing="false" onAction="#toPDF" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="PRINT REPORT TO PDF" textFill="WHITE" />
+      <DatePicker fx:id="date_from" layoutX="58.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="524.0" AnchorPane.topAnchor="33.0" />
+      <Text layoutX="99.0" layoutY="-50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" translateX="100.0" translateY="100.0" />
+      <DatePicker fx:id="date_to" disable="true" layoutX="210.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="33.0" />
+      <Button fx:id="loadActiveEmployees_button" layoutX="355.0" layoutY="33.0" mnemonicParsing="false" onAction="#loadEmployees" prefHeight="25.0" prefWidth="160.0" text="Load Active Employees" AnchorPane.rightAnchor="202.0" AnchorPane.topAnchor="33.0">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
+      <Button fx:id="generateReport_button" disable="true" layoutX="526.0" layoutY="33.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="Generate Payroll Report" textFill="WHITE" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="33.0">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
+      <Button fx:id="pdf_button" disable="true" layoutX="526.0" layoutY="62.0" mnemonicParsing="false" onAction="#toPDF" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="PRINT REPORT TO PDF" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
     </children>
 </AnchorPane>

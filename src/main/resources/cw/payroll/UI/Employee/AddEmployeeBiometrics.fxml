@@ -9,15 +9,21 @@
     <children>
         <Text layoutX="205.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register your fingerprint on the scanner">
             <font>
-                <Font name="System Italic" size="18.0" />
+                <Font name="Century Gothic Italic" size="16.0" />
             </font>
         </Text>
-        <Button fx:id="addemployee_back_button" layoutX="544.0" layoutY="471.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF;" text="Back" />
+        <Button fx:id="addemployee_back_button" layoutX="544.0" layoutY="471.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #333333; -fx-text-fill: #FFFFFF;" text="Back">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Button>
         <Button layoutX="618.0" layoutY="471.0" mnemonicParsing="false" onAction="#addEmployee" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: white;" text="Add">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="Century Gothic Bold" size="12.0" />
             </font>
         </Button>
-        <Text layoutX="648.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2" />
+        <Text layoutX="648.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page 2">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Text>
     </children>
 </AnchorPane>

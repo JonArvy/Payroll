@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -11,10 +13,20 @@
     <children>
         <Label layoutX="42.0" layoutY="43.0" text="Bonus">
             <font>
-                <Font name="System Bold" size="15.0" />
+                <Font name="Century Gothic Bold" size="15.0" />
             </font>
         </Label>
-        <Button fx:id="bonus_button_add" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#addBonus" prefWidth="51.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" AnchorPane.rightAnchor="30.0" />
+        <Button fx:id="bonus_button_add" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#addBonus" prefHeight="23.0" prefWidth="67.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="Add" AnchorPane.rightAnchor="30.0">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/PlusButton.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
         <TableView fx:id="bonus_tableview" layoutY="100.0" prefHeight="436.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
             <columns>
                 <TableColumn fx:id="bonus_column_name" prefWidth="161.0" text="Bonus Name" />

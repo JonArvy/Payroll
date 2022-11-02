@@ -15,19 +15,37 @@
             <children>
                 <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="ADD BONUS">
                     <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Century Gothic Bold" size="15.0" />
                     </font>
                 </Label>
-                <Label layoutX="175.0" layoutY="126.0" text="Bonus Name" />
+                <Label layoutX="175.0" layoutY="126.0" text="Bonus Name">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
                 <TextField fx:id="addbonus_name" layoutX="261.0" layoutY="122.0" prefHeight="25.0" prefWidth="156.0" />
-                <Label layoutX="199.0" layoutY="161.0" text="Amount" />
+                <Label layoutX="199.0" layoutY="161.0" text="Amount">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
                 <TextField fx:id="addbonus_amount" layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
-                <Label layoutX="194.0" layoutY="196.0" text="Recipient" />
+                <Label layoutX="194.0" layoutY="196.0" text="Recipient">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
                 <ComboBox fx:id="addbonus_recipient" layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
-                <Label layoutX="160.0" layoutY="234.0" text="Date Applicable" />
+                <Label layoutX="160.0" layoutY="234.0" text="Date Applicable">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
                 <DatePicker fx:id="addbonus_dateapplicable" layoutX="261.0" layoutY="230.0" prefHeight="25.0" prefWidth="156.0" />
-                <Button fx:id="addbonus_button_cancel" layoutX="505.0" layoutY="362.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
-                <Button fx:id="addbonus_button_add" layoutX="441.0" layoutY="362.0" mnemonicParsing="false" onAction="#addBonus" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
+                <Button fx:id="addbonus_button_cancel" layoutX="505.0" layoutY="352.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Button>
+                <Button fx:id="addbonus_button_add" layoutX="441.0" layoutY="352.0" mnemonicParsing="false" onAction="#addBonus" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Button>
             </children>
         </Pane>
     </children>

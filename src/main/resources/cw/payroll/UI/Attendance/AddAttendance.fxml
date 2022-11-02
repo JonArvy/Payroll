@@ -18,16 +18,40 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="414.0" layoutY="49.0" text="Date" />
-            <Label layoutX="209.0" layoutY="107.0" text="EMP ID" />
+            <Label layoutX="414.0" layoutY="49.0" text="Date">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
+            <Label layoutX="209.0" layoutY="107.0" text="EMP ID">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
             <TextField fx:id="emp_id" disable="true" editable="false" layoutX="261.0" layoutY="103.0" prefHeight="25.0" prefWidth="142.0" />
-            <Label layoutX="193.0" layoutY="140.0" text="Full Name" />
-            <Label layoutX="183.0" layoutY="174.0" text="Department" />
+            <Label layoutX="193.0" layoutY="140.0" text="Full Name">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
+            <Label layoutX="183.0" layoutY="174.0" text="Department">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
             <TextField fx:id="department" disable="true" editable="false" layoutX="261.0" layoutY="170.0" prefHeight="25.0" prefWidth="142.0" />
-            <Label layoutX="207.0" layoutY="208.0" text="Time In" />
-            <Label layoutX="197.0" layoutY="242.0" text="Time Out" />
-            <Button layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#command" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
-            <Button layoutX="505.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
+            <Label layoutX="207.0" layoutY="208.0" text="Time In">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
+            <Label layoutX="197.0" layoutY="242.0" text="Time Out">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
+            <Button layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#command" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="505.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Button>
             <DatePicker fx:id="date" layoutX="451.0" layoutY="45.0" prefHeight="25.0" prefWidth="119.0" />
             <ComboBox fx:id="full_name" layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="142.0" />
          </children>

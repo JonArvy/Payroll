@@ -15,17 +15,32 @@
             <children>
                 <Label layoutX="36.0" layoutY="30.0" prefHeight="21.0" prefWidth="278.0" text="ADD HOLIDAY">
                     <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Century Gothic Bold" size="15.0" />
                     </font>
                 </Label>
-                <Label layoutX="168.0" layoutY="126.0" text="Holiday Name" />
+                <Label layoutX="168.0" layoutY="126.0" text="Holiday Name">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
                 <TextField fx:id="addholiday_name" layoutX="261.0" layoutY="122.0" prefHeight="25.0" prefWidth="156.0" />
-                <Label layoutX="161.0" layoutY="161.0" text="Type of Holiday" />
+                <Label layoutX="161.0" layoutY="161.0" text="Type of Holiday">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
                 <ComboBox fx:id="addholiday_type" layoutX="261.0" layoutY="157.0" prefHeight="25.0" prefWidth="156.0" />
-                <Label layoutX="218.0" layoutY="197.0" text="Date" />
+                <Label layoutX="218.0" layoutY="197.0" text="Date">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Label>
                 <DatePicker fx:id="addholiday_date" layoutX="261.0" layoutY="193.0" prefHeight="25.0" prefWidth="156.0" />
-                <Button fx:id="addholiday_button_add" layoutX="441.0" layoutY="341.0" mnemonicParsing="false" onAction="#addHoliday" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add" />
-                <Button fx:id="addholiday_button_cancel" layoutX="505.0" layoutY="341.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel" />
+                <Button fx:id="addholiday_button_add" layoutX="441.0" layoutY="341.0" mnemonicParsing="false" onAction="#addHoliday" prefHeight="25.0" prefWidth="58.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Button>
+                <Button fx:id="addholiday_button_cancel" layoutX="505.0" layoutY="341.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Button>
             </children>
         </Pane>
     </children>
