@@ -11,6 +11,8 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        Tester tester = new Tester();
+        tester.createTables();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Admin.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 

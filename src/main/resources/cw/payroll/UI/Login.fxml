@@ -18,6 +18,113 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
+      <Pane fx:id="login_pane_fingerprint_place1" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Button fx:id="login_pane_fingerprint_place_back1" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/Back%20Button.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="190.0" layoutY="122.0" text="Please put your Employee ID or Number">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_emp_id" layoutX="191.0" layoutY="180.0" prefHeight="25.0" prefWidth="165.0" promptText="EMPLOYEE ID">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></TextField>
+            <Button layoutX="360.0" layoutY="180.0" mnemonicParsing="false" onAction="#loginAttendancce" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #01374D;" text="LOGIN">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill></Button>
+         </children>
+      </Pane>
+      <Pane fx:id="login_pane_fingerprint_re_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label layoutX="145.0" layoutY="96.0" text="Couldn't recognize your fingerprint. Please TRY AGAIN">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="login_pane_fingerprint_re_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/FINGERPRINT.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="login_pane_fingerprint_place_proceed1" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
+            <TextField fx:id="login_pane_fingerprint_place_empid1" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
+         </children>
+      </Pane>
+      <Pane fx:id="login_pane_login_admin" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="89.0" fitWidth="90.0" layoutX="256.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/ADMIN.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="267.0" layoutY="72.0" text="ADMIN">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_pane_login_admin_empid" alignment="CENTER" layoutX="226.0" layoutY="240.0" prefHeight="25.0" prefWidth="149.0" promptText="EMPLOYEE ID" style="-fx-background-color: #C6ECFF;">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </TextField>
+            <Button fx:id="login_pane_login_admin_login" layoutX="226.0" layoutY="304.0" mnemonicParsing="false" onAction="#logIn" prefHeight="29.0" prefWidth="149.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="LOGIN">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="login_pane_login_admin_password" alignment="CENTER" layoutX="226.0" layoutY="272.0" prefHeight="25.0" prefWidth="149.0" promptText="PASSWORD" style="-fx-background-color: #C6ECFF;">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="login_pane_login_admin_back" layoutX="34.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/Back%20Button.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
       <Pane fx:id="login_pane_employee_panel" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label layoutX="30.0" layoutY="200.0" text="VIEW ATTENDANCE">
@@ -151,27 +258,6 @@
             </ImageView>
             <Button fx:id="login_pane_fingerprint_place_proceed" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
             <TextField fx:id="login_pane_fingerprint_place_empid" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
-            <Pane fx:id="login_pane_fingerprint_place2" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <Button fx:id="login_pane_fingerprint_place_back2" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Label layoutX="198.0" layoutY="97.0" text="Please put your finger on the scanner">
-                     <font>
-                        <Font name="Tw Cen MT Italic" size="15.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/FINGERPRINT.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="login_pane_fingerprint_place_proceed2" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
-                  <TextField fx:id="login_pane_fingerprint_place_empid2" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
-               </children>
-            </Pane>
          </children>
       </Pane>
       <Pane fx:id="login_pane_login_start" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
@@ -200,113 +286,6 @@
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane fx:id="login_pane_fingerprint_place1" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Button fx:id="login_pane_fingerprint_place_back1" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Back%20Button.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label layoutX="190.0" layoutY="122.0" text="Please put your Employee ID or Number">
-               <font>
-                  <Font name="Tw Cen MT Italic" size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="login_emp_id" layoutX="191.0" layoutY="180.0" prefHeight="25.0" prefWidth="165.0" promptText="EMPLOYEE ID">
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font></TextField>
-            <Button layoutX="360.0" layoutY="180.0" mnemonicParsing="false" onAction="#loginAttendancce" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #01374D;" text="LOGIN">
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill></Button>
-         </children>
-      </Pane>
-      <Pane fx:id="login_pane_fingerprint_re_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Label layoutX="145.0" layoutY="96.0" text="Couldn't recognize your fingerprint. Please TRY AGAIN">
-               <font>
-                  <Font name="Tw Cen MT Italic" size="15.0" />
-               </font>
-            </Label>
-            <Button fx:id="login_pane_fingerprint_re_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Assets/FINGERPRINT.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="login_pane_fingerprint_place_proceed1" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
-            <TextField fx:id="login_pane_fingerprint_place_empid1" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
-         </children>
-      </Pane>
-      <Pane fx:id="login_pane_login_admin" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <ImageView fitHeight="89.0" fitWidth="90.0" layoutX="256.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Assets/ADMIN.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="267.0" layoutY="72.0" text="ADMIN">
-               <font>
-                  <Font name="Century Gothic Bold" size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="login_pane_login_admin_empid" alignment="CENTER" layoutX="226.0" layoutY="240.0" prefHeight="25.0" prefWidth="149.0" promptText="EMPLOYEE ID" style="-fx-background-color: #C6ECFF;">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-            </TextField>
-            <Button fx:id="login_pane_login_admin_login" layoutX="226.0" layoutY="304.0" mnemonicParsing="false" onAction="#logIn" prefHeight="29.0" prefWidth="149.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="LOGIN">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-            </Button>
-            <PasswordField fx:id="login_pane_login_admin_password" alignment="CENTER" layoutX="226.0" layoutY="272.0" prefHeight="25.0" prefWidth="149.0" promptText="PASSWORD" style="-fx-background-color: #C6ECFF;">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-            </PasswordField>
-            <Button fx:id="login_pane_login_admin_back" layoutX="34.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Back%20Button.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
          </children>
       </Pane>
