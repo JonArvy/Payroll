@@ -1,6 +1,7 @@
 package Database;
 
 import Models.Admin;
+import Models.Employee;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -138,6 +139,28 @@ public class SQLAdmin {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();
         }
+    }
+
+    public boolean checkIfEmployeeIsAdmin(Employee employee) {
+        boolean exist = false;
+        String command = "SELECT * " +
+                "FROM tbl_admin " +
+                "WHERE emp_id = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setInt(1, employee.getEmployee_ID());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                exist = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return exist;
     }
 
 }

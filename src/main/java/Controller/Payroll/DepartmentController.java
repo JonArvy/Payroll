@@ -64,7 +64,7 @@ public class DepartmentController {
 
     @FXML
     private void deleteDepartment(ActionEvent event) {
-
+        loadTableEntry2();
     }
 
     @FXML
@@ -175,5 +175,20 @@ public class DepartmentController {
         } catch (Exception e) {
             callAlert("No row/entry selected", 4);
         }
+    }
+
+    private void loadTableEntry2() {
+        try {
+            Department dept = (Department) department_tableview.getSelectionModel().getSelectedItem();
+//            System.out.println(dept.getDepartment_Name());
+            delete(dept);
+        } catch (Exception e) {
+            callAlert("No row/entry selected", 4);
+        }
+    }
+
+    private void delete(Department dept) {
+        sqlDepartment.deleteDepartment(dept);
+        showDepartmentTable();
     }
 }

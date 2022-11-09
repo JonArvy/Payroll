@@ -62,6 +62,8 @@ public class SQLEmployee {
                     "tbl_employees.emp_lname," +
                     "tbl_employees.emp_fname," +
                     "tbl_employees.emp_employmentstatus," +
+                    "tbl_employees.emp_position," +
+                    "tbl_department.department_id," +
                     "tbl_department.department_name," +
                     "tbl_employees.emp_status " +
                     "FROM tbl_employees JOIN tbl_department " +
@@ -75,15 +77,17 @@ public class SQLEmployee {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
-                    employeeList.add(new Employee(
+                    Employee employee = new Employee(
                             resultSet.getInt("emp_id"),
-
                             resultSet.getString("emp_lname"),
                             resultSet.getString("emp_fname"),
                             resultSet.getString("emp_employmentstatus"),
                             resultSet.getString("department_name"),
                             resultSet.getBoolean("emp_status")
-                    ));
+                    );
+                    employee.setDepartment(resultSet.getInt("department_id"));
+                    employee.setPosition(resultSet.getString("emp_position"));
+                    employeeList.add(employee);
                 }
 
             } catch (SQLException e) {
@@ -429,4 +433,27 @@ public class SQLEmployee {
         }
         return exist;
     }
+
+    public boolean checkIfEmployeeIsActive(int empid) {
+        boolean active = false;
+        String command = "SELECT * " +
+                "FROM tbl_employees te " +
+                "WHERE emp_id = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setInt(1, empid);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                active = resultSet.getBoolean("emp_status");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return active;
+    }
+
 }

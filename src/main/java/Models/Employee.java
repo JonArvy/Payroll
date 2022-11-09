@@ -253,7 +253,11 @@ public class Employee {
     }
 
     private void setFull_Name() {
-        this.Full_Name = this.Last_Name + ", " + this.First_Name + " " + this.Middle_Name;
+        if (this.Middle_Name == null) {
+            this.Full_Name = this.Last_Name + ", " + this.First_Name;
+        } else {
+            this.Full_Name = this.Last_Name + ", " + this.First_Name + " " + this.Middle_Name;
+        }
     }
 
     private void setFull_Name_Without_Middle() {

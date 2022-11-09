@@ -1,5 +1,6 @@
 package Controller.Attendance;
 
+import Classes.TimeSpinner;
 import Database.SQLAttendance;
 import Models.Admin;
 import Models.Attendance;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -40,16 +42,7 @@ public class EditDailyAttendanceController {
     private TextField editattendance_position;
 
     @FXML
-    private Spinner<String> editattendance_timein_hour;
-
-    @FXML
-    private Spinner<String> editattendance_timein_minute;
-
-    @FXML
-    private Spinner<String> editattendance_timeout_hour;
-
-    @FXML
-    private Spinner<String> editattendance_timeout_minute;
+    private Pane main_pane;
 
     @FXML
     private void cancel(ActionEvent event) {
@@ -63,6 +56,7 @@ public class EditDailyAttendanceController {
 
     @FXML
     private void initialize() {
+        addLoadSpinner();
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -73,6 +67,9 @@ public class EditDailyAttendanceController {
     private Attendance main_attendance;
 
     private SQLAttendance sqlAttendance = new SQLAttendance();
+
+    private TimeSpinner spinner = new TimeSpinner();
+    private TimeSpinner spinner2 = new TimeSpinner();
 
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
@@ -110,18 +107,6 @@ public class EditDailyAttendanceController {
         }
     }
 
-    private ObservableList<String> hour = FXCollections.observableArrayList("0", "1", "2", "3" , "4", "5", "6", "7", "8" , "9",
-            "10", "11", "12", "13" , "14", "15", "16", "17", "18", "19",
-            "20", "21", "22", "23"
-    );
-    private ObservableList<String> minute = FXCollections.observableArrayList("0", "1", "2", "3" , "4", "5", "6", "7", "8" , "9",
-            "10", "11", "12", "13" , "14", "15", "16", "17", "18", "19",
-            "20", "21", "22", "23" , "24", "25", "26", "27", "28", "29",
-            "30", "31", "32", "33" , "34", "35", "36", "37", "38", "39",
-            "40", "41", "42", "43" , "44", "45", "46", "47", "48", "49",
-            "50", "51", "52", "53" , "54", "55", "56", "57", "58", "59"
-    );
-
     private void closeEditAttendance() {
         DailyAttendanceController controller;
         try {
@@ -143,15 +128,27 @@ public class EditDailyAttendanceController {
     }
 
     private void initializeContainers() {
-        editattendance_timein_hour.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(hour));
-        editattendance_timein_minute.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(minute));
-        editattendance_timeout_hour.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(hour));
-        editattendance_timeout_minute.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<String>(minute));
+        String timein = main_attendance.getEmployee_TimeIn().toString();
+        timein = timein.substring(0, timein.length() - 3);
 
-        editattendance_timein_hour.getEditor().setText(String.valueOf(main_attendance.getEmployee_TimeIn().getHours()));
-        editattendance_timein_minute.getEditor().setText(String.valueOf(main_attendance.getEmployee_TimeIn().getMinutes()));
-        editattendance_timeout_hour.getEditor().setText(String.valueOf(main_attendance.getEmployee_TimeOut().getHours()));
-        editattendance_timeout_minute.getEditor().setText(String.valueOf(main_attendance.getEmployee_TimeOut().getMinutes()));
+        String timeout = main_attendance.getEmployee_TimeOut().toString();
+        timeout = timeout.substring(0, timeout.length() - 3);
+
+        spinner.getEditor().setText(timein);
+        spinner2.getEditor().setText(timeout);
+    }
+
+    private void addLoadSpinner() {
+        spinner.setLayoutX(261);
+        spinner.setLayoutY(238);
+
+        spinner2.setLayoutX(261);
+        spinner2.setLayoutY(273);
+
+        spinner.setPrefWidth(142);
+        spinner2.setPrefWidth(142);
+
+        main_pane.getChildren().addAll(spinner, spinner2);
     }
 
     private void updateAttendance() {
@@ -163,8 +160,8 @@ public class EditDailyAttendanceController {
         attnd.setEmployee_Position(main_attendance.getEmployee_Position());
 
         attnd.setEmployee_Attendance_Date(Date.valueOf(editattendance_datepicker.getValue()));
-        attnd.setEmployee_TimeIn(Time.valueOf(editattendance_timein_hour.getEditor().getText() + ":" + editattendance_timein_minute.getEditor().getText() + ":00"));
-        attnd.setEmployee_TimeOut(Time.valueOf(editattendance_timeout_hour.getEditor().getText() + ":" + editattendance_timeout_minute.getEditor().getText() + ":00"));
+        attnd.setEmployee_TimeIn(Time.valueOf(spinner.getEditor().getText() + ":00"));
+        attnd.setEmployee_TimeOut(Time.valueOf(spinner2.getEditor().getText() + ":00"));
 
         sqlAttendance.updateAttendance(attnd);
 

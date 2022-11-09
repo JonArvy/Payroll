@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -11,7 +10,7 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Attendance.EditDailyAttendanceController">
     <children>
-        <Pane layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
+        <Pane fx:id="main_pane" layoutX="60.0" layoutY="65.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
             <children>
                 <Label layoutX="35.0" layoutY="36.0" text="EDIT ATTENDANCE">
                     <font>
@@ -32,10 +31,6 @@
                 <Button fx:id="editattendance_button_save" layoutX="429.0" layoutY="343.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #008037; -fx-text-fill: #FFFFFF;" text="Save" />
                 <Button fx:id="editattendance_button_cancel" layoutX="505.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Cancel" />
                 <DatePicker fx:id="editattendance_datepicker" layoutX="451.0" layoutY="45.0" prefHeight="25.0" prefWidth="119.0" />
-            <Spinner fx:id="editattendance_timein_hour" layoutX="261.0" layoutY="238.0" prefHeight="25.0" prefWidth="65.0" />
-            <Spinner fx:id="editattendance_timein_minute" layoutX="337.0" layoutY="238.0" prefHeight="25.0" prefWidth="65.0" />
-            <Spinner fx:id="editattendance_timeout_hour" layoutX="261.0" layoutY="273.0" prefHeight="25.0" prefWidth="65.0" />
-            <Spinner fx:id="editattendance_timeout_minute" layoutX="337.0" layoutY="273.0" prefHeight="25.0" prefWidth="65.0" />
             </children>
         </Pane>
     </children>

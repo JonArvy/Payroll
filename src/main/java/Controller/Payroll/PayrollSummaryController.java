@@ -149,6 +149,7 @@ public class PayrollSummaryController {
     private void showPayrollSummary(Date from, Date to) {
         summaryList.clear();
 
+//        summaryList = sqlPayrollSummary.loadPayrollSummary(from, to);
         summaryList = sqlPayrollSummary.loadPayrollSummary(from, to);
 
         col_number.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("Number"));

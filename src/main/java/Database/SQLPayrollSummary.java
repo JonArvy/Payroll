@@ -1,9 +1,6 @@
 package Database;
 
-import Models.Attendance;
-import Models.AttendanceReport;
-import Models.Summary;
-import Models.SummarySchema;
+import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,92 +8,17 @@ import java.sql.*;
 import java.time.Duration;
 import java.time.LocalDate;
 
+import static Classes.DateGetter.getActiveDates;
+import static Classes.DateTimeCalculator.getTotalHours;
 import static Database.SQLConnection.connect;
 
 public class SQLPayrollSummary {
-    public ObservableList<Summary> loadPayrollSummary(Date from, Date to) {
+    public ObservableList<Summary> loadPayrollSummarya(Date from, Date to) {
         ObservableList<Summary> summaryObservableList = FXCollections.observableArrayList();
         String command_emp = "SELECT * FROM tbl_employee";
         String command_dept = "SELECT * FROM tbl_department";
-        String command_shift = "SELECT * FROM tbl_shift";
         String command_bonus = "SELECT * FROM tbl_bonus";
         String command_attendance = "SELECT * FROM tbl_attendance";
-
-//        String command = "SELECT " +
-//                "te.emp_id as employee_id," +
-//
-//                "te.emp_fname || ' ' || te.emp_mname || ' ' || te.emp_lname as full_name," +
-////                "td.department_name as department," +
-//                "te.emp_position as employee_position," +
-
-//                "(" +
-//                "   SELECT " +
-//                "   department_monthlyrate " +
-//                "   FROM tbl_department" +
-//                "   WHERE td.department_id = ta.emp_id" +
-//                ") as montlywage," +
-
-//                "(" +
-//                "   SELECT " +
-//                "   COUNT(*) " +
-//                "   FROM tbl_attendance ta " +
-//                "   WHERE ta.emp_id = te.emp_id " +
-//                ") as present_days," +
-//
-//                "(" +
-//                "   SELECT " +
-//                "   tq.department_dayspermonth - " +
-//                "   (" +
-//                "       SELECT " +
-//                "       COUNT(*) " +
-//                "       FROM tbl_attendance ta " +
-//                "       WHERE ta.emp_id = te.emp_id " +
-//                "   )" +
-//                "   FROM tbl_department tq " +
-//                "   WHERE tq.department_id = td.department_id " +
-//                ") as absent_days, " +
-
-//                "(" +
-//                "   SELECT " +
-//                "   td.department_monthlyrate / td.department_dayspermonth" +
-//                "   FROM td.tbl_department" +
-//                "   WHERE td.department_id = ta.emp_id" +
-//                ") as dailyrate," +
-//
-//                "(" +
-//                "   SELECT " +
-//                "   present_days * dailyrate" +
-//                ") as total_from_presentdays," +
-//
-//                "( " +
-//                "   SELECT " +
-//                "   tq.department_dayspermonth - " +
-//                "   ( " +
-//                "       SELECT " +
-//                "       COUNT(*) " +
-//                "       FROM tbl_attendance ta " +
-//                "       WHERE ta.emp_id = te.emp_id " +
-//                "   ) " +
-//                "   FROM tbl_department tq " +
-//                "   WHERE tq.department_id = td.department_id " +
-//                ") as late_hours," +
-//
-//                "( " +
-//                "   SELECT " +
-//                "   tm.department_dayspermonth - " +
-//                "   ( " +
-//                "       SELECT " +
-//                "       COUNT(*) " +
-//                "       FROM tbl_attendance ta " +
-//                "       WHERE ta.emp_id = te.emp_id " +
-//                "   ) " +
-//                "   FROM tbl_department tm " +
-//                "   WHERE tm.department_id = td.department_id " +
-//                ") as holiday " +
-//                "FROM tbl_employees te " +
-//                "JOIN tbl_department td " +
-//                "ON te.emp_department = td.department_id";
-
 
         int id = 1;
         String command = "SELECT " +
@@ -182,25 +104,19 @@ public class SQLPayrollSummary {
                 "   )" +
                 ") as total_from_presentdays," +
 
-//                "(" +
-//                "   SELECT present_days * " +
-//                ") as total_from_presentdays," +
 
-//                "( " +
-//                "   SELECT " +
-//                "   " +
 
                 "(" +
                 "   SELECT " +
                 "   ts.shift_in " +
-                "   FROM tbl_shift ts " +
+                "   FROM tbl_department ts " +
                 "   WHERE te.emp_department = ts.shift_recipient " +
                 ") as timein," +
 
                 "(" +
                 "   SELECT " +
                 "   ts.shift_out" +
-                "   FROM tbl_shift ts" +
+                "   FROM tbl_department ts" +
                 "   WHERE te.emp_department = ts.shift_recipient" +
                 ") as timeout," +
 
@@ -270,29 +186,7 @@ public class SQLPayrollSummary {
                 sm.setDateCreated(Date.valueOf(LocalDate.now()));
 
                 summaryObservableList.add(
-//                        new Summary(
-//                                id,
-//                                resultSet.getString("full_name"),
-//                                resultSet.getString("employee_position"),
-//                                resultSet.getDouble("monthlywage"),
-//
-////                                resultSet.getDouble("monthlywage"),
-//                                0.0,
-//
-//                                resultSet.getInt("dayspermonth"),
-//                                resultSet.getInt("absent_days"),
-////                                resultSet.getInt("total_from_presentdays"),
-//
-//                                resultSet.getInt("dailyrate") * resultSet.getInt("present_days"),
-//
-//                                calculateReduction(resultSet.getInt("employee_id"), from, to, resultSet.getTime("timein"), resultSet.getTime("timeout"), resultSet.getDouble("hourlyrate")),
-////                                resultSet.getDouble("monthlywage"),
-//                                resultSet.getDouble("monthlywage"),//Deduction
-////                                resultSet.getDouble("monthlywage"),//Total after deduction
-//                                resultSet.getDouble("monthlywage")
-////                                resultSet.getInt("late_hours"),
-////                                resultSet.getInt("holiday")
-//                        )
+
                         sm
                 );
                 id++;
@@ -303,6 +197,252 @@ public class SQLPayrollSummary {
         }
 
         return summaryObservableList;
+    }
+
+//    public ObservableList<Summary> loadPayrollSummary() {
+//        ObservableList<Summary> summaryList = FXCollections.observableArrayList();
+//        int id = 1;
+//        String command = "SELECT " +
+//                "te.emp_id as employee_id, " +
+//
+//                "te.emp_fname || ' ' || te.emp_mname || ' ' || te.emp_lname as full_name," +
+//
+//                "te.emp_position as employee_position," +
+//
+//                "(" +
+//                "   SELECT " +
+//                "   department_name " +
+//                "   FROM tbl_department td " +
+//                "   WHERE td.department_id = te.emp_department" +
+//                ") as dept_name," +
+//
+//                "(" +
+//                "   SELECT " +
+//                "   department_monthlyrate " +
+//                "   FROM tbl_department td " +
+//                "   WHERE td.department_id = te.emp_department" +
+//                ") as monthlywage," +
+//
+//                "(" +
+//                "   SELECT " +
+//                "   department_dayspermonth " +
+//                "   FROM tbl_department td " +
+//                "   WHERE td.department_id = te.emp_department" +
+//                ") as dayspermonth," +
+//
+//                "(" +
+//                "   SELECT " +
+//                "   tq.department_dayspermonth - " +
+//                "   (" +
+//                "       SELECT " +
+//                "       COUNT(*) " +
+//                "       FROM tbl_attendance ta " +
+//                "       WHERE ta.emp_id = te.emp_id " +
+//                "       AND emp_attendance_date BETWEEN ? AND ? " +
+//                "   )" +
+//                "   FROM tbl_department tq " +
+//                "   WHERE tq.department_id = td.department_id " +
+//                ") as absent_days, " +
+//
+//                "(" +
+//                "   SELECT " +
+//                "   td.department_monthlyrate / td.department_dayspermonth" +
+//                "   FROM tbl_department td" +
+//                "   WHERE te.emp_department = td.department_id" +
+//                ") as dailyrate," +
+//
+//                "(" +
+//                "   SELECT " +
+//                "   COUNT(*) " +
+//                "   FROM tbl_attendance ta " +
+//                "   WHERE ta.emp_id = te.emp_id " +
+//                "   AND emp_attendance_date BETWEEN ? AND ? " +
+//                ") as present_days," +
+//
+//
+//
+//                ;
+//            int holiday_count = sqlHoliday.getHolidayCount(from, to);
+//            Summary sm = new Summary();
+////            sm.setNumber(id);
+////            sm.setEmployeeNumber(resultSet.getInt("employee_id"));
+////            sm.setName(resultSet.getString("full_name"));
+////            sm.setPosition(resultSet.getString("employee_position"));
+////            sm.setDepartment(resultSet.getString("dept_name"));
+//
+////            sm.setWage(resultSet.getDouble("monthlywage"));
+////            sm.setNetAmount(resultSet.getDouble("monthlywage"));
+////            sm.setPresentDays(resultSet.getInt("dayspermonth") - holiday_count);
+////            sm.setAbsentDays(resultSet.getInt("absent_days") - holiday_count);
+//            sm.setTotalCompensation(resultSet.getInt("dailyrate") * resultSet.getInt("present_days"));
+//////////////
+//
+//        int utandlate = calculateReduction(resultSet.getInt("employee_id"), from, to, resultSet.getTime("timein"), resultSet.getTime("timeout"));
+//        sm.setLess(resultSet.getDouble("hourlyrate") * utandlate);
+//        sm.setTotalDeduction(sm.getLess());
+//        sm.setNetAmount(sm.getTotalCompensation() - sm.getTotalDeduction());
+//
+//        sm.setLateUT(utandlate);
+//        sm.setDateCreated(Date.valueOf(LocalDate.now()));
+//
+//            summaryObservableList.add(sm);
+//            id++;
+//        }
+//
+//        return summaryList;
+//    }
+
+    public ObservableList<Summary> loadPayrollSummary(Date from, Date to) {
+        ObservableList<Summary> summaryObservableList = FXCollections.observableArrayList();
+
+        SQLEmployee sqlEmployee = new SQLEmployee();
+        SQLDepartment sqlDepartment = new SQLDepartment();
+        ObservableList<Employee> activeEmployeeList = sqlEmployee.getAllEmployees(true);
+        int number = 1;
+        for (Employee employee : activeEmployeeList) {
+            System.out.println(employee.getEmployee_ID() + " " + employee.getDepartment());
+            Department employeeDepartment = sqlDepartment.getDepartment(new Department(employee.getDepartment()));
+            ObservableList<Date> activeDates = getActiveDates(from , to, employeeDepartment.isShift_Sunday(), employeeDepartment.isShift_Monday(), employeeDepartment.isShift_Tuesday(), employeeDepartment.isShift_Wednesday(), employeeDepartment.isShift_Thursday(), employeeDepartment.isShift_Friday(), employeeDepartment.isShift_Saturday());
+            Date[] activeDatesArray = activeDates.toArray(new Date[activeDates.size()]);
+
+
+            ObservableList<Attendance> attendanceList = getAttendanceFromArray(activeDatesArray, employee);
+
+            int totalHoursRendered = 0;
+            int totalDaysRendered = 0;
+            for (Attendance attds : attendanceList) {
+                long hrs = getTotalHours(employeeDepartment.getTime_In(), employeeDepartment.getTime_Out(),
+                        employeeDepartment.getBreak_Start(), employeeDepartment.getBreak_End(),
+                        attds.getEmployee_TimeIn(), attds.getEmployee_TimeOut());
+                totalHoursRendered += hrs;
+                totalDaysRendered++;
+                System.out.println("Active Dates: " + attds.getEmployee_Attendance_Date() + " Hours: " + hrs);
+            }
+
+            System.out.println("Total Hours Rendered: " + totalHoursRendered);
+            System.out.println("Total Days Rendered: " + totalDaysRendered);
+
+            Summary summary = new Summary();
+            summary.setNumber(number);
+            summary.setEmployeeNumber(employee.getEmployee_ID());
+            summary.setName(employee.getFull_Name());
+            summary.setPosition(employee.getPosition());
+            summary.setWage(employeeDepartment.getDepartment_MonthlyRate());
+            //Other Benefits
+            summary.setPresentDays(employeeDepartment.getDepartment_DaysPerMonth());
+            summary.setAbsentDays(absentCalculator(employeeDepartment.getDepartment_DaysPerMonth(), totalDaysRendered));
+            System.out.println(employeeDepartment.getHourly_Rate());
+            summary.setTotalCompensation(calculateSalary(employeeDepartment.getHourly_Rate(), totalHoursRendered));
+            //BIR
+            //LESS
+            //PAG-IBIG
+            summary.setTotalDeduction(0);
+            //Net Amount
+            summary.setNetAmount(summary.getTotalCompensation());
+
+            summaryObservableList.add(summary);
+            number++;
+        }
+        for (Summary s : summaryObservableList) {
+            System.out.println(s.getNumber() + " " + s.getEmployeeNumber() + " " + s.getName() + " " + s.getPosition() + " " + s.getWage() + " " + s.getPresentDays() + " " + s.getAbsentDays() + " " + s.getTotalCompensation() + " " + s.getTotalDeduction());
+        }
+        return summaryObservableList;
+    }
+
+    private int absentCalculator(int daysToRender, int daysRendered) {
+        int absent = 0;
+
+        absent = daysToRender - daysRendered;
+        if (absent < 0) {
+            absent = 0;
+        }
+
+        return absent;
+    }
+
+    private double calculateSalary(double hourlyRate, int hoursRendered) {
+        double salary = 0;
+
+        salary = hourlyRate * hoursRendered;
+
+        return salary;
+    }
+
+    private ObservableList<Attendance> getAttendanceFromArray(Date[] dates, Employee employee) {
+        ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
+
+        dropTemporaryTable();
+        createTemporaryTable();
+        populateTemporaryTable(dates);
+
+        String command = "SELECT * FROM tbl_attendance WHERE emp_id = ? " +
+                "AND emp_attendance_date IN (SELECT date FROM temp_dates) ";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, employee.getEmployee_ID());
+
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Attendance attendance = new Attendance();
+                attendance.setAttendance_ID(resultSet.getInt("attendance_id"));
+                attendance.setEmployee_ID(resultSet.getInt("emp_id"));
+                attendance.setEmployee_Attendance_Date(resultSet.getDate("emp_attendance_date"));
+                attendance.setEmployee_TimeIn(resultSet.getTime("emp_timein"));
+                attendance.setEmployee_TimeOut(resultSet.getTime("emp_timeout"));
+
+                attendanceList.add(attendance);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return attendanceList;
+    }
+
+    private void createTemporaryTable() {
+        String command = "CREATE TABLE temp_dates (date_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                "date DATE)";
+        try (Connection connection = connect();
+             Statement statement = connection.createStatement()) {
+
+            statement.executeUpdate(command);
+
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
+
+    private void populateTemporaryTable(Date[] dates) {
+        String command = "INSERT INTO temp_dates (date) VALUES (?)";
+        try (Connection connection = connect();
+            Statement statement = connection.createStatement()) {
+            for (Date date : dates) {
+                PreparedStatement preparedStatement = connection.prepareStatement(command);
+                preparedStatement.setDate(1, date);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
+
+
+    private void dropTemporaryTable() {
+        String command = "DROP TABLE temp_dates";
+        try (Connection connection = connect();
+             Statement statement = connection.createStatement()) {
+
+            statement.executeUpdate(command);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void savePayrollSummary(ObservableList<Summary> summary, Date from, Date to) {

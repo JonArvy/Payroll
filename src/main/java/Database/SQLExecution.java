@@ -60,7 +60,18 @@ public class SQLExecution {
                 "department_name VARCHAR(50)," +
                 "department_monthlyrate REAL," +
                 "department_dayspermonth INTEGER," +
-                "department_hoursperday INTEGER)";
+                "department_hoursperday INTEGER," +
+                "shift_in TIME," +
+                "shift_out TIME," +
+                "shift_breakstart TIME," +
+                "shift_breakend TIME," +
+                "shift_sunday BOOLEAN," +
+                "shift_monday BOOLEAN," +
+                "shift_tuesday BOOLEAN," +
+                "shift_wednesday BOOLEAN," +
+                "shift_thursday BOOLEAN," +
+                "shift_friday BOOLEAN," +
+                "shift_saturday BOOLEAN)";
 
 
         // ATTENDANCE TABLE
@@ -147,7 +158,7 @@ public class SQLExecution {
         ExecuteWithoutReturn(attendance_tbl);
 
         ExecuteWithoutReturn(bonus_tbl);
-        ExecuteWithoutReturn(shift_tbl);
+//        ExecuteWithoutReturn(shift_tbl);
 
         ExecuteWithoutReturn(payrollsummary_tbl);
         ExecuteWithoutReturn(payrollsummaryschema_tbl);

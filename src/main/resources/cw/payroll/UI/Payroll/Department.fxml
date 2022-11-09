@@ -38,7 +38,7 @@
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
-        <Button fx:id="department_button_delete" disable="true" layoutX="388.0" layoutY="41.0" mnemonicParsing="false" onAction="#deleteDepartment" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Delete">
+        <Button fx:id="department_button_delete" layoutX="388.0" layoutY="41.0" mnemonicParsing="false" onAction="#deleteDepartment" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Delete">
          <graphic>
             <ImageView fitHeight="13.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -53,7 +53,7 @@
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Label>
-        <Button fx:id="department_button_next" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" AnchorPane.rightAnchor="30.0">
+        <Button fx:id="department_button_next" disable="true" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" AnchorPane.rightAnchor="30.0">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
