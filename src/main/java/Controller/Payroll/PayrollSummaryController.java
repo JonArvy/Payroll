@@ -176,6 +176,26 @@ public class PayrollSummaryController {
 
 
     private void generatePayrollSummary(Date from, Date to) {
+//        System.out.println("------------------------------");
+//        for (Summary summary : summaryList) {
+//            System.out.println(summary.getNumber());
+//            System.out.println(summary.getEmployeeNumber());
+//            System.out.println(summary.getName());
+////            System.out.println(Date.valueOf(LocalDate.now()));
+//            System.out.println(summary.getDepartment());
+//            System.out.println(summary.getPosition());
+//            System.out.println(summary.getLateUT());
+//            System.out.println( summary.getNetAmount());
+//            System.out.println(summary.getBenefits());
+//            System.out.println(summary.getPresentDays());
+//            System.out.println( summary.getAbsentDays());
+//            System.out.println(summary.getTotalCompensation());
+//            System.out.println( summary.getLess());
+//            System.out.println(summary.getTotalDeduction());
+//            System.out.println( summary.getNetAmount());
+//            System.out.println("------------------------------");
+//        }
+//        System.out.println("asddasdasdasdasdasdasdasdasdadasdsadasdasdas");
         sqlPayrollSummary.savePayrollSummary(summaryList, from, to);
 //        summaryList.clear();
 //
