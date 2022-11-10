@@ -340,6 +340,10 @@ public class SQLPayrollSummary {
             //Net Amount
             summary.setNetAmount(summary.getTotalCompensation());
 
+
+            //Other Hidden Information
+            summary.setDepartment(employeeDepartment.getDepartment_Name());
+
             summaryObservableList.add(summary);
             number++;
         }
