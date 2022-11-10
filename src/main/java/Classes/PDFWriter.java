@@ -47,19 +47,29 @@ public class PDFWriter {
             document.add(image);
 
             document.close();
+
+            callAlert("PDF created Successfully", 2);
+//            Runtime.getRuntime().exec("explorer.exe /select," + "C:\\Users\\Arvy Enriquez\\Desktop\\Text.txt");
+            File file = new File (path);
+            Desktop desktop = Desktop.getDesktop();
+            desktop.open(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public static void getImage(Node node) {
         try {
             WritableImage image = node.snapshot(null, null);
-            File file = new File("src/main/resources/cw/payroll/output/temp.png");
+            String path = "src/main/resources/cw/payroll/output/temp.png";
+            File file = new File(path);
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "PNG", file);
             System.out.println("Image Saved");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -181,7 +191,7 @@ public class PDFWriter {
             table.addCell(new Cell(1, 0).add("BONUS AMOUNT").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
             for (int i = 0; i < 1; i++) {
-                table.addCell(new Cell(0, 14).add("DEPARTMENT OF " + i).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(new DeviceRgb(153, 217, 234)));
+//                table.addCell(new Cell(0, 14).add("DEPARTMENT OF " + i).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(new DeviceRgb(153, 217, 234)));
                 for (int y = 0; y < bonusSummaries.size(); y++) {
 //                    for (int x = 0; x < 14; x++) {
 //                        table.addCell(new Cell(0, 0).add(y + " " + x).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
