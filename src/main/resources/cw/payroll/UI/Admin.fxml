@@ -14,7 +14,7 @@
    <children>
       <VBox fx:id="main_menu_vbox" layoutY="-2.0" prefHeight="543.0" prefWidth="244.0" style="-fx-background-color: #01374D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="main_admin_button" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="79.0" prefWidth="244.0" style="-fx-background-color: #01374D;" text="ADMIN" textFill="WHITE">
+            <Button fx:id="main_admin_button" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="88.0" prefWidth="244.0" style="-fx-background-color: #01374D;" text="ADMIN" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -160,9 +160,28 @@
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Button>
-            <Pane prefHeight="46.0" prefWidth="244.0">
+            <Label alignment="BASELINE_LEFT" prefHeight="32.0" prefWidth="205.0" text="LOGS" textFill="WHITE">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <font>
+                  <Font name="Tw Cen MT Bold" size="13.0" />
+               </font>
+            </Label>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="247.0" style="-fx-background-color: #01374D;" text="Logs" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="70.0" />
+               </padding>
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Button>
+            <Pane prefHeight="62.0" prefWidth="244.0">
                <children>
-                  <Button fx:id="main_logout_button" alignment="CENTER" layoutX="71.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #008037;" text="LOGOUT" textFill="WHITE">
+                  <Button fx:id="main_logout_button" alignment="CENTER" layoutX="71.0" layoutY="8.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #008037;" text="LOGOUT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
