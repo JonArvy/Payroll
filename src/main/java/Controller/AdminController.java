@@ -8,6 +8,7 @@ import Controller.Attendance.AttendanceReportController;
 import Controller.Attendance.DailyAttendanceController;
 import Controller.Employee.AddEmployeeController;
 import Controller.Employee.ManageEmployeeController;
+import Controller.Logs.LogsController;
 import Controller.NoticeBoard.NoticeBoardController;
 import Controller.Payroll.DepartmentController;
 import Controller.Payroll.PayrollSummaryController;
@@ -70,6 +71,9 @@ public class AdminController {
     @FXML
     private Button main_payslip_button;
 
+    @FXML
+    private Button showLogs;
+
 
     private Admin admin;
 
@@ -95,6 +99,8 @@ public class AdminController {
             loadBonus();
         } else if (event.getSource() == main_credentials_button) {
             loadCredentials();
+        } else if (event.getSource() == showLogs) {
+            logs();
         } else if (event.getSource() == main_logout_button) {
             logOut();
         }
@@ -354,6 +360,29 @@ public class AdminController {
         }
     }
 
+    private void logs() {
+        LogsController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Logs/Logs.fxml"));
+
+            Node n = (Node) fxmlLoader.load();
+            AnchorPane.setTopAnchor(n, 0.0);
+            AnchorPane.setBottomAnchor(n, 0.0);
+            AnchorPane.setLeftAnchor(n, 0.0);
+            AnchorPane.setRightAnchor(n, 0.0);
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, content_container);
+
+//            AnchorPane anchorPane = fxmlLoader.getRoot();
+
+            content_container.getChildren().clear();
+            content_container.getChildren().add(n);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void logOut() {
         Stage stage = (Stage) main_logout_button.getScene().getWindow();
         stage.close();
@@ -369,7 +398,7 @@ public class AdminController {
             stage2.setResizable(false);
             stage2.show();
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 }

@@ -1,5 +1,6 @@
 package cw.payroll;
 
+import Database.SQLLogs;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,8 +12,12 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         Tester tester = new Tester();
         tester.createTables();
+        SQLLogs sqlLogs = new SQLLogs();
+        sqlLogs.createTriggers();
+
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Admin.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 

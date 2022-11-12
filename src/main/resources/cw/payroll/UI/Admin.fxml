@@ -168,7 +168,7 @@
                   <Font name="Tw Cen MT Bold" size="13.0" />
                </font>
             </Label>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="247.0" style="-fx-background-color: #01374D;" text="Logs" textFill="WHITE">
+            <Button fx:id="showLogs" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="247.0" style="-fx-background-color: #01374D;" text="Logs" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
