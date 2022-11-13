@@ -3,10 +3,12 @@ package Controller.Attendance;
 import Classes.Converters;
 import Classes.TimeSpinner;
 import Database.SQLAttendance;
+import Database.SQLDepartment;
 import Database.SQLEmployee;
 import Database.SQLHoliday;
 import Models.Admin;
 import Models.Attendance;
+import Models.Department;
 import Models.Employee;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
@@ -27,6 +29,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import static Classes.CustomAlert.callAlert;
+import static Classes.DateGetter.getDepartmentsInDate;
 
 
 public class AddAttendanceController {
@@ -159,9 +162,16 @@ public class AddAttendanceController {
     }
 
     private void addItemsOnList() {
+
         employees.clear();
-        employees = sqlEmployee.getAllEmployeesExcept(true, Date.valueOf(date.getValue()),
-                Date.valueOf(date.getValue().plusDays(1)));
+//        employees = sqlEmployee.getAllEmployeesExcept(true, Date.valueOf(date.getValue()),
+//                Date.valueOf(date.getValue().plusDays(1)));
+
+        ObservableList<Department> departmentListWithSchedule = getDepartmentsInDate(date.getValue());
+        for (Department department : departmentListWithSchedule) {
+            employees.addAll(sqlEmployee.getAllEmployeesExcept(true, Date.valueOf(date.getValue()),
+                Date.valueOf(date.getValue().plusDays(1)), department.getDepartment_ID()));
+        }
 
         if (employees.size() <= 0) {
             save.setDisable(true);

@@ -49,11 +49,11 @@
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
-        <Label layoutX="586.0" layoutY="45.0" text="Page 1 of 2" AnchorPane.rightAnchor="70.0">
+        <Label layoutX="586.0" layoutY="45.0" opacity="0.0" text="Page 1 of 2" AnchorPane.rightAnchor="70.0">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Label>
-        <Button fx:id="department_button_next" disable="true" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" AnchorPane.rightAnchor="30.0">
+        <Button fx:id="department_button_next" disable="true" layoutX="664.0" layoutY="41.0" mnemonicParsing="false" onAction="#nextPage" opacity="0.0" style="-fx-background-color: #545454; -fx-text-fill: #ffffff;" text="&gt;" AnchorPane.rightAnchor="30.0">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>

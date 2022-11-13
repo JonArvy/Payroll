@@ -127,7 +127,7 @@ public class SQLEmployee {
 
     }
 
-    public ObservableList<Employee> getAllEmployeesExcept(boolean active, Date dt1, Date dt2) {
+    public ObservableList<Employee> getAllEmployeesExcept(boolean active, Date dt1, Date dt2, int department) {
         ObservableList<Employee> employeeList = FXCollections.observableArrayList();
         if (active == true) {
             String command = "SELECT emp_id," +
@@ -144,13 +144,15 @@ public class SQLEmployee {
                     "(SELECT emp_id " +
                     "FROM tbl_attendance " +
                     "WHERE tbl_attendance.emp_attendance_date >= ? " +
-                    "AND tbl_attendance.emp_attendance_date < ?)";
+                    "AND tbl_attendance.emp_attendance_date < ?) " +
+                    "AND tbl_department.department_id = ?";
             try (Connection connection = connect();
                  PreparedStatement preparedStatement = connection.prepareStatement(command)) {
 
                 preparedStatement.setBoolean(1, active);
                 preparedStatement.setDate(2, dt1);
                 preparedStatement.setDate(3, dt2);
+                preparedStatement.setInt(4, department);
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 

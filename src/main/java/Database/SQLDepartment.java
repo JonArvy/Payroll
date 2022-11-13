@@ -206,4 +206,44 @@ public class SQLDepartment {
             e.printStackTrace();
         }
     }
+
+
+    public ObservableList<Department> getDepartmentsWithDaySchedule(String shiftDay) {
+        ObservableList<Department> departments = FXCollections.observableArrayList();
+        String command = "SELECT * " +
+                "FROM tbl_department td " +
+                "WHERE td.shift_" + shiftDay + " = 1";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Department department = new Department();
+                department.setDepartment_ID(resultSet.getInt("department_id"));
+                department.setDepartment_Name(resultSet.getString("department_name"));
+                department.setDepartment_MonthlyRate(resultSet.getDouble("department_monthlyrate"));
+                department.setDepartment_DaysPerMonth(resultSet.getInt("department_dayspermonth"));
+                department.setDepartment_HoursPerDay(resultSet.getInt("department_hoursperday"));
+                department.setTime_In(resultSet.getTime("shift_in"));
+                department.setTime_Out(resultSet.getTime("shift_out"));
+                department.setBreak_Start(resultSet.getTime("shift_breakstart"));
+                department.setBreak_End(resultSet.getTime("shift_breakend"));
+                department.setShift_Sunday(resultSet.getBoolean("shift_sunday"));
+                department.setShift_Monday(resultSet.getBoolean("shift_monday"));
+                department.setShift_Tuesday(resultSet.getBoolean("shift_tuesday"));
+                department.setShift_Wednesday(resultSet.getBoolean("shift_wednesday"));
+                department.setShift_Thursday(resultSet.getBoolean("shift_thursday"));
+                department.setShift_Friday(resultSet.getBoolean("shift_friday"));
+                department.setShift_Saturday(resultSet.getBoolean("shift_saturday"));
+
+                departments.add(department);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return departments;
+    }
 }

@@ -1,6 +1,8 @@
 package Classes;
 
 
+import Database.SQLDepartment;
+import Models.Department;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -102,5 +104,23 @@ public class DateGetter {
     public static List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
         return startDate.datesUntil(endDate)
                 .collect(Collectors.toList());
+    }
+
+    public static ObservableList<Department> getDepartmentsInDate(LocalDate date) {
+        // get the day of the week
+        SQLDepartment sqlDepartment = new SQLDepartment();
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+
+        // get the departments that have a schedule on that day
+
+        return switch (dayOfWeek) {
+            case MONDAY -> sqlDepartment.getDepartmentsWithDaySchedule("monday");
+            case TUESDAY -> sqlDepartment.getDepartmentsWithDaySchedule("tuesday");
+            case WEDNESDAY -> sqlDepartment.getDepartmentsWithDaySchedule("wednesday");
+            case THURSDAY -> sqlDepartment.getDepartmentsWithDaySchedule("thursday");
+            case FRIDAY -> sqlDepartment.getDepartmentsWithDaySchedule("friday");
+            case SATURDAY -> sqlDepartment.getDepartmentsWithDaySchedule("saturday");
+            case SUNDAY -> sqlDepartment.getDepartmentsWithDaySchedule("sunday");
+        };
     }
 }
