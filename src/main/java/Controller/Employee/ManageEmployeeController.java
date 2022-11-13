@@ -6,6 +6,8 @@ import Models.Employee;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,6 +96,12 @@ public class ManageEmployeeController {
 //        }
 //    }
 
+
+    private void searchItem() {
+
+
+    }
+
     private void loadEditEmployee(Employee employee) {
         EditEmployeeController controller;
         try {
@@ -115,6 +123,7 @@ public class ManageEmployeeController {
     }
 
     private void showEmployeeList() {
+
         employeeList.clear();
         employeeList = sqlEmployee.getAllEmployees(manageemployee_checkbox_hideinactive.isSelected());
 
@@ -169,7 +178,40 @@ public class ManageEmployeeController {
         };
         manageemployee_column_action.setCellFactory(cellFactory);
 
-        manageemployee_tableview.setItems(employeeList);
+
+        setFilters();
+//        manageemployee_tableview.setItems(employeeList);
+    }
+
+    private void setFilters() {
+        FilteredList<Employee> filteredList = new FilteredList<>(employeeList, p -> true);
+
+        manageemployee_searchbar.textProperty().addListener((a, o, n) -> {
+            filteredList.setPredicate(myObject -> {
+                if (n == null || n.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = n.toLowerCase();
+
+                if (String.valueOf(myObject.getEmployee_ID()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getFirst_Name()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getLast_Name()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getEmployment_Status()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getDepartment_Name()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Employee> sortedData = new SortedList<>(filteredList);
+
+        sortedData.comparatorProperty().bind(manageemployee_tableview.comparatorProperty());
+        manageemployee_tableview.setItems(sortedData);
     }
 
     private void loadAddEmployee() {
