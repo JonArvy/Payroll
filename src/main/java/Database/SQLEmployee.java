@@ -66,7 +66,7 @@ public class SQLEmployee {
                     "tbl_department.department_id," +
                     "tbl_department.department_name," +
                     "tbl_employees.emp_status " +
-                    "FROM tbl_employees JOIN tbl_department " +
+                    "FROM tbl_employees LEFT JOIN tbl_department " +
                     "ON tbl_employees.emp_department = tbl_department.department_id " +
                     "WHERE tbl_employees.emp_status = ?";
             try (Connection connection = connect();
@@ -100,7 +100,7 @@ public class SQLEmployee {
                     "tbl_employees.emp_employmentstatus," +
                     "tbl_department.department_name," +
                     "tbl_employees.emp_status " +
-                    "FROM tbl_employees JOIN tbl_department " +
+                    "FROM tbl_employees LEFT JOIN tbl_department " +
                     "ON tbl_employees.emp_department = tbl_department.department_id";
             try (Connection connection = connect();
                  PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -213,7 +213,7 @@ public class SQLEmployee {
                 "tbl_employees.emp_employmentstatus," +
                 "tbl_department.department_name," +
                 "tbl_employees.emp_status " +
-                "FROM tbl_employees JOIN tbl_department " +
+                "FROM tbl_employees LEFT JOIN tbl_department " +
                 "ON tbl_employees.emp_department = tbl_department.department_id";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {

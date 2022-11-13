@@ -30,7 +30,7 @@ public class SQLShift {
                 "shift_friday," +
                 "shift_saturday " +
 
-                "FROM tbl_shift JOIN tbl_department " +
+                "FROM tbl_shift LEFT JOIN tbl_department " +
                 "ON shift_recipient = department_id " +
                 "WHERE shift_type = 1";
 
@@ -71,7 +71,7 @@ public class SQLShift {
                 "shift_friday," +
                 "shift_saturday " +
 
-                "FROM tbl_shift JOIN tbl_employees " +
+                "FROM tbl_shift LEFT JOIN tbl_employees " +
                 "ON shift_recipient = emp_id " +
                 "WHERE shift_type = 2";
 

@@ -247,6 +247,8 @@ public class EditEmployeeController {
             callAlert("Invalid ID", 1);
         } catch (DateTimeParseException o) {
             callAlert("Invalid Date", 1);
+        } catch (NullPointerException e) {
+            callAlert("Please fill up all the fields", 1);
         }
     }
 
