@@ -15,6 +15,8 @@ public class Attendance {
     private Time Employee_TimeIn;
     private Time Employee_TimeOut;
 
+    private int Employee_TotalHours;
+
     public Attendance() {
 
     }
@@ -112,5 +114,14 @@ public class Attendance {
 
     public void setEmployee_TimeOut(Time employee_TimeOut) {
         Employee_TimeOut = employee_TimeOut;
+    }
+
+
+    public int getEmployee_TotalHours() {
+        return Employee_TotalHours;
+    }
+
+    public void setEmployee_TotalHours(int employee_TotalHours) {
+        Employee_TotalHours = employee_TotalHours;
     }
 }

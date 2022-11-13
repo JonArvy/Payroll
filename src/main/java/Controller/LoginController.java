@@ -55,6 +55,9 @@ public class LoginController {
     private TableColumn<Attendance, Time> employee_panel_column_timeout;
 
     @FXML
+    private TableColumn<Attendance, Integer> employee_panel_column_timeout1;
+
+    @FXML
     private DatePicker employee_panel_datepicker_datefrom;
 
     @FXML
@@ -167,6 +170,16 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void getTotalHours() {
+        int totalHours = 0;
+        for (Attendance attendance : attendanceList) {
+            totalHours += attendance.getEmployee_TotalHours();
+        }
+
+        employee_panel_text_hours.setText(String.valueOf(totalHours));
+    }
+
     private void showEmployeeAttendanceTable() {
         Employee emp = sqlEmployee.getEmployee(employee);
         Department dept = sqlDepartment.getDepartment(new Department(emp.getDepartment()));
@@ -204,10 +217,13 @@ public class LoginController {
         } else if (event.getSource() == login_pane_fingerprint_place_back ||
                 event.getSource() == login_pane_fingerprint_place_back1 ||
                 event.getSource() == login_pane_fingerprint_re_place_back ||
-                event.getSource() == login_pane_login_admin_back ||
-                event.getSource() == employee_panel_button_clear) {
+                event.getSource() == login_pane_login_admin_back) {
             login_pane_login_start.toFront();
-
+        } else if (event.getSource() == employee_panel_button_clear) {
+            attendanceList.clear();
+            login_pane_login_start.toFront();
+            employee_panel_text_hours.setText("");
+            //dito
         }
     }
 
@@ -280,6 +296,7 @@ public class LoginController {
         employee_panel_column_date.setCellValueFactory(new PropertyValueFactory<Attendance, Date>("Employee_Attendance_Date"));
         employee_panel_column_timein.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeIn"));
         employee_panel_column_timeout.setCellValueFactory(new PropertyValueFactory<Attendance, Time>("Employee_TimeOut"));
+        employee_panel_column_timeout1.setCellValueFactory(new PropertyValueFactory<Attendance, Integer>("Employee_TotalHours"));
 
         employee_panel_tableview.setItems(attendanceList);
     }

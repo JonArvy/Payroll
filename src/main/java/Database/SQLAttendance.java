@@ -2,12 +2,15 @@ package Database;
 
 import Models.Attendance;
 import Models.AttendanceReport;
+import Models.Department;
+import Models.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
 
 import static Classes.CustomAlert.callAlert;
+import static Classes.DateTimeCalculator.getTotalHours;
 import static Database.SQLConnection.connect;
 
 public class SQLAttendance {
@@ -39,6 +42,8 @@ public class SQLAttendance {
 
     public ObservableList<Attendance> getAttendance(int id, Date from, Date to) {
         ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
+        SQLEmployee sqlEmployee = new SQLEmployee();
+        SQLDepartment sqlDepartment = new SQLDepartment();
         String command = "SELECT * FROM tbl_attendance " +
                 "WHERE emp_id = ? " +
                 "AND emp_attendance_date BETWEEN ? AND ?";
@@ -48,17 +53,21 @@ public class SQLAttendance {
             preparedStatement.setDate(2, from);
             preparedStatement.setDate(3, to);
 
+            Employee employee = sqlEmployee.getEmployee(new Employee(id));
+            Department employeeDepartment = sqlDepartment.getDepartment(new Department(employee.getDepartment()));
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                attendanceList.add(new Attendance(
-                        resultSet.getInt("emp_id"),
+                Attendance attd = new Attendance();
+                attd.setEmployee_ID(resultSet.getInt("emp_id"));
+                attd.setEmployee_Attendance_Date(resultSet.getDate("emp_attendance_date"));
+                attd.setEmployee_TimeIn(resultSet.getTime("emp_timein"));
+                attd.setEmployee_TimeOut(resultSet.getTime("emp_timeout"));
 
-                        resultSet.getDate("emp_attendance_date"),
-                        resultSet.getTime("emp_timein"),
-                        resultSet.getTime("emp_timeout")
-
-                ));
+                attd.setEmployee_TotalHours((int) getTotalHours(employeeDepartment.getTime_In(), employeeDepartment.getTime_Out(),
+                        employeeDepartment.getBreak_Start(), employeeDepartment.getBreak_End(),
+                        attd.getEmployee_TimeIn(), attd.getEmployee_TimeOut()));
+                attendanceList.add(attd);
             }
 
         } catch (SQLException e) {
