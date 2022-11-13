@@ -327,18 +327,27 @@ public class SQLAttendance {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                attendanceReportList.add(new AttendanceReport(
-                                id,
-                                resultSet.getString("full_name"),
-                                resultSet.getInt("employee_id"),
-                                resultSet.getString("department"),
-                                resultSet.getString("employee_position"),
-                                resultSet.getInt("present_days"),
-                                resultSet.getInt("absent_days") - holiday_count,
-                                resultSet.getInt("late_hours"),
-                                holiday_count
-                        )
-                );
+                int late_hours = 0;
+                SQLDepartment sqlDepartment = new SQLDepartment();
+                SQLEmployee sqlEmployee = new SQLEmployee();
+
+                Employee emp = sqlEmployee.getEmployee(new Employee(resultSet.getInt("employee_id")));
+                Department dpt = sqlDepartment.getDepartment(new Department(emp.getDepartment()));
+
+                for (Attendance attd : getAttendance(resultSet.getInt("employee_id"), from, to)) {
+                    late_hours += attd.getEmployee_TotalHours() - dpt.getDepartment_HoursPerDay();
+                }
+
+                AttendanceReport attd = new AttendanceReport(id,
+                        resultSet.getString("full_name"),
+                        resultSet.getInt("employee_id"),
+                        resultSet.getString("department"),
+                        resultSet.getString("employee_position"),
+                        resultSet.getInt("present_days"),
+                        resultSet.getInt("absent_days") - holiday_count,
+                        resultSet.getInt("late_hours"),
+                        holiday_count);
+                attendanceReportList.add(attd);
                 id++;
             }
 

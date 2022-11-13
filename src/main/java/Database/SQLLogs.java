@@ -83,14 +83,14 @@ public class SQLLogs {
                 "AFTER INSERT ON tbl_department " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_message, log_date, log_time) " +
-                "    VALUES ('New department added with name ' || new.dept_name, date('now'), time('now')); " +
+                "    VALUES ('New department added with name ' || new.department_name, date('now'), time('now')); " +
                 "END";
 
         String updateDepartment = "CREATE TRIGGER IF NOT EXISTS update_department " +
                 "AFTER UPDATE ON tbl_department " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_message, log_date, log_time) " +
-                "    VALUES ('Department record with name ' || old.dept_name || ' updated.', date('now'), time('now')); " +
+                "    VALUES ('Department record with name ' || old.department_name || ' updated.', date('now'), time('now')); " +
                 "END";
 
         String insertAdmin = "CREATE TRIGGER IF NOT EXISTS insert_admin " +
@@ -127,6 +127,37 @@ public class SQLLogs {
         ExecuteWithoutReturn(insertAdmin);
         ExecuteWithoutReturn(updateAdmin);
 
+    }
+
+    public void dropTriggers() {
+        String createLogTable = "DROP TABLE tbl_logs";
+        String insertEmployee = "DROP TRIGGER insert_employee";
+        String updateEmployee = "DROP TRIGGER update_employee";
+        String insertAttendance = "DROP TRIGGER insert_attendance";
+        String updateAttendance = "DROP TRIGGER update_attendance";
+        String insertBonus = "DROP TRIGGER insert_bonus";
+        String updateBonus = "DROP TRIGGER update_bonus";
+        String insertHoliday = "DROP TRIGGER insert_holiday";
+        String updateHoliday = "DROP TRIGGER update_holiday";
+        String insertDepartment = "DROP TRIGGER insert_department";
+        String updateDepartment = "DROP TRIGGER update_department";
+        String insertAdmin = "DROP TRIGGER insert_admin";
+        String updateAdmin = "DROP TRIGGER update_admin";
+
+        ExecuteWithoutReturn(createLogTable);
+
+        ExecuteWithoutReturn(insertEmployee);
+        ExecuteWithoutReturn(updateEmployee);
+        ExecuteWithoutReturn(insertAttendance);
+        ExecuteWithoutReturn(updateAttendance);
+        ExecuteWithoutReturn(insertBonus);
+        ExecuteWithoutReturn(updateBonus);
+        ExecuteWithoutReturn(insertHoliday);
+        ExecuteWithoutReturn(updateHoliday);
+        ExecuteWithoutReturn(insertDepartment);
+        ExecuteWithoutReturn(updateDepartment);
+        ExecuteWithoutReturn(insertAdmin);
+        ExecuteWithoutReturn(updateAdmin);
     }
 
     private void ExecuteWithoutReturn(String sql) {

@@ -121,7 +121,18 @@ public class SQLDepartment {
                 "SET department_name = ?," +
                 "    department_monthlyrate = ?," +
                 "    department_dayspermonth = ?, " +
-                "    department_hoursperday = ?" +
+                "    department_hoursperday = ?," +
+                "    shift_in = ?," +
+                "    shift_out = ?," +
+                "    shift_breakstart = ?," +
+                "    shift_breakend = ?," +
+                "    shift_sunday = ?," +
+                "    shift_monday = ?," +
+                "    shift_tuesday = ?," +
+                "    shift_wednesday = ?," +
+                "    shift_thursday = ?," +
+                "    shift_friday = ?," +
+                "    shift_saturday = ?" +
                 "WHERE department_id = ?";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -131,6 +142,17 @@ public class SQLDepartment {
             preparedStatement.setInt(3, department.getDepartment_DaysPerMonth());
             preparedStatement.setInt(4, department.getDepartment_HoursPerDay());
             preparedStatement.setInt(5, department.getDepartment_ID());
+            preparedStatement.setTime(6, department.getTime_In());
+            preparedStatement.setTime(7, department.getTime_Out());
+            preparedStatement.setTime(8, department.getBreak_Start());
+            preparedStatement.setTime(9, department.getBreak_End());
+            preparedStatement.setBoolean(10, department.isShift_Sunday());
+            preparedStatement.setBoolean(11, department.isShift_Monday());
+            preparedStatement.setBoolean(12, department.isShift_Tuesday());
+            preparedStatement.setBoolean(13, department.isShift_Wednesday());
+            preparedStatement.setBoolean(14, department.isShift_Thursday());
+            preparedStatement.setBoolean(15, department.isShift_Friday());
+            preparedStatement.setBoolean(16, department.isShift_Saturday());
 
             preparedStatement.executeUpdate();
 

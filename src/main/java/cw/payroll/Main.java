@@ -15,8 +15,8 @@ public class Main extends Application {
 
         Tester tester = new Tester();
         tester.createTables();
-        SQLLogs sqlLogs = new SQLLogs();
-        sqlLogs.createTriggers();
+//        SQLLogs sqlLogs = new SQLLogs();
+//        sqlLogs.createTriggers();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Admin.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
