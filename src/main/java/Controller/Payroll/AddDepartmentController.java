@@ -6,6 +6,8 @@ import Models.Admin;
 import Models.Bonus;
 import Models.Department;
 import cw.payroll.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,9 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import static Classes.CustomAlert.callAlert;
 
@@ -77,7 +82,28 @@ public class AddDepartmentController {
 
     @FXML
     private void initialize() {
+        adddepartment_dayspermonth.setText("20");
+        adddepartment_hoursperday.setText("8");
         addSpinner();
+        adddepartment_dayspermonth.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    adddepartment_dayspermonth.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        adddepartment_hoursperday.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    adddepartment_hoursperday.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -87,13 +113,13 @@ public class AddDepartmentController {
 
     private SQLDepartment sqlDepartment = new SQLDepartment();
 
-    TimeSpinner spinner1 = new TimeSpinner();
+    private final TimeSpinner spinner1 = new TimeSpinner();
 
-    TimeSpinner spinner2 = new TimeSpinner();
+    private final TimeSpinner spinner2 = new TimeSpinner();
 
-    TimeSpinner spinner3 = new TimeSpinner();
+    private final TimeSpinner spinner3 = new TimeSpinner();
 
-    TimeSpinner spinner4 = new TimeSpinner();
+    private final TimeSpinner spinner4 = new TimeSpinner();
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
@@ -101,17 +127,17 @@ public class AddDepartmentController {
     }
 
     private void addSpinner() {
-        spinner1.setLayoutX(147);
+        spinner1.setLayoutX(157);
         spinner1.setLayoutY(142);
 
-        spinner2.setLayoutX(412);
+        spinner2.setLayoutX(422);
         spinner2.setLayoutY(142);
         spinner2.setDisable(true);
 
-        spinner3.setLayoutX(147);
+        spinner3.setLayoutX(157);
         spinner3.setLayoutY(175);
 
-        spinner4.setLayoutX(412);
+        spinner4.setLayoutX(422);
         spinner4.setLayoutY(175);
 
         spinner1.getEditor().setText("08:00");
@@ -125,6 +151,7 @@ public class AddDepartmentController {
         spinner4.setPrefWidth(142);
 
         main_pane.getChildren().addAll(spinner1, spinner2, spinner3, spinner4);
+        addListener();
 
     }
 
@@ -185,5 +212,46 @@ public class AddDepartmentController {
                 callAlert("Invalid Value/s", 3);
             }
         }
+    }
+
+
+    private void updateTimeOutValue() {
+        String timein_timeString = spinner1.getEditor().getText() + ":" + "00";
+        String breaktimein_timeString = spinner3.getEditor().getText() + ":" + "00";
+        String breaktimeout_timeString = spinner4.getEditor().getText() + ":" + "00";
+
+        LocalTime timein = LocalTime.parse(timein_timeString, DateTimeFormatter.ISO_TIME);
+        LocalTime breaktimein = LocalTime.parse(breaktimein_timeString, DateTimeFormatter.ISO_TIME);
+        LocalTime breaktimeout = LocalTime.parse(breaktimeout_timeString, DateTimeFormatter.ISO_TIME);
+        long totalbreakminutes = breaktimein.until(breaktimeout, ChronoUnit.MINUTES);
+        LocalTime timeinwithbreak = timein.plusMinutes(totalbreakminutes);
+//        long timetorender = department.getDepartment_HoursPerDay();
+        long timetorender = Long.parseLong(adddepartment_hoursperday.getText());
+        LocalTime totalout = timeinwithbreak.plusHours(timetorender);
+        long timedifferencetimebreak = timein.until(breaktimein, ChronoUnit.HOURS);
+        int timevalidation = timein.plusHours(timetorender).compareTo(breaktimein);
+
+        if (totalbreakminutes <= 0 || timedifferencetimebreak <= 0 || timevalidation < 0) {
+            spinner2.getEditor().setText("00:00");
+            adddepartment_button_add.setDisable(true);
+        } else {
+            adddepartment_button_add.setDisable(false);
+            spinner2.getEditor().setText(totalout.toString());
+        }
+    }
+
+    private void addListener() {
+        spinner1.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner2.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner3.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner4.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
     }
 }

@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.PayslipController">
     <children>
-        <Button layoutX="451.0" layoutY="32.0" mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="LOAD" AnchorPane.rightAnchor="193.0">
+        <Button layoutX="495.0" layoutY="33.0" mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="LOAD" AnchorPane.rightAnchor="149.0">
             <font>
                 <Font name="Century Gothic Bold" size="12.0" />
             </font>
@@ -24,11 +24,6 @@
             </ImageView>
          </graphic>
         </Button>
-        <Text layoutX="31.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYSLIP">
-            <font>
-                <Font name="Century Gothic Bold" size="15.0" />
-            </font>
-        </Text>
         <TableView fx:id="main_payslip_tableview" layoutY="90.0" prefHeight="453.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
             <columns>
                 <TableColumn fx:id="main_payslip_column_empid" prefWidth="93.0" text="Emp ID" />
@@ -41,8 +36,8 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-      <ComboBox fx:id="payslip_schema" layoutX="151.0" layoutY="32.0" prefHeight="26.0" prefWidth="296.0" />
-      <Button disable="true" layoutX="528.0" layoutY="32.0" mnemonicParsing="false" onAction="#generate" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Generate PDF">
+      <ComboBox fx:id="payslip_schema" layoutX="190.0" layoutY="33.0" prefHeight="26.0" prefWidth="239.0" AnchorPane.rightAnchor="231.0" />
+      <Button disable="true" layoutX="576.0" layoutY="32.0" mnemonicParsing="false" onAction="#generate" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Generate PDF" AnchorPane.rightAnchor="21.0">
          <font>
             <Font name="Century Gothic Bold" size="12.0" />
          </font>
@@ -54,5 +49,10 @@
             </ImageView>
          </graphic>
       </Button>
+      <Text layoutX="31.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYSLIP">
+         <font>
+            <Font name="Century Gothic Bold" size="16.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

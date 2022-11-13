@@ -141,18 +141,18 @@ public class SQLDepartment {
             preparedStatement.setDouble(2, department.getDepartment_MonthlyRate()); //
             preparedStatement.setInt(3, department.getDepartment_DaysPerMonth());
             preparedStatement.setInt(4, department.getDepartment_HoursPerDay());
-            preparedStatement.setInt(5, department.getDepartment_ID());
-            preparedStatement.setTime(6, department.getTime_In());
-            preparedStatement.setTime(7, department.getTime_Out());
-            preparedStatement.setTime(8, department.getBreak_Start());
-            preparedStatement.setTime(9, department.getBreak_End());
-            preparedStatement.setBoolean(10, department.isShift_Sunday());
-            preparedStatement.setBoolean(11, department.isShift_Monday());
-            preparedStatement.setBoolean(12, department.isShift_Tuesday());
-            preparedStatement.setBoolean(13, department.isShift_Wednesday());
-            preparedStatement.setBoolean(14, department.isShift_Thursday());
-            preparedStatement.setBoolean(15, department.isShift_Friday());
-            preparedStatement.setBoolean(16, department.isShift_Saturday());
+            preparedStatement.setTime(5, department.getTime_In());
+            preparedStatement.setTime(6, department.getTime_Out());
+            preparedStatement.setTime(7, department.getBreak_Start());
+            preparedStatement.setTime(8, department.getBreak_End());
+            preparedStatement.setBoolean(9, department.isShift_Sunday());
+            preparedStatement.setBoolean(10, department.isShift_Monday());
+            preparedStatement.setBoolean(11, department.isShift_Tuesday());
+            preparedStatement.setBoolean(12, department.isShift_Wednesday());
+            preparedStatement.setBoolean(13, department.isShift_Thursday());
+            preparedStatement.setBoolean(14, department.isShift_Friday());
+            preparedStatement.setBoolean(15, department.isShift_Saturday());
+            preparedStatement.setInt(16, department.getDepartment_ID());
 
             preparedStatement.executeUpdate();
 

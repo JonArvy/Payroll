@@ -335,7 +335,7 @@ public class SQLAttendance {
                 Department dpt = sqlDepartment.getDepartment(new Department(emp.getDepartment()));
 
                 for (Attendance attd : getAttendance(resultSet.getInt("employee_id"), from, to)) {
-                    late_hours += attd.getEmployee_TotalHours() - dpt.getDepartment_HoursPerDay();
+                    late_hours +=  dpt.getDepartment_HoursPerDay() - attd.getEmployee_TotalHours();
                 }
 
                 AttendanceReport attd = new AttendanceReport(id,
@@ -345,7 +345,8 @@ public class SQLAttendance {
                         resultSet.getString("employee_position"),
                         resultSet.getInt("present_days"),
                         resultSet.getInt("absent_days") - holiday_count,
-                        resultSet.getInt("late_hours"),
+//                        resultSet.getInt("late_hours"),
+                        late_hours,
                         holiday_count);
                 attendanceReportList.add(attd);
                 id++;

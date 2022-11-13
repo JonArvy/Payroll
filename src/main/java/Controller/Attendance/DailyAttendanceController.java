@@ -11,6 +11,8 @@ import Models.Employee;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -171,7 +173,43 @@ public class DailyAttendanceController {
         };
         main_dailyattendance_column_action.setCellFactory(cellFactory);
 
-        main_dailyattendance_tableview.setItems(attendanceList);
+        setFilters();
+//        main_dailyattendance_tableview.setItems(attendanceList);
+    }
+
+    private void setFilters() {
+        FilteredList<Attendance> filteredList = new FilteredList<>(attendanceList, p -> true);
+
+        dailyattendance_search.textProperty().addListener((a, o, n) -> {
+            filteredList.setPredicate(myObject -> {
+                if (n == null || n.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = n.toLowerCase();
+
+                if (String.valueOf(myObject.getEmployee_Attendance_Date()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getEmployee_ID()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getEmployee_FullName()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getDepartment_Name()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getEmployee_Position()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getEmployee_TimeIn()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getEmployee_TimeOut()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Attendance> sortedData = new SortedList<>(filteredList);
+
+        sortedData.comparatorProperty().bind(main_dailyattendance_tableview.comparatorProperty());
+        main_dailyattendance_tableview.setItems(sortedData);
     }
 
     private void loadEditDailyAttendance(Attendance attendance) {

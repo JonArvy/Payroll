@@ -12,7 +12,7 @@
     <children>
           <AnchorPane layoutX="4.0" layoutY="112.0" minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="710.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="112.0">
               <children>
-                  <TableView fx:id="payrollSummary_table" layoutY="-1.0" prefHeight="431.0" prefWidth="710.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="payrollSummary_table" layoutY="-27.0" prefHeight="458.0" prefWidth="717.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-27.0">
                       <columns>
                           <TableColumn prefWidth="138.0">
                               <columns>
@@ -45,20 +45,35 @@
                   </TableView>
               </children>
           </AnchorPane>
-      <DatePicker fx:id="date_from" layoutX="58.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="524.0" AnchorPane.topAnchor="33.0" />
-      <Text layoutX="99.0" layoutY="-50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" translateX="100.0" translateY="100.0" />
-      <DatePicker fx:id="date_to" disable="true" layoutX="210.0" layoutY="33.0" prefHeight="25.0" prefWidth="135.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="33.0" />
-      <Button fx:id="loadActiveEmployees_button" layoutX="355.0" layoutY="33.0" mnemonicParsing="false" onAction="#loadEmployees" prefHeight="25.0" prefWidth="160.0" text="Load Active Employees" AnchorPane.rightAnchor="202.0" AnchorPane.topAnchor="33.0">
+      <DatePicker fx:id="date_from" layoutX="225.0" layoutY="22.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.rightAnchor="367.0" />
+      <Text layoutX="258.0" layoutY="-63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" translateX="100.0" translateY="100.0" AnchorPane.rightAnchor="454.201171875" />
+      <DatePicker fx:id="date_to" disable="true" layoutX="369.0" layoutY="22.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.rightAnchor="223.0" />
+      <Button fx:id="loadActiveEmployees_button" layoutX="526.0" layoutY="20.0" mnemonicParsing="false" onAction="#loadEmployees" prefHeight="25.0" prefWidth="160.0" text="Load Active Employees" AnchorPane.rightAnchor="31.0">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
-      <Button fx:id="generateReport_button" disable="true" layoutX="526.0" layoutY="33.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="Generate Payroll Report" textFill="WHITE" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="33.0">
+      <Button fx:id="generateReport_button" disable="true" layoutX="336.0" layoutY="53.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="Generate Payroll Report" textFill="WHITE" AnchorPane.rightAnchor="221.0">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
-      <Button fx:id="pdf_button" disable="true" layoutX="526.0" layoutY="62.0" mnemonicParsing="false" onAction="#toPDF" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="PRINT REPORT TO PDF" textFill="WHITE">
+      <Button fx:id="pdf_button" disable="true" layoutX="526.0" layoutY="53.0" mnemonicParsing="false" onAction="#toPDF" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="Print Report to PDF" textFill="WHITE" AnchorPane.rightAnchor="31.0">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
+      <Text layoutX="24.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYROLL SUMMARY">
+         <font>
+            <Font name="Century Gothic Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="226.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" AnchorPane.rightAnchor="462.458984375">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="370.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" AnchorPane.rightAnchor="334.033203125">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

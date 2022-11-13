@@ -10,21 +10,21 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Attendance.AttendanceReportController">
     <children>
-        <Text layoutX="190.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From">
+        <Text layoutX="330.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" AnchorPane.rightAnchor="358.458984375">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Text>
-        <Button fx:id="attendancereport_show" layoutX="478.0" layoutY="32.0" mnemonicParsing="false" onAction="#show" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="SHOW">
+        <Button fx:id="attendancereport_show" layoutX="614.0" layoutY="32.0" mnemonicParsing="false" onAction="#show" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="SHOW" AnchorPane.rightAnchor="22.0">
          <font>
             <Font name="Century Gothic Bold" size="12.0" />
          </font></Button>
-        <Text layoutX="333.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To">
+        <Text layoutX="473.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" AnchorPane.rightAnchor="250.40234375">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Text>
-        <DatePicker fx:id="attendancereport_from" layoutX="190.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" />
-        <DatePicker fx:id="attendancereport_to" disable="true" layoutX="333.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" />
-        <Text layoutX="321.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" />
+        <DatePicker fx:id="attendancereport_from" layoutX="330.0" layoutY="34.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.rightAnchor="262.0" />
+        <DatePicker fx:id="attendancereport_to" disable="true" layoutX="473.0" layoutY="32.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.rightAnchor="119.0" />
+        <Text layoutX="462.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" AnchorPane.rightAnchor="250.201171875" />
             <TableView fx:id="main_attendancereport_tableview" layoutY="70.0" prefHeight="470.0" prefWidth="795.0" stylesheets="@../../css/tablecolumn_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                 <columns>
                     <TableColumn prefWidth="411.0" text="Attendance Report">
@@ -49,5 +49,10 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
+      <Text layoutX="23.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ATTENDANCE REPORT">
+         <font>
+            <Font name="Century Gothic Bold" size="16.0" />
+         </font>
+      </Text>
         </children>
 </AnchorPane>

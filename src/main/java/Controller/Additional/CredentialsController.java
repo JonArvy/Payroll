@@ -1,6 +1,7 @@
 package Controller.Additional;
 
 import Controller.Employee.ManageEmployeeController;
+import Database.SQLAdmin;
 import Models.Admin;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
@@ -41,6 +42,11 @@ public class CredentialsController {
 
     }
 
+    @FXML
+    void initialize() {
+        loadAdminList();
+    }
+
 
     /****************************** FXML ENDS HERE ******************************/
 
@@ -51,6 +57,7 @@ public class CredentialsController {
         this.container = anchorPane;
     }
 
+    SQLAdmin sqlAdmin = new SQLAdmin();
 
 
     private void loadAddCredentials() {
@@ -72,5 +79,8 @@ public class CredentialsController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void loadAdminList() {
     }
 }

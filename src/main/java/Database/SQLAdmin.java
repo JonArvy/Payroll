@@ -2,6 +2,7 @@ package Database;
 
 import Models.Admin;
 import Models.Employee;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,6 +40,8 @@ public class SQLAdmin {
         }
         return admin;
     }
+
+//    public ObservableList<Admin> getAdminList()
 
     public boolean getAdminByID(Admin admin, int id, String password) {
         boolean valid = false;

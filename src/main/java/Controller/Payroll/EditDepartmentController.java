@@ -83,13 +83,13 @@ public class EditDepartmentController {
 
     private SQLDepartment sqlDepartment = new SQLDepartment();
 
-    TimeSpinner spinner1 = new TimeSpinner();
+    private final TimeSpinner spinner1 = new TimeSpinner();
 
-    TimeSpinner spinner2 = new TimeSpinner();
+    private final TimeSpinner spinner2 = new TimeSpinner();
 
-    TimeSpinner spinner3 = new TimeSpinner();
+    private final TimeSpinner spinner3 = new TimeSpinner();
 
-    TimeSpinner spinner4 = new TimeSpinner();
+    private final TimeSpinner spinner4 = new TimeSpinner();
 
     public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
         this.admin = admin;
