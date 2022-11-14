@@ -42,7 +42,7 @@
             </Label>
             <ImageView fitHeight="69.0" fitWidth="78.0" layoutX="158.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Assets/CWBH%20Logo.png" />
+                  <Image url="@../../Assets/CWBH%20Logo.png" />
                </image>
             </ImageView>
             <Text fill="#01374d" layoutX="252.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Canumay West Barangay Hall">
@@ -69,7 +69,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/VIEW.png" />
+                        <Image url="@../../Assets/VIEW.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -78,7 +78,7 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Assets/VIEW.png" />
+                        <Image url="@../../Assets/VIEW.png" />
                      </image>
                   </ImageView>
                </graphic>
