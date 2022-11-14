@@ -241,6 +241,9 @@ public class AddDepartmentController {
     }
 
     private void addListener() {
+        adddepartment_hoursperday.textProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
         spinner1.valueProperty().addListener((a, o, n) -> {
             updateTimeOutValue();
         });

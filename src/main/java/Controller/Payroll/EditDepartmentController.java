@@ -6,6 +6,8 @@ import Models.Admin;
 import Models.Department;
 import Models.Employee;
 import cw.payroll.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,9 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import static Classes.CustomAlert.callAlert;
 
@@ -56,6 +61,9 @@ public class EditDepartmentController {
     private CheckBox editshift_wednesday;
 
     @FXML
+    private Button update_button;
+
+    @FXML
     private Pane main_pane;
 
     @FXML
@@ -71,7 +79,28 @@ public class EditDepartmentController {
 
     @FXML
     private void initialize() {
+        edit_department_days.setText("20");
+        edit_department_hours.setText("8");
         addSpinner();
+        edit_department_days.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edit_department_days.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        edit_department_hours.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edit_department_hours.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -210,6 +239,49 @@ public class EditDepartmentController {
         spinner4.setPrefWidth(142);
 
         main_pane.getChildren().addAll(spinner1, spinner2, spinner3, spinner4);
+        addListener();
+    }
 
+    private void addListener() {
+        edit_department_hours.textProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner1.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner2.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner3.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner4.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+    }
+
+    private void updateTimeOutValue() {
+        String timein_timeString = spinner1.getEditor().getText() + ":" + "00";
+        String breaktimein_timeString = spinner3.getEditor().getText() + ":" + "00";
+        String breaktimeout_timeString = spinner4.getEditor().getText() + ":" + "00";
+
+        LocalTime timein = LocalTime.parse(timein_timeString, DateTimeFormatter.ISO_TIME);
+        LocalTime breaktimein = LocalTime.parse(breaktimein_timeString, DateTimeFormatter.ISO_TIME);
+        LocalTime breaktimeout = LocalTime.parse(breaktimeout_timeString, DateTimeFormatter.ISO_TIME);
+        long totalbreakminutes = breaktimein.until(breaktimeout, ChronoUnit.MINUTES);
+        LocalTime timeinwithbreak = timein.plusMinutes(totalbreakminutes);
+//        long timetorender = department.getDepartment_HoursPerDay();
+        long timetorender = Long.parseLong(edit_department_hours.getText());
+        LocalTime totalout = timeinwithbreak.plusHours(timetorender);
+        long timedifferencetimebreak = timein.until(breaktimein, ChronoUnit.HOURS);
+        int timevalidation = timein.plusHours(timetorender).compareTo(breaktimein);
+
+        if (totalbreakminutes <= 0 || timedifferencetimebreak <= 0 || timevalidation < 0) {
+            spinner2.getEditor().setText("00:00");
+            update_button.setDisable(true);
+        } else {
+            update_button.setDisable(false);
+            spinner2.getEditor().setText(totalout.toString());
+        }
     }
 }
