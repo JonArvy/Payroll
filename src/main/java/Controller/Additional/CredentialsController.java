@@ -18,19 +18,19 @@ import java.io.IOException;
 public class CredentialsController {
 
     @FXML
-    private TableColumn<?, ?> credentials_column_active;
+    private TableColumn<Admin, String> credentials_column_active;
 
     @FXML
-    private TableColumn<?, ?> credentials_column_empid;
+    private TableColumn<Admin, Integer> credentials_column_empid;
 
     @FXML
-    private TableColumn<?, ?> credentials_column_fullname;
+    private TableColumn<Admin, String> credentials_column_fullname;
 
     @FXML
-    private TableColumn<?, ?> credentials_column_no;
+    private TableColumn<Admin, Integer> credentials_column_no;
 
     @FXML
-    private TableView<?> credentials_tableview;
+    private TableView<Admin> credentials_tableview;
 
     @FXML
     void add(ActionEvent event) {
@@ -82,5 +82,6 @@ public class CredentialsController {
     }
 
     private void loadAdminList() {
+
     }
 }

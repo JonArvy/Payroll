@@ -15,29 +15,31 @@
    <children>
       <Pane prefHeight="543.0" prefWidth="717.0">
          <children>
-            <Button layoutX="264.0" layoutY="389.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="CREATE ACCOUNT">
+            <Button layoutX="240.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="CREATE ACCOUNT">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="264.0" layoutY="220.0" text="Employee ID ">
+            <Label layoutX="241.0" layoutY="221.0" text="Employee ID ">
                <font>
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Label>
-            <TextField layoutX="264.0" layoutY="239.0" prefHeight="25.0" prefWidth="237.0" />
-            <Label layoutX="264.0" layoutY="270.0" text="Password">
+            <TextField layoutX="241.0" layoutY="240.0" prefHeight="25.0" prefWidth="237.0" />
+            <Label layoutX="241.0" layoutY="271.0" text="Password">
                <font>
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Label>
-            <PasswordField fx:id="password" layoutX="264.0" layoutY="290.0" prefHeight="25.0" prefWidth="237.0" />
-            <Label fx:id="Confirm" layoutX="263.0" layoutY="322.0" text="Confirm Password">
+            <PasswordField fx:id="password_pf" layoutX="241.0" layoutY="291.0" prefHeight="25.0" prefWidth="237.0" />
+            <TextField fx:id="password_tf" layoutX="240.0" layoutY="291.0" prefHeight="25.0" prefWidth="237.0" />
+            <PasswordField fx:id="confirm_password_pf" layoutX="240.0" layoutY="342.0" prefHeight="25.0" prefWidth="237.0" />
+            <TextField fx:id="confirm_password_tf" layoutX="240.0" layoutY="342.0" prefHeight="25.0" prefWidth="237.0" />
+            <Label fx:id="Confirm" layoutX="240.0" layoutY="323.0" text="Confirm Password">
                <font>
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Label>
-            <TextField layoutX="263.0" layoutY="341.0" prefHeight="25.0" prefWidth="237.0" />
             <ImageView fitHeight="69.0" fitWidth="78.0" layoutX="158.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Assets/CWBH%20Logo.png" />
@@ -53,30 +55,30 @@
                   <Font name="Century Gothic" size="14.0" />
                </font>
             </Text>
-            <Label layoutX="340.0" layoutY="139.0" text="WELCOME!">
+            <Label layoutX="317.0" layoutY="143.0" text="WELCOME!">
                <font>
                   <Font name="Century Gothic Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="264.0" layoutY="163.0" text="Please set up your account for Admin">
+            <Label layoutX="240.0" layoutY="171.0" text="Please set up your account for Admin">
                <font>
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="473.0" layoutY="293.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" style="-fx-background-color: #FFFFFF;">
+            <Button layoutX="450.0" layoutY="294.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" style="-fx-background-color: #FFFFFF;">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assets/VIEW.png" />
+                        <Image url="@../Assets/VIEW.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="473.0" layoutY="344.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" style="-fx-background-color: #FFFFFF;">
+            <Button layoutX="450.0" layoutY="345.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" style="-fx-background-color: #FFFFFF;">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assets/VIEW.png" />
+                        <Image url="@../Assets/VIEW.png" />
                      </image>
                   </ImageView>
                </graphic>
