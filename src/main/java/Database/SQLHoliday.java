@@ -73,6 +73,22 @@ public class SQLHoliday {
         }
     }
 
+    public void deleteHoliday(Holiday holiday) {
+        String command = "DELETE FROM tbl_holiday WHERE holiday_id = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, holiday.getHoliday_ID());
+
+            preparedStatement.executeUpdate();
+
+            callAlert("Holiday: " + holiday.getHoliday_Name() + " has been deleted!", 2);
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
+
     public Holiday getHoliday(Holiday holiday) {
         String command = "SELECT * FROM tbl_holiday " +
                 "WHERE holiday_id = ?";

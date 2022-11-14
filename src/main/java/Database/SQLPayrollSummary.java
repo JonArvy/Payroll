@@ -8,6 +8,7 @@ import java.sql.*;
 import java.time.Duration;
 import java.time.LocalDate;
 
+import static Classes.CustomAlert.callAlert;
 import static Classes.DateGetter.getActiveDates;
 import static Classes.DateTimeCalculator.getTotalHours;
 import static Database.SQLConnection.connect;
@@ -481,6 +482,8 @@ public class SQLPayrollSummary {
 
                 preparedStatement.executeUpdate();
             }
+
+            callAlert("Payroll Summary is generated! You can now check payslip list", 2);
         } catch (SQLException e) {
             e.printStackTrace();
         }

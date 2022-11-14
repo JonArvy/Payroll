@@ -20,6 +20,7 @@ import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.util.Comparator;
 
 public class PayslipController {
 
@@ -102,6 +103,10 @@ public class PayslipController {
         summarySchemas.clear();
 
         summarySchemas = sqlPayrollSummary.getSchemaSummaryList();
+        Comparator<SummarySchema> comparator = Comparator.comparingInt(SummarySchema::getSummary_id);
+        comparator = comparator.reversed();
+        FXCollections.sort(summarySchemas, comparator);
+
         payslip_schema.setItems(summarySchemas);
         payslip_schema.setConverter(converters.summarySchemaStringConverter(summarySchemas));
 

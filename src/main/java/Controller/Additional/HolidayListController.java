@@ -134,9 +134,11 @@ public class HolidayListController {
                             loadEditHoliday(getTableView().getItems().get(getIndex()));
 //                            Employee emp = getTableView().getItems().get(getIndex());
                         });
-                        btn2.setDisable(true);
+                        btn2.setDisable(false);
                         btn2.setStyle(style);
                         btn2.setOnAction((ActionEvent event) -> {
+                            sqlHoliday.deleteHoliday(getTableView().getItems().get(getIndex()));
+                            showHolidayList();
 //                            Employee emp = getTableView().getItems().get(getIndex());
                         });
                     }
