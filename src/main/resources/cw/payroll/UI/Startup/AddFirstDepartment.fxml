@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: rgba(255, 255, 255, .7);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Startup.AddFirstDepartmentController">
+    <children>
+      <Pane fx:id="main_pane" layoutX="60.0" layoutY="64.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D9D9D9;">
+         <children>
+            <Label layoutX="40.0" layoutY="35.0" prefHeight="19.0" prefWidth="136.0" text="EDIT DEPARTMENT">
+               <font>
+                  <Font name="Century Gothic Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="82.0" text="Department Name">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="edit_department_name" layoutX="157.0" layoutY="78.0" prefHeight="25.0" prefWidth="142.0" />
+            <Label layoutX="323.0" layoutY="82.0" text="Monthly Rate">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="edit_department_rate" layoutX="422.0" layoutY="78.0" prefHeight="25.0" prefWidth="142.0" />
+            <Label layoutX="45.0" layoutY="114.0" text="Days (per month)">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="edit_department_days" layoutX="157.0" layoutY="110.0" prefHeight="25.0" prefWidth="142.0" />
+            <Label layoutX="323.0" layoutY="114.0" text="Hours (per day)">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="edit_department_hours" layoutX="422.0" layoutY="110.0" prefHeight="25.0" prefWidth="142.0" />
+            <Button layoutX="413.0" layoutY="348.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Add">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="498.0" layoutY="348.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Go Back">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="97.0" layoutY="146.0" text="Time In">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="322.0" layoutY="146.0" text="Time Out">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="48.0" layoutY="179.0" text="Break Time Start">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="323.0" layoutY="179.0" text="Break Time End">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Label>
+            <Pane layoutX="71.0" layoutY="224.0" prefHeight="96.0" prefWidth="461.0" style="-fx-background-color: #545454;">
+               <children>
+                  <Label layoutX="193.0" layoutY="14.0" text="Weekly Shift" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="editshift_sunday" layoutX="36.0" layoutY="59.0" mnemonicParsing="false" text="Sun" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="editshift_monday" layoutX="91.0" layoutY="59.0" mnemonicParsing="false" text="Mon" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="editshift_tuesday" layoutX="152.0" layoutY="59.0" mnemonicParsing="false" text="Tue" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="editshift_wednesday" layoutX="208.0" layoutY="59.0" mnemonicParsing="false" text="Wed" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="editshift_thursday" layoutX="270.0" layoutY="59.0" mnemonicParsing="false" text="Thu" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="editshift_friday" layoutX="331.0" layoutY="59.0" mnemonicParsing="false" text="Fri" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="editshift_saturday" layoutX="387.0" layoutY="59.0" mnemonicParsing="false" text="Sat" textFill="WHITE">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>

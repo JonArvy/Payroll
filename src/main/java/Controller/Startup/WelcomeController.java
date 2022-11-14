@@ -1,8 +1,7 @@
 package Controller.Startup;
 
-import Controller.Employee.ManageEmployeeController;
-import Models.Admin;
 import cw.payroll.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,24 +9,26 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class StartupController {
+public class WelcomeController {
 
     @FXML
-    private AnchorPane content_container;
-
-    @FXML
-    private void initialize() {
-        loadWelcomePage();
+    void proceed(ActionEvent event) {
+        loadCreateFirstEmployee();
     }
-
 
     /****************************** FXML ENDS HERE ******************************/
 
+    private AnchorPane container;
 
-    private void loadWelcomePage() {
-        WelcomeController controller;
+    public void setRetrievedData(AnchorPane anchorPane) {
+        this.container = anchorPane;
+    }
+
+
+    private void loadCreateFirstEmployee() {
+        AddFirstEmployeeController controller;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Startup/Welcome.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Startup/AddFirstEmployee.fxml"));
 
             Node n = (Node) fxmlLoader.load();
             AnchorPane.setTopAnchor(n, 0.0);
@@ -36,12 +37,13 @@ public class StartupController {
             AnchorPane.setRightAnchor(n, 0.0);
 
             controller = fxmlLoader.getController();
-            controller.setRetrievedData(content_container);
+            controller.setRetrievedData(container);
 
-            content_container.getChildren().clear();
-            content_container.getChildren().add(n);
+            container.getChildren().clear();
+            container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+
 }
