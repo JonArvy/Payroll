@@ -15,7 +15,7 @@
    <children>
       <Pane prefHeight="543.0" prefWidth="717.0">
          <children>
-            <Button layoutX="240.0" layoutY="390.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="CREATE ACCOUNT">
+            <Button layoutX="240.0" layoutY="390.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #016885; -fx-text-fill: #ffffff;" text="CREATE ACCOUNT">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
@@ -31,10 +31,10 @@
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Label>
-            <PasswordField fx:id="password_pf" layoutX="241.0" layoutY="291.0" prefHeight="25.0" prefWidth="237.0" />
             <TextField fx:id="password_tf" layoutX="240.0" layoutY="291.0" prefHeight="25.0" prefWidth="237.0" />
-            <PasswordField fx:id="confirm_password_pf" layoutX="240.0" layoutY="342.0" prefHeight="25.0" prefWidth="237.0" />
+            <PasswordField fx:id="password_pf" layoutX="240.0" layoutY="291.0" prefHeight="25.0" prefWidth="237.0" />
             <TextField fx:id="confirm_password_tf" layoutX="240.0" layoutY="342.0" prefHeight="25.0" prefWidth="237.0" />
+            <PasswordField fx:id="confirm_password_pf" layoutX="240.0" layoutY="342.0" prefHeight="25.0" prefWidth="237.0" />
             <Label fx:id="Confirm" layoutX="240.0" layoutY="323.0" text="Confirm Password">
                <font>
                   <Font name="Century Gothic Bold" size="13.0" />
@@ -65,7 +65,7 @@
                   <Font name="Century Gothic" size="13.0" />
                </font>
             </Label>
-            <Button layoutX="450.0" layoutY="294.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" style="-fx-background-color: #FFFFFF;">
+            <Button fx:id="show_pass_1" layoutX="450.0" layoutY="294.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" style="-fx-background-color: #FFFFFF;">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -74,7 +74,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="450.0" layoutY="345.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" style="-fx-background-color: #FFFFFF;">
+            <Button fx:id="show_pass_2" layoutX="450.0" layoutY="345.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="25.0" style="-fx-background-color: #FFFFFF;">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -82,6 +82,11 @@
                      </image>
                   </ImageView>
                </graphic>
+            </Button>
+            <Button layoutX="240.0" layoutY="423.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="237.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="GO BACK">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
             </Button>
          </children>
       </Pane>

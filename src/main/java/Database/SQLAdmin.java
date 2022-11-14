@@ -166,4 +166,21 @@ public class SQLAdmin {
         return exist;
     }
 
+
+    public int getAdminCount() {
+        int count = 0;
+        String command = "SELECT COUNT(*) as admin_count " +
+                "FROM tbl_admin";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            count = resultSet.getInt("admin_count");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 }

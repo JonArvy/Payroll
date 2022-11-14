@@ -4,10 +4,7 @@ import Models.Department;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.ParseException;
 
 import static Classes.CustomAlert.callAlert;
@@ -267,5 +264,55 @@ public class SQLDepartment {
             e.printStackTrace();
         }
         return departments;
+    }
+
+    public int getDepartmentCount() {
+        int count = 0;
+        String command = "SELECT COUNT(*) AS dept_count " +
+                "FROM tbl_department";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            count = resultSet.getInt("dept_count");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public void addFirstDepartment() {
+        String command = "INSERT INTO tbl_department (department_name, department_monthlyrate, department_dayspermonth, department_hoursperday," +
+                "shift_in, shift_out, shift_breakstart, shift_breakend," +
+                "shift_sunday, shift_monday, shift_tuesday, shift_wednesday, shift_thursday, shift_friday, shift_saturday)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setString(1, "Department");
+            preparedStatement.setDouble(2,20000.0);
+            preparedStatement.setInt(3, 20);
+            preparedStatement.setInt(4, 8);
+            preparedStatement.setTime(5, Time.valueOf("08:00:00"));
+            preparedStatement.setTime(6, Time.valueOf("17:00:00"));
+            preparedStatement.setTime(7, Time.valueOf("12:00:00"));
+            preparedStatement.setTime(8, Time.valueOf("13:00:00"));
+            preparedStatement.setBoolean(9, false);
+            preparedStatement.setBoolean(10, true);
+            preparedStatement.setBoolean(11, true);
+            preparedStatement.setBoolean(12, true);
+            preparedStatement.setBoolean(13, true);
+            preparedStatement.setBoolean(14, true);
+            preparedStatement.setBoolean(15, false);
+
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
     }
 }

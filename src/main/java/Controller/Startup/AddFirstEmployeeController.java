@@ -130,6 +130,7 @@ public class AddFirstEmployeeController {
     public void setEmployee(Employee employee) {
         if (employee != null) {
             this.employee = employee;
+            fillFields();
         }
     }
 
@@ -202,7 +203,7 @@ public class AddFirstEmployeeController {
                             contact_relationship, contact_address, contact_number, "Biometrics");
 
 //                    loadAddEmployeeBiometrics();
-                    loadAddFirstDepartment(employee);
+                    loadAddFirstDepartment();
                 } else {
                     callAlert("Employee with same ID already exists!", 3);
                 }
@@ -246,7 +247,8 @@ public class AddFirstEmployeeController {
         addemployee_empstatus.getItems().addAll("Regular", "Contractual", "Part-Time");
         addemployee_empstatus.getSelectionModel().select(0);
 
-        int currentid = sqlEmployee.getFinalEmployeeIDFromDatabase(new Employee()).getEmployee_ID() + 1;
+//        int currentid = sqlEmployee.getFinalEmployeeIDFromDatabase(new Employee()).getEmployee_ID() + 1;
+        int currentid = 1000;
         addemployee_empid.setText(Integer.toString(currentid));
     }
 
@@ -272,11 +274,11 @@ public class AddFirstEmployeeController {
         addemployee_contactnumber.setText(employee.getContact_Number());
     }
 
-    private void loadAddFirstDepartment(Employee employee) {
+    private void loadAddFirstDepartment() {
         AddFirstDepartmentController controller;
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Startup/AddFirstEmployee.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Startup/AddFirstDepartment.fxml"));
             fxmlLoader.load();
 
             controller = fxmlLoader.getController();

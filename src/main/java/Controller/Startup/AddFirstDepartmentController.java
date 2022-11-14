@@ -1,15 +1,19 @@
 package Controller.Startup;
 
 import Classes.TimeSpinner;
+import Controller.Payroll.AddDepartmentController;
 import Controller.Payroll.DepartmentController;
 import Database.SQLDepartment;
 import Models.Admin;
 import Models.Department;
 import Models.Employee;
 import cw.payroll.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +21,9 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import static Classes.CustomAlert.callAlert;
 
@@ -59,18 +66,56 @@ public class AddFirstDepartmentController {
     private Pane main_pane;
 
     @FXML
-    void back(ActionEvent event) {
+    private Button add_button;
 
+    @FXML
+    void back(ActionEvent event) {
+        goBack();
     }
 
     @FXML
     void update(ActionEvent event) {
-
+        checkDepartmentIfValid();
     }
 
     @FXML
     private void initialize() {
         addSpinner();
+        edit_department_days.setText("20");
+        edit_department_hours.setText("8");
+
+        edit_department_days.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edit_department_days.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        edit_department_hours.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    edit_department_hours.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        spinner1.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner2.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner3.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
+        spinner4.valueProperty().addListener((a, o, n) -> {
+            updateTimeOutValue();
+        });
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -98,6 +143,10 @@ public class AddFirstDepartmentController {
         if (department != null) {
             this.department = department;
             loadDepartmentFields();
+        } else {
+            SQLDepartment sqlDepartment = new SQLDepartment();
+            this.department = sqlDepartment.getDepartment(new Department(1));
+            loadDepartmentFields();
         }
     }
 
@@ -119,37 +168,40 @@ public class AddFirstDepartmentController {
                 double monthlyrate = Double.parseDouble(edit_department_rate.getText());
                 String name = edit_department_name.getText();
 
-                boolean exist = sqlDepartment.checkIfDepartmentNameExists(department.getDepartment_ID(), name);
-                if (exist == true) {
-                    callAlert("A department with same name already exists", 3);
-                } else {
-                    Department dept = new Department(department.getDepartment_ID(), name, monthlyrate, dayspermonth, hoursperday);
+                this.department = new Department();
 
-                    dept.setTime_In(Time.valueOf(spinner1.getEditor().getText() + ":00"));
-                    dept.setTime_Out(Time.valueOf(spinner2.getEditor().getText() + ":00"));
-                    dept.setBreak_Start(Time.valueOf(spinner3.getEditor().getText() + ":00"));
-                    dept.setBreak_End(Time.valueOf(spinner4.getEditor().getText() + ":00"));
+                department.setDepartment_ID(1);
+                department.setDepartment_Name(name);
+                department.setDepartment_HoursPerDay(hoursperday);
+                department.setDepartment_MonthlyRate(monthlyrate);
+                department.setDepartment_DaysPerMonth(dayspermonth);
 
-                    dept.setShift_Sunday(editshift_sunday.isSelected());
-                    dept.setShift_Monday(editshift_monday.isSelected());
-                    dept.setShift_Tuesday(editshift_tuesday.isSelected());
-                    dept.setShift_Wednesday(editshift_wednesday.isSelected());
-                    dept.setShift_Thursday(editshift_thursday.isSelected());
-                    dept.setShift_Friday(editshift_friday.isSelected());
-                    dept.setShift_Saturday(editshift_saturday.isSelected());
+                department.setTime_In(Time.valueOf(spinner1.getEditor().getText() + ":00"));
+                department.setTime_Out(Time.valueOf(spinner2.getEditor().getText() + ":00"));
+                department.setBreak_Start(Time.valueOf(spinner3.getEditor().getText() + ":00"));
+                department.setBreak_End(Time.valueOf(spinner4.getEditor().getText() + ":00"));
+
+                department.setShift_Sunday(editshift_sunday.isSelected());
+                department.setShift_Monday(editshift_monday.isSelected());
+                department.setShift_Tuesday(editshift_tuesday.isSelected());
+                department.setShift_Wednesday(editshift_wednesday.isSelected());
+                department.setShift_Thursday(editshift_thursday.isSelected());
+                department.setShift_Friday(editshift_friday.isSelected());
+                department.setShift_Saturday(editshift_saturday.isSelected());
 
 //                    asdsadsqlDepartment.editDepartment(dept);
-                    loadRegisterAdmin(dept);
-                }
+                loadRegisterAdmin();
             } catch (NumberFormatException o) {
+                o.printStackTrace();
                 callAlert("Invalid Value/s", 3);
             } catch (Exception e) {
+                e.printStackTrace();
                 callAlert("Invalid Value/s", 3);
             }
         }
     }
     private void loadDepartmentFields() {
-        Department dept = sqlDepartment.getDepartment(new Department(department.getDepartment_ID()));
+        Department dept = this.department;
 
         edit_department_name.setText(dept.getDepartment_Name());
         edit_department_rate.setText(Double.toString(dept.getDepartment_MonthlyRate()));
@@ -199,7 +251,7 @@ public class AddFirstDepartmentController {
 
     }
 
-    private void loadRegisterAdmin(Department dept) {
+    private void loadRegisterAdmin() {
         RegisterController controller;
 
         try {
@@ -210,7 +262,7 @@ public class AddFirstDepartmentController {
             controller.setRetrievedData(container);
 
             controller.setEmployee(employee);
-            controller.setDepartment(dept);
+            controller.setDepartment(department);
             controller.setAdmin(admin);
 
             AnchorPane anchorPane = fxmlLoader.getRoot();
@@ -221,4 +273,55 @@ public class AddFirstDepartmentController {
         }
     }
 
+
+    private void goBack() {
+        AddFirstEmployeeController controller;
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Startup/AddFirstEmployee.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(container);
+
+            controller.setEmployee(employee);
+            controller.setDepartment(department);
+            controller.setAdmin(admin);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void updateTimeOutValue() {
+        try {
+            String timein_timeString = spinner1.getEditor().getText() + ":" + "00";
+            String breaktimein_timeString = spinner3.getEditor().getText() + ":" + "00";
+            String breaktimeout_timeString = spinner4.getEditor().getText() + ":" + "00";
+
+            LocalTime timein = LocalTime.parse(timein_timeString, DateTimeFormatter.ISO_TIME);
+            LocalTime breaktimein = LocalTime.parse(breaktimein_timeString, DateTimeFormatter.ISO_TIME);
+            LocalTime breaktimeout = LocalTime.parse(breaktimeout_timeString, DateTimeFormatter.ISO_TIME);
+            long totalbreakminutes = breaktimein.until(breaktimeout, ChronoUnit.MINUTES);
+            LocalTime timeinwithbreak = timein.plusMinutes(totalbreakminutes);
+//        long timetorender = department.getDepartment_HoursPerDay();
+            long timetorender = Long.parseLong(edit_department_hours.getText());
+            LocalTime totalout = timeinwithbreak.plusHours(timetorender);
+            long timedifferencetimebreak = timein.until(breaktimein, ChronoUnit.HOURS);
+            int timevalidation = timein.plusHours(timetorender).compareTo(breaktimein);
+
+            if (totalbreakminutes <= 0 || timedifferencetimebreak <= 0 || timevalidation < 0) {
+                spinner2.getEditor().setText("00:00");
+                add_button.setDisable(true);
+            } else {
+                add_button.setDisable(false);
+                spinner2.getEditor().setText(totalout.toString());
+            }
+        } catch (Exception e) {
+            add_button.setDisable(false);
+        }
+    }
 }
