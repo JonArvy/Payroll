@@ -23,6 +23,8 @@ public class Summary {
 
     private String Department;
 
+    private double MonthlyRate;
+
     private int LateUT;
 
     private String Position;
@@ -181,5 +183,13 @@ public class Summary {
 
     public void setLateUT(int lateUT) {
         LateUT = lateUT;
+    }
+
+    public double getMonthlyRate() {
+        return MonthlyRate;
+    }
+
+    public void setMonthlyRate(double monthlyRate) {
+        MonthlyRate = monthlyRate;
     }
 }

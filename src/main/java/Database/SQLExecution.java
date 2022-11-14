@@ -129,6 +129,7 @@ public class SQLExecution {
 
                 "    summary_date_created DATE NOT NULL, " +
                 "    summary_department VARCHAR(30) NOT NULL, " +
+                "    summary_department_monthly_rate DOUBLE NOT NULL, " +
 
                 "    summary_position VARCHAR(30) NOT NULL, " +
 

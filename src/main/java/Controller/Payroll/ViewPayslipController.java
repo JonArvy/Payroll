@@ -129,8 +129,10 @@
 package Controller.Payroll;
 
 import Classes.PDFWriter;
+import Database.SQLDepartment;
 import Database.SQLEmployee;
 import Models.Admin;
+import Models.Department;
 import Models.Employee;
 import Models.Summary;
 import cw.payroll.Main;
@@ -268,7 +270,9 @@ public class ViewPayslipController {
         less.setText(String.valueOf(summary.getLess()));
         netpay.setText(String.valueOf(summary.getNetAmount()));
         date.setText(String.valueOf(LocalDate.now()));
-        monthly_rate.setText(String.valueOf(summary.getNetAmount()));
+        monthly_rate.setText(String.valueOf(summary.getMonthlyRate()));
+
+//        monthly_rate.setText(String.valueOf(summary.getNetAmount()));
 //        basic_salary.setText(String.valueOf(summary.getWage()));
 //        gross_salary.setText(String.valueOf(summary.getTotalCompensation()));
 //        deductions.setText(String.valueOf(summary.getTotalDeduction()));

@@ -333,6 +333,7 @@ public class SQLPayrollSummary {
             summary.setAbsentDays(absentCalculator(employeeDepartment.getDepartment_DaysPerMonth(), totalDaysRendered));
             System.out.println(employeeDepartment.getHourly_Rate());
             summary.setTotalCompensation(calculateSalary(employeeDepartment.getHourly_Rate(), totalHoursRendered));
+            summary.setMonthlyRate(employeeDepartment.getDepartment_MonthlyRate());
             //BIR
             //LESS
             //PAG-IBIG
@@ -451,8 +452,8 @@ public class SQLPayrollSummary {
 
     public void savePayrollSummary(ObservableList<Summary> summary, Date from, Date to) {
 //        System.out.println("Count : " + getSummaryID());
-        String command = "INSERT INTO payroll_summary (summary_id, summary_number, summary_employee_number, summary_name, summary_date_created, summary_department, summary_position, summary_late_ut, summary_wage, summary_benefits, summary_present_days, summary_absent_days, summary_total_compensation, summary_less, summary_total_deduction, summary_net_amount)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String command = "INSERT INTO payroll_summary (summary_id, summary_number, summary_employee_number, summary_name, summary_date_created, summary_department, summary_department_monthly_rate, summary_position, summary_late_ut, summary_wage, summary_benefits, summary_present_days, summary_absent_days, summary_total_compensation, summary_less, summary_total_deduction, summary_net_amount)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String command2 = "INSERT INTO payroll_summary_schema (summary_date_from, summary_date_to) " +
                 "VALUES (?, ?)";
         try (Connection connection = connect();
@@ -466,16 +467,17 @@ public class SQLPayrollSummary {
                 preparedStatement.setString(4, sum.getName());
                 preparedStatement.setDate(5, Date.valueOf(LocalDate.now()));
                 preparedStatement.setString(6, sum.getDepartment());
-                preparedStatement.setString(7, sum.getPosition());
-                preparedStatement.setInt(8, sum.getLateUT());
-                preparedStatement.setDouble(9, sum.getNetAmount());
-                preparedStatement.setDouble(10, sum.getBenefits());
-                preparedStatement.setInt(11, sum.getPresentDays());
-                preparedStatement.setInt(12, sum.getAbsentDays());
-                preparedStatement.setDouble(13, sum.getTotalCompensation());
-                preparedStatement.setDouble(14, sum.getLess());
-                preparedStatement.setDouble(15, sum.getTotalDeduction());
-                preparedStatement.setDouble(16, sum.getNetAmount());
+                preparedStatement.setDouble(7, sum.getMonthlyRate());
+                preparedStatement.setString(8, sum.getPosition());
+                preparedStatement.setInt(9, sum.getLateUT());
+                preparedStatement.setDouble(10, sum.getNetAmount());
+                preparedStatement.setDouble(11, sum.getBenefits());
+                preparedStatement.setInt(12, sum.getPresentDays());
+                preparedStatement.setInt(13, sum.getAbsentDays());
+                preparedStatement.setDouble(14, sum.getTotalCompensation());
+                preparedStatement.setDouble(15, sum.getLess());
+                preparedStatement.setDouble(16, sum.getTotalDeduction());
+                preparedStatement.setDouble(17, sum.getNetAmount());
 
                 preparedStatement.executeUpdate();
             }
@@ -635,6 +637,7 @@ public class SQLPayrollSummary {
                 sm.setWage(resultSet.getDouble("summary_wage"));
                 sm.setLateUT(resultSet.getInt("summary_late_ut"));
                 sm.setAbsentDays(resultSet.getInt("summary_absent_days"));
+                sm.setMonthlyRate(resultSet.getDouble("summary_department_monthly_rate"));
                 sm.setTotalCompensation(resultSet.getDouble("summary_total_compensation"));
                 sm.setTotalDeduction(resultSet.getDouble("summary_total_deduction"));
 
