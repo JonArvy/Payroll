@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -125,6 +126,27 @@
             </Button>
          </children>
       </Pane>
+      <Pane fx:id="login_pane_fingerprint_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Button fx:id="login_pane_fingerprint_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="198.0" layoutY="97.0" text="Please put your finger on the scanner">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/FINGERPRINT.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="login_pane_fingerprint_place_proceed" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
+            <TextField fx:id="login_pane_fingerprint_place_empid" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
+         </children>
+      </Pane>
       <Pane fx:id="login_pane_employee_panel" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label layoutX="30.0" layoutY="200.0" text="VIEW ATTENDANCE">
@@ -227,37 +249,17 @@
               </columns>
             </TableView>
             <Pane layoutX="21.0" layoutY="333.0" opacity="0.47" prefHeight="1.5" prefWidth="276.0" style="-fx-background-color: #969696;" />
-            <Button layoutX="77.0" layoutY="137.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="68.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Time IN">
+            <Button layoutX="222.0" layoutY="139.0" mnemonicParsing="false" onAction="#viewPayslip" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="View">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="161.0" layoutY="137.0" mnemonicParsing="false" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Time OUT">
+            <Label layoutX="29.0" layoutY="122.0" text="VIEW PAYSLIP">
                <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane fx:id="login_pane_fingerprint_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Button fx:id="login_pane_fingerprint_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Label layoutX="198.0" layoutY="97.0" text="Please put your finger on the scanner">
-               <font>
-                  <Font name="Tw Cen MT Italic" size="15.0" />
+                  <Font name="Tw Cen MT Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Assets/FINGERPRINT.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="login_pane_fingerprint_place_proceed" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
-            <TextField fx:id="login_pane_fingerprint_place_empid" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
+            <ComboBox fx:id="payslip_combo" layoutX="28.0" layoutY="138.0" prefHeight="25.0" prefWidth="186.0" />
          </children>
       </Pane>
       <Pane fx:id="login_pane_login_start" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
@@ -282,7 +284,7 @@
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="login_pane_login_start_button_attendance" layoutX="229.0" layoutY="235.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="ATTENDANCE LOGIN" textFill="#01374d">
+            <Button fx:id="login_pane_login_start_button_attendance" disable="true" layoutX="229.0" layoutY="235.0" mnemonicParsing="false" onAction="#clickNavigate" opacity="0.0" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="ATTENDANCE LOGIN" textFill="#01374d">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>

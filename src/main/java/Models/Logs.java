@@ -6,6 +6,18 @@ public class Logs {
     private String log_date;
     private String log_time;
 
+    private String log_type;
+
+    public String getLog_admin() {
+        return log_admin;
+    }
+
+    public void setLog_admin(String log_admin) {
+        this.log_admin = log_admin;
+    }
+
+    private String log_admin;
+
     public Logs() {
 
     }
@@ -47,5 +59,21 @@ public class Logs {
 
     public void setLog_time(String log_time) {
         this.log_time = log_time;
+    }
+
+    public String getLog_type() {
+        return log_type;
+    }
+
+    public void setLog_type(String log_type) {
+        this.log_type = log_type;
+    }
+
+    public String getLog_Admin() {
+        return log_admin;
+    }
+
+    public void setLog_Admin(String log_admin) {
+        this.log_admin = log_admin;
     }
 }

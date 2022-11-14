@@ -19,10 +19,6 @@ public class Startup {
         SQLExecution sqlExecution = new SQLExecution();
         sqlExecution.createTables();
 
-        //Creation of triggers if it doesn't exist
-        SQLLogs sqlLogs = new SQLLogs();
-        sqlLogs.createTriggers();
-
         Startup startup = new Startup();
 
         if (sqlAdmin.getAdminCount() == 0 && sqlDepartment.getDepartmentCount() == 0) {
@@ -31,6 +27,10 @@ public class Startup {
         } else if (sqlAdmin.getAdminCount() == 0 && sqlDepartment.getDepartmentCount() > 0) {
             startup.loadStartup(stage);
         } else {
+            //Creation of triggers if it doesn't exist
+            SQLLogs sqlLogs = new SQLLogs();
+            sqlLogs.createTriggers();
+
             startup.loadSystem(stage);
         }
     }

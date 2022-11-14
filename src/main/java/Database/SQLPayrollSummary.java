@@ -617,6 +617,35 @@ public class SQLPayrollSummary {
         return list;
     }
 
+    public ObservableList<SummarySchema> getSchemaSummaryListForSingleEmployee(Employee employee) {
+        String command = "SELECT * FROM payroll_summary_schema " +
+                "JOIN payroll_summary " +
+                "ON payroll_summary_schema.summary_id = payroll_summary.summary_id " +
+                "WHERE payroll_summary.summary_employee_number = ?";
+        ObservableList<SummarySchema> list = FXCollections.observableArrayList();
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, employee.getEmployee_ID());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                list.add(new SummarySchema(
+                        resultSet.getInt("summary_id"),
+                        resultSet.getDate("summary_date_from"),
+                        resultSet.getDate("summary_date_to")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
     public ObservableList<Summary> getSummaryList(int id) {
         ObservableList<Summary> summaryList = FXCollections.observableArrayList();
         String command = "SELECT * FROM payroll_summary WHERE summary_id = ?";
@@ -654,6 +683,41 @@ public class SQLPayrollSummary {
             e.printStackTrace();
         }
         return summaryList;
+    }
+
+    public Summary getSummary(int id, Employee employee) {
+        Summary sm = new Summary();
+        String command = "SELECT * FROM payroll_summary WHERE summary_id = ? AND summary_employee_number = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, employee.getEmployee_ID());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                sm.setDateCreated(resultSet.getDate("summary_date_created"));
+                sm.setName(resultSet.getString("summary_name"));
+                sm.setEmployeeNumber(resultSet.getInt("summary_employee_number"));
+                sm.setDepartment(resultSet.getString("summary_department"));
+                sm.setPosition(resultSet.getString("summary_position"));
+                sm.setDatabaseID(resultSet.getInt("summary_individual_id"));
+
+                sm.setWage(resultSet.getDouble("summary_wage"));
+                sm.setLateUT(resultSet.getInt("summary_late_ut"));
+                sm.setAbsentDays(resultSet.getInt("summary_absent_days"));
+                sm.setMonthlyRate(resultSet.getDouble("summary_department_monthly_rate"));
+                sm.setTotalCompensation(resultSet.getDouble("summary_total_compensation"));
+                sm.setTotalDeduction(resultSet.getDouble("summary_total_deduction"));
+
+                sm.setNetAmount(resultSet.getDouble("summary_net_amount"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sm;
     }
 }
 

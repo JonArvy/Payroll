@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -19,10 +20,7 @@ import java.sql.Time;
 public class LogsController {
 
     @FXML
-    private TableColumn<Logs, Time> time;
-
-    @FXML
-    private ComboBox<?> choices;
+    private TableColumn<Logs, String> admin_col;
 
     @FXML
     private TableColumn<Logs, Date> date;
@@ -31,15 +29,19 @@ public class LogsController {
     private TableColumn<Logs, String> message;
 
     @FXML
+    private TextField search;
+
+    @FXML
     private TableView<Logs> table;
 
     @FXML
-    void export(ActionEvent event) {
-
-    }
+    private TableColumn<Logs, Time> time;
 
     @FXML
-    void refresh(ActionEvent event) {
+    private TableColumn<Logs, String> type;
+
+    @FXML
+    void export(ActionEvent event) {
 
     }
 
@@ -64,7 +66,9 @@ public class LogsController {
         logsList.clear();
         logsList = sqlLogs.getLogs();
 
+        type.setCellValueFactory(new PropertyValueFactory<Logs, String>("log_type"));
         message.setCellValueFactory(new PropertyValueFactory<Logs, String>("log_message"));
+        admin_col.setCellValueFactory(new PropertyValueFactory<Logs, String>("log_admin"));
         date.setCellValueFactory(new PropertyValueFactory<Logs, Date>("log_date"));
         time.setCellValueFactory(new PropertyValueFactory<Logs, Time>("log_time"));
 

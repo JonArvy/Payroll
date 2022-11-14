@@ -49,7 +49,6 @@ public class EditHolidayController {
     private void initialize() {
         editholiday_type.getItems().addAll( "Regular Holiday", "Special Working Public Holiday", "Special Non-working Holiday", "Common local holiday", "Season", "Observance");
         editholiday_type.getSelectionModel().select(0);
-        editholiday_button_add.setDisable(true);
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -68,6 +67,7 @@ public class EditHolidayController {
 
     public void setHoliday(Holiday holiday) {
         this.holiday = holiday;
+        System.out.println(this.holiday.getHoliday_ID());
         loadHolidayFields();
     }
 
@@ -96,11 +96,16 @@ public class EditHolidayController {
             try {
                 editholiday_date.getConverter().fromString(editholiday_date.getEditor().getText());
 
+
                 String name = editholiday_name.getText();
                 Date date = Date.valueOf(editholiday_date.getValue());
                 String holiday_type = editholiday_type.getValue();
 
-                sqlHoliday.editHoliday(new Holiday(name, date, holiday_type));
+                this.holiday.setHoliday_Name(name);
+                this.holiday.setHoliday_Date(date);
+                this.holiday.setHoliday_Type(holiday_type);
+
+                sqlHoliday.editHoliday(holiday);
 
                 loadHolidayList();
             } catch (Exception e) {

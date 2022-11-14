@@ -55,14 +55,18 @@ public class SQLHoliday {
     }
 
     public void editHoliday(Holiday holiday) {
-        String command = "INSERT INTO tbl_holiday (holiday_name, holiday_date, holiday_type) " +
-                "VALUES (?, ?, ?)";
+        String command = "UPDATE tbl_holiday SET " +
+                "holiday_name = ?," +
+                "holiday_date = ?," +
+                "holiday_type = ? " +
+                "WHERE holiday_id = ?";
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
 
             preparedStatement.setString(1, holiday.getHoliday_Name());
             preparedStatement.setDate(2, holiday.getHoliday_Date()); //
             preparedStatement.setString(3, holiday.getHoliday_Type());
+            preparedStatement.setInt(4, holiday.getHoliday_ID());
 
             preparedStatement.executeUpdate();
 

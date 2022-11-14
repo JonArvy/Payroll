@@ -87,7 +87,8 @@ public class SQLExecution {
                 "emp_id INTEGER CONSTRAINT fk_emp_id_attendance REFERENCES tbl_employees(emp_id) ON DELETE SET NULL ON UPDATE CASCADE, " +
                 "admin_password VARCHAR(200)," +
                 "admin_grantor INTEGER," +
-                "admin_disabler INTEGER)";
+                "admin_disabler INTEGER," +
+                "admin_isUsingTheSystem BOOLEAN)";
 
         String bonus_tbl = "CREATE TABLE IF NOT EXISTS tbl_bonus (" +
                 "bonus_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +

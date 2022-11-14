@@ -95,8 +95,8 @@ public class SQLAdmin {
     }
 
     public void addAdmin(Admin admin) {
-        String command = "INSERT INTO tbl_admin (emp_id, admin_password, admin_grantor, admin_disabler) " +
-                "VALUES (?, ?, ?, ?)";
+        String command = "INSERT INTO tbl_admin (emp_id, admin_password, admin_grantor, admin_disabler, admin_isUsingTheSystem) " +
+                "VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
@@ -104,9 +104,39 @@ public class SQLAdmin {
             preparedStatement.setString(2, admin.getAdmin_Password()); //
             preparedStatement.setInt(3, admin.getAdmin_Grantor());
             preparedStatement.setInt(4, admin.getAdmin_Disabler());
+            preparedStatement.setBoolean(5, false);
 
             preparedStatement.executeUpdate();
             callAlert("New admin added!", 2);
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
+
+    public void setAdminIsNotUsingTheSystem() {
+        String command = "UPDATE tbl_admin SET admin_isUsingTheSystem = 0";
+
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
+
+    public void setAdminIsUsingTheSystem(Admin admin) {
+        String command = "UPDATE tbl_admin SET admin_isUsingTheSystem = 1 WHERE admin_id = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+            preparedStatement.setInt(1, admin.getAdmin_ID());
+
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             System.out.println("Error connecting to SQLite database");
             e.printStackTrace();

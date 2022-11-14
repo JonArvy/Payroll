@@ -1,10 +1,8 @@
 package Controller;
 
+import Classes.Converters;
 import Database.*;
-import Models.Admin;
-import Models.Attendance;
-import Models.Department;
-import Models.Employee;
+import Models.*;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,13 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -31,6 +23,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.Comparator;
 
 import static Classes.CustomAlert.callAlert;
 
@@ -142,6 +135,9 @@ public class LoginController {
     private TextField login_emp_id;
 
     @FXML
+    private ComboBox<SummarySchema> payslip_combo;
+
+    @FXML
     private void proceed(ActionEvent event) {
         if (event.getSource() == login_pane_fingerprint_place_proceed) {
             try {
@@ -180,14 +176,6 @@ public class LoginController {
         employee_panel_text_hours.setText(String.valueOf(totalHours));
     }
 
-    private void showEmployeeAttendanceTable() {
-        Employee emp = sqlEmployee.getEmployee(employee);
-        Department dept = sqlDepartment.getDepartment(new Department(emp.getDepartment()));
-        employee_panel_text_empid.setText(Integer.toString(emp.getEmployee_ID()));
-        employee_panel_text_name.setText(emp.getFirst_Name() + " " + emp.getLast_Name());
-        employee_panel_text_department.setText(dept.getDepartment_Name());
-        login_pane_employee_panel.toFront();
-    }
 
     private SQLExecution sql = new SQLExecution();
     private SQLAdmin sqlAdmin = new SQLAdmin();
@@ -223,6 +211,7 @@ public class LoginController {
             attendanceList.clear();
             login_pane_login_start.toFront();
             employee_panel_text_hours.setText("");
+
             //dito
         }
     }
@@ -235,6 +224,7 @@ public class LoginController {
             Admin adm = new Admin(id, pass);
             boolean valid = sqlAdmin.checkIfValidAdmin(adm);
             if (valid) {
+                sqlAdmin.setAdminIsUsingTheSystem(sqlAdmin.getAdmin(adm));
                 logInAsAdmin(sqlAdmin.getAdmin(adm));
             } else {
                 callAlert("Invalid Username or Password", 3);
@@ -303,6 +293,9 @@ public class LoginController {
 
     @FXML
     private void initialize() {
+        SQLAdmin sqlAdmin = new SQLAdmin();
+        sqlAdmin.setAdminIsNotUsingTheSystem();
+
         employee_panel_datepicker_datefrom.setValue(LocalDate.now().minusMonths(1));
         employee_panel_datepicker_dateto.setValue(LocalDate.now());
     }
@@ -320,6 +313,63 @@ public class LoginController {
             }
         } catch (NumberFormatException e) {
             callAlert("Invalid Employee ID", 1);
+        }
+    }
+
+    private void showEmployeeAttendanceTable() {
+        Employee emp = sqlEmployee.getEmployee(employee);
+        Department dept = sqlDepartment.getDepartment(new Department(emp.getDepartment()));
+
+        ObservableList<SummarySchema> summarySchemaList = FXCollections.observableArrayList();
+        Converters converters = new Converters();
+        SQLPayrollSummary sqlPayrollSummary = new SQLPayrollSummary();
+
+        summarySchemaList.clear();
+
+        summarySchemaList = sqlPayrollSummary.getSchemaSummaryListForSingleEmployee(emp);
+
+        Comparator<SummarySchema> comparator = Comparator.comparingInt(SummarySchema::getSummary_id);
+        comparator = comparator.reversed();
+        FXCollections.sort(summarySchemaList, comparator);
+
+        payslip_combo.setItems(summarySchemaList);
+        payslip_combo.setConverter(converters.summarySchemaStringConverter(summarySchemaList));
+        payslip_combo.getSelectionModel().selectFirst();
+
+        employee_panel_text_empid.setText(Integer.toString(emp.getEmployee_ID()));
+        employee_panel_text_name.setText(emp.getFirst_Name() + " " + emp.getLast_Name());
+        employee_panel_text_department.setText(dept.getDepartment_Name());
+        login_pane_employee_panel.toFront();
+        temp_employee = emp;
+    }
+
+    private Employee temp_employee;
+
+    @FXML
+    private void viewPayslip() {
+        int summary_id = payslip_combo.getSelectionModel().getSelectedItem().getSummary_id();
+        Employee emp = temp_employee;
+
+        SQLPayrollSummary sqlPayrollSummary = new SQLPayrollSummary();
+        Summary sm = sqlPayrollSummary.getSummary(summary_id, emp);
+
+        Parent root;
+        PayslipContainerController payslipContainerController;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/PayslipContainer.fxml"));
+            root = fxmlLoader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
+            stage.setScene(scene);
+//            stage.initStyle(StageStyle.UNDECORATED);
+//            stage.setResizable(false);
+            stage.show();
+
+            payslipContainerController = fxmlLoader.getController();
+            payslipContainerController.setSummary(sm);
+        } catch (IOException e) {
+
         }
     }
 }
