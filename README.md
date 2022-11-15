@@ -13,7 +13,7 @@ command to the VM field
 
 ```shell
 --module-path
-"C:\Users\Arvy Enriquez\Desktop\Programming\javafx-sdk-18.0.2\lib"
+"path/to/javafx/lib"
 --add-modules
 javafx.controls,javafx.fxml,javafx.swing
 ```
