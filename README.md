@@ -13,9 +13,9 @@ command to the VM field
 
 ```shell
 --module-path
-"path/to/javafx/lib"
+"C:\Users\Arvy Enriquez\Desktop\Programming\javafx-sdk-18.0.2\lib"
 --add-modules
-javafx.controls,javafx.fxml
+javafx.controls,javafx.fxml,javafx.swing
 ```
 
 ## Add driver dependencies
