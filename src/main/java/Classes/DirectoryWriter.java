@@ -29,7 +29,7 @@ public class DirectoryWriter {
             Files.createDirectories(path3);
             Files.createDirectories(path4);
 
-            callAlert("Directory is created!", 2);
+//            callAlert("Directory is created!", 2);
 
         } catch (IOException e) {
 
