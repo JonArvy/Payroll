@@ -45,7 +45,7 @@ public class Startup {
         stage.setMinHeight(540);
         stage.setMinWidth(717);
 //        stage.initStyle(StageStyle.UNDECORATED);
-//        stage.setResizable(false);
+        stage.setResizable(false);
 
         stage.show();
     }
@@ -58,6 +58,7 @@ public class Startup {
         scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
 
         stage.setScene(scene);
+        stage.setResizable(false);
 //        stage.setMinHeight(580);
 //        stage.setMinWidth(975);
 //        stage.initStyle(StageStyle.UNDECORATED);

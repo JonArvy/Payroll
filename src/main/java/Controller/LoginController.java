@@ -246,7 +246,7 @@ public class LoginController {
             scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
             stage.setScene(scene);
 //            stage.initStyle(StageStyle.UNDECORATED);
-//            stage.setResizable(false);
+            stage.setResizable(false);
             stage.show();
 
             adminController = fxmlLoader.getController();
