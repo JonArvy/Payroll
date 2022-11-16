@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static Classes.DirectoryWriter.createDirectory;
 import static cw.payroll.Startup.checkStartup;
 
 
@@ -19,7 +20,7 @@ public class Main extends Application {
 //        tester.createTables();
 //        SQLLogs sqlLogs = new SQLLogs();
 //        sqlLogs.createTriggers();
-
+        createDirectory();
         checkStartup(stage);
 
     }

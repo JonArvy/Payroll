@@ -33,9 +33,9 @@ import static Classes.CustomAlert.callAlert;
 public class PDFWriter {
     public static void writePDF(String name) {
         try {
-            String imgPath = "src/main/resources/cw/payroll/output/temp.png";
+            String imgPath = "output/temp/temp.png";
             ImageData data = ImageDataFactory.create(imgPath);
-            String path = "src/main/resources/cw/payroll/output/" + name + ".pdf";
+            String path = "output/Payslips/" + name + ".pdf";
             Image image = new Image(data);
             PdfWriter pdfWriter = new PdfWriter(path);
 
@@ -65,7 +65,7 @@ public class PDFWriter {
     public static void getImage(Node node) {
         try {
             WritableImage image = node.snapshot(null, null);
-            String path = "src/main/resources/cw/payroll/output/temp.png";
+            String path = "output/temp/temp.png";
             File file = new File(path);
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "PNG", file);
             System.out.println("Image Saved");
@@ -77,7 +77,7 @@ public class PDFWriter {
 
     public static void createPayrollSummaryPDF(ObservableList<Summary> summaryList) {
         try {
-            String path = "src/main/resources/cw/payroll/output/table.pdf";
+            String path = "output/Payroll Summary/table.pdf";
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             Document document = new Document(pdfDocument, PageSize.LEGAL.rotate());
@@ -164,7 +164,7 @@ public class PDFWriter {
 
     public static void createBonusSummaryPDF(ObservableList<BonusSummary> bonusSummaries) {
         try {
-            String path = "src/main/resources/cw/payroll/output/bonus summary.pdf";
+            String path = "output/Bonus Summary/bonus summary.pdf";
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             Document document = new Document(pdfDocument, PageSize.LETTER.rotate());

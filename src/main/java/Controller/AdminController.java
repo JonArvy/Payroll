@@ -13,6 +13,7 @@ import Controller.NoticeBoard.NoticeBoardController;
 import Controller.Payroll.DepartmentController;
 import Controller.Payroll.PayrollSummaryController;
 import Controller.Payroll.PayslipController;
+import Controller.Startup.WelcomeController;
 import Models.Admin;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
@@ -121,11 +122,8 @@ public class AdminController {
 
     private void loadNoticeBoard() {
         NoticeBoardController controller;
-
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/NoticeBoard/NoticeBoard.fxml"));
-
-//            fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Noticeboard/NoticeBoard.fxml"));
             Node n = (Node) fxmlLoader.load();
             AnchorPane.setTopAnchor(n, 0.0);
             AnchorPane.setBottomAnchor(n, 0.0);
@@ -134,13 +132,10 @@ public class AdminController {
 
             controller = fxmlLoader.getController();
             controller.setRetrievedData(admin, content_container);
-
-//            AnchorPane anchorPane = fxmlLoader.getRoot();
             content_container.getChildren().clear();
             content_container.getChildren().add(n);
         } catch (IOException ex) {
             ex.printStackTrace();
-//            Logger.getLogger(this.class).log(Level.SEVERE, null, ex);
         }
     }
 

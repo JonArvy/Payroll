@@ -55,7 +55,7 @@ public class EditNoticeBoardController {
         NoticeBoardController controller;
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/NoticeBoard/NoticeBoard.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Noticeboard/NoticeBoard.fxml"));
             fxmlLoader.load();
 
             controller = fxmlLoader.getController();
