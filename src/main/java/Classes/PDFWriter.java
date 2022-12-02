@@ -2,6 +2,7 @@ package Classes;
 
 import Models.BonusSummary;
 import Models.Summary;
+import Models.SummarySchema;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.color.Color;
@@ -14,6 +15,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -27,8 +29,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.Date;
+import java.util.Comparator;
 
 import static Classes.CustomAlert.callAlert;
+import static Classes.DateTimeCalculator.*;
 
 public class PDFWriter {
     public static void writePDF(String name) {
@@ -75,14 +80,29 @@ public class PDFWriter {
         }
     }
 
-    public static void createPayrollSummaryPDF(ObservableList<Summary> summaryList) {
+    public static void createPayrollSummaryPDF(ObservableList<Summary> summaryList, Date from, Date to) {
+
+        ObservableList<String> deptlist = FXCollections.observableArrayList();
+
+        for(int i = 0; i < summaryList.size(); i++){
+            //we will skip the index until there are duplicates ahead
+            while (i < summaryList.size() - 1 && summaryList.get(i).getDepartment().equals(summaryList.get(i + 1).getDepartment()))
+                i++;
+
+            //store element in the distinctArray
+            deptlist.add(summaryList.get(i).getDepartment());
+        }
+
+
+
+
         try {
             String path = "output/Payroll Summary/table.pdf";
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             Document document = new Document(pdfDocument, PageSize.LEGAL.rotate());
 
-            float[] column_width = {30f, 200f, 100f, 50f, 50f, 200f, 50f, 100f, 50f, 50f, 200f, 50f, 100f, 50f};
+            float[] column_width = {30f, 200f, 100f, 50f, 50f, 200f, 50f, 100f, 100f, 50f, 150f, 50f, 100f, 50f};
             float[] column_width2 = {200f, 150f, 50f, 50f, 70f, 200f, 100f, 200f};
             Table table = new Table(column_width);
             Table table2 = new Table(column_width2);
@@ -92,11 +112,11 @@ public class PDFWriter {
             table.addCell(new Cell(0, 14).add("PAYROLL-PERSONAL SERVICES").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
 
-            table.addCell(new Cell(0, 14).add("NOVEMBER 2021").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(0, 14).add(getMonthName(from) + " " + getYear(from)).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
             table.addCell(new Cell(1, 3).add("Barangay: CANUMAY WEST \n Barangay Treasurer: ZAMORA A. NAVARRO").setFontSize(fontsize));
             table.addCell(new Cell(1, 6).add("City/Municipality: VALENZUELA \n Province: METROPOLITAN MANILA").setFontSize(fontsize));
-            table.addCell(new Cell(1, 5).add("Payroll No. 2021-11-032 \n Page No. 2021-01-PS").setFontSize(fontsize));
+            table.addCell(new Cell(1, 5).add("Payroll No. " + getYear(from) + "-" + getMonthNumber(from) + "-032 \n Page No. " + getYear(from) + "-01-PS").setFontSize(fontsize));
 
             table.addCell(new Cell(0, 0).add("").setFontSize(fontsize));
             table.addCell(new Cell(0, 0).add("").setFontSize(fontsize));
@@ -119,26 +139,28 @@ public class PDFWriter {
             table.addCell(new Cell(1, 0).add("Net Amount").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
             table.addCell(new Cell(1, 0).add("Signature of Recipient").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
-            for (int i = 0; i < 1; i++) {
-                table.addCell(new Cell(0, 14).add("DEPARTMENT OF " + i).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(new DeviceRgb(153, 217, 234)));
+            for (int i = 0; i < deptlist.size(); i++) {
+                table.addCell(new Cell(0, 14).add("DEPARTMENT OF " + deptlist.get(i)).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(new DeviceRgb(153, 217, 234)));
                 for (int y = 0; y < summaryList.size(); y++) {
+                    if (summaryList.get(y).getDepartment().equals(deptlist.get(i))) {
 //                    for (int x = 0; x < 14; x++) {
 //                        table.addCell(new Cell(0, 0).add(y + " " + x).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 //                    }
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getNumber())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getName())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getPosition())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getWage())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add("-").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getPresentDays())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getAbsentDays())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getTotalCompensation())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add("EXEMPTED").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBold());
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getLess())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add("").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getTotalDeduction())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getNetAmount())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
-                    table.addCell(new Cell(0, 0).add("").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getNumber())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getName())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getPosition())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getWage())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add("-").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getPresentDays())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getAbsentDays())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getTotalCompensation())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add("EXEMPTED").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER).setBold());
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getLess())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add("-").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getTotalDeduction())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add(String.valueOf(summaryList.get(y).getNetAmount())).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                        table.addCell(new Cell(0, 0).add("").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+                    }
                 }
             }
 
@@ -162,14 +184,14 @@ public class PDFWriter {
         }
     }
 
-    public static void createBonusSummaryPDF(ObservableList<BonusSummary> bonusSummaries) {
+    public static void createBonusSummaryPDF(ObservableList<BonusSummary> bonusSummaries, Date date, String name) {
         try {
             String path = "output/Bonus Summary/bonus summary.pdf";
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
-            Document document = new Document(pdfDocument, PageSize.LETTER.rotate());
+            Document document = new Document(pdfDocument, PageSize.LETTER);
 
-            float[] column_width = {30f, 200f, 100f, 50f, 50f};
+            float[] column_width = {30f, 200f, 100f, 100f, 100f};
             Table table = new Table(column_width);
 
 
@@ -178,7 +200,7 @@ public class PDFWriter {
             table.addCell(new Cell(0, 14).add("PAYROLL-BONUS SUMMARY").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
 
-            table.addCell(new Cell(0, 14).add("OCTOBER 31 2022 - HALLOWEEN").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table.addCell(new Cell(0, 14).add(getDateName(date) + " - " + name).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
             table.addCell(new Cell(1, 3).add("Barangay: CANUMAY WEST \n Barangay Treasurer: ZAMORA A. NAVARRO").setFontSize(fontsize));
             table.addCell(new Cell(1, 6).add("City/Municipality: VALENZUELA \n Province: METROPOLITAN MANILA").setFontSize(fontsize));

@@ -331,6 +331,7 @@ public class SQLPayrollSummary {
             summary.setWage(employeeDepartment.getDepartment_MonthlyRate());
             //Other Benefits
             summary.setPresentDays(employeeDepartment.getDepartment_DaysPerMonth());
+            System.out.println(summary.getPresentDays());
             summary.setAbsentDays(absentCalculator(employeeDepartment.getDepartment_DaysPerMonth(), totalDaysRendered));
             System.out.println(employeeDepartment.getHourly_Rate());
             summary.setTotalCompensation(calculateSalary(employeeDepartment.getHourly_Rate(), totalHoursRendered));
@@ -668,6 +669,7 @@ public class SQLPayrollSummary {
 
                 sm.setWage(resultSet.getDouble("summary_wage"));
                 sm.setLateUT(resultSet.getInt("summary_late_ut"));
+                sm.setPresentDays(resultSet.getInt("summary_present_days") - resultSet.getInt("summary_absent_days"));
                 sm.setAbsentDays(resultSet.getInt("summary_absent_days"));
                 sm.setMonthlyRate(resultSet.getDouble("summary_department_monthly_rate"));
                 sm.setTotalCompensation(resultSet.getDouble("summary_total_compensation"));

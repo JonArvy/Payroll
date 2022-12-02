@@ -49,7 +49,7 @@ public class AddCredentialsController {
 
     @FXML
     void cancel(ActionEvent event) {
-
+        loadCredentials();
     }
 
     @FXML
@@ -132,6 +132,7 @@ public class AddCredentialsController {
     private void addAdmin(Employee employee) {
         if (password_textfield.getText().equals(password_confirm_textfield.getText()) && !password_textfield.getText().equals("")) {
             Admin admin = new Admin(employee.getEmployee_ID(), password_textfield.getText());
+            admin.setAdmin_Grantor(this.admin.getEmployee_ID());
             sqlAdmin.addAdmin(admin);
             loadCredentials();
         } else {
@@ -159,4 +160,5 @@ public class AddCredentialsController {
             ex.printStackTrace();
         }
     }
+
 }

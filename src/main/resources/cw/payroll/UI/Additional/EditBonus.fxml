@@ -32,12 +32,12 @@
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font></Label>
-                <ComboBox fx:id="editbonus_recipient" layoutX="261.0" layoutY="227.0" prefHeight="25.0" prefWidth="156.0" />
-                <Label layoutX="160.0" layoutY="267.0" text="Date Applicable">
+                <ComboBox fx:id="editbonus_recipient" layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
+                <Label layoutX="160.0" layoutY="232.0" text="Date Applicable">
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font></Label>
-                <DatePicker fx:id="editbonus_dateapplicable" layoutX="261.0" layoutY="263.0" prefHeight="25.0" prefWidth="156.0" />
+                <DatePicker fx:id="editbonus_dateapplicable" layoutX="261.0" layoutY="228.0" prefHeight="25.0" prefWidth="156.0" />
                 <Button fx:id="editbonus_button_cancel" layoutX="505.0" layoutY="351.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #FE1616; -fx-text-fill: #ffffff;" text="Cancel">
                <font>
                   <Font name="Century Gothic" size="12.0" />
@@ -46,7 +46,7 @@
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font></Button>
-            <ComboBox fx:id="editbonus_recipienttype" layoutX="261.0" layoutY="192.0" prefHeight="25.0" prefWidth="156.0" />
+            <ComboBox fx:id="editbonus_recipienttype" disable="true" layoutX="261.0" layoutY="192.0" opacity="0.0" prefHeight="25.0" prefWidth="156.0" />
             </children>
         </Pane>
     </children>

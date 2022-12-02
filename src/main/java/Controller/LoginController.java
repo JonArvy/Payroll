@@ -222,7 +222,7 @@ public class LoginController {
             int id = Integer.parseInt(login_pane_login_admin_empid.getText());
             String pass = login_pane_login_admin_password.getText();
             Admin adm = new Admin(id, pass);
-            boolean valid = sqlAdmin.checkIfValidAdmin(adm);
+            boolean valid = sqlAdmin.checkIfActiveValidAdmin(adm);
             if (valid) {
                 sqlAdmin.setAdminIsUsingTheSystem(sqlAdmin.getAdmin(adm));
                 logInAsAdmin(sqlAdmin.getAdmin(adm));

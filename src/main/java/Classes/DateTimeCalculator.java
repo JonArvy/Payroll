@@ -1,9 +1,11 @@
 package Classes;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class DateTimeCalculator {
     private static int gracePeriod = 15;
@@ -113,6 +115,45 @@ public class DateTimeCalculator {
         calendar.set(Calendar.MINUTE, 0);
 
         return new Time(calendar.getTimeInMillis());
+    }
+
+
+
+
+    //For getting Date names and value
+    //No calculation within
+
+
+    public static String getDateName(Date date) {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        String name = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()) + " " + calendar.get(Calendar.DAY_OF_MONTH) + ", " + calendar.get(Calendar.YEAR);
+
+        return name;
+    }
+
+    public static String getMonthName(Date date) {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+
+        return month;
+    }
+
+    public static int getMonthNumber(Date date) {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        int month = calendar.get(Calendar.MONTH);
+
+        return month + 1;
+    }
+
+    public static int getYear(Date date) {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+
+        return year;
     }
 
 //    public static Time subtractTime(Time time1, long time2) {

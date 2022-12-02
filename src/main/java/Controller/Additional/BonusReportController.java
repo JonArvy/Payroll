@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
+import java.sql.Date;
+
 import static Classes.PDFWriter.createBonusSummaryPDF;
 
 public class BonusReportController {
@@ -46,7 +48,7 @@ public class BonusReportController {
 
     @FXML
     void print(ActionEvent event) {
-        createBonusSummaryPDF(bonusSummaryList);
+        createBonusSummaryPDF(bonusSummaryList, Date.valueOf(date.getText()), name.getText());
     }
 
     /****************************** FXML ENDS HERE ******************************/

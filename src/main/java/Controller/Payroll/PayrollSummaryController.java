@@ -104,7 +104,7 @@ public class PayrollSummaryController {
 
     @FXML
     private void toPDF() {
-        createPayrollSummaryPDF(summaryList);
+        createPayrollSummaryPDF(summaryList, Date.valueOf(date_from.getValue()), Date.valueOf(date_to.getValue()));
     }
 
     @FXML

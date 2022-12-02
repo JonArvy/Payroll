@@ -6,9 +6,12 @@ public class Admin {
     private String Admin_Password;
     private int Admin_Grantor;
     private int Admin_Disabler;
+    private String Employee_FullName;
+    private String Employee_Active;
 
 
     public Admin() {
+        Employee_Active = "Active";
     }
     public Admin(int admin_ID) {
         Admin_ID = admin_ID;
@@ -77,5 +80,26 @@ public class Admin {
 
     public void setAdmin_Disabler(int admin_Disabler) {
         Admin_Disabler = admin_Disabler;
+        if (Admin_Disabler == 0) {
+            Employee_Active = "Active";
+        } else {
+            Employee_Active = "Inactive";
+        }
+    }
+
+    public String getEmployee_FullName() {
+        return Employee_FullName;
+    }
+
+    public void setEmployee_FullName(String employee_FullName) {
+        Employee_FullName = employee_FullName;
+    }
+
+    public String getEmployee_Active() {
+        return Employee_Active;
+    }
+
+    public void setEmployee_Active(String employee_Active) {
+        Employee_Active = employee_Active;
     }
 }

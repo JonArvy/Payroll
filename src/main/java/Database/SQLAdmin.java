@@ -2,6 +2,7 @@ package Database;
 
 import Models.Admin;
 import Models.Employee;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
@@ -41,6 +42,39 @@ public class SQLAdmin {
         return admin;
     }
 
+    public ObservableList<Admin> getAdminList() {
+        ObservableList<Admin> adminList = FXCollections.observableArrayList();
+        String command = "SELECT * " +
+                "FROM tbl_admin";
+
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Admin admin = new Admin();
+                admin.setAdmin_ID(resultSet.getInt("admin_id"));
+                admin.setEmployee_ID(resultSet.getInt("emp_id"));
+                SQLEmployee sqlEmployee = new SQLEmployee();
+                admin.setEmployee_FullName(sqlEmployee.getEmployee(new Employee(admin.getEmployee_ID())).getFull_Name_Without_Middle());
+                admin.setAdmin_Password(resultSet.getString("admin_password"));
+
+                admin.setAdmin_Grantor(resultSet.getInt("admin_grantor"));
+                admin.setAdmin_Disabler(resultSet.getInt("admin_disabler"));
+
+                System.out.println(admin.getAdmin_Grantor() + " " + admin.getAdmin_Disabler());
+
+                adminList.add(admin);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return adminList;
+    }
+
 //    public ObservableList<Admin> getAdminList()
 
     public boolean getAdminByID(Admin admin, int id, String password) {
@@ -76,6 +110,31 @@ public class SQLAdmin {
                 "FROM tbl_admin " +
                 "WHERE emp_id = ? " +
                 "AND admin_password = ?";
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, admin.getEmployee_ID());
+            preparedStatement.setString(2, admin.getAdmin_Password());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                correct = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return correct;
+    }
+
+    public boolean checkIfActiveValidAdmin(Admin admin) {
+        boolean correct = false;
+        String command = "SELECT * " +
+                "FROM tbl_admin " +
+                "WHERE emp_id = ? " +
+                "AND admin_password = ? " +
+                "AND admin_disabler = 0";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
@@ -212,5 +271,20 @@ public class SQLAdmin {
             e.printStackTrace();
         }
         return count;
+    }
+
+    public void deactivateAdmin(Admin admin, Admin adminToDeactivate) {
+        String command = "UPDATE tbl_admin SET admin_disabler = ? WHERE emp_id = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+            preparedStatement.setInt(1, admin.getEmployee_ID());
+            preparedStatement.setInt(2, adminToDeactivate.getEmployee_ID());
+
+            preparedStatement.executeUpdate();
+            callAlert("Admin deactivated!", 2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
