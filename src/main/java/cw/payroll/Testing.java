@@ -1,28 +1,23 @@
 package cw.payroll;
 
-import Classes.TimeSpinner;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.time.format.DateTimeFormatter;
-
-import static javafx.application.Application.launch;
+import java.io.File;
+import java.io.IOException;
 
 public class Testing extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
-
-        TimeSpinner spinner = new TimeSpinner();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
-        spinner.valueProperty().addListener((obs, oldTime, newTime) ->
-                System.out.println(formatter.format(newTime)));
-
-        StackPane root = new StackPane(spinner);
-        Scene scene = new Scene(root, 350, 120);
+    public void start(Stage primaryStage) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+        System.out.println(selectedFile.getPath());
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Importer/ImportEmployeeTable.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
