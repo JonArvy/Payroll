@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.PayslipController">
     <children>
-        <Button layoutX="495.0" layoutY="33.0" mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="LOAD" AnchorPane.rightAnchor="149.0">
+        <Button layoutX="585.0" layoutY="33.0" mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="LOAD" AnchorPane.rightAnchor="59.0">
             <font>
                 <Font name="Century Gothic Bold" size="12.0" />
             </font>
@@ -36,19 +36,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-      <ComboBox fx:id="payslip_schema" layoutX="190.0" layoutY="33.0" prefHeight="26.0" prefWidth="239.0" AnchorPane.rightAnchor="231.0" />
-      <Button disable="true" layoutX="576.0" layoutY="32.0" mnemonicParsing="false" onAction="#generate" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #008037; -fx-text-fill: #ffffff;" text="Generate PDF" AnchorPane.rightAnchor="21.0">
-         <font>
-            <Font name="Century Gothic Bold" size="12.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Assets/DownloadButton.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+      <ComboBox fx:id="payslip_schema" layoutX="190.0" layoutY="33.0" prefHeight="26.0" prefWidth="330.0" AnchorPane.rightAnchor="140.0" />
       <Text layoutX="31.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYSLIP">
          <font>
             <Font name="Century Gothic Bold" size="16.0" />

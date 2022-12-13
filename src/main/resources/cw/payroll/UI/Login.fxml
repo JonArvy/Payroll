@@ -19,51 +19,6 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
-      <Pane fx:id="login_pane_fingerprint_place1" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Button fx:id="login_pane_fingerprint_place_back1" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Back%20Button.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label layoutX="190.0" layoutY="122.0" text="Please put your Employee ID or Number">
-               <font>
-                  <Font name="Tw Cen MT Italic" size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="login_emp_id" layoutX="191.0" layoutY="180.0" prefHeight="25.0" prefWidth="165.0" promptText="EMPLOYEE ID">
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font></TextField>
-            <Button layoutX="360.0" layoutY="180.0" mnemonicParsing="false" onAction="#loginAttendancce" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #01374D;" text="LOGIN">
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill></Button>
-         </children>
-      </Pane>
       <Pane fx:id="login_pane_fingerprint_re_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label layoutX="145.0" layoutY="96.0" text="Couldn't recognize your fingerprint. Please TRY AGAIN">
@@ -126,6 +81,51 @@
             </Button>
          </children>
       </Pane>
+      <Pane fx:id="login_pane_fingerprint_place1" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Button fx:id="login_pane_fingerprint_place_back1" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/Back%20Button.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="190.0" layoutY="147.0" text="Please put your Employee ID or Number">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_emp_id" layoutX="191.0" layoutY="205.0" prefHeight="25.0" prefWidth="165.0" promptText="EMPLOYEE ID">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></TextField>
+            <Button layoutX="360.0" layoutY="205.0" mnemonicParsing="false" onAction="#loginAttendancce" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #01374D;" text="LOGIN">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill></Button>
+         </children>
+      </Pane>
       <Pane fx:id="login_pane_fingerprint_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Button fx:id="login_pane_fingerprint_place_back" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="61.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
@@ -133,18 +133,19 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="198.0" layoutY="97.0" text="Please put your finger on the scanner">
+            <Label layoutX="190.0" layoutY="147.0" text="Please put your Employee ID or Number">
                <font>
                   <Font name="Tw Cen MT Italic" size="15.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Assets/FINGERPRINT.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="login_pane_fingerprint_place_proceed" layoutX="536.0" layoutY="371.0" mnemonicParsing="false" onAction="#proceed" text="Proceed" />
-            <TextField fx:id="login_pane_fingerprint_place_empid" layoutX="422.0" layoutY="371.0" prefHeight="25.0" prefWidth="104.0" promptText="Employee ID" />
+            <Button fx:id="login_pane_fingerprint_place_proceed" layoutX="359.0" layoutY="206.0" mnemonicParsing="false" onAction="#proceed" prefHeight="23.0" prefWidth="61.0" style="-fx-background-color: #01374D;" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></Button>
+            <TextField fx:id="login_pane_fingerprint_place_empid" layoutX="190.0" layoutY="205.0" prefHeight="25.0" prefWidth="165.0" promptText="EMPLOYEE ID">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></TextField>
          </children>
       </Pane>
       <Pane fx:id="login_pane_employee_panel" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
@@ -222,7 +223,7 @@
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="employee_panel_button_total" layoutX="46.0" layoutY="286.0" mnemonicParsing="false" onAction="#getTotalHours" prefHeight="23.0" prefWidth="79.0" style="-fx-background-color: #01374D;" text="TOTAL" textFill="WHITE">
+            <Button fx:id="employee_panel_button_total" layoutX="32.0" layoutY="286.0" mnemonicParsing="false" onAction="#getTotalHours" prefHeight="23.0" prefWidth="102.0" style="-fx-background-color: #01374D;" text="TOTAL" textFill="WHITE">
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font>
@@ -234,8 +235,8 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextField fx:id="employee_panel_text_hours" layoutX="130.0" layoutY="286.0" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #D9D9D9;" />
-            <Label layoutX="264.0" layoutY="291.0" text="hrs">
+            <TextField fx:id="employee_panel_text_hours" layoutX="144.0" layoutY="286.0" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #D9D9D9;" />
+            <Label layoutX="258.0" layoutY="291.0" text="hrs">
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font>
@@ -274,12 +275,12 @@
                   <Font name="Century Gothic Bold" size="19.0" />
                </font>
             </Label>
-            <Button fx:id="login_pane_login_start_button_employee" layoutX="229.0" layoutY="271.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="EMPLOYEE" textFill="#01374d">
+            <Button fx:id="login_pane_login_start_button_employee" layoutX="229.0" layoutY="260.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="EMPLOYEE" textFill="#01374d">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="login_pane_login_start_button_admin" layoutX="229.0" layoutY="307.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="ADMIN">
+            <Button fx:id="login_pane_login_start_button_admin" layoutX="229.0" layoutY="296.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="ADMIN">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
