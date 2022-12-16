@@ -28,6 +28,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 
 import static Classes.CustomAlert.callAlert;
+import static Classes.ImporterFileChooser.callAttendanceImporter;
 
 public class DailyAttendanceController {
 
@@ -96,6 +97,11 @@ public class DailyAttendanceController {
             showDailyAttendanceTable();
         });
         main_dailyattendance_datepicker.setValue(LocalDate.now());
+    }
+
+    @FXML
+    private void importAttendance(ActionEvent event) {
+        callAttendanceImporter();
     }
 
 

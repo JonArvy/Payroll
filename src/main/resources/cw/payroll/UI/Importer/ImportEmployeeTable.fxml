@@ -11,26 +11,26 @@
    <children>
       <Button layoutX="538.0" layoutY="495.0" mnemonicParsing="false" onAction="#importFile" prefHeight="25.0" prefWidth="70.0" text="Import" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="109.0" />
       <Button layoutX="615.0" layoutY="495.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="70.0" text="Cancel" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="32.0" />
-      <TableView layoutX="25.0" layoutY="82.0" prefHeight="397.0" prefWidth="667.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="82.0">
+      <TableView fx:id="table" layoutX="25.0" layoutY="82.0" prefHeight="397.0" prefWidth="667.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="82.0">
         <columns>
-          <TableColumn fx:id="first_name" prefWidth="75.0" text="First Name" />
-          <TableColumn fx:id="last_name" prefWidth="75.0" text="Last Name" />
-            <TableColumn fx:id="middle_name" prefWidth="75.0" text="Middle Name" />
-            <TableColumn fx:id="extension" prefWidth="75.0" text="Extension" />
-            <TableColumn fx:id="address" prefWidth="75.0" text="Address" />
-            <TableColumn fx:id="gender" prefWidth="75.0" text="Gender" />
-            <TableColumn fx:id="contact_number" prefWidth="75.0" text="Contact Number" />
-            <TableColumn fx:id="birthdate" prefWidth="75.0" text="Birthdate" />
-            <TableColumn fx:id="status" prefWidth="75.0" text="Status" />
-            <TableColumn fx:id="nationality" prefWidth="75.0" text="Nationality" />
-            <TableColumn fx:id="marital_status" prefWidth="75.0" text="Marital Status" />
-            <TableColumn fx:id="department" prefWidth="75.0" text="Department" />
-            <TableColumn fx:id="position" prefWidth="75.0" text="Position" />
-            <TableColumn fx:id="employment_status" prefWidth="75.0" text="Employment Status" />
-            <TableColumn fx:id="emergency_contact_name" prefWidth="75.0" text="Emergency Contact Name" />
-            <TableColumn fx:id="emergency_contact_relationship" prefWidth="75.0" text="Emergency Contact Relationship" />
-            <TableColumn fx:id="emergency_contact_address" prefWidth="75.0" text="Emergency Contact Address" />
-            <TableColumn fx:id="emergency_contact_number" prefWidth="75.0" text="Emergency Contact Number" />
+          <TableColumn fx:id="first_name" prefWidth="120.0" text="First Name" />
+          <TableColumn fx:id="last_name" prefWidth="120.0" text="Last Name" />
+            <TableColumn fx:id="middle_name" prefWidth="120.0" text="Middle Name" />
+            <TableColumn fx:id="extension" prefWidth="120.0" text="Extension" />
+            <TableColumn fx:id="address" prefWidth="120.0" text="Address" />
+            <TableColumn fx:id="gender" prefWidth="120.0" text="Gender" />
+            <TableColumn fx:id="contact_number" prefWidth="120.0" text="Contact Number" />
+            <TableColumn fx:id="birthdate" prefWidth="120.0" text="Birthdate" />
+            <TableColumn fx:id="status" prefWidth="120.0" text="Status" />
+            <TableColumn fx:id="nationality" prefWidth="120.0" text="Nationality" />
+            <TableColumn fx:id="marital_status" prefWidth="120.0" text="Marital Status" />
+            <TableColumn fx:id="department" prefWidth="120.0" text="Department" />
+            <TableColumn fx:id="position" prefWidth="120.0" text="Position" />
+            <TableColumn fx:id="employment_status" prefWidth="120.0" text="Employment Status" />
+            <TableColumn fx:id="emergency_contact_name" prefWidth="120.0" text="Emergency Contact Name" />
+            <TableColumn fx:id="emergency_contact_relationship" prefWidth="120.0" text="Emergency Contact Relationship" />
+            <TableColumn fx:id="emergency_contact_address" prefWidth="120.0" text="Emergency Contact Address" />
+            <TableColumn fx:id="emergency_contact_number" prefWidth="120.0" text="Emergency Contact Number" />
         </columns>
       </TableView>
       <Text layoutX="31.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preview">

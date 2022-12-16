@@ -28,8 +28,7 @@ public class Startup {
             startup.loadStartup(stage);
         } else {
             //Creation of triggers if it doesn't exist
-            SQLLogs sqlLogs = new SQLLogs();
-            sqlLogs.createTriggers();
+
 
             startup.loadSystem(stage);
         }

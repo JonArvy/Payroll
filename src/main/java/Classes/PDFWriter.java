@@ -13,6 +13,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import javafx.collections.FXCollections;
@@ -67,10 +68,61 @@ public class PDFWriter {
         }
     }
 
+    public static void generatePayslipBulk(String name, int count) {
+        try {
+            //Create PDF Path
+            String path = "output/Payslips/" + name + ".pdf";
+            //Create PDF Writer
+            PdfWriter pdfWriter = new PdfWriter(path);
+            //Create Document
+            PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+//            pdfDocument.addNewPage();
+            Document document = new Document(pdfDocument, PageSize.LEGAL);
+            document.setMargins(24, 36, 12,  36);
+
+            //Add all images to PDF
+            for (int i = 0; i < count; i++) {
+                String imgPath = "output/temp/" + i + ".png";
+                ImageData data = ImageDataFactory.create(imgPath);
+                Image image = new Image(data);
+
+                document.add(image);
+                document.add( new Paragraph("\n"));
+            }
+
+
+            document.close();
+
+            callAlert("PDF created Successfully", 2);
+//            Runtime.getRuntime().exec("explorer.exe /select," + "C:\\Users\\Arvy Enriquez\\Desktop\\Text.txt");
+            File file = new File (path);
+            Desktop desktop = Desktop.getDesktop();
+            desktop.open(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void getImage(Node node) {
         try {
             WritableImage image = node.snapshot(null, null);
             String path = "output/temp/temp.png";
+            File file = new File(path);
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "PNG", file);
+            System.out.println("Image Saved");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getImageWithName(Node node, String name) {
+        try {
+            WritableImage image = node.snapshot(null, null);
+            String path = "output/temp/" + name + ".png";
             File file = new File(path);
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "PNG", file);
             System.out.println("Image Saved");

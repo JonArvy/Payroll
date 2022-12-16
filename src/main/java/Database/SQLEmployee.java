@@ -359,6 +359,49 @@ public class SQLEmployee {
         }
     }
 
+    public void addMultipleEmployee(ObservableList<Employee> employeeList) {
+        String command = "INSERT INTO `tbl_employees`" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            int employeeCount = employeeList.size();
+            int currentid = getFinalEmployeeIDFromDatabase(new Employee()).getEmployee_ID() + 1;
+            int i = 0;
+            for (Employee emp : employeeList) {
+                preparedStatement.setInt(1, currentid + i);
+                preparedStatement.setString(2, emp.getNationality()); //
+                preparedStatement.setString(3, emp.getMarital_Status());
+                preparedStatement.setInt(4, emp.getDepartment()); // Need to connect to dept table
+                preparedStatement.setString(5, emp.getPosition());
+                preparedStatement.setString(6, emp.getEmployment_Status());
+                preparedStatement.setString(7, emp.getFirst_Name());
+                preparedStatement.setString(8, emp.getLast_Name());
+                preparedStatement.setString(9, emp.getMiddle_Name());
+                preparedStatement.setString(10, emp.getExtension());
+                preparedStatement.setString(11, emp.getAddress());
+                preparedStatement.setBoolean(12, emp.isGender());
+                preparedStatement.setString(13, emp.getNumber());
+                preparedStatement.setDate(14, emp.getBirthdate());
+                preparedStatement.setBoolean(15, emp.isActive());
+
+                preparedStatement.setString(16, emp.getContact_Name());
+                preparedStatement.setString(17, emp.getContact_Relationship());
+                preparedStatement.setString(18, emp.getContact_Address());
+                preparedStatement.setString(19, emp.getContact_Number());
+                preparedStatement.setString(20, emp.getEmployee_Biometrics());
+
+                preparedStatement.executeUpdate();
+                i++;
+            }
+
+
+            callAlert(employeeCount + " Employee has been successfully added!", 2);
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
+
     public void updateEmployee(Employee employee) {
         String command = "UPDATE tbl_employees " +
                 "SET emp_nationality = ?," +

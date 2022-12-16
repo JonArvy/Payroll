@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static Classes.CustomAlert.callAlert;
+import static Classes.Encryptor.encryptString;
 import static Database.SQLConnection.connect;
 
 public class SQLAdmin {
@@ -23,7 +24,7 @@ public class SQLAdmin {
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
             preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, admin.getAdmin_Password());
+            preparedStatement.setString(2, encryptString(admin.getAdmin_Password()));
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -89,7 +90,7 @@ public class SQLAdmin {
 
             preparedStatement.setInt(1, admin.getAdmin_ID());
             preparedStatement.setInt(2, id);
-            preparedStatement.setString(3, password);
+            preparedStatement.setString(3, encryptString(password));
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -114,7 +115,7 @@ public class SQLAdmin {
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
             preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, admin.getAdmin_Password());
+            preparedStatement.setString(2, encryptString(admin.getAdmin_Password()));
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -139,7 +140,7 @@ public class SQLAdmin {
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
             preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, admin.getAdmin_Password());
+            preparedStatement.setString(2, encryptString(admin.getAdmin_Password()));
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -160,7 +161,7 @@ public class SQLAdmin {
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
             preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, admin.getAdmin_Password()); //
+            preparedStatement.setString(2, encryptString(admin.getAdmin_Password())); //
             preparedStatement.setInt(3, admin.getAdmin_Grantor());
             preparedStatement.setInt(4, admin.getAdmin_Disabler());
             preparedStatement.setBoolean(5, false);

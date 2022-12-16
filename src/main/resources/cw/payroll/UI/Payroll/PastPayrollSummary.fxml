@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.PayrollSummaryController">
+<AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Payroll.PastPayrollSummaryController">
     <children>
           <AnchorPane layoutX="4.0" layoutY="112.0" minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="710.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="112.0">
               <children>
@@ -45,14 +45,7 @@
                   </TableView>
               </children>
           </AnchorPane>
-      <DatePicker fx:id="date_from" layoutX="225.0" layoutY="22.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.rightAnchor="367.0" />
-      <Text layoutX="258.0" layoutY="-63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" translateX="100.0" translateY="100.0" AnchorPane.rightAnchor="454.201171875" />
-      <DatePicker fx:id="date_to" disable="true" layoutX="369.0" layoutY="22.0" prefHeight="25.0" prefWidth="125.0" AnchorPane.rightAnchor="223.0" />
-      <Button fx:id="loadActiveEmployees_button" layoutX="526.0" layoutY="20.0" mnemonicParsing="false" onAction="#loadEmployees" prefHeight="25.0" prefWidth="160.0" text="Load Active Employees" AnchorPane.rightAnchor="31.0">
-         <font>
-            <Font name="Century Gothic" size="12.0" />
-         </font></Button>
-      <Button fx:id="generateReport_button" disable="true" layoutX="336.0" layoutY="53.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: green;" text="Generate Payroll Report" textFill="WHITE" AnchorPane.rightAnchor="221.0">
+      <Button fx:id="load_report_button" layoutX="526.0" layoutY="20.0" mnemonicParsing="false" onAction="#loadReport" prefHeight="25.0" prefWidth="160.0" text="Load Report" AnchorPane.rightAnchor="31.0">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
@@ -65,16 +58,12 @@
             <Font name="Century Gothic Bold" size="16.0" />
          </font>
       </Text>
-      <Text layoutX="226.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" AnchorPane.rightAnchor="462.458984375">
+      <Text layoutX="278.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report" AnchorPane.rightAnchor="410.458984375">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="370.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" AnchorPane.rightAnchor="334.033203125">
-         <font>
-            <Font name="Century Gothic" size="12.0" />
-         </font>
-      </Text>
-      <Button layoutX="225.0" layoutY="53.0" mnemonicParsing="false" onAction="#loadPrevious" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: green;" text="Load Previous" textFill="WHITE" />
+      <ComboBox fx:id="reportlist" layoutX="266.0" layoutY="20.0" prefHeight="25.0" prefWidth="252.0" />
+      <Button layoutX="266.0" layoutY="53.0" mnemonicParsing="false" onAction="#loadNew" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: green;" text="Load New" textFill="WHITE" />
     </children>
 </AnchorPane>

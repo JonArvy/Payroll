@@ -5,10 +5,12 @@ import Classes.Converters;
 import Database.SQLPayrollSummary;
 import Models.AttendanceReport;
 import Models.Summary;
+import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,6 +20,7 @@ import javafx.scene.control.TableColumn;
 
 import Models.Admin;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -115,6 +118,11 @@ public class PayrollSummaryController {
             date_to.setValue(date_from.getValue().plusMonths(1).minusDays(1));
         });
 //        searchAttendance();
+    }
+
+    @FXML
+    private void loadPrevious(ActionEvent event) {
+        loadPreviousSummary();
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -225,4 +233,20 @@ public class PayrollSummaryController {
 
 
 
+    private void loadPreviousSummary() {
+        PastPayrollSummaryController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/PastPayrollSummary.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+            container.getChildren().add(anchorPane);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

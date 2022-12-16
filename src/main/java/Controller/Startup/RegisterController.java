@@ -3,6 +3,7 @@ package Controller.Startup;
 import Database.SQLAdmin;
 import Database.SQLDepartment;
 import Database.SQLEmployee;
+import Database.SQLLogs;
 import Models.Admin;
 import Models.Department;
 import Models.Employee;
@@ -167,6 +168,9 @@ public class RegisterController {
         sqlEmployee.addEmployee(employee);
         sqlDepartment.editDepartment(department);
         sqlAdmin.addAdmin(admin);
+
+        SQLLogs sqlLogs = new SQLLogs();
+        sqlLogs.createTriggers();
 
 
         Stage stage = (Stage) container.getScene().getWindow();

@@ -20,6 +20,8 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
+import static Classes.ImporterFileChooser.callEmployeeImporter;
+
 public class ManageEmployeeController {
 
     @FXML
@@ -68,6 +70,11 @@ public class ManageEmployeeController {
             showEmployeeList();
         });
         showEmployeeList();
+    }
+
+    @FXML
+    private void importEmployee(ActionEvent event) {
+        callEmployeeImporter();
     }
 
     /****************************** FXML ENDS HERE ******************************/

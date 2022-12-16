@@ -22,6 +22,8 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.util.Comparator;
 
+import static Classes.PDFWriter.generatePayslipBulk;
+
 public class PayslipController {
 
     @FXML
@@ -46,8 +48,12 @@ public class PayslipController {
     private ComboBox<SummarySchema> payslip_schema;
 
     @FXML
+    private Button generatePDF;
+
+    @FXML
     private void load(ActionEvent event) {
         loadPaySlips();
+        generatePDF.setDisable(false);
     }
 
     @FXML
@@ -58,7 +64,31 @@ public class PayslipController {
 
     @FXML
     private void generate() {
+        int i = 0;
+        for (Summary summary : summaries) {
+            System.out.println(summary.getName());
+            loadViewAndCapturePayslip(summary, String.valueOf(i));
 
+
+            i++;
+            //////this here
+            ///
+            ///
+            ///
+            ////
+            //////
+            //////
+            ///////
+            ////////
+            ////////
+            //////
+            ////
+            ///
+            ///
+
+        }
+        container.getChildren().clear();
+        generatePayslipBulk("Kuku", i);
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -93,6 +123,27 @@ public class PayslipController {
             AnchorPane anchorPane = fxmlLoader.getRoot();
 //            container.getChildren().clear();
             container.getChildren().add(anchorPane);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void loadViewAndCapturePayslip(Summary summary, String name) {
+        ViewPayslipController controller;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Payroll/ViewPayslip.fxml"));
+            fxmlLoader.load();
+
+            controller = fxmlLoader.getController();
+            controller.setRetrievedData(admin, container);
+            controller.setSummary(summary);
+
+            AnchorPane anchorPane = fxmlLoader.getRoot();
+//            container.getChildren().clear();
+            container.getChildren().add(anchorPane);
+
+            controller.capturePayslip(name);
 
         } catch (IOException ex) {
             ex.printStackTrace();

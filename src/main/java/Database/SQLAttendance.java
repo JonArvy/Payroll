@@ -147,6 +147,29 @@ public class SQLAttendance {
         }
     }
 
+    public void registerMultipleAttendance(ObservableList<Attendance> attendanceList) {
+        String command = "INSERT INTO tbl_attendance (emp_id, emp_attendance_date, emp_timein, emp_timeout) " +
+                "VALUES (?, ?, ?, ?)";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            int attendanceCount = attendanceList.size();
+            for (Attendance attendance : attendanceList) {
+                preparedStatement.setInt(1, attendance.getEmployee_ID());
+                preparedStatement.setDate(2, attendance.getEmployee_Attendance_Date()); //
+                preparedStatement.setTime(3, attendance.getEmployee_TimeIn());
+                preparedStatement.setTime(4, attendance.getEmployee_TimeOut()); // Need to connect to dept table
+
+                preparedStatement.executeUpdate();
+            }
+
+            callAlert(attendanceCount + " Attendance has been recorded!", 2);
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+    }
+
     public boolean checkIfAttendanceExist(Attendance attendance) {
         boolean success = false;
         String command = "SELECT * FROM tbl_attendance " +

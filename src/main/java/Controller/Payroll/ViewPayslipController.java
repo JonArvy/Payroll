@@ -282,4 +282,8 @@ public class ViewPayslipController {
         pagibig.setText("---");
     }
 
+    public void capturePayslip(String name) {
+        getImageWithName(payslip, name);
+    }
+
 }
