@@ -2,9 +2,12 @@ package Controller.Logs;
 
 import Database.SQLLogs;
 import Models.Admin;
+import Models.Employee;
 import Models.Logs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -73,6 +76,39 @@ public class LogsController {
         time.setCellValueFactory(new PropertyValueFactory<Logs, Time>("log_time"));
 
         table.setItems(logsList);
+
+        setFilters();
     }
 
+
+    private void setFilters() {
+        FilteredList<Logs> filteredList = new FilteredList<>(logsList, p -> true);
+
+        search.textProperty().addListener((a, o, n) -> {
+            filteredList.setPredicate(myObject -> {
+                if (n == null || n.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = n.toLowerCase();
+
+                if (String.valueOf(myObject.getLog_Admin()).contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getLog_date()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getLog_time()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getLog_message()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getLog_type()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Logs> sortedData = new SortedList<>(filteredList);
+
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+    }
 }
