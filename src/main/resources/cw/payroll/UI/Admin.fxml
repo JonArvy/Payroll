@@ -48,6 +48,17 @@
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Button>
+            <Button fx:id="main_department_button" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="246.0" style="-fx-background-color: #01374D;" text="Department" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="70.0" />
+               </padding>
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+            </Button>
             <Label alignment="BASELINE_LEFT" prefHeight="32.0" prefWidth="244.0" text="ATTENDANCE" textFill="WHITE">
                <padding>
                   <Insets left="40.0" />
@@ -86,17 +97,6 @@
                   <Font name="Tw Cen MT Bold" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="main_payslip_button" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="222.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="267.0" style="-fx-background-color: #01374D;" text="Payslip" textFill="WHITE">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="70.0" />
-               </padding>
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font>
-            </Button>
             <Button fx:id="main_payrollsummary_button" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="260.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="247.0" style="-fx-background-color: #01374D;" text="Payroll Summary" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
@@ -108,7 +108,7 @@
                   <Font name="Century Gothic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="main_department_button" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="246.0" style="-fx-background-color: #01374D;" text="Department" textFill="WHITE">
+            <Button fx:id="main_payslip_button" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="222.0" mnemonicParsing="false" onAction="#clickNavigation_Choices" prefHeight="27.0" prefWidth="267.0" style="-fx-background-color: #01374D;" text="Payslip" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

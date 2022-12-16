@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="543.0" prefWidth="717.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Additional.HolidayListController">
     <children>
-        <Label layoutX="42.0" layoutY="43.0" text="Holiday">
+        <Label layoutX="42.0" layoutY="43.0" text="Special Days List">
             <font>
                 <Font name="Century Gothic Bold" size="15.0" />
             </font>
