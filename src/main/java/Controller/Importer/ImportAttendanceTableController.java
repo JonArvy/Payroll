@@ -1,9 +1,7 @@
 package Controller.Importer;
 
 import Database.SQLAttendance;
-import Database.SQLEmployee;
 import Models.Attendance;
-import Models.Employee;
 import Models.ExcelAttendance;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +17,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -29,9 +26,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class ImportAttendanceTableController {
 
@@ -230,13 +228,11 @@ public class ImportAttendanceTableController {
                     isSuccessful = true;
                     break;
                 case 2:
-                    System.out.println(str);
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                    Date d = Date.valueOf(LocalDate.parse(str, formatter));
+                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                    Date d = (Date) df.parse(str);
                     System.out.println(d);
                     System.out.println("Kek");
                     isSuccessful = true;
-                    System.out.println(isSuccessful);
                     break;
                 case 3:
                     Time t = Time.valueOf(str);
