@@ -26,7 +26,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -71,14 +70,28 @@ public class ImportAttendanceTableController {
         ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
         for (int i = 0; i < attendanceData.size(); i++) {
             Attendance attendance = new Attendance();
-            attendance.setEmployee_ID(EmployeeHandlerForEmployeeID(attendanceData.get(i).getEmployee_id()));
-            attendance.setEmployee_Attendance_Date(EmployeeHandlerForDate(attendanceData.get(i).getDate()));
-            attendance.setEmployee_TimeIn(EmployeeHandlerForTime(attendanceData.get(i).getTime_in()));
-            attendance.setEmployee_TimeOut(EmployeeHandlerForTime(attendanceData.get(i).getTime_out()));
+            Object[] employee_id_validator = new Object[2];
+            Object[] date_validator = new Object[2];
+            Object[] time_in_validator = new Object[2];
+            Object[] time_out_validator = new Object[2];
+            employee_id_validator = EmployeeHandlerForEmployeeID(attendanceData.get(i).getEmployee_id());
+            date_validator = EmployeeHandlerForDate(attendanceData.get(i).getDate());
+            time_in_validator = EmployeeHandlerForTime(attendanceData.get(i).getTime_in());
+            time_out_validator = EmployeeHandlerForTime(attendanceData.get(i).getTime_out());
 
-//            if () {
-//                continue;
-//            }
+            System.out.println(employee_id_validator[0]);
+            System.out.println(date_validator[0]);
+            System.out.println(time_in_validator[0]);
+            System.out.println(time_out_validator[0]);
+            if (!(boolean) employee_id_validator[0] || !(boolean) date_validator[0] || !(boolean) time_in_validator[0] || !(boolean) time_out_validator[0]) {
+                System.out.println(i);
+                continue;
+            }
+            attendance.setEmployee_ID((int) employee_id_validator[1]);
+            attendance.setEmployee_Attendance_Date((Date) date_validator[1]);
+            attendance.setEmployee_TimeIn((Time) time_in_validator[1]);
+            attendance.setEmployee_TimeOut((Time) time_out_validator[1]);
+
             attendanceList.add(attendance);
         }
         SQLAttendance sqlAttendance = new SQLAttendance();
@@ -127,7 +140,12 @@ public class ImportAttendanceTableController {
                     String[] arr = new String[4];
                     for (int cn=0; cn < 4; cn++) {
                         Cell cell = row.getCell(cn);
-                        String cellStr = convertCellValue(cell);
+                        String cellStr = "";
+                        if (cn == 1) {
+                            cellStr = convertCellDateValue(cell);
+                        } else {
+                            cellStr = convertCellValue(cell);
+                        }
 //                        System.out.print(cellStr + "\t\t");
                         arr[cn] = cellStr;
                     }
@@ -151,6 +169,18 @@ public class ImportAttendanceTableController {
             cellStringValue = fmt.formatCellValue(cell);
         }
         return cellStringValue;
+    }
+
+    private String convertCellDateValue(Cell cell) {
+        DataFormatter fmt = new DataFormatter();
+        fmt.addFormat("m/d/yy", new SimpleDateFormat("yyyy-MM-dd"));
+        String cellStringValue = "";
+        if (cell != null) {
+            cellStringValue = fmt.formatCellValue(cell);
+//            System.out.println(cellStringValue);
+        }
+        return cellStringValue;
+
     }
 
     private void loadTable(ObservableList<ExcelAttendance> data) {
@@ -195,9 +225,9 @@ public class ImportAttendanceTableController {
                                                 row.getItem().getTime_in().trim().equals("") ||
                                                 row.getItem().getTime_out().trim().equals("") ||
                                                 !parser(1, row.getItem().getEmployee_id()) ||
-                                                !parser(2, row.getItem().getDate())
-//                                                !parser(3, row.getItem().getTime_in()) ||
-//                                                !parser(3, row.getItem().getTime_out())
+                                                !parser(2, row.getItem().getDate()) ||
+                                                !parser(3, row.getItem().getTime_in()) ||
+                                                !parser(3, row.getItem().getTime_out())
                                         ) {
                                             row.setStyle("-fx-background-color:lightcoral");
                                         } else {
@@ -220,7 +250,6 @@ public class ImportAttendanceTableController {
 
     private Boolean parser(int mode, String str) {
         boolean isSuccessful = false;
-
         try {
             switch (mode) {
                 case 1:
@@ -228,14 +257,11 @@ public class ImportAttendanceTableController {
                     isSuccessful = true;
                     break;
                 case 2:
-                    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-                    Date d = (Date) df.parse(str);
-                    System.out.println(d);
-                    System.out.println("Kek");
+                    Date d = Date.valueOf(str);
                     isSuccessful = true;
                     break;
                 case 3:
-                    Time t = Time.valueOf(str);
+                    Time t = Time.valueOf(str + ":00");
                     isSuccessful = true;
                     break;
 
@@ -248,34 +274,50 @@ public class ImportAttendanceTableController {
     }
 
 
-    private Date EmployeeHandlerForDate(String value) {
+    private Object[] EmployeeHandlerForDate(String value) {
+        Object[] obj = new Object[2];
+        boolean isSuccessful = false;
         Date birthday = Date.valueOf(LocalDate.of(2000, 1, 1));
+
         try {
             birthday = Date.valueOf(value);
+            isSuccessful = true;
         } catch (Exception e) {
 //            e.printStackTrace();
             System.out.println("Invalid Date Format");
         }
-        return birthday;
+        obj[0] = isSuccessful;
+        obj[1] = birthday;
+        return obj;
     }
 
-    private Time EmployeeHandlerForTime(String value) {
+    private Object[] EmployeeHandlerForTime(String value) {
+        Object[] obj = new Object[2];
+        boolean isSuccessful = false;
         Time time = Time.valueOf(LocalTime.of(0, 0, 0));
         try {
-            time = Time.valueOf(value);
+            time = Time.valueOf(value + ":00");
+            isSuccessful = true;
         } catch (Exception e) {
 
         }
-        return time;
+        obj[0] = isSuccessful;
+        obj[1] = time;
+        return obj;
     }
 
-    private int EmployeeHandlerForEmployeeID(String value) {
+    private Object[] EmployeeHandlerForEmployeeID(String value) {
+        Object[] obj = new Object[2];
+        boolean isSuccessful = false;
         int id = 1;
         try {
             id = Integer.parseInt(value);
+            isSuccessful = true;
         } catch (Exception e) {
 
         }
-        return id;
+        obj[0] = isSuccessful;
+        obj[1] = id;
+        return obj;
     }
 }
