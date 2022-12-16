@@ -31,6 +31,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class ImportAttendanceTableController {
 
@@ -230,8 +231,10 @@ public class ImportAttendanceTableController {
                     break;
                 case 2:
                     System.out.println(str);
-                    Date d = Date.valueOf(str);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                    Date d = Date.valueOf(LocalDate.parse(str, formatter));
                     System.out.println(d);
+                    System.out.println("Kek");
                     isSuccessful = true;
                     System.out.println(isSuccessful);
                     break;
