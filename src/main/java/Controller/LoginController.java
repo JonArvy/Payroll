@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -247,6 +248,8 @@ public class LoginController {
             stage.setScene(scene);
 //            stage.initStyle(StageStyle.UNDECORATED);
             stage.setResizable(false);
+            stage.setTitle("Admin Panel");
+            stage.getIcons().add(new Image(Main.class.getResourceAsStream("/cw/payroll/Assets/CWBH Logo.png")));
             stage.show();
 
             adminController = fxmlLoader.getController();

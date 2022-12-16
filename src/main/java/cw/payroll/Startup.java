@@ -6,6 +6,7 @@ import Database.SQLExecution;
 import Database.SQLLogs;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class Startup {
         stage.setScene(scene);
         stage.setMinHeight(540);
         stage.setMinWidth(717);
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/cw/payroll/Assets/CWBH Logo.png")));
 //        stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
 
@@ -57,6 +59,7 @@ public class Startup {
         scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
 
         stage.setScene(scene);
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/cw/payroll/Assets/CWBH Logo.png")));
         stage.setResizable(false);
 //        stage.setMinHeight(580);
 //        stage.setMinWidth(975);

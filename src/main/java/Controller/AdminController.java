@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -390,6 +391,7 @@ public class AdminController {
             scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
             stage2.setScene(scene);
             stage2.initStyle(StageStyle.UNDECORATED);
+            stage2.getIcons().add(new Image(Main.class.getResourceAsStream("/cw/payroll/Assets/CWBH Logo.png")));
             stage2.setResizable(false);
             stage2.show();
         } catch (IOException e) {
