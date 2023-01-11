@@ -9,6 +9,7 @@ import Controller.Attendance.DailyAttendanceController;
 import Controller.Employee.AddEmployeeController;
 import Controller.Employee.ManageEmployeeController;
 import Controller.Logs.LogsController;
+import Controller.Logs.MenuController;
 import Controller.NoticeBoard.NoticeBoardController;
 import Controller.Payroll.DepartmentController;
 import Controller.Payroll.PayrollSummaryController;
@@ -30,6 +31,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+
+import static Classes.QRCodeGenerator.deleteAllQRImages;
 
 public class AdminController {
 
@@ -357,9 +360,9 @@ public class AdminController {
     }
 
     private void logs() {
-        LogsController controller;
+        MenuController controller;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Logs/Logs.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Logs/Menu.fxml"));
 
             Node n = (Node) fxmlLoader.load();
             AnchorPane.setTopAnchor(n, 0.0);
@@ -382,6 +385,9 @@ public class AdminController {
     private void logOut() {
         Stage stage = (Stage) main_logout_button.getScene().getWindow();
         stage.close();
+
+        deleteAllQRImages();
+
         Parent root;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Login.fxml"));
