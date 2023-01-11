@@ -82,6 +82,13 @@ public class SQLExecution {
                 "emp_timein TIME, " +
                 "emp_timeout TIME)";
 
+        String attendance_tbl_admin = "CREATE TABLE IF NOT EXISTS tbl_attendance_admin (" +
+                "attendance_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                "emp_id INTEGER CONSTRAINT fk_emp_id_attendance REFERENCES tbl_employees(emp_id) ON DELETE SET NULL ON UPDATE CASCADE, " +
+                "emp_attendance_date DATE," +
+                "emp_timein TIME, " +
+                "emp_timeout TIME)";
+
         String admin_tbl = "CREATE TABLE IF NOT EXISTS tbl_admin (" +
                 "admin_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, " +
                 "emp_id INTEGER CONSTRAINT fk_emp_id_attendance REFERENCES tbl_employees(emp_id) ON DELETE SET NULL ON UPDATE CASCADE, " +
@@ -159,6 +166,8 @@ public class SQLExecution {
         ExecuteWithoutReturn(admin_tbl);
         ExecuteWithoutReturn(attendance_tbl);
 
+        ExecuteWithoutReturn(attendance_tbl_admin);
+
         ExecuteWithoutReturn(bonus_tbl);
 //        ExecuteWithoutReturn(shift_tbl);
 
@@ -171,6 +180,7 @@ public class SQLExecution {
         String noticeboard_tbl = "DROP TABLE IF EXISTS tbl_noticeboard";
         String department_tbl = "DROP TABLE IF EXISTS tbl_department";
         String attendance_tbl = "DROP TABLE IF EXISTS tbl_attendance";
+        String attendance_tbl_admin = "DROP TABLE IF EXISTS tbl_attendance_admin";
         String admin_tbl = "DROP TABLE IF EXISTS tbl_admin";
 
         String holiday_tbl = "DROP TABLE IF EXISTS tbl_holiday";
@@ -189,6 +199,8 @@ public class SQLExecution {
         ExecuteWithoutReturn(emp_tbl);
         ExecuteWithoutReturn(admin_tbl);
         ExecuteWithoutReturn(attendance_tbl);
+
+        ExecuteWithoutReturn(attendance_tbl_admin);
 
         ExecuteWithoutReturn(bonus_tbl);
         ExecuteWithoutReturn(shift_tbl);

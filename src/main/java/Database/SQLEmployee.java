@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 
 import static Classes.CustomAlert.callAlert;
+import static Classes.QRCodeGenerator.createQR;
+import static Classes.RandomStringGenerator.generateRandomString;
 import static Database.SQLConnection.connect;
 
 public class SQLEmployee {
@@ -499,6 +501,54 @@ public class SQLEmployee {
             e.printStackTrace();
         }
         return active;
+    }
+
+    public void updateBiometrics(Employee emp) {
+        String command = "UPDATE tbl_employees " +
+                "SET emp_biometrics_info = ? " +
+                "WHERE emp_id = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            String generatedRandomString = emp.getEmployee_ID() + generateRandomString();
+            preparedStatement.setString(1, generatedRandomString);
+            preparedStatement.setInt(2, emp.getEmployee_ID());
+
+            preparedStatement.executeUpdate();
+
+            callAlert("Employee " + emp.getFull_Name_Without_Middle() + " QR code has been re-regenerated!", 2);
+
+            createQR(generatedRandomString, emp.getEmployee_ID() + "");
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            callAlert("Error connecting to SQLite database", 1);
+            e.printStackTrace();
+        }
+    }
+
+    public void regenerateAllBiometricsInfo() {
+        String command = "UPDATE tbl_employees " +
+                "SET emp_biometrics_info = ? " +
+                "WHERE emp_id = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            for (Employee emp : getAllEmployees()) {
+                preparedStatement.setString(1, emp.getEmployee_ID() + generateRandomString());
+                preparedStatement.setInt(2, emp.getEmployee_ID());
+
+                preparedStatement.executeUpdate();
+            }
+
+
+            preparedStatement.executeUpdate();
+
+            callAlert("All Employees QR code has been re-regenerated!", 2);
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            callAlert("Error connecting to SQLite database", 1);
+            e.printStackTrace();
+        }
     }
 
 }

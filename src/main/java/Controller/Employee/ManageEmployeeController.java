@@ -77,6 +77,12 @@ public class ManageEmployeeController {
         callEmployeeImporter();
     }
 
+
+//    @FXML
+//    void generateAllEmployeeQR(ActionEvent event) {
+//        sqlEmployee.regenerateAllBiometricsInfo();
+//    }
+
     /****************************** FXML ENDS HERE ******************************/
     private Admin admin;
     private AnchorPane container;
@@ -145,7 +151,7 @@ public class ManageEmployeeController {
             @Override
             public TableCell<Employee, Void> call(final TableColumn<Employee, Void> param) {
                 final TableCell<Employee, Void> cell = new TableCell<Employee, Void>() {
-                    private final Button btn = new Button("View");
+                    private final Button btn = new Button("QR");
                     private final Button btn2 = new Button("Edit");
 
                     {
@@ -157,10 +163,10 @@ public class ManageEmployeeController {
                                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);";
 
                         btn.setStyle(style);
-                        btn.setDisable(true);
+//                        btn.setDisable(true);
                         btn.setOnAction((ActionEvent event) -> {
                             Employee emp = getTableView().getItems().get(getIndex());
-                            System.out.println("Edit" + emp.getFirst_Name() + " " + emp.getLast_Name());
+                            sqlEmployee.updateBiometrics(emp);
                         });
 
                         btn2.setStyle(style);

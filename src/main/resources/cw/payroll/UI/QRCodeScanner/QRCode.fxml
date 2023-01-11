@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QRCodeScanner.QRCodeController">
+   <children>
+      <AnchorPane fx:id="content_container" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="qr_image" fitHeight="418.0" fitWidth="474.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="403.0" layoutY="452.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Close" />
+            <Text layoutX="39.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NEW PASSWORD:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="password_text" layoutX="149.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PASS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

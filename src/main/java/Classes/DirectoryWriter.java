@@ -14,6 +14,8 @@ public class DirectoryWriter {
         String payroll_path = "output/Payroll Summary/";
         String payslip_path = "output/Payslips/";
         String database_path = "Database/";
+        String database_backup_path = "Database/Backup/";
+        String qr_path = "output/qr/";
         try {
 
             Path path = Paths.get(temp_path);
@@ -21,6 +23,8 @@ public class DirectoryWriter {
             Path path2 = Paths.get(payroll_path);
             Path path3 = Paths.get(payslip_path);
             Path path4 = Paths.get(database_path);
+            Path path5 = Paths.get(database_backup_path);
+            Path path6 = Paths.get(qr_path);
 
             //java.nio.file.Files;
             Files.createDirectories(path);
@@ -28,6 +32,8 @@ public class DirectoryWriter {
             Files.createDirectories(path2);
             Files.createDirectories(path3);
             Files.createDirectories(path4);
+            Files.createDirectories(path5);
+            Files.createDirectories(path6);
 
 //            callAlert("Directory is created!", 2);
 

@@ -275,17 +275,17 @@
                   <Font name="Century Gothic Bold" size="19.0" />
                </font>
             </Label>
-            <Button fx:id="login_pane_login_start_button_employee" layoutX="229.0" layoutY="260.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="EMPLOYEE" textFill="#01374d">
+            <Button fx:id="login_pane_login_start_button_employee" layoutX="229.0" layoutY="272.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="EMPLOYEE" textFill="#01374d">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="login_pane_login_start_button_admin" layoutX="229.0" layoutY="296.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="ADMIN">
+            <Button fx:id="login_pane_login_start_button_admin" layoutX="229.0" layoutY="308.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="ADMIN">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="login_pane_login_start_button_attendance" disable="true" layoutX="229.0" layoutY="235.0" mnemonicParsing="false" onAction="#clickNavigate" opacity="0.0" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="ATTENDANCE LOGIN" textFill="#01374d">
+            <Button fx:id="login_pane_login_start_button_attendance" layoutX="229.0" layoutY="235.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="153.0" style="-fx-background-color: #C6ECFF; -fx-text-fill: #01374D;" text="ATTENDANCE LOGIN" textFill="#01374d">
                <font>
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>

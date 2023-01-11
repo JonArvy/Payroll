@@ -1,6 +1,7 @@
 package Controller;
 
 import Classes.Converters;
+import Controller.QRCodeScanner.QRScannerController;
 import Database.*;
 import Models.*;
 import cw.payroll.Main;
@@ -27,6 +28,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 
 import static Classes.CustomAlert.callAlert;
+import static Classes.IPCamera.checkIfIPCameraIsOnline;
 
 public class LoginController {
 
@@ -198,7 +200,11 @@ public class LoginController {
             login_pane_fingerprint_place1.toFront();
 
         } else if (event.getSource() == login_pane_login_start_button_employee) {
-            login_pane_fingerprint_place.toFront();
+//            login_pane_fingerprint_place.toFront();
+            //Dito
+            if (checkIfIPCameraIsOnline()) {
+                callQRCodePanel();
+            }
 
         } else if (event.getSource() == login_pane_login_start_button_admin) {
             login_pane_login_admin.toFront();
@@ -317,6 +323,37 @@ public class LoginController {
         } catch (NumberFormatException e) {
             callAlert("Invalid Employee ID", 1);
         }
+    }
+
+    private void callQRCodePanel() {
+        System.out.println("Call QRCode Scanner");
+        Parent root;
+        QRScannerController qrScannerController;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/QRCodeScanner/QRScanner.fxml"));
+            root = fxmlLoader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
+            stage.setScene(scene);
+
+            stage.show();
+
+            qrScannerController = fxmlLoader.getController();
+            qrScannerController.setLoginController(this);
+            qrScannerController.getCalled();
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void TimeInAsEmployee(Employee employee) {
+
+    }
+
+    public void loginAsEmployee(Employee employee) {
+        this.employee = employee;
+        showEmployeeAttendanceTable();
     }
 
     private void showEmployeeAttendanceTable() {

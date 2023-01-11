@@ -57,6 +57,6 @@
             <Font name="Century Gothic Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="534.0" layoutY="41.0" mnemonicParsing="false" onAction="#importEmployee" prefWidth="52.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Import" textFill="#01374d" />
+      <Button layoutX="534.0" layoutY="41.0" mnemonicParsing="false" onAction="#importEmployee" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #23A443; -fx-text-fill: #ffffff;" text="Import" textFill="#01374d" />
     </children>
 </AnchorPane>
