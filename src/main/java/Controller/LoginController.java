@@ -2,6 +2,7 @@ package Controller;
 
 import Classes.Converters;
 import Controller.QRCodeScanner.QRScannerController;
+import Controller.QRCodeScanner.QRScannerForAttendanceController;
 import Database.*;
 import Models.*;
 import cw.payroll.Main;
@@ -140,6 +141,31 @@ public class LoginController {
     @FXML
     private ComboBox<SummarySchema> payslip_combo;
 
+
+
+    @FXML
+    private Label details_date;
+
+    @FXML
+    private Label details_department;
+
+    @FXML
+    private Label details_id;
+
+    @FXML
+    private Label details_message;
+
+    @FXML
+    private Label details_name;
+
+    @FXML
+    private Label details_timein;
+
+    @FXML
+    private Label details_timeout;
+
+
+
     @FXML
     private void proceed(ActionEvent event) {
         if (event.getSource() == login_pane_fingerprint_place_proceed) {
@@ -197,8 +223,9 @@ public class LoginController {
     @FXML
     void clickNavigate(ActionEvent event) {
         if (event.getSource() == login_pane_login_start_button_attendance) {
-            login_pane_fingerprint_place1.toFront();
-
+            if (checkIfIPCameraIsOnline()) {
+                callQRCodePanelForAttendance();
+            }
         } else if (event.getSource() == login_pane_login_start_button_employee) {
 //            login_pane_fingerprint_place.toFront();
             //Dito
@@ -240,6 +267,23 @@ public class LoginController {
             callAlert("Invalid Username or Password", 3);
         }
 
+    }
+
+    public void loadTimeInfo(Employee emp, Attendance attd, boolean ifTimeIn) {
+        details_name.setText(emp.getFull_Name_Without_Middle());
+        details_id.setText(String.valueOf(emp.getEmployee_ID()));
+        details_department.setText(emp.getDepartment_Name());
+
+        details_date.setText(String.valueOf(attd.getEmployee_Attendance_Date()));
+        details_timein.setText(String.valueOf(attd.getEmployee_TimeIn()));
+
+        if (!ifTimeIn) {
+            details_message.setText("Time in at " + attd.getEmployee_Attendance_Date() + " " + attd.getEmployee_TimeIn());
+        } else {
+            details_timeout.setText(String.valueOf(attd.getEmployee_TimeOut()));
+            details_message.setText("Time out at " + attd.getEmployee_Attendance_Date() + " " + attd.getEmployee_TimeOut());
+        }
+        login_pane_fingerprint_place1.toFront();
     }
 
     private void logInAsAdmin(Admin admin) {
@@ -331,6 +375,29 @@ public class LoginController {
         QRScannerController qrScannerController;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/QRCodeScanner/QRScanner.fxml"));
+            root = fxmlLoader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
+            stage.setScene(scene);
+
+            stage.show();
+
+            qrScannerController = fxmlLoader.getController();
+            qrScannerController.setLoginController(this);
+            qrScannerController.getCalled();
+        } catch (IOException e) {
+
+        }
+    }
+
+
+    private void callQRCodePanelForAttendance() {
+        System.out.println("Call QRCode Scanner");
+        Parent root;
+        QRScannerForAttendanceController qrScannerController;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/QRCodeScanner/QRScannerForAttendance.fxml"));
             root = fxmlLoader.load();
             Stage stage = new Stage();
             Scene scene = new Scene(root);

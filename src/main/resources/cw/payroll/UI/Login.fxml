@@ -19,6 +19,116 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
+      <Pane fx:id="login_pane_fingerprint_place1" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Button fx:id="login_pane_fingerprint_place_back1" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
+               <font>
+                  <Font name="Century Gothic Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Assets/Back%20Button.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="78.0" layoutY="80.0" text="Employee Details">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="36.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_emp_id" disable="true" layoutX="346.0" layoutY="27.0" opacity="0.0" prefHeight="25.0" prefWidth="165.0" promptText="EMPLOYEE ID">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font></TextField>
+            <Button disable="true" layoutX="515.0" layoutY="27.0" mnemonicParsing="false" onAction="#loginAttendancce" opacity="0.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #01374D;" text="LOGIN">
+               <font>
+                  <Font name="Century Gothic" size="12.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill></Button>
+            <Label layoutX="78.0" layoutY="140.0" text="Employee Name">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="170.0" text="Employee ID">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="200.0" text="Department">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="245.0" text="Date">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="275.0" text="Time In">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="305.0" text="Time Out">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="details_name" layoutX="195.0" layoutY="140.0" text="Name">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="details_id" layoutX="195.0" layoutY="170.0" text="ID">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="details_department" layoutX="195.0" layoutY="200.0" text="Department">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="details_date" layoutX="195.0" layoutY="245.0" text="Date">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="details_timein" layoutX="195.0" layoutY="275.0" text="Time In">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="details_timeout" layoutX="195.0" layoutY="305.0" text="Time Out">
+               <font>
+                  <Font name="Tw Cen MT Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="details_message" layoutX="262.0" layoutY="359.0" prefHeight="27.0" prefWidth="328.0" text="Time in at 1/12/2023 9:55:00">
+               <font>
+                  <Font name="Tw Cen MT" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <Pane fx:id="login_pane_fingerprint_re_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label layoutX="145.0" layoutY="96.0" text="Couldn't recognize your fingerprint. Please TRY AGAIN">
@@ -79,51 +189,6 @@
                   </ImageView>
                </graphic>
             </Button>
-         </children>
-      </Pane>
-      <Pane fx:id="login_pane_fingerprint_place1" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Button fx:id="login_pane_fingerprint_place_back1" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#clickNavigate" prefHeight="29.0" prefWidth="72.0" style="-fx-background-color: #545454; -fx-text-fill: #FFFFFF;" text="BACK">
-               <font>
-                  <Font name="Century Gothic Bold" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="17.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/Back%20Button.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label layoutX="190.0" layoutY="147.0" text="Please put your Employee ID or Number">
-               <font>
-                  <Font name="Tw Cen MT Italic" size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="login_emp_id" layoutX="191.0" layoutY="205.0" prefHeight="25.0" prefWidth="165.0" promptText="EMPLOYEE ID">
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font></TextField>
-            <Button layoutX="360.0" layoutY="205.0" mnemonicParsing="false" onAction="#loginAttendancce" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #01374D;" text="LOGIN">
-               <font>
-                  <Font name="Century Gothic" size="12.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill></Button>
          </children>
       </Pane>
       <Pane fx:id="login_pane_fingerprint_place" prefHeight="410.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">

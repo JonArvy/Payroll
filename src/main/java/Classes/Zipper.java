@@ -1,5 +1,7 @@
 package Classes;
 
+import Database.SQLAdminAttendance;
+import Models.Attendance;
 import Models.Backup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,7 +9,11 @@ import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 import java.io.File;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import static Classes.CustomAlert.callAlert;
@@ -17,7 +23,13 @@ public class Zipper {
     private static String database_backup_path = "Database/Backup/";
 
     public static void main(String[] args) {
-        createBackupFromCurrentTimeStamp();
+        SQLAdminAttendance sqlAdminAttendance = new SQLAdminAttendance();
+        Attendance attendance = new Attendance();
+        attendance.setEmployee_ID(1000);
+        attendance.setEmployee_Attendance_Date(Date.valueOf(LocalDate.now()));
+        attendance.setEmployee_TimeIn(Time.valueOf(LocalTime.now()));
+        attendance.setEmployee_TimeOut(Time.valueOf(LocalTime.now()));
+        sqlAdminAttendance.registerAttendanceUsingQR(attendance);
     }
 
     public static ObservableList<Backup> listAllFiles() {

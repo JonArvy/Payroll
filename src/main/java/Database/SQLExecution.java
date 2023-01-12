@@ -97,6 +97,15 @@ public class SQLExecution {
                 "admin_disabler INTEGER," +
                 "admin_isUsingTheSystem BOOLEAN)";
 
+        String newadmin_tbl = "CREATE TABLE IF NOT EXISTS tbl_new_admin (" +
+                "admin_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                "admin_username VARCHAR(200), " +
+                "admin_name VARCHAR(200)," +
+                "admin_password VARCHAR(200)," +
+                "admin_grantor VARCHAR(200)," +
+                "admin_disabler VARCHAR(200)," +
+                "admin_isUsingTheSystem BOOLEAN)";
+
         String bonus_tbl = "CREATE TABLE IF NOT EXISTS tbl_bonus (" +
                 "bonus_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 "bonus_name VARCHAR(50)," +
@@ -164,6 +173,9 @@ public class SQLExecution {
 
         ExecuteWithoutReturn(emp_tbl);
         ExecuteWithoutReturn(admin_tbl);
+
+        ExecuteWithoutReturn(newadmin_tbl);
+
         ExecuteWithoutReturn(attendance_tbl);
 
         ExecuteWithoutReturn(attendance_tbl_admin);
@@ -183,6 +195,8 @@ public class SQLExecution {
         String attendance_tbl_admin = "DROP TABLE IF EXISTS tbl_attendance_admin";
         String admin_tbl = "DROP TABLE IF EXISTS tbl_admin";
 
+        String newadmin_tbl = "DROP TABLE IF EXISTS tbl_new_admin";
+
         String holiday_tbl = "DROP TABLE IF EXISTS tbl_holiday";
 
         String bonus_tbl = "DROP TABLE IF EXISTS tbl_bonus";
@@ -198,6 +212,9 @@ public class SQLExecution {
 
         ExecuteWithoutReturn(emp_tbl);
         ExecuteWithoutReturn(admin_tbl);
+
+        ExecuteWithoutReturn(newadmin_tbl);
+
         ExecuteWithoutReturn(attendance_tbl);
 
         ExecuteWithoutReturn(attendance_tbl_admin);

@@ -1,5 +1,7 @@
 package Classes;
 
+import Database.SQLAdminAttendance;
+import Models.Attendance;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.ds.ipcam.IpCamDeviceRegistry;
@@ -12,6 +14,10 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Socket;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static Classes.CustomAlert.callAlert;
 
@@ -88,8 +94,9 @@ public class IPCamera {
         try {
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress(IP, PORT), 1000);
-            System.out.println("Connection to " + IP + ":" + PORT + " is online.");
+//            System.out.println("Connection to " + IP + ":" + PORT + " is online.");
             isOnline = true;
+            socket.close();
         } catch (Exception e) {
             callAlert("Connection to camera is offline.", 1);
         }

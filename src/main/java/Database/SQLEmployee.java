@@ -551,4 +551,51 @@ public class SQLEmployee {
         }
     }
 
+    public boolean checkIfBiometricsExist(String biometrics) {
+        boolean exist = false;
+
+        String command = "SELECT * " +
+                "FROM tbl_employees " +
+                "WHERE emp_biometrics_info = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setString(1, biometrics);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                exist = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+
+        return exist;
+    }
+
+    public Employee getEmployeeWithBiometrics(String biometrics) {
+        Employee employee = null;
+        String command = "SELECT * " +
+                "FROM tbl_employees " +
+                "WHERE emp_biometrics_info = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setString(1, biometrics);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                employee = getEmployee(new Employee(resultSet.getInt("emp_id")));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+
+        return employee;
+    }
+
 }

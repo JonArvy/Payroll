@@ -1,7 +1,9 @@
 package Controller.QRCodeScanner;
 
 import Controller.LoginController;
+import Database.SQLAdminAttendance;
 import Database.SQLEmployee;
+import Models.Attendance;
 import Models.Employee;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
@@ -11,23 +13,25 @@ import com.google.zxing.common.HybridBinarizer;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-
 import java.awt.image.BufferedImage;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-import static Classes.CustomAlert.callAlert;
-import static Classes.IPCamera.*;
+import static Classes.IPCamera.getIPCamPanel;
+import static Classes.IPCamera.getIPWebcam;
 
 
-public class QRScannerController implements Runnable, ThreadFactory{
+public class QRScannerForAttendanceController implements Runnable, ThreadFactory{
 
     @FXML
     private AnchorPane content_container;
@@ -121,6 +125,7 @@ public class QRScannerController implements Runnable, ThreadFactory{
                     this.result = result;
                     gotcalled = true;
                     employee = sqlEmployee.getEmployeeWithBiometrics(result.getText());
+
                     terminateThreadAndIPCamera();
                 } else {
                     System.out.println("Employee not found");
@@ -131,7 +136,6 @@ public class QRScannerController implements Runnable, ThreadFactory{
         } while (true);
     }
 
-    private Employee employee;
 
     @Override
     public Thread newThread(Runnable r) {
@@ -144,7 +148,16 @@ public class QRScannerController implements Runnable, ThreadFactory{
                 Stage stage = (Stage) content_container.getScene().getWindow();
                 stage.close();
                 if (gotcalled) {
-                    loginController.loginAsEmployee(employee);
+                    //Attendance
+                    attendance = new Attendance();
+                    attendance.setEmployee_ID(employee.getEmployee_ID());
+                    attendance.setEmployee_Attendance_Date(Date.valueOf(LocalDate.now()));
+                    attendance.setEmployee_TimeIn(Time.valueOf(LocalTime.now()));
+                    attendance.setEmployee_TimeOut(Time.valueOf(LocalTime.now()));
+                    SQLAdminAttendance sqlAdminAttendance = new SQLAdminAttendance();
+                    sqlAdminAttendance.registerAttendanceUsingQR(attendance);
+
+                    loginController.loadTimeInfo(employee, attendance, !sqlAdminAttendance.checkIfAttendanceExist(attendance));
                 }
             });
 
@@ -157,6 +170,10 @@ public class QRScannerController implements Runnable, ThreadFactory{
     private boolean run = false;
     private boolean gotcalled = false;
 
+    private boolean isTimeIn = false;
+
+    private Employee employee;
+    private Attendance attendance;
     private Result result;
     public void terminateThreadAndIPCamera() {
         webcam.close();
