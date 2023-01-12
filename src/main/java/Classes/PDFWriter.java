@@ -1,5 +1,6 @@
 package Classes;
 
+import Models.Admin;
 import Models.BonusSummary;
 import Models.Summary;
 import Models.SummarySchema;
@@ -11,10 +12,8 @@ import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Comparator;
 
 import static Classes.CustomAlert.callAlert;
@@ -132,7 +132,7 @@ public class PDFWriter {
         }
     }
 
-    public static void createPayrollSummaryPDF(ObservableList<Summary> summaryList, Date from, Date to) {
+    public static void createPayrollSummaryPDF(ObservableList<Summary> summaryList, Date from, Date to, Admin admin) {
 
         ObservableList<String> deptlist = FXCollections.observableArrayList();
 
@@ -216,11 +216,33 @@ public class PDFWriter {
                 }
             }
 
-            table2.addCell(new Cell(0, 0).add("A. Certified as to availability of appropriation for obligation in the amount\n\nSignature:\n\nPrinted Name:\nPosition:Chairman,Committee or Appropriation\n\nE. Accounting Entries").setFontSize(fontsize));
-            table2.addCell(new Cell(0, 0).add("B. Certified as to availability of appropriation for obligation in the amount\n\nSignature:\n\nPrinted Name:\nPosition:Chairman,Committee or Appropriation\n\nE. Accounting Entries").setFontSize(fontsize));
+            table2.addCell(new Cell(0, 0).add("\nA. Certified as to availability of appropriation for obligation in the amount\n\nSignature:\n\nPrinted Name:\nPosition:Chairman,Committee or Appropriation\n\n").setFontSize(fontsize));
+            table2.addCell(new Cell(0, 4).add("\nB. Certified as to availability of funds and completeness and propriety of supporting documents\n\nSignature:\n\nPrinted Name:\nPosition: BARANGAY TREASURER\nDate: " + LocalDate.now()).setFontSize(fontsize));
+            table2.addCell(new Cell(0, 0).add("\nC. Certified as to validity, propriety and legality of claim and approved for payment\n\nSignature:\n\nPrinted Name:\nPosition: PUNONG BARANGAY").setFontSize(fontsize));
+            table2.addCell(new Cell(0, 2).add("\nD. Certified that each official/employee whose name appears on the above roll has been paid the amount stated opposite to his/her name\n\nSignature:\n\nPrinted Name:\nPosition: BARANGAY TREASURER\nDATE: " + LocalDate.now()).setFontSize(fontsize));
+
+            table2.addCell(new Cell(0, 8).add("E. Accounting Entries").setFontSize(fontsize));
+
+            table2.addCell(new Cell(0, 0).add("Account Title").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell(0, 0).add("Account Code").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell(0, 0).add(" ").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell(0, 0).add("Debit").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell(0, 0).add("Credit").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell(7, 0).add("Prepared By:\n\nBarangay BookKeeper:\nDate:\nApproved By:").setFontSize(fontsize));
+            table2.addCell(new Cell(0, 0).add(" ").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            table2.addCell(new Cell(0, 0).add(" ").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+
+            for (int i = 0; i < 42; i++) {
+                table2.addCell(new Cell(0, 0).add(" ").setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
+            }
+
+
+
 
 
             document.add(table);
+            document.add(new AreaBreak());
+            document.add(table2);
 //            document.add(table2);
 
 //            Table table2 = new Table();
