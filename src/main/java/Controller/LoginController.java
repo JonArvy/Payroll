@@ -22,6 +22,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
@@ -460,6 +461,8 @@ public class LoginController {
 
         SQLPayrollSummary sqlPayrollSummary = new SQLPayrollSummary();
         Summary sm = sqlPayrollSummary.getSummary(summary_id, emp);
+        System.out.println(sm.getTotalHourlyRate());
+        System.out.println(sm.getTotalHour());
 
         Parent root;
         PayslipContainerController payslipContainerController;
@@ -468,6 +471,7 @@ public class LoginController {
             root = fxmlLoader.load();
             Stage stage = new Stage();
             Scene scene = new Scene(root);
+            stage.setResizable(false);
             scene.getStylesheets().add(Main.class.getResource("/cw/payroll/css/Style.css").toExternalForm());
             stage.setScene(scene);
 //            stage.initStyle(StageStyle.UNDECORATED);
@@ -478,6 +482,34 @@ public class LoginController {
             payslipContainerController.setSummary(sm);
         } catch (IOException e) {
 
+        }
+    }
+
+
+
+
+    @FXML
+    private void cameraConfig(ActionEvent event) {
+        String fileName = "settings.txt";
+        File file = new File(fileName);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Settings.fxml"));
+            root = fxmlLoader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -86,6 +86,7 @@ public class DateTimeCalculator {
 //        System.out.println(roundDownTime(Employee_Time_Out));
         long subtracted_hours = total_hours - (total_break_hours / 60);
 
+        System.out.println(registered_time_difference);
         if (registered_time_difference < 60) {
             subtracted_hours = 0;
         }

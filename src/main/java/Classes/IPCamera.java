@@ -9,7 +9,9 @@ import com.github.sarxos.webcam.ds.ipcam.IpCamDriver;
 import com.github.sarxos.webcam.ds.ipcam.IpCamMode;
 
 import javax.imageio.ImageIO;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
@@ -22,7 +24,6 @@ import java.time.LocalTime;
 import static Classes.CustomAlert.callAlert;
 
 public class IPCamera {
-    private static final String IP = "192.168.1.3";
     private static final int PORT = 8080;
 
     static {
@@ -31,7 +32,7 @@ public class IPCamera {
 
     public static Webcam getIPWebcam() {
         try {
-            IpCamDeviceRegistry.register("" + (Math.random() * 300), "http://" + IP + ":" + PORT + "/videofeed", IpCamMode.PUSH);
+            IpCamDeviceRegistry.register("" + (Math.random() * 300), "http://" + getIPFromFileSettings() + ":" + PORT + "/videofeed", IpCamMode.PUSH);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -41,7 +42,7 @@ public class IPCamera {
 
     public static Webcam getIPWebcam(String name) {
         try {
-            IpCamDeviceRegistry.register(name, "http://" + IP + ":" + PORT + "/videofeed", IpCamMode.PUSH);
+            IpCamDeviceRegistry.register(name, "http://" + getIPFromFileSettings() + ":" + PORT + "/videofeed", IpCamMode.PUSH);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -93,7 +94,7 @@ public class IPCamera {
         boolean isOnline = false;
         try {
             Socket socket = new Socket();
-            socket.connect(new InetSocketAddress(IP, PORT), 1000);
+            socket.connect(new InetSocketAddress(getIPFromFileSettings(), PORT), 1000);
 //            System.out.println("Connection to " + IP + ":" + PORT + " is online.");
             isOnline = true;
             socket.close();
@@ -101,5 +102,20 @@ public class IPCamera {
             callAlert("Connection to camera is offline.", 1);
         }
         return isOnline;
+    }
+
+    private static String getIPFromFileSettings() {
+        String IP = "192.168.1.1";
+        try {
+            FileReader fr = new FileReader("settings.txt");
+            BufferedReader br = new BufferedReader(fr);
+            IP = br.readLine();
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return IP;
     }
 }

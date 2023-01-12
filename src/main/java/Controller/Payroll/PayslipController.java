@@ -172,7 +172,7 @@ public class PayslipController {
         main_payslip_column_empid.setCellValueFactory(new PropertyValueFactory<Summary, Integer>("EmployeeNumber"));
         main_payslip_column_fullname.setCellValueFactory(new PropertyValueFactory<Summary, String>("Name"));
         main_payslip_column_department.setCellValueFactory(new PropertyValueFactory<Summary, String>("Department"));
-        main_payslip_column_position.setCellValueFactory(new PropertyValueFactory<Summary, String>("Position"));
+        main_payslip_column_position.setCellValueFactory(new PropertyValueFactory<Summary, String>("stringClaimed"));
 
         Callback<TableColumn<Summary, Void>, TableCell<Summary, Void>> cellFactory = new Callback<TableColumn<Summary, Void>, TableCell<Summary, Void>>() {
             @Override

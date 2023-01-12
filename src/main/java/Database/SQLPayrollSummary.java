@@ -695,6 +695,9 @@ public class SQLPayrollSummary {
 
             while(resultSet.next()) {
                 Summary sm = new Summary();
+                sm.setDatabaseID(resultSet.getInt("summary_individual_id"));
+                sm.setSummaryID(resultSet.getInt("summary_id"));
+
                 sm.setNumber(resultSet.getInt("summary_number"));
 //                sm.setDateCreated(resultSet.getDate("summary_date_created"));
                 sm.setName(resultSet.getString("summary_name"));
@@ -716,6 +719,7 @@ public class SQLPayrollSummary {
                 sm.setTotalHour(resultSet.getInt("summary_total_hours"));
                 sm.setTotalHourlyRate(resultSet.getDouble("summary_department_hourly_rate"));
 
+                sm.setClaimed(resultSet.getBoolean("recieved"));
 //                sm.setSummaryID(resultSet.getInt("summary_id"));
                 summaryList.add(
                         sm
@@ -741,6 +745,11 @@ public class SQLPayrollSummary {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
+                sm.setDatabaseID(resultSet.getInt("summary_individual_id"));
+                sm.setSummaryID(resultSet.getInt("summary_id"));
+
+                sm.setNumber(resultSet.getInt("summary_number"));
+
                 sm.setDateCreated(resultSet.getDate("summary_date_created"));
                 sm.setName(resultSet.getString("summary_name"));
                 sm.setEmployeeNumber(resultSet.getInt("summary_employee_number"));
@@ -756,85 +765,32 @@ public class SQLPayrollSummary {
                 sm.setTotalDeduction(resultSet.getDouble("summary_total_deduction"));
 
                 sm.setNetAmount(resultSet.getDouble("summary_net_amount"));
+
+                sm.setTotalHour(resultSet.getInt("summary_total_hours"));
+                sm.setTotalHourlyRate(resultSet.getDouble("summary_department_hourly_rate"));
+
+                sm.setClaimed(resultSet.getBoolean("recieved"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return sm;
     }
+
+    public void markPayAsClaimed(int id) {
+        String command = "UPDATE payroll_summary " +
+                "SET recieved = ? " +
+                "WHERE summary_individual_id = ?";
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.executeUpdate();
+            callAlert("Marked the Payslip as Claimed" , 2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
-
-//        public ObservableList<Summary> generatePayrollSummary(Date from, Date to, ObservableList<Summary> summaryObservableList) {
-////
-//
-//            String command = "SELECT * " +
-//                    "   FROM tbl_attendance " +
-//                    "   WHERE emp_id = ? " +
-//                    "   AND emp_attendance_date BETWEEN ? AND ?";
-//
-//
-//            try (Connection connection = connect();
-//                 PreparedStatement preparedStatement = connection.prepareStatement(command)) {
-//                preparedStatement.setInt(1, summaryObservableList.get(0).getNumber());
-//                preparedStatement.setDate(2, from);
-//                preparedStatement.setDate(3, to);
-//
-//                ResultSet resultSet = preparedStatement.executeQuery();
-//                while (resultSet.next()) {
-//                    summaryObservableList.add(new Summary(
-//                                    id,
-//                                    resultSet.getString("full_name"),
-//                                    resultSet.getString("employee_position"),
-//                                    resultSet.getDouble("monthlywage"),
-//
-//                                    resultSet.getDouble("monthlywage"),
-//
-//                                    resultSet.getInt("present_days"),
-//                                    resultSet.getInt("absent_days"),
-////                                resultSet.getInt("total_from_presentdays"),
-//
-//                                    resultSet.getInt("dailyrate") * resultSet.getInt("present_days"),
-//
-//                                    resultSet.getDouble("monthlywage"),
-//                                    resultSet.getDouble("monthlywage"),
-//                                    resultSet.getDouble("monthlywage")
-////                                resultSet.getInt("late_hours"),
-////                                resultSet.getInt("holiday")
-//                            )
-//                    );
-//                    id++;
-//                }
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//
-//            return summaryObservableList;
-//        }
-
-//        try (Connection connection = connect();
-//             PreparedStatement preparedStatement = connection.prepareStatement(command_emp);
-//             PreparedStatement preparedStatement1 = connection.prepareStatement(command_dept);
-//             PreparedStatement preparedStatement2 = connection.prepareStatement(command_shift);
-//             PreparedStatement preparedStatement3 = connection.prepareStatement(command_bonus);
-//             PreparedStatement preparedStatement4 = connection.prepareStatement(command_attendance)) {
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            ResultSet resultSet1 = preparedStatement1.executeQuery();
-//            ResultSet resultSet2 = preparedStatement2.executeQuery();
-//            ResultSet resultSet3 = preparedStatement3.executeQuery();
-//            ResultSet resultSet4 = preparedStatement4.executeQuery();
-//            //            while (resultSet.next()) {
-//            //                list.add(new Summary(
-//            //                                resultSet.getInt("employee_id"),
-//            //                                resultSet.getString("employee_name"),
-//            //                                resultSet.getString("employee_position"),
-//            //                                resultSet.getString("employee_address"),
-//            //                                resultSet.getString("employee_contact"),
-//            //                                resultSet.getString("employee_email"),
-//            //                                resultSet.getString
-//
-//        }
-//    } catch (SQLException e) {
-//        System.out.println(e.getMessage());
-//    }
-//        return list;

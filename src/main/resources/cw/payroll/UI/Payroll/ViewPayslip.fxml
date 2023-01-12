@@ -72,12 +72,12 @@
                         <Font name="Century Gothic" size="12.0" />
                     </font>
                 </Label>
-                <Label fx:id="payroll_no" layoutX="516.0" layoutY="128.0" text="Label">
+                <Label fx:id="payroll_no" layoutX="516.0" layoutY="128.0" opacity="0.0" text="Label">
                     <font>
                         <Font name="Century Gothic Bold" size="12.0" />
                     </font>
                 </Label>
-                <Label layoutX="409.0" layoutY="128.0" text="Payroll No.           :">
+                <Label layoutX="409.0" layoutY="128.0" opacity="0.0" text="Payroll No.           :">
                     <font>
                         <Font name="Century Gothic" size="12.0" />
                     </font>

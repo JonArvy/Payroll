@@ -44,6 +44,10 @@ public class Summary {
 
     private int SummaryID;
 
+    private boolean Claimed;
+
+    private String stringClaimed;
+
     public int getSummaryID() {
         return SummaryID;
     }
@@ -75,6 +79,26 @@ public class Summary {
 
     public Summary() {
 
+    }
+
+    public boolean isClaimed() {
+        return Claimed;
+    }
+
+    public String isStringClaimed() {
+        return stringClaimed;
+    }
+
+    public void setStringClaimed() {
+        this.stringClaimed = "Unclaimed";
+        if (Claimed) {
+            this.stringClaimed = "Claimed";
+        }
+    }
+
+    public void setClaimed(boolean claimed) {
+        Claimed = claimed;
+        setStringClaimed();
     }
 
     public int getTotalHour() {

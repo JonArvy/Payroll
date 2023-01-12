@@ -29,7 +29,7 @@
                 <TableColumn fx:id="main_payslip_column_empid" prefWidth="93.0" text="Emp ID" />
                 <TableColumn fx:id="main_payslip_column_fullname" prefWidth="188.0" text="Full Name" />
                 <TableColumn fx:id="main_payslip_column_department" prefWidth="152.0" text="Department" />
-                <TableColumn fx:id="main_payslip_column_position" prefWidth="199.0" text="Position" />
+                <TableColumn fx:id="main_payslip_column_position" prefWidth="199.0" text="Status" />
                 <TableColumn fx:id="main_payslip_column_action" prefWidth="133.0" text="Action" />
             </columns>
             <columnResizePolicy>
