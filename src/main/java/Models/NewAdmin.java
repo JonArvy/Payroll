@@ -15,20 +15,15 @@ public class NewAdmin {
     private String adminTypeMessage;
 
 
-    public void setItems() {
-        activeMessage = "Inactive";
-        if (grantor == null) {
-            activeMessage = "Active";
-        }
 
-        adminTypeMessage = "Admin";
-        if (!isSuperAdmin) {
-            adminTypeMessage = "Super Admin";
-        }
-    }
 
     public NewAdmin() {
 
+    }
+
+
+    public NewAdmin(String username) {
+        this.username = username;
     }
 
     public NewAdmin(int ID, String username, String name, String password, String grantor, String disabler, boolean isUsingTheSystem, boolean isSuperAdmin) {
@@ -52,6 +47,19 @@ public class NewAdmin {
         this.isUsingTheSystem = isUsingTheSystem;
         this.isSuperAdmin = isSuperAdmin;
     }
+
+    public void setItems() {
+        activeMessage = "Inactive";
+        if (disabler == null) {
+            activeMessage = "Active";
+        }
+
+        adminTypeMessage = "Admin";
+        if (isSuperAdmin) {
+            adminTypeMessage = "Super Admin";
+        }
+    }
+
 
     public boolean isSuperAdmin() {
         return isSuperAdmin;

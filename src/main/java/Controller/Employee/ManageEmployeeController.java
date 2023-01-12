@@ -21,6 +21,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
+import static Classes.BooleanAlerts.booleanAlert;
 import static Classes.ImporterFileChooser.callEmployeeImporter;
 
 public class ManageEmployeeController {
@@ -152,10 +153,16 @@ public class ManageEmployeeController {
             @Override
             public TableCell<Employee, Void> call(final TableColumn<Employee, Void> param) {
                 final TableCell<Employee, Void> cell = new TableCell<Employee, Void>() {
+
                     private final Button btn = new Button("QR");
                     private final Button btn2 = new Button("Edit");
 
+
                     {
+                        if (!admin.isSuperAdmin()) {
+                            btn.setDisable(true);
+                            btn.setVisible(false);
+                        }
                         String style = "-fx-background-color: #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%)," +
                                 "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%); " +
                                 "-fx-background-radius: 30; " +
@@ -167,7 +174,9 @@ public class ManageEmployeeController {
 //                        btn.setDisable(true);
                         btn.setOnAction((ActionEvent event) -> {
                             Employee emp = getTableView().getItems().get(getIndex());
-                            sqlEmployee.updateBiometrics(emp);
+                            if (booleanAlert("Are you sure you want to re-generate " + emp.getFull_Name_Without_Middle() + " QR Code?")) {
+                                sqlEmployee.updateBiometrics(emp);
+                            }
                         });
 
                         btn2.setStyle(style);
@@ -182,7 +191,7 @@ public class ManageEmployeeController {
                         if (empty) {
                             setGraphic(null);
                         } else {
-                            HBox allbtn = new HBox(btn, btn2);
+                            HBox allbtn = new HBox(btn2, btn);
                             setGraphic(allbtn);
                         }
                     }

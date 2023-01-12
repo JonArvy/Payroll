@@ -115,7 +115,7 @@ public class AdminController {
 
     @FXML
     private void initialize() {
-        setAdmin(new NewAdmin());
+//        setAdmin(new NewAdmin());
 
     }
 
@@ -123,6 +123,11 @@ public class AdminController {
 
     public void setAdmin(NewAdmin admin) {
         this.admin = admin;
+        if (admin.isSuperAdmin()) {
+            main_admin_button.setText("SUPER ADMIN");
+        } else {
+            main_menu_vbox.getChildren().remove(main_credentials_button);
+        }
         loadNoticeBoard();
     }
 

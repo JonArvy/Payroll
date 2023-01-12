@@ -22,6 +22,6 @@
         </columns>
       </TableView>
       <Button layoutX="579.0" layoutY="496.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: red; -fx-text-fill: white;" text="Back" />
-      <Button layoutX="455.0" layoutY="36.0" mnemonicParsing="false" onAction="#automaticBackup" style="-fx-background-color: #23A443; -fx-text-fill: #fff;" text="Automatic Backup" />
+      <Button disable="true" layoutX="455.0" layoutY="36.0" mnemonicParsing="false" onAction="#automaticBackup" opacity="0.0" style="-fx-background-color: #23A443; -fx-text-fill: #fff;" text="Automatic Backup" />
    </children>
 </AnchorPane>

@@ -37,6 +37,7 @@ public class SQLNewAdmin {
                 admin.setGrantor(resultSet.getString("admin_grantor"));
                 admin.setDisabler(resultSet.getString("admin_disabler"));
                 admin.setUsingTheSystem(resultSet.getBoolean("admin_isUsingTheSystem"));
+                admin.setSuperAdmin(resultSet.getBoolean("admin_isSuperAdmin"));
             }
 
         } catch (SQLException e) {
@@ -65,6 +66,7 @@ public class SQLNewAdmin {
                 admin.setGrantor(resultSet.getString("admin_grantor"));
                 admin.setDisabler(resultSet.getString("admin_disabler"));
                 admin.setUsingTheSystem(resultSet.getBoolean("admin_isUsingTheSystem"));
+                admin.setSuperAdmin(resultSet.getBoolean("admin_isSuperAdmin"));
 
                 admin.setItems();
 
@@ -208,7 +210,7 @@ public class SQLNewAdmin {
         }
     }
 
-    public boolean checkIfEmployeeIsAdmin(NewAdmin employee) {
+    public boolean checkIfAlreadyAdmin(NewAdmin employee) {
         boolean exist = false;
         String command = "SELECT * " +
                 "FROM tbl_new_admin " +

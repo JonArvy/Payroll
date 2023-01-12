@@ -48,7 +48,7 @@ public class Zipper {
             } else {
                 String filename = fileEntry.getName().replace(".zip", "").replace("-", "/").replace(";", ":");
                 filelist.add(new Backup(filename));
-                System.out.println(filename);
+//                System.out.println(filename);
             }
         }
         return filelist;
@@ -59,7 +59,7 @@ public class Zipper {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH;mm;ss");
         LocalDateTime now = LocalDateTime.now();
         startDatabaseBackupZipping(dtf.format(now));
-        System.out.println(dtf.format(now));
+//        System.out.println(dtf.format(now));
     }
 
     public static void startDatabaseBackupZipping(String name) {
@@ -72,11 +72,13 @@ public class Zipper {
 
     public static void loadBackupUsingRawName(String name) {
         startDatabaseRecoveryUnZipping(name.replace("/", "-").replace(":", ";"));
+        callAlert("Backup has been loaded: " + name, 2);
     }
 
     public static void startDatabaseRecoveryUnZipping(String name) {
         try {
             new ZipFile(database_backup_path+ name + ".zip").extractAll(database_path);
+
         } catch (ZipException e) {
             throw new RuntimeException(e);
         }
@@ -86,7 +88,7 @@ public class Zipper {
         String path = database_backup_path + name.replace("/", "-").replace(":", ";") + ".zip";
         File backup = new File(path);
         if (backup.delete()) {
-            System.out.println();
+//            System.out.println();
             callAlert("Deleted the backup: " + backup.getName(), 2);
         } else {
             System.out.println("Failed to delete the backup.");

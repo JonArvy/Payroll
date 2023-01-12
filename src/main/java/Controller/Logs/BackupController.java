@@ -23,6 +23,7 @@ import javafx.util.Callback;
 
 import java.io.IOException;
 
+import static Classes.BooleanAlerts.booleanAlert;
 import static Classes.Zipper.*;
 
 public class BackupController {
@@ -43,8 +44,11 @@ public class BackupController {
 
     @FXML
     void createBackup(ActionEvent event) {
-        createBackupFromCurrentTimeStamp();
-        refreshList();
+        if (booleanAlert("Would you like to create a backup?")) {
+            createBackupFromCurrentTimeStamp();
+            refreshList();
+        }
+
     }
 
     @FXML
@@ -119,15 +123,21 @@ public class BackupController {
                         btn.setStyle(style);
                         btn.setOnAction((ActionEvent event) -> {
                             Backup backup = getTableView().getItems().get(getIndex());
-                            loadBackupUsingRawName(backup.getCreated());
-                            refreshList();
+                            if (booleanAlert("Would you like to load this backup?\n" + backup.getCreated())) {
+                                loadBackupUsingRawName(backup.getCreated());
+                                refreshList();
+                            }
+
                         });
 
                         btn2.setStyle(style);
                         btn2.setOnAction((ActionEvent event) -> {
                             Backup backup = getTableView().getItems().get(getIndex());
-                            deleteBackup(backup.getCreated());
-                            refreshList();
+                            if (booleanAlert("Are you sure that you want to delete this backup?\n" + backup.getCreated())) {
+                                deleteBackup(backup.getCreated());
+                                refreshList();
+                            }
+
                         });
                     }
                     @Override

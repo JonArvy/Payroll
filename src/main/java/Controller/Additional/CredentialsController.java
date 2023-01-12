@@ -50,8 +50,12 @@ public class CredentialsController {
 
     @FXML
     void deactivate(ActionEvent event) {
+        if (credentials_tableview.getSelectionModel().getSelectedItem().getUsername().equals(admin.getUsername())) {
+            callAlert("You cannot deactivate your own account", 3);
+            return;
+        }
         if (credentials_tableview.getSelectionModel().getSelectedItem() != null ) {
-            if (!credentials_tableview.getSelectionModel().getSelectedItem().getDisabler().equals("")) {
+            if (credentials_tableview.getSelectionModel().getSelectedItem().getDisabler() != null) {
                 callAlert("Employee is already inactive", 3);
             } else {
                 deactivateCredentials();

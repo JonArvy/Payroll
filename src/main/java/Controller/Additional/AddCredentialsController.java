@@ -61,6 +61,9 @@ public class AddCredentialsController {
 
     @FXML
     private void initialize() {
+        superadmin.getItems().addAll("Admin", "Super Admin");
+        superadmin.getSelectionModel().select(0);
+
         password_textfield.managedProperty().bind(show_password.selectedProperty());
         password_textfield.visibleProperty().bind(show_password.selectedProperty());
 
@@ -95,10 +98,26 @@ public class AddCredentialsController {
     }
 
     private void addAdmin() {
+        if (sqlAdmin.checkIfAlreadyAdmin(new NewAdmin(username.getText()))) {
+            callAlert("Username already exists", 3);
+            return;
+        }
+        if (username.getText().isEmpty() || password_passwordfield.getText().isEmpty() || password_confirm_passwordfield.getText().isEmpty() || name.getText().isEmpty()) {
+            callAlert("Please fill in all fields", 3);
+            return;
+        }
         if (password_textfield.getText().equals(password_confirm_textfield.getText()) && !password_textfield.getText().equals("")) {
             NewAdmin admin = new NewAdmin();
+
             admin.setUsername(username.getText());
+            admin.setName(name.getText());
             admin.setPassword(password_textfield.getText());
+
+            admin.setGrantor(this.admin.getUsername());
+//            admin.setDisabler();
+            admin.setUsingTheSystem(false);
+            admin.setSuperAdmin(superadmin.getSelectionModel().getSelectedIndex() == 1);
+
             sqlAdmin.addAdmin(admin);
             loadCredentials();
         } else {
@@ -126,5 +145,7 @@ public class AddCredentialsController {
             ex.printStackTrace();
         }
     }
+
+
 
 }
