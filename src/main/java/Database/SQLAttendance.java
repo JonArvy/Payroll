@@ -44,7 +44,7 @@ public class SQLAttendance {
         ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
         SQLEmployee sqlEmployee = new SQLEmployee();
         SQLDepartment sqlDepartment = new SQLDepartment();
-        String command = "SELECT * FROM tbl_attendance " +
+        String command = "SELECT * FROM tbl_attendance_admin " +
                 "WHERE emp_id = ? " +
                 "AND emp_attendance_date BETWEEN ? AND ?";
         try (Connection connection = connect();
@@ -293,7 +293,7 @@ public class SQLAttendance {
                 "(" +
                 "   SELECT " +
                 "   COUNT(*) " +
-                "   FROM tbl_attendance ta " +
+                "   FROM tbl_attendance_admin ta " +
                 "   WHERE ta.emp_id = te.emp_id " +
                 "   AND emp_attendance_date BETWEEN ? AND ? " +
                 ") as present_days," +
@@ -303,7 +303,7 @@ public class SQLAttendance {
                 "   (" +
                 "       SELECT " +
                 "       COUNT(*) " +
-                "       FROM tbl_attendance ta " +
+                "       FROM tbl_attendance_admin ta " +
                 "       WHERE ta.emp_id = te.emp_id " +
                 "       AND emp_attendance_date BETWEEN ? AND ? " +
                 "   )" +
@@ -316,7 +316,7 @@ public class SQLAttendance {
                 "   ( " +
                 "       SELECT " +
                 "       COUNT(*) " +
-                "       FROM tbl_attendance ta " +
+                "       FROM tbl_attendance_admin ta " +
                 "       WHERE ta.emp_id = te.emp_id " +
                 "   ) " +
                 "   FROM tbl_department tq " +
@@ -328,7 +328,7 @@ public class SQLAttendance {
                 "   ( " +
                 "       SELECT " +
                 "       COUNT(*) " +
-                "       FROM tbl_attendance ta " +
+                "       FROM tbl_attendance_admin ta " +
                 "       WHERE ta.emp_id = te.emp_id " +
                 "   ) " +
                 "   FROM tbl_department tm " +

@@ -131,6 +131,7 @@ package Controller.Payroll;
 import Classes.PDFWriter;
 import Database.SQLDepartment;
 import Database.SQLEmployee;
+import Database.SQLPayrollSummary;
 import Models.Admin;
 import Models.Department;
 import Models.Employee;
@@ -142,6 +143,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -156,52 +158,61 @@ import static Classes.PDFWriter.*;
 public class ViewPayslipController {
 
     @FXML
-    private TextField absent_days;
+    private Label bonus_amount;
 
     @FXML
     private Button close_button;
 
     @FXML
-    private Text date;
+    private Label department;
 
     @FXML
-    private TextField department;
+    private Label emp_id;
 
     @FXML
-    private TextField emp_id;
+    private Label emp_name;
 
     @FXML
-    private TextField emp_name;
+    private Label holiday_pay_amount;
 
     @FXML
-    private TextField less;
+    private Label holiday_pay_hours;
 
     @FXML
-    private TextField monthly_rate;
+    private Label holiday_pay_rate;
+
+    @FXML
+    private Label less;
 
     @FXML
     private TextField netpay;
 
     @FXML
-    private TextField pagibig;
+    private Label pagibig;
+
+    @FXML
+    private Label payroll_no;
 
     @FXML
     private Pane payslip;
 
     @FXML
-    private TextField position;
-
-    @FXML
-    private TextField present_days;
+    private Label position;
 
     @FXML
     private Button print_button;
 
     @FXML
-    private TextField total;
+    private Label standard_pay_amount;
 
     @FXML
-    private TextField wages;
+    private Label standard_pay_hours;
+
+    @FXML
+    private Label standard_pay_rate;
+
+    @FXML
+    private TextField total;
 
 
     @FXML
@@ -261,16 +272,16 @@ public class ViewPayslipController {
         emp_id.setText(String.valueOf(summary.getEmployeeNumber()));
         emp_name.setText(summary.getName());
         department.setText(summary.getDepartment());
-        date.setText(String.valueOf(summary.getDateCreated()));
+//        date.setText(String.valueOf(summary.getDateCreated()));
         position.setText(summary.getPosition());
-        wages.setText(String.valueOf(summary.getWage()));
-        present_days.setText(String.valueOf(summary.getPresentDays()));
-        absent_days.setText(String.valueOf(summary.getAbsentDays()));
+//        wages.setText(String.valueOf(summary.getWage()));
+//        present_days.setText(String.valueOf(summary.getPresentDays()));
+//        absent_days.setText(String.valueOf(summary.getAbsentDays()));
         total.setText(String.valueOf(summary.getTotalCompensation()));
         less.setText(String.valueOf(summary.getLess()));
         netpay.setText(String.valueOf(summary.getNetAmount()));
-        date.setText(String.valueOf(LocalDate.now()));
-        monthly_rate.setText(String.valueOf(summary.getMonthlyRate()));
+//        date.setText(String.valueOf(LocalDate.now()));
+//        monthly_rate.setText(String.valueOf(summary.getMonthlyRate()));
 
 //        monthly_rate.setText(String.valueOf(summary.getNetAmount()));
 //        basic_salary.setText(String.valueOf(summary.getWage()));
@@ -279,7 +290,17 @@ public class ViewPayslipController {
 //        netpay.setText(String.valueOf(summary.getNetAmount()));
 //        absent.setText(String.valueOf(summary.getAbsentDays()));
 //        ut_late.setText(String.valueOf(summary.getLateUT()));
-        pagibig.setText("---");
+//        pagibig.setText("---");
+
+        SQLPayrollSummary sqlPayrollSummary = new SQLPayrollSummary();
+        emp_id.setText(sqlPayrollSummary.getDateForSummary(summary.getSummaryID()));
+
+
+        standard_pay_hours.setText(String.valueOf(summary.getTotalHour()));
+        standard_pay_rate.setText(String.valueOf(summary.getTotalHourlyRate()));
+        standard_pay_amount.setText(String.valueOf(summary.getWage()));
+
+
     }
 
     public void capturePayslip(String name) {

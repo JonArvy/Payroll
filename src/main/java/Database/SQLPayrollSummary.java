@@ -301,11 +301,10 @@ public class SQLPayrollSummary {
         ObservableList<Employee> activeEmployeeList = sqlEmployee.getAllEmployees(true);
         int number = 1;
         for (Employee employee : activeEmployeeList) {
-            System.out.println(employee.getEmployee_ID() + " " + employee.getDepartment());
+//            System.out.println(employee.getEmployee_ID() + " " + employee.getDepartment());
             Department employeeDepartment = sqlDepartment.getDepartment(new Department(employee.getDepartment()));
             ObservableList<Date> activeDates = getActiveDates(from , to, employeeDepartment.isShift_Sunday(), employeeDepartment.isShift_Monday(), employeeDepartment.isShift_Tuesday(), employeeDepartment.isShift_Wednesday(), employeeDepartment.isShift_Thursday(), employeeDepartment.isShift_Friday(), employeeDepartment.isShift_Saturday());
             Date[] activeDatesArray = activeDates.toArray(new Date[activeDates.size()]);
-
 
             ObservableList<Attendance> attendanceList = getAttendanceFromArray(activeDatesArray, employee);
 
@@ -317,11 +316,11 @@ public class SQLPayrollSummary {
                         attds.getEmployee_TimeIn(), attds.getEmployee_TimeOut());
                 totalHoursRendered += hrs;
                 totalDaysRendered++;
-                System.out.println("Active Dates: " + attds.getEmployee_Attendance_Date() + " Hours: " + hrs);
+//                System.out.println("Active Dates: " + attds.getEmployee_Attendance_Date() + " Hours: " + hrs);
             }
 
-            System.out.println("Total Hours Rendered: " + totalHoursRendered);
-            System.out.println("Total Days Rendered: " + totalDaysRendered);
+//            System.out.println("Total Hours Rendered: " + totalHoursRendered);
+//            System.out.println("Total Days Rendered: " + totalDaysRendered);
 
             Summary summary = new Summary();
             summary.setNumber(number);
@@ -331,9 +330,9 @@ public class SQLPayrollSummary {
             summary.setWage(employeeDepartment.getDepartment_MonthlyRate());
             //Other Benefits
             summary.setPresentDays(employeeDepartment.getDepartment_DaysPerMonth());
-            System.out.println(summary.getPresentDays());
+//            System.out.println(summary.getPresentDays());
             summary.setAbsentDays(absentCalculator(employeeDepartment.getDepartment_DaysPerMonth(), totalDaysRendered));
-            System.out.println(employeeDepartment.getHourly_Rate());
+//            System.out.println(employeeDepartment.getHourly_Rate());
             summary.setTotalCompensation(calculateSalary(employeeDepartment.getHourly_Rate(), totalHoursRendered));
             summary.setMonthlyRate(employeeDepartment.getDepartment_MonthlyRate());
             //BIR
@@ -343,6 +342,8 @@ public class SQLPayrollSummary {
             //Net Amount
             summary.setNetAmount(summary.getTotalCompensation());
 
+            summary.setTotalHourlyRate(employeeDepartment.getHourly_Rate());
+            summary.setTotalHour(totalHoursRendered);
 
             //Other Hidden Information
             summary.setDepartment(employeeDepartment.getDepartment_Name());
@@ -351,7 +352,7 @@ public class SQLPayrollSummary {
             number++;
         }
         for (Summary s : summaryObservableList) {
-            System.out.println(s.getNumber() + " " + s.getEmployeeNumber() + " " + s.getName() + " " + s.getPosition() + " " + s.getWage() + " " + s.getPresentDays() + " " + s.getAbsentDays() + " " + s.getTotalCompensation() + " " + s.getTotalDeduction());
+//            System.out.println(s.getNumber() + " " + s.getEmployeeNumber() + " " + s.getName() + " " + s.getPosition() + " " + s.getWage() + " " + s.getPresentDays() + " " + s.getAbsentDays() + " " + s.getTotalCompensation() + " " + s.getTotalDeduction());
         }
         return summaryObservableList;
     }
@@ -382,8 +383,15 @@ public class SQLPayrollSummary {
         createTemporaryTable();
         populateTemporaryTable(dates);
 
-        String command = "SELECT * FROM tbl_attendance WHERE emp_id = ? " +
-                "AND emp_attendance_date IN (SELECT date FROM temp_dates) ";
+//        String command = "SELECT * FROM tbl_attendance WHERE emp_id = ? " +
+//                "AND emp_attendance_date IN (SELECT date FROM temp_dates) ";
+
+        String command = "SELECT taa.attendance_id as atd_id, taa.emp_id as atd_emp_id, taa.emp_attendance_date as atd_date, taa.emp_timein as atd_in, taa.emp_timeout as atd_out " +
+                "FROM tbl_attendance_admin as taa " +
+                "INNER JOIN tbl_attendance as ta " +
+                "ON taa.emp_attendance_date = ta.emp_attendance_date " +
+                "WHERE taa.emp_id = ? " +
+                "AND taa.emp_attendance_date IN (SELECT date FROM temp_dates) ";
 
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -394,12 +402,13 @@ public class SQLPayrollSummary {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                System.out.println(resultSet.getInt("atd_id") + " " + resultSet.getInt("atd_emp_id") + " " + resultSet.getDate("atd_date") + " " + resultSet.getTime("atd_in") + " " + resultSet.getTime("atd_out"));
                 Attendance attendance = new Attendance();
-                attendance.setAttendance_ID(resultSet.getInt("attendance_id"));
-                attendance.setEmployee_ID(resultSet.getInt("emp_id"));
-                attendance.setEmployee_Attendance_Date(resultSet.getDate("emp_attendance_date"));
-                attendance.setEmployee_TimeIn(resultSet.getTime("emp_timein"));
-                attendance.setEmployee_TimeOut(resultSet.getTime("emp_timeout"));
+                attendance.setAttendance_ID(resultSet.getInt("atd_id"));
+                attendance.setEmployee_ID(resultSet.getInt("atd_emp_id"));
+                attendance.setEmployee_Attendance_Date(resultSet.getDate("atd_date"));
+                attendance.setEmployee_TimeIn(resultSet.getTime("atd_in"));
+                attendance.setEmployee_TimeOut(resultSet.getTime("atd_out"));
 
                 attendanceList.add(attendance);
             }
@@ -454,8 +463,8 @@ public class SQLPayrollSummary {
 
     public void savePayrollSummary(ObservableList<Summary> summary, Date from, Date to) {
 //        System.out.println("Count : " + getSummaryID());
-        String command = "INSERT INTO payroll_summary (summary_id, summary_number, summary_employee_number, summary_name, summary_date_created, summary_department, summary_department_monthly_rate, summary_position, summary_late_ut, summary_wage, summary_benefits, summary_present_days, summary_absent_days, summary_total_compensation, summary_less, summary_total_deduction, summary_net_amount)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String command = "INSERT INTO payroll_summary (summary_id, summary_number, summary_employee_number, summary_name, summary_date_created, summary_department, summary_department_monthly_rate, summary_position, summary_late_ut, summary_wage, summary_benefits, summary_present_days, summary_absent_days, summary_total_compensation, summary_less, summary_total_deduction, summary_net_amount, summary_total_hours, summary_department_hourly_rate)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String command2 = "INSERT INTO payroll_summary_schema (summary_date_from, summary_date_to) " +
                 "VALUES (?, ?)";
         try (Connection connection = connect();
@@ -480,6 +489,8 @@ public class SQLPayrollSummary {
                 preparedStatement.setDouble(15, sum.getLess());
                 preparedStatement.setDouble(16, sum.getTotalDeduction());
                 preparedStatement.setDouble(17, sum.getNetAmount());
+                preparedStatement.setInt(18, sum.getTotalHour());
+                preparedStatement.setDouble(19, sum.getTotalHourlyRate());
 
                 preparedStatement.executeUpdate();
             }
@@ -647,6 +658,30 @@ public class SQLPayrollSummary {
         return list;
     }
 
+    public String getDateForSummary(int id) {
+        String command = "SELECT * FROM payroll_summary_schema " +
+                "WHERE summary_id = ?";
+
+        String date = "";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                date = resultSet.getDate("summary_date_from") + " + " + resultSet.getDate("summary_date_to");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return date.replace("-", "/").replace("+", "-");
+    }
+
     public ObservableList<Summary> getSummaryList(int id) {
         ObservableList<Summary> summaryList = FXCollections.observableArrayList();
         String command = "SELECT * FROM payroll_summary WHERE summary_id = ?";
@@ -676,6 +711,11 @@ public class SQLPayrollSummary {
                 sm.setTotalDeduction(resultSet.getDouble("summary_total_deduction"));
 
                 sm.setNetAmount(resultSet.getDouble("summary_net_amount"));
+
+                sm.setTotalHour(resultSet.getInt("summary_total_hours"));
+                sm.setTotalHourlyRate(resultSet.getDouble("summary_department_hourly_rate"));
+
+                sm.setSummaryID(resultSet.getInt("summary_id"));
                 summaryList.add(
                         sm
                 );

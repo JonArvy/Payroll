@@ -1,7 +1,7 @@
 package Models;
 
 public class NewAdmin {
-
+    private int ID;
     private String username;
     private String name;
     private String password;
@@ -13,6 +13,16 @@ public class NewAdmin {
 
     }
 
+    public NewAdmin(int ID, String username, String name, String password, String grantor, String disabler, boolean isUsingTheSystem) {
+        this.ID = ID;
+        this.username = username;
+        this.name = name;
+        this.password = password;
+        this.grantor = grantor;
+        this.disabler = disabler;
+        this.isUsingTheSystem = isUsingTheSystem;
+    }
+
 
     public NewAdmin(String username, String name, String password, String grantor, String disabler, boolean isUsingTheSystem) {
         this.username = username;
@@ -21,6 +31,14 @@ public class NewAdmin {
         this.grantor = grantor;
         this.disabler = disabler;
         this.isUsingTheSystem = isUsingTheSystem;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getUsername() {

@@ -2,6 +2,7 @@ package Database;
 
 import Models.Admin;
 import Models.Employee;
+import Models.NewAdmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,25 +16,27 @@ import static Classes.Encryptor.encryptString;
 import static Database.SQLConnection.connect;
 
 public class SQLNewAdmin {
-    public Admin getAdmin(Admin admin) {
+    public NewAdmin getAdmin(NewAdmin admin) {
         String command = "SELECT * " +
-                "FROM tbl_admin " +
-                "WHERE emp_id = ? " +
+                "FROM tbl_new_admin " +
+                "WHERE admin_username = ? " +
                 "AND admin_password = ?";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
-            preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, encryptString(admin.getAdmin_Password()));
+            preparedStatement.setString(1, admin.getUsername());
+            preparedStatement.setString(2, encryptString(admin.getPassword()));
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                admin.setAdmin_ID(resultSet.getInt("admin_id"));
-                admin.setEmployee_ID(resultSet.getInt("emp_id"));
-                admin.setAdmin_Password(resultSet.getString("admin_password"));
-                admin.setAdmin_Grantor(resultSet.getInt("admin_grantor"));
-                admin.setAdmin_Disabler(resultSet.getInt("admin_disabler"));
+                admin.setID(resultSet.getInt("admin_id"));
+                admin.setUsername(resultSet.getString("admin_username"));
+                admin.setName(resultSet.getString("admin_name"));
+                admin.setPassword(resultSet.getString("admin_password"));
+                admin.setGrantor(resultSet.getString("admin_grantor"));
+                admin.setDisabler(resultSet.getString("admin_disabler"));
+                admin.setUsingTheSystem(resultSet.getBoolean("admin_isUsingTheSystem"));
             }
 
         } catch (SQLException e) {
@@ -43,10 +46,10 @@ public class SQLNewAdmin {
         return admin;
     }
 
-    public ObservableList<Admin> getAdminList() {
-        ObservableList<Admin> adminList = FXCollections.observableArrayList();
+    public ObservableList<NewAdmin> getAdminList() {
+        ObservableList<NewAdmin> adminList = FXCollections.observableArrayList();
         String command = "SELECT * " +
-                "FROM tbl_admin";
+                "FROM tbl_new_admin";
 
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
@@ -54,17 +57,15 @@ public class SQLNewAdmin {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Admin admin = new Admin();
-                admin.setAdmin_ID(resultSet.getInt("admin_id"));
-                admin.setEmployee_ID(resultSet.getInt("emp_id"));
-                SQLEmployee sqlEmployee = new SQLEmployee();
-                admin.setEmployee_FullName(sqlEmployee.getEmployee(new Employee(admin.getEmployee_ID())).getFull_Name_Without_Middle());
-                admin.setAdmin_Password(resultSet.getString("admin_password"));
+                NewAdmin admin = new NewAdmin();
+                admin.setID(resultSet.getInt("admin_id"));
+                admin.setUsername(resultSet.getString("admin_username"));
+                admin.setName(resultSet.getString("admin_name"));
+                admin.setPassword(resultSet.getString("admin_password"));
+                admin.setGrantor(resultSet.getString("admin_grantor"));
+                admin.setDisabler(resultSet.getString("admin_disabler"));
+                admin.setUsingTheSystem(resultSet.getBoolean("admin_isUsingTheSystem"));
 
-                admin.setAdmin_Grantor(resultSet.getInt("admin_grantor"));
-                admin.setAdmin_Disabler(resultSet.getInt("admin_disabler"));
-
-                System.out.println(admin.getAdmin_Grantor() + " " + admin.getAdmin_Disabler());
 
                 adminList.add(admin);
             }
@@ -78,18 +79,18 @@ public class SQLNewAdmin {
 
 //    public ObservableList<Admin> getAdminList()
 
-    public boolean getAdminByID(Admin admin, int id, String password) {
+    public boolean getAdminByID(NewAdmin admin, String username, String password) {
         boolean valid = false;
         String command = "SELECT * " +
-                "FROM tbl_admin " +
+                "FROM tbl_new_admin " +
                 "WHERE admin_id = ? " +
-                "AND emp_id = ? " +
+                "AND admin_username = ? " +
                 "AND admin_password = ?";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
-            preparedStatement.setInt(1, admin.getAdmin_ID());
-            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(1, admin.getID());
+            preparedStatement.setString(2, username);
             preparedStatement.setString(3, encryptString(password));
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -108,7 +109,7 @@ public class SQLNewAdmin {
     public boolean checkIfValidAdmin(Admin admin) {
         boolean correct = false;
         String command = "SELECT * " +
-                "FROM tbl_admin " +
+                "FROM tbl_new_admin " +
                 "WHERE emp_id = ? " +
                 "AND admin_password = ?";
         try (Connection conn = connect();
@@ -132,7 +133,7 @@ public class SQLNewAdmin {
     public boolean checkIfActiveValidAdmin(Admin admin) {
         boolean correct = false;
         String command = "SELECT * " +
-                "FROM tbl_admin " +
+                "FROM tbl_new_admin " +
                 "WHERE emp_id = ? " +
                 "AND admin_password = ? " +
                 "AND admin_disabler = 0";
@@ -155,7 +156,7 @@ public class SQLNewAdmin {
     }
 
     public void addAdmin(Admin admin) {
-        String command = "INSERT INTO tbl_admin (emp_id, admin_password, admin_grantor, admin_disabler, admin_isUsingTheSystem) " +
+        String command = "INSERT INTO tbl_new_admin (emp_id, admin_password, admin_grantor, admin_disabler, admin_isUsingTheSystem) " +
                 "VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
@@ -175,7 +176,7 @@ public class SQLNewAdmin {
     }
 
     public void setAdminIsNotUsingTheSystem() {
-        String command = "UPDATE tbl_admin SET admin_isUsingTheSystem = 0";
+        String command = "UPDATE tbl_new_admin SET admin_isUsingTheSystem = 0";
 
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
@@ -189,7 +190,7 @@ public class SQLNewAdmin {
     }
 
     public void setAdminIsUsingTheSystem(Admin admin) {
-        String command = "UPDATE tbl_admin SET admin_isUsingTheSystem = 1 WHERE admin_id = ?";
+        String command = "UPDATE tbl_new_admin SET admin_isUsingTheSystem = 1 WHERE admin_id = ?";
 
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
@@ -203,41 +204,10 @@ public class SQLNewAdmin {
         }
     }
 
-    public void editAdmin(Admin admin) {
-        String command = "UPDATE tbl_bonus" +
-                "SET emp_id = ?," +
-                "    admin_password = ?," +
-                "    admin_grantor = ?, " +
-                "    admin_disabler = ?" +
-                "WHERE admin_id = ?";
-
-        String admin_tbl = "CREATE TABLE IF NOT EXISTS tbl_admin (" +
-                "admin_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, " +
-                "emp_id INTEGER CONSTRAINT fk_emp_id_attendance REFERENCES tbl_employees(emp_id) ON DELETE SET NULL ON UPDATE CASCADE, " +
-                "admin_password VARCHAR(200)," +
-                "admin_grantor INTEGER," +
-                "admin_disabler INTEGER)";
-        try (Connection conn = connect();
-             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
-
-            preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, admin.getAdmin_Password()); //
-            preparedStatement.setInt(3, admin.getAdmin_Grantor());
-            preparedStatement.setInt(4, admin.getAdmin_Disabler());
-            preparedStatement.setInt(5, admin.getAdmin_ID());
-
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println("Error connecting to SQLite database");
-            e.printStackTrace();
-        }
-    }
-
     public boolean checkIfEmployeeIsAdmin(Employee employee) {
         boolean exist = false;
         String command = "SELECT * " +
-                "FROM tbl_admin " +
+                "FROM tbl_new_admin " +
                 "WHERE emp_id = ?";
 
         try (Connection connection = connect();
@@ -275,7 +245,7 @@ public class SQLNewAdmin {
     }
 
     public void deactivateAdmin(Admin admin, Admin adminToDeactivate) {
-        String command = "UPDATE tbl_admin SET admin_disabler = ? WHERE emp_id = ?";
+        String command = "UPDATE tbl_new_admin SET admin_disabler = ? WHERE emp_id = ?";
 
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {

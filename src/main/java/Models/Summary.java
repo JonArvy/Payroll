@@ -39,6 +39,18 @@ public class Summary {
     private double TotalDeduction;
     private double NetAmount;
 
+    private int TotalHour;
+    private double TotalHourlyRate;
+
+    private int SummaryID;
+
+    public int getSummaryID() {
+        return SummaryID;
+    }
+
+    public void setSummaryID(int summaryID) {
+        SummaryID = summaryID;
+    }
 
     public Summary(int number, String name, String position) {
         Number = number;
@@ -63,6 +75,22 @@ public class Summary {
 
     public Summary() {
 
+    }
+
+    public int getTotalHour() {
+        return TotalHour;
+    }
+
+    public void setTotalHour(int totalHour) {
+        TotalHour = totalHour;
+    }
+
+    public double getTotalHourlyRate() {
+        return TotalHourlyRate;
+    }
+
+    public void setTotalHourlyRate(double totalHourlyRate) {
+        TotalHourlyRate = totalHourlyRate;
     }
 
     public int getNumber() {

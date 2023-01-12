@@ -157,6 +157,9 @@ public class SQLExecution {
                 "    summary_present_days INTEGER NOT NULL, " +
                 "    summary_absent_days INTEGER NOT NULL, " +
 
+                "    summary_total_hours INTEGER, " +
+                "    summary_department_hourly_rate DOUBLE, " +
+
                 "    summary_total_compensation DOUBLE NOT NULL, " +
                 "    summary_less DOUBLE NOT NULL, " +
                 "    summary_total_deduction DOUBLE NOT NULL, " +
