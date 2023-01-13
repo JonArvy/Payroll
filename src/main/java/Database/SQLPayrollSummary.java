@@ -390,6 +390,7 @@ public class SQLPayrollSummary {
                 "FROM tbl_attendance_admin as taa " +
                 "INNER JOIN tbl_attendance as ta " +
                 "ON taa.emp_attendance_date = ta.emp_attendance_date " +
+                "AND taa.emp_id = ta.emp_id " +
                 "WHERE taa.emp_id = ? " +
                 "AND taa.emp_attendance_date IN (SELECT date FROM temp_dates) ";
 

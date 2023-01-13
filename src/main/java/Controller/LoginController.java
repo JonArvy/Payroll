@@ -258,7 +258,7 @@ public class LoginController {
         NewAdmin adm = new NewAdmin();
         adm.setUsername(username);
         adm.setPassword(pass);
-        boolean valid = sqlAdmin.checkIfValidAdmin(adm);
+        boolean valid = sqlAdmin.checkIfValidActiveAdmin(adm);
         if (valid) {
             sqlAdmin.setAdminIsUsingTheSystem(sqlAdmin.getAdmin(adm));
             logInAsAdmin(sqlAdmin.getAdmin(adm));
@@ -274,14 +274,16 @@ public class LoginController {
 
         details_date.setText(String.valueOf(attd.getEmployee_Attendance_Date()));
 
-        SQLAdminAttendance sqlAdminAttendance = new SQLAdminAttendance();
-        Attendance attendance = sqlAdminAttendance.getSpecificAttendance(emp.getEmployee_ID(), attd.getEmployee_Attendance_Date());
 
-        details_timein.setText(String.valueOf(attendance.getEmployee_TimeIn()));
 
         if (!ifTimeIn) {
+            details_timein.setText(String.valueOf(attd.getEmployee_TimeIn()));
             details_message.setText("Time in at " + attd.getEmployee_Attendance_Date() + " " + attd.getEmployee_TimeIn());
         } else {
+            SQLAdminAttendance sqlAdminAttendance = new SQLAdminAttendance();
+            Attendance attendance = sqlAdminAttendance.getSpecificAttendance(emp.getEmployee_ID(), attd.getEmployee_Attendance_Date());
+
+            details_timein.setText(String.valueOf(attendance.getEmployee_TimeIn()));
             details_timeout.setText(String.valueOf(attd.getEmployee_TimeOut()));
             details_message.setText("Time out at " + attd.getEmployee_Attendance_Date() + " " + attd.getEmployee_TimeOut());
         }

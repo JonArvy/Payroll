@@ -11,7 +11,7 @@ public class BooleanAlerts {
         boolean bool = false;
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Warning!");
+        alert.setHeaderText("Notice!");
         alert.setContentText(message);
 
         Optional<ButtonType> result = alert.showAndWait();

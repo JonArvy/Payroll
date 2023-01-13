@@ -134,6 +134,31 @@ public class SQLNewAdmin {
         return correct;
     }
 
+    public boolean checkIfValidActiveAdmin(NewAdmin admin) {
+        boolean correct = false;
+        String command = "SELECT * " +
+                "FROM tbl_new_admin " +
+                "WHERE admin_username = ? " +
+                "AND admin_disabler IS NULL " +
+                "AND admin_password = ?";
+        try (Connection conn = connect();
+             PreparedStatement preparedStatement = conn.prepareStatement(command)) {
+
+            preparedStatement.setString(1, admin.getUsername());
+            preparedStatement.setString(2, encryptString(admin.getPassword()));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                correct = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error connecting to SQLite database");
+            e.printStackTrace();
+        }
+        return correct;
+    }
+
     public boolean checkIfActiveValidAdmin(NewAdmin admin) {
         boolean correct = false;
         String command = "SELECT * " +

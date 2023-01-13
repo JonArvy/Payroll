@@ -66,7 +66,6 @@ public class QRScannerForAttendanceController implements Runnable, ThreadFactory
         content_container.getChildren().add(pane);
 
         executor.execute(this);
-        System.out.println("2");
     }
 
     public void setLoginController(LoginController loginController) {
@@ -152,6 +151,7 @@ public class QRScannerForAttendanceController implements Runnable, ThreadFactory
 //                    gotcalled = false;
                     //Attendance
                     attendance = new Attendance();
+                    System.out.println(employee.getEmployee_ID());
                     attendance.setEmployee_ID(employee.getEmployee_ID());
                     attendance.setEmployee_Attendance_Date(Date.valueOf(LocalDate.now()));
                     attendance.setEmployee_TimeIn(Time.valueOf(LocalTime.now()));

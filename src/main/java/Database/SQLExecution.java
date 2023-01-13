@@ -164,7 +164,8 @@ public class SQLExecution {
                 "    summary_total_compensation DOUBLE NOT NULL, " +
                 "    summary_less DOUBLE NOT NULL, " +
                 "    summary_total_deduction DOUBLE NOT NULL, " +
-                "    summary_net_amount DOUBLE NOT NULL)";
+                "    summary_net_amount DOUBLE NOT NULL, " +
+                "    recieved BOOLEAN)";
 
         String payrollsummaryschema_tbl = "CREATE TABLE IF NOT EXISTS payroll_summary_schema ( " +
                 "    summary_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, " +
