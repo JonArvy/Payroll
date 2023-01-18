@@ -5,6 +5,7 @@ import Database.SQLEmployee;
 import Models.Admin;
 import Models.Bonus;
 import Models.BonusSummary;
+import Models.NewAdmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,7 +54,7 @@ public class BonusReportController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
     private Bonus bonus;
 
@@ -62,7 +63,7 @@ public class BonusReportController {
     private SQLEmployee sqlEmployee = new SQLEmployee();
     private SQLBonus sqlBonus = new SQLBonus();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

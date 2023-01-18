@@ -3,6 +3,7 @@ package Controller.Attendance;
 import Database.SQLAttendance;
 import Models.Admin;
 import Models.AttendanceReport;
+import Models.NewAdmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -77,14 +78,14 @@ public class AttendanceReportController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private ObservableList<AttendanceReport> attendanceReportList = FXCollections.observableArrayList();
 
     private SQLAttendance sqlAttendance = new SQLAttendance();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

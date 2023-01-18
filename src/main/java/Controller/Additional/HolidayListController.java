@@ -2,10 +2,7 @@ package Controller.Additional;
 
 import Database.SQLDepartment;
 import Database.SQLHoliday;
-import Models.Admin;
-import Models.Bonus;
-import Models.Department;
-import Models.Holiday;
+import Models.*;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,14 +53,14 @@ public class HolidayListController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private ObservableList<Holiday> holidayList = FXCollections.observableArrayList();
 
     private SQLHoliday sqlHoliday = new SQLHoliday();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

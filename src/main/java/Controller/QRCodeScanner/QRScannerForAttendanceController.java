@@ -148,6 +148,8 @@ public class QRScannerForAttendanceController implements Runnable, ThreadFactory
                 Stage stage = (Stage) content_container.getScene().getWindow();
                 stage.close();
                 if (gotcalled) {
+                    System.out.println("Got called");
+//                    gotcalled = false;
                     //Attendance
                     attendance = new Attendance();
                     attendance.setEmployee_ID(employee.getEmployee_ID());
@@ -155,9 +157,10 @@ public class QRScannerForAttendanceController implements Runnable, ThreadFactory
                     attendance.setEmployee_TimeIn(Time.valueOf(LocalTime.now()));
                     attendance.setEmployee_TimeOut(Time.valueOf(LocalTime.now()));
                     SQLAdminAttendance sqlAdminAttendance = new SQLAdminAttendance();
-                    sqlAdminAttendance.registerAttendanceUsingQR(attendance);
 
                     loginController.loadTimeInfo(employee, attendance, !sqlAdminAttendance.checkIfAttendanceExist(attendance));
+
+                    sqlAdminAttendance.registerAttendanceUsingQR(attendance);
                 }
             });
 

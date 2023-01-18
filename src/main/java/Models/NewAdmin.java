@@ -9,11 +9,29 @@ public class NewAdmin {
     private String disabler;
     private boolean isUsingTheSystem;
 
+    private boolean isSuperAdmin;
+
+    private String activeMessage;
+    private String adminTypeMessage;
+
+
+    public void setItems() {
+        activeMessage = "Inactive";
+        if (grantor == null) {
+            activeMessage = "Active";
+        }
+
+        adminTypeMessage = "Admin";
+        if (!isSuperAdmin) {
+            adminTypeMessage = "Super Admin";
+        }
+    }
+
     public NewAdmin() {
 
     }
 
-    public NewAdmin(int ID, String username, String name, String password, String grantor, String disabler, boolean isUsingTheSystem) {
+    public NewAdmin(int ID, String username, String name, String password, String grantor, String disabler, boolean isUsingTheSystem, boolean isSuperAdmin) {
         this.ID = ID;
         this.username = username;
         this.name = name;
@@ -21,16 +39,26 @@ public class NewAdmin {
         this.grantor = grantor;
         this.disabler = disabler;
         this.isUsingTheSystem = isUsingTheSystem;
+        this.isSuperAdmin = isSuperAdmin;
     }
 
 
-    public NewAdmin(String username, String name, String password, String grantor, String disabler, boolean isUsingTheSystem) {
+    public NewAdmin(String username, String name, String password, String grantor, String disabler, boolean isUsingTheSystem, boolean isSuperAdmin) {
         this.username = username;
         this.name = name;
         this.password = password;
         this.grantor = grantor;
         this.disabler = disabler;
         this.isUsingTheSystem = isUsingTheSystem;
+        this.isSuperAdmin = isSuperAdmin;
+    }
+
+    public boolean isSuperAdmin() {
+        return isSuperAdmin;
+    }
+
+    public void setSuperAdmin(boolean superAdmin) {
+        isSuperAdmin = superAdmin;
     }
 
     public int getID() {
@@ -87,5 +115,21 @@ public class NewAdmin {
 
     public void setUsingTheSystem(boolean usingTheSystem) {
         isUsingTheSystem = usingTheSystem;
+    }
+
+    public String getActiveMessage() {
+        return activeMessage;
+    }
+
+    public void setActiveMessage(String activeMessage) {
+        this.activeMessage = activeMessage;
+    }
+
+    public String getAdminTypeMessage() {
+        return adminTypeMessage;
+    }
+
+    public void setAdminTypeMessage(String adminTypeMessage) {
+        this.adminTypeMessage = adminTypeMessage;
     }
 }

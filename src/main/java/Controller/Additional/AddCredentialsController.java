@@ -2,8 +2,10 @@ package Controller.Additional;
 
 import Database.SQLAdmin;
 import Database.SQLEmployee;
+import Database.SQLNewAdmin;
 import Models.Admin;
 import Models.Employee;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -11,10 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -24,10 +23,10 @@ import static Classes.CustomAlert.callAlert;
 public class AddCredentialsController {
 
     @FXML
-    private TextField employee_id;
+    private Button create_button;
 
     @FXML
-    private TextField employee_name;
+    private TextField name;
 
     @FXML
     private PasswordField password_confirm_passwordfield;
@@ -45,7 +44,10 @@ public class AddCredentialsController {
     private CheckBox show_password;
 
     @FXML
-    private Button create_button;
+    private ComboBox<String> superadmin;
+
+    @FXML
+    private TextField username;
 
     @FXML
     void cancel(ActionEvent event) {
@@ -54,12 +56,7 @@ public class AddCredentialsController {
 
     @FXML
     void create(ActionEvent event) {
-        addAdmin(sqlEmployee.getEmployee(new Employee(Integer.parseInt(employee_id.getText()))));
-    }
-
-    @FXML
-    void search(ActionEvent event) {
-        searchEmployee();
+        addAdmin();
     }
 
     @FXML
@@ -81,58 +78,27 @@ public class AddCredentialsController {
 
         password_confirm_textfield.textProperty().bindBidirectional(password_confirm_passwordfield.textProperty());
 
-
-        employee_id.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    employee_id.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-        employee_id.textProperty().addListener((a, o, n) -> {
-            create_button.setDisable(true);
-            employee_name.setText("");
-        });
     }
 
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private SQLEmployee sqlEmployee = new SQLEmployee();
-    private SQLAdmin sqlAdmin = new SQLAdmin();
+    private SQLNewAdmin sqlAdmin = new SQLNewAdmin();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }
 
-    private void searchEmployee() {
-        if (!sqlEmployee.checkIfEmployeeIDExists(Integer.parseInt(employee_id.getText()))) {
-            if (sqlEmployee.checkIfEmployeeIsActive(Integer.parseInt(employee_id.getText()))) {
-                if (!sqlAdmin.checkIfEmployeeIsAdmin(new Employee(Integer.parseInt(employee_id.getText())))) {
-                    Employee emp = sqlEmployee.getEmployee(new Employee(Integer.parseInt(employee_id.getText())));
-                    employee_name.setText(emp.getFull_Name());
-                    create_button.setDisable(false);
-                } else {
-                    callAlert("Employee is already an admin", 3);
-                }
-            } else {
-                callAlert("Employee is not active", 3);
-            }
-        } else {
-            callAlert("Employee does not exist.", 3);
-        }
-    }
-
-    private void addAdmin(Employee employee) {
+    private void addAdmin() {
         if (password_textfield.getText().equals(password_confirm_textfield.getText()) && !password_textfield.getText().equals("")) {
-            Admin admin = new Admin(employee.getEmployee_ID(), password_textfield.getText());
-            admin.setAdmin_Grantor(this.admin.getEmployee_ID());
+            NewAdmin admin = new NewAdmin();
+            admin.setUsername(username.getText());
+            admin.setPassword(password_textfield.getText());
             sqlAdmin.addAdmin(admin);
             loadCredentials();
         } else {

@@ -3,6 +3,7 @@ package Controller.Additional;
 import Database.SQLHoliday;
 import Models.Admin;
 import Models.Holiday;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,14 +54,14 @@ public class EditHolidayController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private Holiday holiday;
 
     private SQLHoliday sqlHoliday = new SQLHoliday();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

@@ -4,6 +4,7 @@ package Controller.Payroll;
 import Classes.Converters;
 import Database.SQLPayrollSummary;
 import Models.Admin;
+import Models.NewAdmin;
 import Models.Summary;
 import Models.SummarySchema;
 import cw.payroll.Main;
@@ -97,7 +98,7 @@ public class PastPayrollSummaryController {
 
     @FXML
     private void toPDF() {
-        createPayrollSummaryPDF(summaryList, reportlist.getSelectionModel().getSelectedItem().getSummary_date_from(), reportlist.getSelectionModel().getSelectedItem().getSummary_date_to());
+        createPayrollSummaryPDF(summaryList, reportlist.getSelectionModel().getSelectedItem().getSummary_date_from(), reportlist.getSelectionModel().getSelectedItem().getSummary_date_to(), this.admin);
     }
 
     @FXML
@@ -112,7 +113,7 @@ public class PastPayrollSummaryController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private ObservableList<Summary> summaryList = FXCollections.observableArrayList();
@@ -123,7 +124,7 @@ public class PastPayrollSummaryController {
     private Converters converters = new Converters();
 
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

@@ -2,8 +2,10 @@ package Controller.Additional;
 
 import Controller.Employee.ManageEmployeeController;
 import Database.SQLAdmin;
+import Database.SQLNewAdmin;
 import Models.Admin;
 import Models.BonusSummary;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,19 +26,22 @@ import static Classes.CustomAlert.callAlert;
 public class CredentialsController {
 
     @FXML
-    private TableColumn<Admin, String> credentials_column_active;
+    private TableColumn<NewAdmin, String> credentials_column_active;
 
     @FXML
-    private TableColumn<Admin, Integer> credentials_column_empid;
+    private TableColumn<NewAdmin, String> credentials_column_empid;
 
     @FXML
-    private TableColumn<Admin, String> credentials_column_fullname;
+    private TableColumn<NewAdmin, String> credentials_column_fullname;
 
     @FXML
-    private TableColumn<Admin, Integer> credentials_column_no;
+    private TableColumn<NewAdmin, Integer> credentials_column_no;
 
     @FXML
-    private TableView<Admin> credentials_tableview;
+    private TableColumn<NewAdmin, String> credentials_column_admintype;
+
+    @FXML
+    private TableView<NewAdmin> credentials_tableview;
 
     @FXML
     void add(ActionEvent event) {
@@ -46,7 +51,7 @@ public class CredentialsController {
     @FXML
     void deactivate(ActionEvent event) {
         if (credentials_tableview.getSelectionModel().getSelectedItem() != null ) {
-            if (credentials_tableview.getSelectionModel().getSelectedItem().getEmployee_Active().equals("Inactive")) {
+            if (!credentials_tableview.getSelectionModel().getSelectedItem().getDisabler().equals("")) {
                 callAlert("Employee is already inactive", 3);
             } else {
                 deactivateCredentials();
@@ -65,16 +70,16 @@ public class CredentialsController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }
 
-    SQLAdmin sqlAdmin = new SQLAdmin();
+    SQLNewAdmin sqlAdmin = new SQLNewAdmin();
 
-    ObservableList<Admin> adminList = FXCollections.observableArrayList();
+    ObservableList<NewAdmin> adminList = FXCollections.observableArrayList();
 
 
     private void loadAddCredentials() {
@@ -124,10 +129,11 @@ public class CredentialsController {
 
         adminList = sqlAdmin.getAdminList();
 
-        credentials_column_no.setCellValueFactory(new PropertyValueFactory<Admin, Integer>("Admin_ID"));
-        credentials_column_empid.setCellValueFactory(new PropertyValueFactory<Admin, Integer>("Employee_ID"));
-        credentials_column_fullname.setCellValueFactory(new PropertyValueFactory<Admin, String>("Employee_FullName"));
-        credentials_column_active.setCellValueFactory(new PropertyValueFactory<Admin, String>("Employee_Active"));
+        credentials_column_no.setCellValueFactory(new PropertyValueFactory<NewAdmin, Integer>("ID"));
+        credentials_column_empid.setCellValueFactory(new PropertyValueFactory<NewAdmin, String>("username"));
+        credentials_column_fullname.setCellValueFactory(new PropertyValueFactory<NewAdmin, String>("name"));
+        credentials_column_admintype.setCellValueFactory(new PropertyValueFactory<NewAdmin, String>("adminTypeMessage"));
+        credentials_column_active.setCellValueFactory(new PropertyValueFactory<NewAdmin, String>("activeMessage"));
         credentials_tableview.setItems(adminList);
     }
 }

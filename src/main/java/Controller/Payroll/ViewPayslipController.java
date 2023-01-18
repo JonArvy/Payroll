@@ -132,10 +132,7 @@ import Classes.PDFWriter;
 import Database.SQLDepartment;
 import Database.SQLEmployee;
 import Database.SQLPayrollSummary;
-import Models.Admin;
-import Models.Department;
-import Models.Employee;
-import Models.Summary;
+import Models.*;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -231,7 +228,7 @@ public class ViewPayslipController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private Summary summary;
@@ -240,7 +237,7 @@ public class ViewPayslipController {
 
     private SQLEmployee sqlEmployee = new SQLEmployee();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

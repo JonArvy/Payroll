@@ -3,6 +3,7 @@ package Controller.Additional;
 import Database.SQLBonus;
 import Models.Admin;
 import Models.Bonus;
+import Models.NewAdmin;
 import Models.Shift;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
@@ -57,14 +58,14 @@ public class BonusController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
 
     private SQLBonus sqlBonus = new SQLBonus();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

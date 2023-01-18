@@ -175,6 +175,8 @@ public class SQLAdminAttendance {
         String command = "SELECT * FROM tbl_attendance_admin " +
                 "WHERE emp_id = ? " +
                 "AND emp_attendance_date = ?";
+        System.out.println(attendance.getEmployee_ID());
+        System.out.println(attendance.getEmployee_Attendance_Date());
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
 
@@ -468,9 +470,38 @@ public class SQLAdminAttendance {
                 e.printStackTrace();
             }
         }
+    }
 
 
 
+    public Attendance getSpecificAttendance(int id, Date date) {
+        Attendance attendance = new Attendance();
 
+        String command = "SELECT * " +
+                "FROM tbl_attendance_admin " +
+                "WHERE emp_id = ? " +
+                "AND emp_attendance_date = ?";
+
+        try (Connection connection = connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(command)) {
+
+            preparedStatement.setInt(1, id);
+            preparedStatement.setDate(2, date);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                attendance.setAttendance_ID(resultSet.getInt("attendance_id"));
+                attendance.setEmployee_ID(resultSet.getInt("emp_id"));
+                attendance.setEmployee_TimeIn(resultSet.getTime("emp_timein"));
+                attendance.setEmployee_TimeOut(resultSet.getTime("emp_timeout"));
+                attendance.setEmployee_Attendance_Date(resultSet.getDate("emp_attendance_date"));
+            }
+
+        } catch (SQLException e) {
+
+        }
+
+        return attendance;
     }
 }

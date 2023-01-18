@@ -2,7 +2,9 @@ package Controller.Additional;
 
 import Database.SQLAdmin;
 import Database.SQLEmployee;
+import Database.SQLNewAdmin;
 import Models.Admin;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +33,10 @@ public class CredentialsDeactivationController {
 
     @FXML
     void login(ActionEvent event) {
-        if (sqlAdmin.checkIfValidAdmin(new Admin(this.admin.getEmployee_ID(), password.getText()))) {
+        NewAdmin na = new NewAdmin();
+        na.setUsername(this.admin.getUsername());
+        na.setPassword(password.getText());
+        if (sqlAdmin.checkIfValidAdmin(na)) {
             sqlAdmin.deactivateAdmin(this.admin, adminToDeactivate);
             loadCredentials();
         } else {
@@ -41,18 +46,18 @@ public class CredentialsDeactivationController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
-    private Admin adminToDeactivate;
+    private NewAdmin admin;
+    private NewAdmin adminToDeactivate;
     private AnchorPane container;
 
-    private SQLAdmin sqlAdmin = new SQLAdmin();
+    private SQLNewAdmin sqlAdmin = new SQLNewAdmin();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }
 
-    public void setAdminToDeactivate(Admin adminToDeactivate) {
+    public void setAdminToDeactivate(NewAdmin adminToDeactivate) {
         this.adminToDeactivate = adminToDeactivate;
     }
 

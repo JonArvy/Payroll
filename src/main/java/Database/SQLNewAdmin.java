@@ -66,6 +66,8 @@ public class SQLNewAdmin {
                 admin.setDisabler(resultSet.getString("admin_disabler"));
                 admin.setUsingTheSystem(resultSet.getBoolean("admin_isUsingTheSystem"));
 
+                admin.setItems();
+
 
                 adminList.add(admin);
             }
@@ -106,17 +108,17 @@ public class SQLNewAdmin {
         return valid;
     }
 
-    public boolean checkIfValidAdmin(Admin admin) {
+    public boolean checkIfValidAdmin(NewAdmin admin) {
         boolean correct = false;
         String command = "SELECT * " +
                 "FROM tbl_new_admin " +
-                "WHERE emp_id = ? " +
+                "WHERE admin_username = ? " +
                 "AND admin_password = ?";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
-            preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, encryptString(admin.getAdmin_Password()));
+            preparedStatement.setString(1, admin.getUsername());
+            preparedStatement.setString(2, encryptString(admin.getPassword()));
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -130,18 +132,18 @@ public class SQLNewAdmin {
         return correct;
     }
 
-    public boolean checkIfActiveValidAdmin(Admin admin) {
+    public boolean checkIfActiveValidAdmin(NewAdmin admin) {
         boolean correct = false;
         String command = "SELECT * " +
                 "FROM tbl_new_admin " +
-                "WHERE emp_id = ? " +
+                "WHERE admin_username = ? " +
                 "AND admin_password = ? " +
-                "AND admin_disabler = 0";
+                "AND admin_disabler = ''";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
-            preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, encryptString(admin.getAdmin_Password()));
+            preparedStatement.setString(1, admin.getUsername());
+            preparedStatement.setString(2, encryptString(admin.getPassword()));
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -155,17 +157,19 @@ public class SQLNewAdmin {
         return correct;
     }
 
-    public void addAdmin(Admin admin) {
-        String command = "INSERT INTO tbl_new_admin (emp_id, admin_password, admin_grantor, admin_disabler, admin_isUsingTheSystem) " +
-                "VALUES (?, ?, ?, ?, ?)";
+    public void addAdmin(NewAdmin admin) {
+        String command = "INSERT INTO tbl_new_admin (admin_username, admin_name, admin_password, admin_grantor, admin_disabler, admin_isUsingTheSystem, admin_isSuperAdmin) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
 
-            preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setString(2, encryptString(admin.getAdmin_Password())); //
-            preparedStatement.setInt(3, admin.getAdmin_Grantor());
-            preparedStatement.setInt(4, admin.getAdmin_Disabler());
-            preparedStatement.setBoolean(5, false);
+            preparedStatement.setString(1, admin.getUsername());
+            preparedStatement.setString(2, admin.getName());
+            preparedStatement.setString(3, encryptString(admin.getPassword())); //
+            preparedStatement.setString(4, admin.getGrantor());
+            preparedStatement.setString(5, admin.getDisabler());
+            preparedStatement.setBoolean(6, false);
+            preparedStatement.setBoolean(7, admin.isSuperAdmin());
 
             preparedStatement.executeUpdate();
             callAlert("New admin added!", 2);
@@ -189,12 +193,12 @@ public class SQLNewAdmin {
         }
     }
 
-    public void setAdminIsUsingTheSystem(Admin admin) {
-        String command = "UPDATE tbl_new_admin SET admin_isUsingTheSystem = 1 WHERE admin_id = ?";
+    public void setAdminIsUsingTheSystem(NewAdmin admin) {
+        String command = "UPDATE tbl_new_admin SET admin_isUsingTheSystem = 1 WHERE admin_username = ?";
 
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
-            preparedStatement.setInt(1, admin.getAdmin_ID());
+            preparedStatement.setString(1, admin.getUsername());
 
             preparedStatement.executeUpdate();
 
@@ -204,15 +208,15 @@ public class SQLNewAdmin {
         }
     }
 
-    public boolean checkIfEmployeeIsAdmin(Employee employee) {
+    public boolean checkIfEmployeeIsAdmin(NewAdmin employee) {
         boolean exist = false;
         String command = "SELECT * " +
                 "FROM tbl_new_admin " +
-                "WHERE emp_id = ?";
+                "WHERE admin_username = ?";
 
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
-            preparedStatement.setInt(1, employee.getEmployee_ID());
+            preparedStatement.setString(1, employee.getUsername());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -230,7 +234,7 @@ public class SQLNewAdmin {
     public int getAdminCount() {
         int count = 0;
         String command = "SELECT COUNT(*) as admin_count " +
-                "FROM tbl_admin";
+                "FROM tbl_new_admin";
 
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -244,13 +248,13 @@ public class SQLNewAdmin {
         return count;
     }
 
-    public void deactivateAdmin(Admin admin, Admin adminToDeactivate) {
-        String command = "UPDATE tbl_new_admin SET admin_disabler = ? WHERE emp_id = ?";
+    public void deactivateAdmin(NewAdmin admin, NewAdmin adminToDeactivate) {
+        String command = "UPDATE tbl_new_admin SET admin_disabler = ? WHERE admin_username = ?";
 
         try (Connection conn = connect();
              PreparedStatement preparedStatement = conn.prepareStatement(command)) {
-            preparedStatement.setInt(1, admin.getEmployee_ID());
-            preparedStatement.setInt(2, adminToDeactivate.getEmployee_ID());
+            preparedStatement.setString(1, admin.getUsername());
+            preparedStatement.setString(2, adminToDeactivate.getUsername());
 
             preparedStatement.executeUpdate();
             callAlert("Admin deactivated!", 2);

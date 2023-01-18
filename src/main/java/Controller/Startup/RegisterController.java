@@ -1,12 +1,10 @@
 package Controller.Startup;
 
-import Database.SQLAdmin;
-import Database.SQLDepartment;
-import Database.SQLEmployee;
-import Database.SQLLogs;
+import Database.*;
 import Models.Admin;
 import Models.Department;
 import Models.Employee;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -39,7 +37,7 @@ public class RegisterController {
     private TextField confirm_password_tf;
 
     @FXML
-    private TextField emp_id;
+    private TextField username;
 
     @FXML
     private PasswordField password_pf;
@@ -94,7 +92,7 @@ public class RegisterController {
 
     private Department department;
     private Employee employee;
-    private Admin admin;
+    private NewAdmin admin;
 
     public void setDepartment(Department department) {
         this.department = department;
@@ -102,10 +100,10 @@ public class RegisterController {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-        emp_id.setText(String.valueOf(employee.getEmployee_ID()));
+        username.setText("");
     }
 
-    public void setAdmin(Admin admin) {
+    public void setAdmin(NewAdmin admin) {
         if (admin != null) {
             this.admin = admin;
         }
@@ -138,17 +136,23 @@ public class RegisterController {
     }
 
     private void registerFirstAccount() {
+        if (username.getText().isEmpty()) {
+            callAlert("Username is required", 3);
+            return;
+        }
         if (password_pf.getText().trim().equals("")) {
             callAlert("Password cannot be empty", 3);
         } else {
             if (password_pf.getText().equals(confirm_password_pf.getText())) {
 
-                this.admin = new Admin();
+                this.admin = new NewAdmin();
 
-                admin.setEmployee_ID(employee.getEmployee_ID());
-                admin.setAdmin_Password(password_pf.getText());
-                admin.setAdmin_Grantor(0);
-                admin.setAdmin_Disabler(0);
+                admin.setUsername(username.getText());
+                admin.setPassword(password_pf.getText());
+                admin.setName(employee.getFirst_Name() + " " + employee.getLast_Name());
+//                admin.setGrantor("");
+//                admin.setDisabler("");
+                admin.setSuperAdmin(true);
 
 
                 createTheFirstAccount();
@@ -163,7 +167,7 @@ public class RegisterController {
     private void createTheFirstAccount() {
         SQLEmployee sqlEmployee = new SQLEmployee();
         SQLDepartment sqlDepartment = new SQLDepartment();
-        SQLAdmin sqlAdmin = new SQLAdmin();
+        SQLNewAdmin sqlAdmin = new SQLNewAdmin();
 
         sqlEmployee.addEmployee(employee);
         sqlDepartment.editDepartment(department);

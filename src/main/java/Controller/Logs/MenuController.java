@@ -3,6 +3,7 @@ package Controller.Logs;
 import Database.SQLLogs;
 import Models.Admin;
 import Models.Logs;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,10 +18,10 @@ import java.io.IOException;
 public class MenuController {
 
     /****************************** FXML ENDS HERE ******************************/
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

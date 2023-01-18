@@ -4,6 +4,7 @@ package Controller.Payroll;
 import Classes.Converters;
 import Database.SQLPayrollSummary;
 import Models.AttendanceReport;
+import Models.NewAdmin;
 import Models.Summary;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
@@ -107,7 +108,7 @@ public class PayrollSummaryController {
 
     @FXML
     private void toPDF() {
-        createPayrollSummaryPDF(summaryList, Date.valueOf(date_from.getValue()), Date.valueOf(date_to.getValue()));
+        createPayrollSummaryPDF(summaryList, Date.valueOf(date_from.getValue()), Date.valueOf(date_to.getValue()), this.admin);
     }
 
     @FXML
@@ -127,7 +128,7 @@ public class PayrollSummaryController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private ObservableList<Summary> summaryList = FXCollections.observableArrayList();
@@ -135,7 +136,7 @@ public class PayrollSummaryController {
     private SQLPayrollSummary sqlPayrollSummary = new SQLPayrollSummary();
 
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

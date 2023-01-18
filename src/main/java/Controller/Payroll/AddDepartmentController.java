@@ -5,6 +5,7 @@ import Database.SQLDepartment;
 import Models.Admin;
 import Models.Bonus;
 import Models.Department;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -108,7 +109,7 @@ public class AddDepartmentController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private SQLDepartment sqlDepartment = new SQLDepartment();
@@ -121,7 +122,7 @@ public class AddDepartmentController {
 
     private final TimeSpinner spinner4 = new TimeSpinner();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

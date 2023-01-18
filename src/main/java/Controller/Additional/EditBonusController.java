@@ -6,6 +6,7 @@ import Database.SQLDepartment;
 import Models.Admin;
 import Models.Bonus;
 import Models.Department;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,7 +66,7 @@ public class EditBonusController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private Bonus bonus;
@@ -77,7 +78,7 @@ public class EditBonusController {
 
     Converters converters = new Converters();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

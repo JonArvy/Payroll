@@ -3,6 +3,7 @@ package Controller.Employee;
 import Database.SQLEmployee;
 import Models.Admin;
 import Models.Employee;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -84,13 +85,13 @@ public class ManageEmployeeController {
 //    }
 
     /****************************** FXML ENDS HERE ******************************/
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private SQLEmployee sqlEmployee = new SQLEmployee();
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

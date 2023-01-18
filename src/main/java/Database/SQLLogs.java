@@ -23,21 +23,21 @@ public class SQLLogs {
                 "AFTER INSERT ON tbl_employees " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Add Employee', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'New employee added with name ' || new.emp_fname || ' ' || new.emp_lname, date('now'), time('now')); " +
+                "    VALUES ('Add Employee', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'New employee added with name ' || new.emp_fname || ' ' || new.emp_lname, date('now'), time('now')); " +
                 "END"; //Done
 
         String updateEmployee = "CREATE TRIGGER IF NOT EXISTS update_employee " +
                 "AFTER UPDATE ON tbl_employees " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Update Employee', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Employee with name ' || old.emp_fname || ' ' || old.emp_lname || ' has been updated', date('now'), time('now')); " +
+                "    VALUES ('Update Employee', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Employee with name ' || old.emp_fname || ' ' || old.emp_lname || ' has been updated', date('now'), time('now')); " +
                 "END"; //Done
 
         String insertAttendance = "CREATE TRIGGER IF NOT EXISTS insert_attendance " +
                 "AFTER INSERT ON tbl_attendance " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Add Attendance', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), " +
+                "    VALUES ('Add Attendance', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), " +
                 "        'New attendance added by ' || (" +
                 "            SELECT emp_fname || ' ' || emp_lname " +
                 "            FROM tbl_employees " +
@@ -50,86 +50,86 @@ public class SQLLogs {
                 "AFTER UPDATE ON tbl_attendance " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Update Attendance', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Attendance record of employee number ' || old.emp_id || ' updated with ' || (SELECT DATE(old.emp_attendance_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
+                "    VALUES ('Update Attendance', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Attendance record of employee number ' || old.emp_id || ' updated with ' || (SELECT DATE(old.emp_attendance_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
                 "END";
 
         String deleteAttendance = "CREATE TRIGGER IF NOT EXISTS delete_attendance " +
                 "AFTER DELETE ON tbl_attendance " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Delete Attendance', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Attendance record of employee number ' || old.emp_id || ' deleted with ' || (SELECT DATE(old.emp_attendance_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
+                "    VALUES ('Delete Attendance', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Attendance record of employee number ' || old.emp_id || ' deleted with ' || (SELECT DATE(old.emp_attendance_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
                 "END";
 
         String insertBonus = "CREATE TRIGGER IF NOT EXISTS insert_bonus " +
                 "AFTER INSERT ON tbl_bonus " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Add Bonus', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'New bonus added with amount ' || new.bonus_amount || ' and date ' || (SELECT DATE(new.bonus_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
+                "    VALUES ('Add Bonus', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'New bonus added with amount ' || new.bonus_amount || ' and date ' || (SELECT DATE(new.bonus_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
                 "END";
 
         String updateBonus = "CREATE TRIGGER IF NOT EXISTS update_bonus " +
                 "AFTER UPDATE ON tbl_bonus " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Update Bonus', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Bonus record with amount ' || old.bonus_amount || ' updated with ' || new.bonus_amount || ' and date ' || (SELECT DATE(new.bonus_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
+                "    VALUES ('Update Bonus', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Bonus record with amount ' || old.bonus_amount || ' updated with ' || new.bonus_amount || ' and date ' || (SELECT DATE(new.bonus_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
                 "END";
 
         String insertHoliday = "CREATE TRIGGER IF NOT EXISTS insert_holiday " +
                 "AFTER INSERT ON tbl_holiday " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Add Holiday', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'New holiday added with name ' || new.holiday_name || ' and date ' || (SELECT DATE(new.holiday_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
+                "    VALUES ('Add Holiday', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'New holiday added with name ' || new.holiday_name || ' and date ' || (SELECT DATE(new.holiday_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
                 "END";
 
         String updateHoliday = "CREATE TRIGGER IF NOT EXISTS update_holiday " +
                 "AFTER UPDATE ON tbl_holiday " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Update Holiday', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Holiday record with name ' || old.holiday_name || ' updated with ' || new.holiday_name || ' and date ' || (SELECT DATE(new.holiday_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
+                "    VALUES ('Update Holiday', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Holiday record with name ' || old.holiday_name || ' updated with ' || new.holiday_name || ' and date ' || (SELECT DATE(new.holiday_date / 1000, 'unixepoch', '+1 days')), date('now'), time('now')); " +
                 "END";
 
         String deleteHoliday = "CREATE TRIGGER IF NOT EXISTS delete_holiday " +
                 "AFTER DELETE ON tbl_holiday " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Delete Holiday', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Holiday record with name ' || old.holiday_name || ' deleted.', date('now'), time('now')); " +
+                "    VALUES ('Delete Holiday', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Holiday record with name ' || old.holiday_name || ' deleted.', date('now'), time('now')); " +
                 "END";
 
         String insertDepartment = "CREATE TRIGGER IF NOT EXISTS insert_department " +
                 "AFTER INSERT ON tbl_department " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Add Department', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'New department added with name ' || new.department_name, date('now'), time('now')); " +
+                "    VALUES ('Add Department', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'New department added with name ' || new.department_name, date('now'), time('now')); " +
                 "END";
 
         String updateDepartment = "CREATE TRIGGER IF NOT EXISTS update_department " +
                 "AFTER UPDATE ON tbl_department " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Update Department', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Department record with name ' || old.department_name || ' updated.', date('now'), time('now')); " +
+                "    VALUES ('Update Department', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Department record with name ' || old.department_name || ' updated.', date('now'), time('now')); " +
                 "END";
 
         String deleteDepartment = "CREATE TRIGGER IF NOT EXISTS delete_department " +
                 "AFTER DELETE ON tbl_department " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Delete Department', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Department record with name ' || old.department_name || ' deleted.', date('now'), time('now')); " +
+                "    VALUES ('Delete Department', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Department record with name ' || old.department_name || ' deleted.', date('now'), time('now')); " +
                 "END";
 
         String insertAdmin = "CREATE TRIGGER IF NOT EXISTS insert_admin " +
-                "AFTER INSERT ON tbl_admin " +
+                "AFTER INSERT ON tbl_new_admin " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Add Admin', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'New admin added with employee id ' || new.emp_id || ' granted by ' || new.admin_grantor," +
+                "    VALUES ('Add Admin', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'New admin added with employee id ' || new.emp_id || ' granted by ' || new.admin_grantor," +
                 "            date('now')," +
                 "            time('now')); " +
                 "END";
 
         String updateAdmin = "CREATE TRIGGER IF NOT EXISTS update_admin " +
-                "AFTER UPDATE ON tbl_admin " +
+                "AFTER UPDATE ON tbl_new_admin " +
                 "BEGIN " +
                 "    INSERT INTO tbl_logs (log_category, log_admin, log_message, log_date, log_time) " +
-                "    VALUES ('Update Admin', (SELECT emp_id FROM tbl_admin WHERE admin_isUsingTheSystem = true), 'Updated admin with employee id ' || old.emp_id," +
+                "    VALUES ('Update Admin', (SELECT admin_username FROM tbl_new_admin WHERE admin_isUsingTheSystem = true), 'Updated admin with employee id ' || old.emp_id," +
                 "            date('now')," +
                 "            time('now')); " +
                 "END";
@@ -225,13 +225,12 @@ public class SQLLogs {
     public ObservableList<Logs> getLogs() {
         ObservableList<Logs> logsList = FXCollections.observableArrayList();
         String command = "SELECT log_id, " +
-                "tbl_logs.log_message, " +
-                "tbl_logs.log_date, " +
-                "tbl_logs.log_time, " +
-                "tbl_logs.log_category, " +
-                "tbl_employees.emp_fname || ' ' || tbl_employees.emp_lname AS admin_name " +
-                "FROM tbl_logs JOIN tbl_employees " +
-                "ON tbl_logs.log_admin = tbl_employees.emp_id ";
+                "log_message, " +
+                "log_date, " +
+                "log_time, " +
+                "log_category, " +
+                "log_admin " +
+                "FROM tbl_logs ";
 
         try (Connection connection = connect();
              PreparedStatement preparedStatement = connection.prepareStatement(command)) {
@@ -243,7 +242,7 @@ public class SQLLogs {
                 logs.setLog_id(resultSet.getInt("log_id"));
                 logs.setLog_message(resultSet.getString("log_message"));
                 logs.setLog_type(resultSet.getString("log_category"));
-                logs.setLog_Admin(resultSet.getString("admin_name"));
+                logs.setLog_Admin(resultSet.getString("log_admin"));
                 logs.setLog_date(resultSet.getString("log_date"));
                 logs.setLog_time(resultSet.getString("log_time"));
                 logsList.add(logs);

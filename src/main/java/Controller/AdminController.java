@@ -15,7 +15,9 @@ import Controller.Payroll.DepartmentController;
 import Controller.Payroll.PayrollSummaryController;
 import Controller.Payroll.PayslipController;
 import Controller.Startup.WelcomeController;
+import Database.SQLNewAdmin;
 import Models.Admin;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,7 +82,7 @@ public class AdminController {
     private Button showLogs;
 
 
-    private Admin admin;
+    private NewAdmin admin;
 
     @FXML
     private void clickNavigation_Choices(ActionEvent event) {
@@ -113,13 +115,13 @@ public class AdminController {
 
     @FXML
     private void initialize() {
-        setAdmin(new Admin(1));
+        setAdmin(new NewAdmin());
 
     }
 
     /****************************** FXML ENDS HERE ******************************/
 
-    public void setAdmin(Admin admin) {
+    public void setAdmin(NewAdmin admin) {
         this.admin = admin;
         loadNoticeBoard();
     }
@@ -387,6 +389,8 @@ public class AdminController {
         stage.close();
 
         deleteAllQRImages();
+        SQLNewAdmin sqlNewAdmin = new SQLNewAdmin();
+        sqlNewAdmin.setAdminIsNotUsingTheSystem();
 
         Parent root;
         try {

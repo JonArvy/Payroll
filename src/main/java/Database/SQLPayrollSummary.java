@@ -695,6 +695,7 @@ public class SQLPayrollSummary {
 
             while(resultSet.next()) {
                 Summary sm = new Summary();
+                sm.setNumber(resultSet.getInt("summary_number"));
 //                sm.setDateCreated(resultSet.getDate("summary_date_created"));
                 sm.setName(resultSet.getString("summary_name"));
                 sm.setEmployeeNumber(resultSet.getInt("summary_employee_number"));
@@ -715,7 +716,7 @@ public class SQLPayrollSummary {
                 sm.setTotalHour(resultSet.getInt("summary_total_hours"));
                 sm.setTotalHourlyRate(resultSet.getDouble("summary_department_hourly_rate"));
 
-                sm.setSummaryID(resultSet.getInt("summary_id"));
+//                sm.setSummaryID(resultSet.getInt("summary_id"));
                 summaryList.add(
                         sm
                 );

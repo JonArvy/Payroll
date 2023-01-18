@@ -1,10 +1,9 @@
 package Controller.Attendance;
 
-import Controller.Additional.BonusReportController;
-import Controller.Employee.EditEmployeeController;
+import Database.SQLAdminAttendance;
 import Database.SQLAttendance;
-import Database.SQLDepartment;
-import Models.*;
+import Models.Attendance;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +26,7 @@ import java.time.LocalDate;
 import static Classes.CustomAlert.callAlert;
 import static Classes.ImporterFileChooser.callAttendanceImporter;
 
-public class DailyAttendanceController {
+public class DailyAttendanceFromQRController {
 
     @FXML
     private TableColumn<Attendance, Void> main_dailyattendance_column_action;
@@ -82,11 +81,6 @@ public class DailyAttendanceController {
 
     }
 
-    @FXML
-    private void addAttendance() {
-        loadAddDailyAttendance();
-    }
-
 
     @FXML
     private void initialize() {
@@ -97,19 +91,8 @@ public class DailyAttendanceController {
     }
 
     @FXML
-    private void importAttendance(ActionEvent event) {
-        callAttendanceImporter();
-    }
-
-
-    @FXML
-    private void remove() {
-        deleteAttendance();
-    }
-
-    @FXML
     void viewQRAttendance(ActionEvent event) {
-        loadQRAttendance();
+        loadAdminAttendance();
     }
 
     /****************************** FXML ENDS HERE ******************************/
@@ -118,21 +101,16 @@ public class DailyAttendanceController {
     private AnchorPane container;
 
     private ObservableList<Attendance> attendanceList = FXCollections.observableArrayList();
-
-    private SQLAttendance sqlAttendance = new SQLAttendance();
+    private SQLAdminAttendance sqlAdminAttendance = new SQLAdminAttendance();
 
     public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }
 
-    public void setDateInfo(Date date) {
-        main_dailyattendance_datepicker.setValue(date.toLocalDate());
-    }
-
     private void showDailyAttendanceTable() {
         attendanceList.clear();
-        attendanceList = sqlAttendance.getDailyAttendance(Date.valueOf(main_dailyattendance_datepicker.getValue()),
+        attendanceList = sqlAdminAttendance.getDailyAttendance(Date.valueOf(main_dailyattendance_datepicker.getValue()),
                 Date.valueOf(main_dailyattendance_datepicker.getValue().plusDays(1)));
 
         main_dailyattendance_column_date.setCellValueFactory(new PropertyValueFactory<Attendance, Date>("Employee_Attendance_Date"));
@@ -158,7 +136,7 @@ public class DailyAttendanceController {
                                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 3, 0.0, 0, 1);";
 
                         btn.setStyle(style);
-//                        btn.setDisable(true);
+                        btn.setDisable(true);
                         btn.setOnAction((ActionEvent event) -> {
                             Attendance attendance = getTableView().getItems().get(getIndex());
                             System.out.println(attendance.getAttendance_ID());
@@ -241,69 +219,12 @@ public class DailyAttendanceController {
         }
     }
 
-    private void loadAddDailyAttendance() {
-        AddAttendanceController controller;
+
+    private void loadAdminAttendance() {
+        DailyAttendanceController controller;
         try {
 
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/AddAttendance.fxml"));
-            fxmlLoader.load();
-
-            controller = fxmlLoader.getController();
-            controller.setRetrievedData(admin, container);
-            controller.setDate(main_dailyattendance_datepicker.getValue());
-
-//            controller.setEmployee(employee);
-
-            AnchorPane anchorPane = fxmlLoader.getRoot();
-//            container.getChildren().clear();
-            container.getChildren().add(anchorPane);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-
-    private void loadAddAttendance() {
-        AddAttendanceController controller;
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/AddAttendance.fxml"));
-            fxmlLoader.load();
-
-            controller = fxmlLoader.getController();
-            controller.setRetrievedData(admin, container);
-
-            AnchorPane anchorPane = fxmlLoader.getRoot();
-//            container.getChildren().clear();
-            container.getChildren().add(anchorPane);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    private void deleteAttendance() {
-        try {
-            Attendance attendance = (Attendance) main_dailyattendance_tableview.getSelectionModel().getSelectedItem();
-            boolean exist = sqlAttendance.checkIfAttendanceExist(attendance);
-            if (!exist) {
-                sqlAttendance.deleteAttendance(attendance);
-                showDailyAttendanceTable();
-            } else {
-                callAlert("Attendance does not exist", 3);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-    private void loadQRAttendance() {
-        DailyAttendanceFromQRController controller;
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/DailyAttendanceFromQR.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("UI/Attendance/DailyAttendance.fxml"));
             fxmlLoader.load();
 
             controller = fxmlLoader.getController();

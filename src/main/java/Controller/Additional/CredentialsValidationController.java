@@ -2,8 +2,10 @@ package Controller.Additional;
 
 import Database.SQLAdmin;
 import Database.SQLBonus;
+import Database.SQLNewAdmin;
 import Models.Admin;
 import Models.Bonus;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,14 +64,14 @@ public class CredentialsValidationController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private ObservableList<Bonus> bonusList = FXCollections.observableArrayList();
 
-    private SQLAdmin sqlAdmin = new SQLAdmin();
+    private SQLNewAdmin sqlAdmin = new SQLNewAdmin();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }
@@ -77,7 +79,7 @@ public class CredentialsValidationController {
     private void confirm() {
         try {
             System.out.println(emp_id.getText() + " " + password.getText());
-            boolean logged = sqlAdmin.getAdminByID(admin, Integer.parseInt(emp_id.getText()), password.getText());
+            boolean logged = sqlAdmin.getAdminByID(admin, emp_id.getText(), password.getText());
             if (logged) {
                 loadCredentials();
             } else {

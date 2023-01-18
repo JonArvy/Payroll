@@ -104,7 +104,8 @@ public class SQLExecution {
                 "admin_password VARCHAR(200)," +
                 "admin_grantor VARCHAR(200)," +
                 "admin_disabler VARCHAR(200)," +
-                "admin_isUsingTheSystem BOOLEAN)";
+                "admin_isUsingTheSystem BOOLEAN, " +
+                "admin_isSuperAdmin BOOLEAN)";
 
         String bonus_tbl = "CREATE TABLE IF NOT EXISTS tbl_bonus (" +
                 "bonus_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE," +

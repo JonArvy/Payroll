@@ -29,7 +29,7 @@ public class DateTimeCalculator {
 
         long time_in = Duration.between(System_Time_In.toLocalTime(), Employee_Time_In.toLocalTime()).toMinutes();
         long time_out = Duration.between(System_Time_Out.toLocalTime(), Employee_Time_Out.toLocalTime()).toMinutes();
-
+        long registered_time_difference = Duration.between(Employee_Time_In.toLocalTime(), Employee_Time_Out.toLocalTime()).toMinutes();
 
         Time temp_employee_time_in = Time.valueOf("00:00:00");
         Time temp_employee_time_out = Time.valueOf("00:00:00");
@@ -85,6 +85,10 @@ public class DateTimeCalculator {
 //        System.out.println(roundUpTime(Employee_Time_In));
 //        System.out.println(roundDownTime(Employee_Time_Out));
         long subtracted_hours = total_hours - (total_break_hours / 60);
+
+        if (registered_time_difference < 60) {
+            subtracted_hours = 0;
+        }
 
         return subtracted_hours;
     }
@@ -170,4 +174,8 @@ public class DateTimeCalculator {
 //
 //        return new Time(calendar.getTimeInMillis());
 //    }
+
+    public static void getMinuteDifference() {
+
+    }
 }

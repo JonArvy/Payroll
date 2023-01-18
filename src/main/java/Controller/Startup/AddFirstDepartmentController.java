@@ -7,6 +7,7 @@ import Database.SQLDepartment;
 import Models.Admin;
 import Models.Department;
 import Models.Employee;
+import Models.NewAdmin;
 import cw.payroll.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -123,7 +124,7 @@ public class AddFirstDepartmentController {
 
     private Department department;
     private Employee employee;
-    private Admin admin;
+    private NewAdmin admin;
 
     private SQLDepartment sqlDepartment = new SQLDepartment();
 
@@ -154,7 +155,7 @@ public class AddFirstDepartmentController {
         this.employee = employee;
     }
 
-    public void setAdmin(Admin admin) {
+    public void setAdmin(NewAdmin admin) {
         this.admin = admin;
     }
 

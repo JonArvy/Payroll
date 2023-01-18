@@ -207,7 +207,7 @@ public class LoginController {
 
 
     private SQLExecution sql = new SQLExecution();
-    private SQLAdmin sqlAdmin = new SQLAdmin();
+    private SQLNewAdmin sqlAdmin = new SQLNewAdmin();
     private SQLAttendance sqlAttendance = new SQLAttendance();
     private SQLBonus sqlBonus = new SQLBonus();
     private SQLDepartment sqlDepartment = new SQLDepartment();
@@ -252,21 +252,18 @@ public class LoginController {
 
     @FXML
     void logIn(ActionEvent event) {
-        try {
-            int id = Integer.parseInt(login_pane_login_admin_empid.getText());
-            String pass = login_pane_login_admin_password.getText();
-            Admin adm = new Admin(id, pass);
-            boolean valid = sqlAdmin.checkIfActiveValidAdmin(adm);
-            if (valid) {
-                sqlAdmin.setAdminIsUsingTheSystem(sqlAdmin.getAdmin(adm));
-                logInAsAdmin(sqlAdmin.getAdmin(adm));
-            } else {
-                callAlert("Invalid Username or Password", 3);
-            }
-        } catch (NumberFormatException e) {
+        String username = login_pane_login_admin_empid.getText();
+        String pass = login_pane_login_admin_password.getText();
+        NewAdmin adm = new NewAdmin();
+        adm.setUsername(username);
+        adm.setPassword(pass);
+        boolean valid = sqlAdmin.checkIfValidAdmin(adm);
+        if (valid) {
+            sqlAdmin.setAdminIsUsingTheSystem(sqlAdmin.getAdmin(adm));
+            logInAsAdmin(sqlAdmin.getAdmin(adm));
+        } else {
             callAlert("Invalid Username or Password", 3);
         }
-
     }
 
     public void loadTimeInfo(Employee emp, Attendance attd, boolean ifTimeIn) {
@@ -275,7 +272,11 @@ public class LoginController {
         details_department.setText(emp.getDepartment_Name());
 
         details_date.setText(String.valueOf(attd.getEmployee_Attendance_Date()));
-        details_timein.setText(String.valueOf(attd.getEmployee_TimeIn()));
+
+        SQLAdminAttendance sqlAdminAttendance = new SQLAdminAttendance();
+        Attendance attendance = sqlAdminAttendance.getSpecificAttendance(emp.getEmployee_ID(), attd.getEmployee_Attendance_Date());
+
+        details_timein.setText(String.valueOf(attendance.getEmployee_TimeIn()));
 
         if (!ifTimeIn) {
             details_message.setText("Time in at " + attd.getEmployee_Attendance_Date() + " " + attd.getEmployee_TimeIn());
@@ -286,7 +287,7 @@ public class LoginController {
         login_pane_fingerprint_place1.toFront();
     }
 
-    private void logInAsAdmin(Admin admin) {
+    private void logInAsAdmin(NewAdmin admin) {
         Parent root;
         AdminController adminController;
         try {

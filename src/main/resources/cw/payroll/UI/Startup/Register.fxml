@@ -20,12 +20,12 @@
                   <Font name="Century Gothic Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="241.0" layoutY="221.0" text="Employee ID ">
+            <Label layoutX="241.0" layoutY="221.0" text="Username">
                <font>
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="emp_id" editable="false" layoutX="241.0" layoutY="240.0" prefHeight="25.0" prefWidth="237.0" />
+            <TextField fx:id="username" layoutX="241.0" layoutY="240.0" prefHeight="25.0" prefWidth="237.0" />
             <Label layoutX="241.0" layoutY="271.0" text="Password">
                <font>
                   <Font name="Century Gothic Bold" size="13.0" />

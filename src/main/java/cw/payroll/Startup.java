@@ -1,9 +1,6 @@
 package cw.payroll;
 
-import Database.SQLAdmin;
-import Database.SQLDepartment;
-import Database.SQLExecution;
-import Database.SQLLogs;
+import Database.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -13,7 +10,7 @@ import java.io.IOException;
 
 public class Startup {
     public static void checkStartup(Stage stage) throws IOException {
-        SQLAdmin sqlAdmin = new SQLAdmin();
+        SQLNewAdmin sqlAdmin = new SQLNewAdmin();
         SQLDepartment sqlDepartment = new SQLDepartment();
 
         //Creation of tables if it doesn't exist

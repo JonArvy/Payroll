@@ -1,9 +1,6 @@
 package Classes;
 
-import Models.Admin;
-import Models.BonusSummary;
-import Models.Summary;
-import Models.SummarySchema;
+import Models.*;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.color.Color;
@@ -132,7 +129,7 @@ public class PDFWriter {
         }
     }
 
-    public static void createPayrollSummaryPDF(ObservableList<Summary> summaryList, Date from, Date to, Admin admin) {
+    public static void createPayrollSummaryPDF(ObservableList<Summary> summaryList, Date from, Date to, NewAdmin admin) {
 
         ObservableList<String> deptlist = FXCollections.observableArrayList();
 
@@ -166,7 +163,7 @@ public class PDFWriter {
 
             table.addCell(new Cell(0, 14).add(getMonthName(from) + " " + getYear(from)).setFontSize(fontsize).setTextAlignment(TextAlignment.CENTER));
 
-            table.addCell(new Cell(1, 3).add("Barangay: CANUMAY WEST \n Barangay Treasurer: ZAMORA A. NAVARRO").setFontSize(fontsize));
+            table.addCell(new Cell(1, 3).add("Barangay: CANUMAY WEST \n Barangay Treasurer: " + admin.getName().toUpperCase()).setFontSize(fontsize));
             table.addCell(new Cell(1, 6).add("City/Municipality: VALENZUELA \n Province: METROPOLITAN MANILA").setFontSize(fontsize));
             table.addCell(new Cell(1, 5).add("Payroll No. " + getYear(from) + "-" + getMonthNumber(from) + "-032 \n Page No. " + getYear(from) + "-01-PS").setFontSize(fontsize));
 

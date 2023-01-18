@@ -93,7 +93,7 @@ public class PayslipController {
 
     /****************************** FXML ENDS HERE ******************************/
 
-    private Admin admin;
+    private NewAdmin admin;
     private AnchorPane container;
 
     private ObservableList<Summary> summaries = FXCollections.observableArrayList();
@@ -105,7 +105,7 @@ public class PayslipController {
 
     private SQLPayrollSummary sqlPayrollSummary = new SQLPayrollSummary();
 
-    public void setRetrievedData(Admin admin, AnchorPane anchorPane) {
+    public void setRetrievedData(NewAdmin admin, AnchorPane anchorPane) {
         this.admin = admin;
         this.container = anchorPane;
     }

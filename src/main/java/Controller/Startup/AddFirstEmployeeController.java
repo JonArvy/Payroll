@@ -4,10 +4,7 @@ import Classes.Converters;
 import Controller.Employee.AddEmployeeBiometricsController;
 import Database.SQLDepartment;
 import Database.SQLEmployee;
-import Models.Admin;
-import Models.BooleanValue;
-import Models.Department;
-import Models.Employee;
+import Models.*;
 import cw.payroll.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -113,7 +110,7 @@ public class AddFirstEmployeeController {
 
     private Department department;
     private Employee employee;
-    private Admin admin;
+    private NewAdmin admin;
 
     private ObservableList<BooleanValue> genderList;
     private ObservableList<BooleanValue> statusList;
@@ -134,7 +131,7 @@ public class AddFirstEmployeeController {
         }
     }
 
-    public void setAdmin(Admin admin) {
+    public void setAdmin(NewAdmin admin) {
         this.admin = admin;
     }
 
